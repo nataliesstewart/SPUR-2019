@@ -1,0 +1,186 @@
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[inline]{enumitem}
+\usepackage{indentfirst}
+\usepackage{mathrsfs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{tabto}
+\usepackage{import}
+\usepackage{ifthen}
+\usepackage[font=small,labelfont=bf]{caption}
+
+% ugly macros for crossingless matchings
+% if you ever need to use these, message me
+\usetikzlibrary{calc}
+\newcommand\Matching[2]{%
+  \begin{tikzpicture}
+    \draw(1/2,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2,0)circle[radius=.5mm];
+    }
+      \foreach \x/\y in {#2} {
+         \draw(\x/2,0) to[bend left=90] (\y/2,0);
+    }
+  \end{tikzpicture}}
+\newcommand\IsoAction[5]{%
+  \begin{tikzpicture}
+    \draw[dotted](1/2,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2,0)circle[radius=.1mm];
+    }
+    \foreach \x/\y in {#2} {
+         \draw(\x/2,0) to[bend left=90] (\y/2,0);
+    }
+   
+    \iffalse
+    \ifthenelse{#3 > 1}{
+    \foreach \x in {1,...,#3-2}{
+        \draw(\x/2,-3/5) to (\x/2,0);         
+    }}{}
+    \ifthenelse{#3 < #1-3}{
+      \foreach \x in {#3,...,#1-3}{
+        \draw(\x/2+3/2,-3/5) to (\x/2+3/2,0);
+      }
+    }
+    
+    \fi
+
+    \ifthenelse{#3 > 2}{
+    \foreach \x in {1,...,#3-2}{
+        \draw(\x/2,-3/5) to (\x/2,0);         
+    }}{}
+    \ifthenelse{#3 < #1-2}{
+      \foreach \x in {#3,...,#1-1}{
+        \draw(\x/2+1/2,-3/5) to (\x/2+1/2,0);
+      }
+    }
+    \ifthenelse{#3 > 1}{
+    \foreach \x in {1,...,#3}{
+        \draw(\x/2,-6/5) to (\x/2,-3/5);         
+    }}{}
+    \ifthenelse{#3 < #1-3}{
+      \foreach \x in {#3,...,#1-3}{
+        \draw(\x/2+3/2,-6/5) to (\x/2+3/2,-3/5);
+      }
+    }
+
+    \ifthenelse{#3 > 1}{
+    \foreach \x in {1,...,#3-1}{
+        \draw(\x/2,-9/5) to (\x/2,-6/5);         
+    }}{}
+    \ifthenelse{#3 < #1-2}{
+      \foreach \x in {#3,...,#1-2}{
+        \draw(\x/2+1,-9/5) to (\x/2+1,-6/5);
+      }
+    }
+    
+    \draw(#3/2,0) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2 - 1/2,-3/5) arc[radius=1/4, start angle=180, end angle=0];
+    \draw(#3/2 + 1,-3/5) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2+1/2,-6/5) arc[radius=1/4, start angle=180, end angle=0];
+    \draw(#3/2 + 1/2,-6/5) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2,-9/5) arc[radius=1/4, start angle=180, end angle=0];
+    \draw[->] (#1/2 + 1/2,0) to (#1/2 + 1,0);
+
+    \def\offset{#1/2 + 2}
+    \draw(1/2 + \offset,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2 + \offset,0)circle[radius=.5mm];
+    }
+    \foreach \x/\y in {#4} {
+         \draw(\x/2 + \offset,0) to[bend left=90] (\y/2 + \offset,0);
+    }
+
+    \draw[left] ( 1/2 - 1/8 + \offset,0) node  {$#5$};
+  \end{tikzpicture}}
+\newcommand\Action[5]{%
+  \begin{tikzpicture}
+    \draw[dotted](1/2,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2,0)circle[radius=.1mm];
+    }
+    \foreach \x/\y in {#2} {
+         \draw(\x/2,0) to[bend left=90] (\y/2,0);
+    }
+    
+    \ifthenelse{#3 > 1}{
+    \foreach \x in {1,...,#3-1}{
+        \draw(\x/2,-3/5) to (\x/2,0);         
+    }}{}
+    \ifthenelse{#3 < #1-2}{
+      \foreach \x in {#3,...,#1-2}{
+        \draw(\x/2+1,-3/5) to (\x/2+1,0);
+      }
+    }
+    
+    \draw(#3/2 + 1/2,0) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2,-3/5) arc[radius=1/4, start angle=180, end angle=0];
+  
+    \draw[->] (#1/2 + 1/2,0) to (#1/2 + 1,0);
+
+    \def\offset{#1/2 + 2}
+    \draw(1/2 + \offset,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2 + \offset,0)circle[radius=.5mm];
+    }
+    \foreach \x/\y in {#4} {
+         \draw(\x/2 + \offset,0) to[bend left=90] (\y/2 + \offset,0);
+    }
+
+    \draw[left] ( 1/2 - 1/8 + \offset,0) node  {$#5$};
+  \end{tikzpicture}}
+
+% Nat's macros for convenience
+\def\NN{\mathbb{N}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\prn}[1]{\left( #1 \right)}
+\newcommand{\brk}[1]{\left[ #1 \right]}
+\newcommand{\cbr}[1]{\left\{ #1 \right\}}
+\newcommand{\nrm}[1]{\left\| #1 \right\|}
+\newcommand{\txt}[2]{\text{#1} \prn{#2}}
+\newcommand{\id}[1]{\text{id}_{#1}}
+\def\SH{\mathscr{H}}
+
+\def\Tr{\text{Tr}}
+\def\ker{\text{ker}}
+\def\ima{\text{im}}
+\def\dim{\text{dim}}
+\def\Res{\text{Res}}
+\def\End{\text{End}\,}
+\newcommand{\Hom}[1]{\txt{Hom}{#1}}
+\newcommand{\Homarg}[2]{\text{Hom}_{#1}\prn{#2}}
+\newcommand{\Mod}[1]{\text{Mod}_{#1}}
+
+\def\emptyset{\varnothing}
+\def\meet{\wedge}
+\def\join{\vee}
+
+% set indentation length
+\setlength\parindent{24pt}
+% set the head height
+\setlength\headheight{15pt}
+
+% generic theorem labels; numbering by section, unnumbered are *, definitions are definition style.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{claim*}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
