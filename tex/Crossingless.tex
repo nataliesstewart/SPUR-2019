@@ -58,6 +58,7 @@ We will move on to prove that these modules have unique dimension up to transpos
 then, we will show that $\dim V = \dim W$ so that $W$ corresponds to an $n \times 2$ or $2 \times n$ diagram.
 We will then do a short character computation to prove that $V \cong W$.
 
+\newpage
 \section{Irreducibility} 
 We can now begin by proving that $\Res_{\SH_{k,p}(S_{2n - 1})}^{\SH_{k,p}(S_{2n})} W$ is irreducible;
 in partuclar, this implies that $W$ itself is irreducible, as an $\SH$-subrepresentation is a $\SH_{k,p}(S_{2n - 1})$-subrepresentation.
@@ -81,7 +82,7 @@ in partuclar, this implies that $W$ itself is irreducible, as an $\SH$-subrepres
   
   Since the image of $(1 + T_i)$ has arc $(i,i+1)$, it is isomorphic as a vector space to $W_{2n}$ with $2n - 2$ vertices.\footnote{This ismorphism ``ignores'' the arc $(i,i+1)$.}
   This isomorphism carries $w_1$ to an equivalent vector $w'_1$ in $W_{2n - 2}$ containing all length-2 arcs.
-  Further, all actions of $(1 + T'_j) \in \SH_{k,p}(S_{2n - 4})$ act identically (through the isomorphism) with simple transpositions other than $1 + T'_i$, which acts equivalently to $(1 + T_i)(1 + T_{i + 1})(1 + T_{i - 1})$ as illustrated in Figure \ref{bigloop};
+  Further, all actions of $(1 + T'_j) \in \SH_{k,p}(S_{2n - 4})$ act identically (through the isomorphism) with simple transpositions other than $1 + T'_i$, which acts equivalently to $q^{-1}(1 + T_i)(1 + T_{i + 1})(1 + T_{i - 1})$ as illustrated in Figure \ref{bigloop};
   hence, if the image of $(1 + T_i)w$ in $W_{2n - 2}$ generates an ideal containing $w'_1$, then $(1 + T_i)w$ generates an ideal containing $w_1$, and hence $w$ is cyclic. 
 
   \begin{figure}[b]
@@ -89,7 +90,13 @@ in partuclar, this implies that $W$ itself is irreducible, as an $\SH$-subrepres
     \Action{6}{1/6, 2/5, 3/4}{2}{1/6, 2/3, 4/5 }{q^{1/2}} \hspace{20pt} 
     \IsoAction{8}{1/8, 2/7, 3/4, 5/6}{3}{1/8, 2/5, 3/4, 6/7}{q^{1/2}}
   \]
-  \caption{The correspondence between the action of $(1 + T_2)$ on $w'_5 \in W_6$ and the action of $(1 + T_3)(1 + T_4)(1 + T_2)$ on the corresponding vector in $W_8$ having arc $(3,4)$.}
+  \[
+    \Action{4}{1/4, 2/3}{2}{1/4,2/3}{(1 + q)} \hspace{20pt}
+    \IsoAction{6}{1/6, 2/5, 3/4}{3}{1/6, 2/5, 3/4}{(1 + q)}
+  \]
+  \caption{The correspondence between the action of $(1 + T_2)$ on $w'_5 \in W_6$ and the action of $q^{-1}(1 + T_3)(1 + T_4)(1 + T_2)$ on the corresponding vector in $W_8$ having arc $(3,4)$ first, then on $w'_2 \in W_4$.
+  This demonstrates that the action works with and without creating a loop.
+  }
   \label{bigloop}
   \end{figure}
 
