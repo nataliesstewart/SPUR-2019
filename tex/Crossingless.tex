@@ -103,7 +103,7 @@ in partuclar, this implies that $W$ itself is irreducible, as an $\SH$-subrepres
   We are now ready to make the central claim in our proof:
   \begin{claim*}
     Suppose $n > 1$.
-    Then, the intersection $K := \bigcap_{i = 1}^{2n - 2} \ker (1 + T_i)$ is trivial if and only if $e \neq n + 1$.
+    Then, the intersection $K := \bigcap_{i = 1}^{2n - 2} \ker (1 + T_i)$ is trivial if $e$ does not divide $n + 1$.
   \end{claim*}
   This claim is necessary for irreducibility, as $K$ is a proper subrepresentation of $W$.
   
@@ -114,10 +114,59 @@ in partuclar, this implies that $W$ itself is irreducible, as an $\SH$-subrepres
   this pulls back to an action $h \in W_{2n}$ such that $h(1 + T_i)w = w_1$, so $W_{2n}$ is irreducible.
 
  \textit{Proof of claim.}
- \newcommand{\textoverline}{$\overline{\mbox{\phantom{L}}}$}
- \begin{CJK}{UTF8}{min}
- \textoverline\verb|\_(ツ)_/|\textoverline
-\end{CJK}
+ Note that $\bigcap \ker(1 + T_i)=\ker\prn{\bigoplus (1 + T_i)}$.
+ Further, we may postcompose this with the isomorphism $\ima(1 + T_i) \simeq W_{2n - 2}$ in order to arrive at a $(n - 2)C_{n-1} \times C_n$ matrix $A$ whose kernel is $K$.
+ Further, we may apply elementary row operations to this matrix, postcomposing with a change of basis, and preserve the kernel of this matrix as well.
+
+ We may characterize these rows as follows:
+ the row corresponding to $(1 + T_i)$ and mapping into the element $w_k \in W$ is of the form $[a_1,\dots,a_{C_n}]$ where $a_k = 1 + q$, $a_j = q^{1/2}$ whenever $(1 + T_i)w_j = q^{1/2}w_k$, and 0 otherwise.
+ In particular, we may characterize some particular rows with few nonzero entries.
+
+ First, the row of $A$ corresponding to $(1 + T_n)$ and $w_{C_n}$ will be of the form $[0,\dots,0,q^{1/2},q + 1]$.
+ Similarly, row corresponding to $(1 + T_{n - 1})$ and $w_{C_n - 1}$ will be of the form $[0,\dots,0,q^{1/2},0,q+1,q^{1/2}]$.
+ An inductive process is illustrated in Figure \ref{Submatrix}. in order to construct a row corresponding to each $(1 + T_{n - i})$ with nonzero components appearing in the order $q^{1/2}, q + 1, q^{1/2}$ and having the last two of these appear above the first two in the row corresponding to $(1 + T_{n - i - 1})$.
+ This process works for $1 \leq i \leq n - 1$, and two-nonzero-element rows, which are in column-alignment with the appropriate elements in $(1 + T_{2})$ and $(1 + T_{n - 1})$.
+
+ \begin{figure}
+   \[
+     \Action{10}{1/2,3/10,4/9,5/8,6/7}{2}{1/10,2/3,4/9,5/8,6/7}{q^{1/2}}
+   \]
+   \[
+     \Action{10}{1/10,2/3,4/9,5/8,6/7}{2}{1/10,2/3,4/9,5/8,6/7}{q+1}
+   \]
+   \[
+     \Action{10}{1/10,2/9,3/4,5/8,6/7}{2}{1/10,2/3,4/9,5/8,6/7}{q^{1/2}}
+   \]
+   \caption{Illustrated is the row constructed for transposition $(1 + T_2)$; clearly these are the only basis elements mapping to multiples of the desired element, and they relate to each other.
+     In general, the basis elements considered are the preimages of $w_{C_{n-1}}$ in the isomorphism $\ima(1 + T_i) \simeq W_{2n - 2}$.}
+ \label{Submatrix}
+ \end{figure}
+
+ This construction yields a $n \times C_n$ submatrix of $A$ which has nonzero entries on the rightmost column, and has (by removing zero columns) the same column space as the following:
+  % this is incredibly finnicky.
+  \newcommand*\bigzero{\makebox(0,15){\text{\Huge0}}}
+  \newcommand*\bigzerotwo{\makebox(-20,15){\text{\Huge0}}}
+  \[
+    \begin{bmatrix}
+      \begin{matrix}
+      q + 1 & q^{1/2} & \\
+      q^{1/2} & q + 1 & q^{1/2}\\
+      & q^{1/2} & q + 1 & q^{1/2}\\
+      &  & \ddots & \ddots
+      \end{matrix}
+      &   \bigzero\\
+      \bigzerotwo & \begin{matrix}
+        q^{1/2} & q+1 & q^{1/2}\\
+        &  q^{1/2} & q + 1
+       \end{matrix}
+    \end{bmatrix}
+  \]
+  We may recursively compute that this matrix has determinent $1 + q + \dots + q^n$, which vanishes exactly at the primitive $e$th roots of unity where $e$ divides $n + 1$;
+  henceforth assume that $q$ does not cause this to vanish.
+  Then, this matrix is invertible, so we may use elementary row operations to transform it into the identity;
+  these correspond to elementary row operations on $A$ which yield a row $[0,\dots,0,1]$.
+  Hence any vector $w \in K$ has a zero coefficient corresponding to $w_{C_n}$.
+  We will now prove that every nonzero vector $w \in K$ must have a nonzero coefficient corresponding to $w_{C_n}$, giving that $K = 0$. 
 \end{proof}
 
 Suppose $\SH$ is semisimple;
