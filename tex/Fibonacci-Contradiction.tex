@@ -1,0 +1,101 @@
+\documentclass{amsart}   
+\usepackage{RepStyle}
+\begin{document}
+\title{There is no Fibonacci Representation of $\SH_{k,q}(S_{n})$}
+\author{Miles Johnson \& Natalie Stewart}
+\maketitle
+
+Let $k$ be a field, and let $q \neq 0 \in k$ be the parameter of the Hecke algebra $\SH := \SH_{k,q}(S_n)$.
+We will show that there is no ``Fibonacci'' representation of $\SH$.
+
+First, let $F$ be the vector space with basis given by the strings of length $n + 1$ with alphabet $\cbr{p,*}$ such that no two $*$ symbols appear in a row.
+This is given an action by the braid group that we will try to emulate.
+We want an action which is ``local'', i.e. the simple transposition $T_i$ acts on the string from the $i$th to the ($i + 2$)nd symbol, modifying only the middle character, defined by the following rule:
+\begin{align}
+  \begin{split}
+  \widehat{(*pp)} &:= a(*pp)\\
+  \widehat{(*p*)} &:= b(*p*)\\
+  \widehat{(p*p)} &:= c(p*p) + d(ppp)\\
+  \widehat{(pp*)} &:= a(pp*)\\
+  \widehat{(ppp)} &:= d(p*p) + e(ppp).
+  \end{split}
+  \label{Definitions}
+\end{align}
+For suitable constants $a,b,c,d,e \in k$.
+\subsection*{Quadratic Relation}
+Note that the quadratic relation $T_i^2 = (q -1)T_i + q$ imposes the following restrictions on the constants:
+\begin{align}
+  \begin{split}
+  a^2 &= (q-1)a + q\\
+  b^2 &= (q-1)b + q\\
+  c^2 + d^2 &= (q -1)c + q\\
+  de &= (q-1)d\\
+  e^2 + d^2 &= (q -1)e + q\\
+  dc &= (q-1)d
+\end{split}
+  \label{Quadratic}
+\end{align}
+Note that we immediately have
+\begin{align}
+  \begin{split}
+  a,b &\in \cbr{\frac{q - 1 \pm \sqrt{(q-1)^2 + 4q}}{2}}\\
+  &= \cbr{\frac{q - 1 \pm (q + 1)}{2}}\\
+  &= \cbr{-1,q}.
+\end{split}
+\label{ab}
+\end{align}
+Further, if $d = 0$ then we have $c,e \in \cbr{-1,q}$;
+if $d \neq 0$ then we have that $c = e = (q - 1)$, and $d \in \cbr{\pm \sqrt{q}}$.
+
+\subsection*{Braid Relations}
+Here's where we'll run into some issues.
+%First, the braid relation $T_iT_j = T_jT_i$, $\abs{i - j} > 1$ is satisfied, as the action $T_i$ will be entirely unaffected by $T_j$, and one can see that this allows them to easily commute my commitativity of multiplication in $k$.
+
+We must verify the relation $T_iT_{i+1}T_i = T_{i+1}T_iT_{i+1}$.
+We can try to directly confirm this on length-4 strings: 
+\begin{itemize}
+  %\item $(*pp*)$ requires that $a^3 = a^3$, which is guaranteed.
+  \item $(*ppp)$ requires that $adb = bcd + ade$ and $a^2d = ae^2 + bd^2$.
+    If $d = 0$, then we require that $ae^2 = 0$ with $a,e \neq 0$, a contradiction.
+    Hence we require that $d^2 = q$ and $c = e = (q-1)$.
+
+    With the restrictions given above, the first of the above equivalently requires
+    \begin{align}
+      ab &= b(q-1) + a(q-1)
+    \label{appp}
+    \end{align}
+
+   \item $(pppp)$ requires that $acd + de^2 = ade$.
+     Equivalently, we require that $e^2 = 0$, i.e. $d = q = 1$.
+     Then, by \eqref{appp}, we require that $ab = 0$, but $a,b \neq 0$;
+     this is a contradiction, so there are no constants $a,b,c,d,e$ which make this a representation of $\SH$.
+
+     \iffalse
+    These together imply that $a = b$, and that $a = 2(q-1)$;
+    when $q \neq \frac{1}{2}, 2$ this contradicts \eqref{ab}.
+  \item $(*p*p)$ requires that $b^2c = bc^2 + ad^2$ and $abd = bcd + ade$.
+    Equivalently, we require that
+    \begin{align}
+      b^2(d^2-1) &= b(d^2-1)^2 + ad^2 \label{bq}\\
+      ab &= b(q-1) + a(q - 1).\nonumber
+    \end{align}
+    In particular, we have that
+    \[
+      bd^4 + (a - 2b - b^2)d^2 + b - b^2 = 0 = ad^4 + (b - 2a)d^2 - a^2d + a. 
+    \]
+    Equivalently, $d$ is a root of the polynomial $(a-b)d^4 + (3b - 3a + b^2)d^2 - a^2d + (2b + b^2)$.
+    \fi
+
+     %$(*pp*), $(p*pp)$, $(pp*p)$, $(p*p*)$, $(ppp*)$.
+\end{itemize}
+
+% this is actually wrong, we need that de = dc = 0, so if d is nonzero then c,e are 0 and the braid relations may give some more interesting restrictions?
+\iffalse
+\subsection*{The Degenerate Case}
+For completeness, let's actually consider the case $q = 0$;
+then, as seen above, we actually require that $d = 0$, so that $a,b,c,e \in \cbr{-1,0}$. 
+
+Then, the $(*ppp)$ braid relation we require that $ae^2 = 0$, so that at least one of $a,e$ is 0.
+As far as I can tell, there are no other restrictions, so there are 12 possible ``Fibonacci'' representations for the case $q = 0$.
+\fi
+\end{document}
