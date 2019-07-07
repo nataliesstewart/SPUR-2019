@@ -1,0 +1,59 @@
+\newcommand\IsoAction[5]{%
+  \begin{tikzpicture}
+    \draw[dotted](1/2,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2,0)circle[radius=.1mm];
+    }
+    \foreach \x/\y in {#2} {
+         \draw(\x/2,0) to[bend left=90] (\y/2,0);
+    }
+
+    % remove iffalse .. fi block for a bad time
+
+    \draw(#3/2,0) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2 - 1/2,-3/5) arc[radius=1/4, start angle=180, end angle=0];
+    \draw(#3/2 + 1,-3/5) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2+1/2,-6/5) arc[radius=1/4, start angle=180, end angle=0];
+    \draw(#3/2 + 1/2,-6/5) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2,-9/5) arc[radius=1/4, start angle=180, end angle=0];
+    \draw[->] (#1/2 + 1/2,0) to (#1/2 + 1,0);
+
+    \def\offset{#1/2 + 2}
+    \draw(1/2 + \offset,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2 + \offset,0)circle[radius=.5mm];
+    }
+    \foreach \x/\y in {#4} {
+         \draw(\x/2 + \offset,0) to[bend left=90] (\y/2 + \offset,0);
+    }
+
+    \draw[left] (1/2,0) node  {$q^{-1}$};
+    \draw[left] ( 1/2 - 1/8 + \offset,0) node  {$#5$};
+  \end{tikzpicture}}
+\newcommand\Action[5]{%
+  \begin{tikzpicture}
+    \draw[dotted](1/2,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2,0)circle[radius=.1mm];
+    }
+    \foreach \x/\y in {#2} {
+         \draw(\x/2,0) to[bend left=90] (\y/2,0);
+    }
+    
+    
+    \draw(#3/2 + 1/2,0) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#3/2,-3/5) arc[radius=1/4, start angle=180, end angle=0];
+  
+    \draw[->] (#1/2 + 1/2,0) to (#1/2 + 1,0);
+
+    \def\offset{#1/2 + 2}
+    \draw(1/2 + \offset,0) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2 + \offset,0)circle[radius=.5mm];
+    }
+    \foreach \x/\y in {#4} {
+         \draw(\x/2 + \offset,0) to[bend left=90] (\y/2 + \offset,0);
+    }
+
+    \draw[left] ( 1/2 - 1/8 + \offset,0) node  {$#5$};
+  \end{tikzpicture}}
