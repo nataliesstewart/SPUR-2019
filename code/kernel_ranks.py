@@ -1,114 +1,192 @@
-import cmath
-import numpy
-import crossingless
-import time
-import csv
-import math
+from cmath import sqrt
 
-def make_matrix(n,q,restriction = 1):
-    """
+# n: number of nodes (note that this must be even)
+# match: dictionary sending node to matching node
+# for example, {1:4,4:1,2:3,3:2} is the S4 rainbow
+#
+#
 
-    Create the matrix for the direct sum (1 + t_1) oplus ... oplus (1 + t_{i - 1 - restriction}) for parameter q
-    This has trivial kernel iff the restriction to S_{n - restriction} is irreducible.
-    
-    KEYWORD ARGUMENTS:
-    n -- parameter from S_n
-    q -- parameter of the hecke algebra (T_i - q)(T_i + 1) = 0
-    restriction -- the number of simple transpositions ignored.
-    """
-    assert n % 2 == 0
 
-    # generate a basis; basisraw has basis_element elements, basis has module_element
-    basisraw = crossingless.generate_basis(n)
-    basis = [crossingless.module_element(n,{b:1},q) for b in basisraw]
+class basis_element:
+    def __init__(self, n, match):
+        assert n % 2 == 0, 'n must be even'
+        self.n = n
+        assert len(match.keys()) == n, 'must have n nodes'
+        for i in match.keys():
+            assert match[i] != i, 'an element cannot be paired with itself'
+            assert i == match[match[i]], 'matchings are not symmetric'
+            for j in range(min(i, match[i])+1, max(i, match[i])):
+                assert min(i, match[i]) < match[j] and max(
+                    i, match[i]) > match[j], 'matchings cross'
+        self.match = match
 
-    C = len(basis)
-    m = numpy.zeros(C)
-    # i iterates over the simple transpositions considered
-    for i in range(n - restriction - 1):
-        # generate the matrix by applying the transposition to each basis vector and taking the resulting coefficients
-        outs = [b.mult_generator(i+1) for b in basis]
-        outsmat = numpy.matrix([[out.coeff(b) for out in outs] for b in basisraw])
-        m = numpy.vstack([m,outsmat])
-    
-    # prune zero rows from matrix
-    m = m[[i for i, x in enumerate(m) if x.any()]]
-    return m
+    # returns dictionary of matches nodes
+    def get_matches(self):
+        dictt = {}
+        for i in self.match.keys():
+            dictt[i] = self.match[i]
+        return dictt
 
-def kernel_dimension(n,q,restriction=1):
-    """
-    Find the dimension of the kernel of the matrix found above.
-    """
-    m = make_matrix(n,q,restriction)
-    return m.shape[1] - numpy.linalg.matrix_rank(m)
+    # returns matching node to i
+    def pair(self, i):
+        return self.match[i]
 
-def test_modular_kernels(nmax,nmin=4,restrictions=[1],debug=False,write=None):
-    """
-    Test all modular crossingless matchings representations (e >= 3) for nmin <= n <= nmax and the corresponding restriction.
-    
-    KEYWORD ARGUMENTS:
-    nmax -- highest n tested
-    nmin -- lowest n tested
-    restrictions -- tests at S_{n-r} for each r.
-    debug -- boolean flag enables or disables terminal output with times/values
-    write -- csvwriter object to write results to
-    """
-    assert nmax % 2 == 0 and nmin % 2 == 0 and nmax >= nmin
-    
-    allkernels = []
-    for restriction in restrictions:
-        # write row of e's at the top of the file
-        if write is not None:
-            write.writerow(["Kernel ranks of restriction to S_(n - {})".format(restriction)])
-            write.writerow(["n \\ e"] + list(range(3,nmax + 1)))
-        
-        # non-tested e's are blank
-        kernels = [["" for j in range(nmax - 2)] for i in range((nmax - nmin)//2 + 1)]        
+    # creates tex to call the Matchings macro on the given basis elt
+    def output_latex(self):
+        prematching = []
+        for key in self.match.keys():
+            if key < self.match[key]:
+                prematching += ["{}/{}".format(key, self.match[key])]
 
-        if debug: # times for trials are just clock-time differences
-            oldtime = time.process_time()
-        
-        # ignore n which are too small for the restriction
-        restriction_rounded = math.ceil((restriction+2)/2.)*2 
-        nmin_corrected = nmin if (restriction <= nmin - 2) else restriction_rounded
-        
-        for n in range(nmin_corrected,nmax + 1,2): # n ranges over the evens in [nmin,nmax]
-            for e in range(3,n+1): # e ranges over the integers in [e,n]
-                # make the primitive kth root exp(2 pi i/k) for k = e (confusing notation, I know)
-                q = cmath.exp(2*cmath.pi*cmath.sqrt(-1)/e)
-             
-                dim = kernel_dimension(n,q,restriction)
-                kernels[(n - nmin_corrected)//2][e - 3] = dim
-                
-                if debug:
-                    newtime = time.process_time()
-                    print("Case n = {:2d} \t e = {:2d} \t r = {:2d} has kernel dimension {} \t and took {:4f} seconds.".format(n,e,restriction,dim,newtime - oldtime))
-                    oldtime = newtime
-            
-            if write is not None:
-                write.writerow([n] + kernels[(n-nmin_corrected)//2])
-        allkernels = allkernels + [kernels]
-    return allkernels
+        matching = "\\Matching{{{}}}{{{}}}".format(
+            self.n, ",".join(prematching))
+        return matching
 
-# what follows is an example output, writing to file "Heuristic_data.csv" the kernels of
-# S_{n - r} for r from 0 to high enough for nontrivial kernels.
-"""
-nmin = 4
-nmax = 12
-debug = True
-restrictions = [0,1,2,3,4,5,6]
-write = csv.writer(open("Heuristic_data.csv","w"))
-test_modular_kernels(nmax,nmin,restrictions,debug,write)
-"""
+    def __eq__(self, i):
+        return i.get_matches() == self.get_matches()
 
-# another test simply printing kernels for a particular q and restriction
-nmin = 4
-nmax = 16
-q = 1
-restriction = 1
-oldtime = time.process_time()
-for n in range(nmin,nmax+1,2):
-    dim = kernel_dimension(n,q,restriction)
-    newtime = time.process_time()
-    print("Semisimple case n = {:2d} \t has kernel dmension {} \t and took {:4f} seconds.".format(n,dim,newtime - oldtime))
-    oldtime = newtime
+    # so that you can use the basis elements to index in a dictionary
+    def __hash__(self):
+        a = 0
+        for i in range(self.n):
+            a = a+self.n**i*self.match[i+1]
+        return a
+
+    def __str__(self):
+        return str(self.match)
+
+
+# vecpairs: dictionary sending basis element to coefficient
+# for example, the element (rainbow+two humps) in S4 would be implemented
+# using a dictionary sending the rainbow basis element to 1, and the two humps
+# element to 1
+class module_element:
+    def __init__(self, n, vecpairs, q=1):
+        assert n % 2 == 0, 'n must be even'
+
+        self.n = n
+        self.q = q
+
+        for i in vecpairs.keys():
+            assert isinstance(i, basis_element), 'keys must be basis elements'
+            assert i.n == n, 'basis elements must have n nodes'
+        self.vecpairs = vecpairs
+
+    # returns coefficient of a basis element
+    def coeff(self, i):
+        if i in self.vecpairs.keys():
+            return self.vecpairs[i]
+        else:
+            return 0
+
+    # Action by generator (1+T_i), returns new element rather than editing current
+    # note the use of __add__ implemented below
+    def mult_generator(self, i):
+        assert i > 0 and i < self.n, 'transposition out of range'
+        new = module_element(self.n, {}, self.q)
+        for basis in self.vecpairs.keys():
+            if basis.pair(i) == i+1:
+                new = new + \
+                    module_element(
+                        self.n, {basis: self.vecpairs[basis]*sqrt(self.q)}, self.q)
+            else:
+                match = basis.get_matches()
+
+                a = match[i]
+                b = match[i+1]
+                match[a] = b
+                match[b] = a
+                match[i] = i+1
+                match[i+1] = i
+
+                newbasis = basis_element(self.n, match)
+                new = new + \
+                    module_element(
+                        self.n, {newbasis: self.vecpairs[basis]*(1 + self.q)}, self.q)
+        return new
+
+    # Action by constant c, returns new element
+    def scale(self, c):
+        vecnew = {}
+        for i in self.vecpairs.keys():
+            vecnew[i] = self.vecpairs[i]*c
+        return module_element(self.n, vecnew, self.q)
+
+    # lets you add two elements
+    def __add__(self, elt):
+        vecnew = {}
+        for i in self.vecpairs.keys():
+            vecnew[i] = self.vecpairs[i]+elt.coeff(i)
+        for i in elt.vecpairs.keys():
+            if i not in self.vecpairs.keys():
+                vecnew[i] = elt.coeff(i)
+        return module_element(self.n, vecnew, self.q)
+
+    # deletes all elements that are nearly zero
+    # useful if you have many elements whose coefficients are zero, or
+    # close because of float point error
+    def round(self):
+        deletions = []
+        for i in self.vecpairs.keys():
+            if self.vecpairs[i] < 0.0001 and self.vecpairs[i] > -0.0001:
+                deletions.append(i)
+        for i in deletions:
+            del self.vecpairs[i]
+
+    # to check if the element is zero
+    def zero(self):
+        nothing = True
+        for i in self.vecpairs.keys():
+            if self.vecpairs[i] > .0001 or self.vecpairs[i] < -0.0001:
+                nothing = False
+        return nothing
+
+    def get_vecpairs(self):
+        return self.vecpairs
+
+    def output_latex(self, spacer="\\hspace{5pt}", delim="\\\\ \n +"):
+        """
+        Gives a latex command to call the Matchings macro corresponding to this element
+
+        ARGUMENTS:
+        spacer -- string placed between the coefficient and matching
+        delim -- delimiter between each coefficient matching pair
+        """
+        matchings = ["{}{}{}".format(
+            self.vecpairs[key], spacer, key.output_latex()) for key in self.vecpairs.keys()]
+        return delim.join(matchings)
+
+    def __str__(self):
+        return "coeffs: " + str(self.vecpairs.values()) + " number of coeffs: "+str(len(self.vecpairs.keys()))
+
+    def __eq__(self, i):
+        return self.vecpairs == i.vecpairs
+
+# Returns list of the C_n basis elements
+
+
+def generate_basis(n, q=1, efficient_dic={}):
+    if n == 2:
+        return [basis_element(2, {1: 2, 2: 1})]
+    if n == 0:
+        return [basis_element(0, {})]
+    elements = []
+    for i in range(1, n//2+1):
+        if (2*i-2) in efficient_dic.keys():
+            sub_elts1 = efficient_dic[2*i-2]
+        else:
+            sub_elts1 = generate_basis(2*i-2, efficient_dic)
+        if (n-2*i) in efficient_dic.keys():
+            sub_elts2 = efficient_dic[n-2*i]
+        else:
+            sub_elts2 = generate_basis(n-2*i, efficient_dic)
+        for j in sub_elts1:
+            for k in sub_elts2:
+                match = {1: 2*i, 2*i: 1}
+                for fuck in range(2*i-2):
+                    match[fuck+2] = j.pair(fuck+1)+1
+                for holyshit in range(n-2*i):
+                    match[holyshit+2*i+1] = k.pair(holyshit+1)+2*i
+                elements.append(basis_element(n, match))
+    efficient_dic[n] = elements
+    return elements

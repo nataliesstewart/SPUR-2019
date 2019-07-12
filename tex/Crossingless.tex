@@ -1,6 +1,6 @@
 \documentclass{amsart}   
 \usepackage{RepStyle} 
-\usepackage{NatMacros} %********REPLACE WITH MilesMacros TO KILL RELIANCE ON \ifnum AND HAVE INCOMPLETE OUTPUT***********
+\usepackage{NatMacros} %********REPLACE WITH MilesMacros TO KILL RELIANCE ON \ifnum AND HAVE INCOMPLETE OUTPUT***********bleh
 \begin{document}
 
 \title{The Two-Column Specht Module of the Hecke Algebra of $S_n$}
@@ -8,8 +8,8 @@
 \maketitle
 
 \section{Introduction}
-Let $S_{2n}$ be the symmetric group on $2n$ indices, let $\SH = \SH_{k,q}(S_{2n})$ be the corresponding Hecke algebra with parameter $q$, and let $S = \cbr{T_1,\dots,T_{n-1}}$ be the simple transpositions generating $\SH$.
-Let $\brk{k}_q = 1 + q + \dots + q^{k-1}$ be the $q$-number of $K$. 
+Let $S_{2n}$ be the symmetric group on $2n$ indices, let $\SH = \SH_{k,q}(S_{2n})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k$, and let $\cbr{T_i}$ be the simple transpositions generating $\SH$.
+Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$. 
 Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
 Either $q = 1$ and $e$ is the characteristic of $k$, or $q \neq 1$ and $q$ is a primitive $e$th root of unity.
 
@@ -17,7 +17,8 @@ Let $V := S^{(2,\dots,2)}$ be the Specht module corresponding to the young diagr
 The purpose of this writing is to characterize this representation via an isomorphism with another representation of $\SH$.
 \begin{definition}
   A \emph{crossingless matching} on $2n$ indices is a partition of $\cbr{1,\dots,2n}$ into parts of size $2$ such that no two parts ``cross'', i.e. there are no parts $(a,a')$ and $(b,b')$ such that $a < b < a' < b'$.
-  Then, define $W_{2n}$ to be the $\CC$-vector space with basis the set of crossingless matchings on 2n indices.
+  We will call these arcs.
+  Then, define $W_{2n}$ to be the $k$-vector space with basis the set of crossingless matchings on 2n indices.
 
   In order for this to be a $\SH$-module, endow this with the action given by Figure \ref{Action}; if this creates a loop, simply scale by $(1 + q)$, and otherwise deform into a crossingless matching and scale by $q^{1/2}$.
 \end{definition}
@@ -66,7 +67,7 @@ We can now begin by proving that $\Res_{\SH_{k,p}(S_{2n - 1})}^{\SH_{k,p}(S_{2n}
 in partuclar, this implies that $W$ itself is irreducible, as an $\SH$-subrepresentation is a $\SH_{k,p}(S_{2n - 1})$-subrepresentation.
 \begin{proposition}
   Set $\SH' := \SH_{k,p}(S_{2n - 2}) \subset \SH$.
-  Then, $\Res_{\SH'}^{\SH} W$ is irreducible if $e \geq n + 1$.
+  Then, $\Res_{\SH'}^{\SH} W$ is irreducible if $e > n + 1$.
 \end{proposition}
 \begin{proof}
   We will prove the equivalent condition that each vector in $w \in W$ is \emph{cyclic}, i.e. $\SH' w = W$.
