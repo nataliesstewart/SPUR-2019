@@ -1,0 +1,123 @@
+\documentclass{amsart}   
+\usepackage{RepStyle} 
+\usepackage{NatMacros} %********REPLACE WITH MilesMacros TO KILL RELIANCE ON \ifnum AND HAVE INCOMPLETE OUTPUT***********bleh
+\begin{document}
+
+\title{The Uneven-Height Two-Column Specht Modules of the Hecke Algebra of $S_n$}
+\author{Miles Johnson \& Natalie Stewart}
+\maketitle
+
+\section{Introduction}
+Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k$, and let $\cbr{T_i}$ be the simple transpositions generating $\SH$.
+Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$. 
+Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
+Either $q = 1$ and $e$ is the characteristic of $k$, or $q \neq 1$ and $q$ is a primitive $e$th root of unity.
+
+Let $V_{2n}^r := S^{(n,n-r)'}$ be the Specht module corresponding to the young diagram with two columns with height difference $r$.
+The purpose of this writing is to characterize this representation via an isomorphism with another representation of $\SH$.
+\begin{definition}
+  A \emph{generalized crossingless matching} on $2n+r$ indices with $r$ anchors is a partition of $\cbr{1,\dots,2n+r}$ into parts of size $2$ or 1 such that no two parts of size two``cross'', i.e. there are no parts $(a,a')$ and $(b,b')$ such that $a < b < a' < b'$, and no parts of size one are ``inside'' of a part of size two, i.e. there are no $c, (a,a')$ such that $a < c < a'$.
+  We will call these arcs and anchors, respectively.
+  Then, define $W^r_{2n+r}$ to be the $k$-vector space with basis the set of generalized crossingless matchings on $2n+r$ indices with $r$ anchors.
+
+  In order for this to be a $\SH$-module, endow this with the action given by Figure \ref{Action}; if this involves no anchors, act as in $W$; if it involves one loop, deform to another generalized crossingless matching and scale by $q^{1/2}$, and otherwise scale by 0.
+\end{definition}
+
+\begin{figure}
+  \[
+    \GeneralizedAction{6}{1/4,2/3}{2}{5/1,6/2}{1}{4}{2/3, 4/5}{1/1,6/2}{q^{1/2}}
+    \hspace{50pt}
+    \GeneralizedZeroAction{6}{1/4,2/3}{2}{5/1,6/2}{1}{5}
+  \]
+  \caption{Illustration of the actions $(1 + T_4)w_{\abs{W^2_6}}$ and $(1 + T_2)w_{\abs{W^2_6}}$ in $W^2_6$.
+    In general, we act on basis elements away from anchors as we did for $W$, at one anchor we act by deforming and scaling by $q^{1/2}$, and at two anchors we send the element to zero.}
+  \label{Action}
+\end{figure}
+
+Let the length of an arc $(i,j)$ be $l(i,j) := j - i + 1$.
+Note that the crossingless matchings can all be identified with a list of $n$ integers describing the lengths of the arcs from left to right;
+using this, we may order the crossingless matchings with 0 hooks in increasing lexicographical order in order to obtain an order on the subbasis containing a particular set of anchors;
+let the basis be ordered first by the position of the anchors in increasing lexicographical order, then increasing for the matchings between each anchor.
+Let this basis be $\cbr{w_i}$.
+This basis is illustrated for $W_{5}^1$ in Figure \ref{S5 Basis}. 
+
+\begin{figure}
+  \def\cbasisspacing{5mm}
+  $\cbr{
+    \begin{gathered}
+      \GeneralizedMatching{5}{2/3, 4/5}{1}{1/1}{3/4}, \hspace{\cbasisspacing}
+      \GeneralizedMatching{5}{2/5, 3/4}{1}{1/1}{3/4}, \hspace{\cbasisspacing}
+      \GeneralizedMatching{5}{1/2, 4/5}{1}{3/1}{3/4}, \hspace{\cbasisspacing}
+      \GeneralizedMatching{5}{1/2, 3/4}{1}{5/1}{3/4}, \hspace{\cbasisspacing}
+      \GeneralizedMatching{5}{1/4, 2/3}{1}{5/1}{3/4}, \hspace{\cbasisspacing}
+     \end{gathered}}$ 
+    \caption{The basis for $W_5^1$.}
+  \label{S5 Basis}
+\end{figure} 
+
+We will prove that $W := W_{2n+r}^r$ and $V^{(n+r,n)'}$ are isomorphic as representations in the case that $\SH$ is semisimple.
+
+\newpage
+\section{Correspondence} 
+We can now begin by proving that $W$ is irreducible;
+then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may use branching rules to determne $W$.
+\begin{proposition}
+  Suppose $n > 2$.
+  Then, $W_{2n + r}^r$ is irreducible if $e > n + 1$.
+\end{proposition}
+\begin{proof}
+  We will prove the equivalent condition that each vector in $w \in W\backslash \cbr 0$ is \emph{cyclic}, i.e. $\SH w = W$.
+  Note that, similar to the $r = 0$ case, each basis vector is cyclic;
+  we may act between each anchor to have only anchors and length-2 arcs, move the anchors to the desired position, and use irreducibility of $W_{m}^0$ to act btween arcs in order to generate any other basis element.
+
+  Let $U_{x_1\dots x_r}$ be the subspace of $W$ with anchors $x_1,\dots,x_r$.
+  Order these in increasing lexicographical order;
+  let $U_{a_1\dots a_r}$ be the first of these on which $w$ projects to a nonzero vector.
+  Then, we may use irreducibility of $W_{m}^0$ to act between the anchors to generate a vector $w'$ which projects in $U_{a_1\dots a_r}$ to the basis element of arcs of length 2 between arcs $a_1,\dots,a_r$.
+   
+  Note that $n + r - a_r$ is even;
+  hence we can apply
+  \[
+    h = (1 + T_{n + r - 3})(1 + T_{n+r-5})(1 + T_{n+r-4})(1 + T_{n+r-7})(1 + T_{n+r-6})\dots(1 + T_{a_r +2})(1 + T_{a_r+1})
+  \]
+  and we find that all basis vectors represented in $hw'$ are one in $U_{a_1\dots a_r}$ containing arc $(2n + r - 1, 2n + r)$ or others containing anchor $2n + r$.
+  Hence $(T_{2n + r - 1} - q)hw'$ is a nonzero vector (since $q^{1/2} \neq q$ as $e > 3$) represeting a unique basis element, giving that $w$ is cyclic and $W_{2n + r}^r$ is irreducible.
+\end{proof}
+
+The next piece in our puzzle is to characterize the restrictions of $W$ to $\SH' := \SH_{k,q}(S_{2n + r - 1}) \subset \SH$.
+Recall that, when $r,n>0$, $\Res S^{(n+r,n)'} \simeq S^{(n+r-1,n)'} \oplus S^{(n+r,n-1)'}$.
+Further, note that $S^{(n+r,n)'}$ is the unique irreducible having this restriction.
+
+Next, note that we have already proven the correspondence for $W_{2n}^0$;
+for $W_{0 + r}^{r}$, this is the sign representation, which is given correctly by $S^{(r)}$.
+Hence, pending information on restrictions, we may prove this via induction on $2n + r$.
+
+\begin{proposition}
+  Suppose that $n,r > 0$ and $\SH$ is semisimple.
+  Then, $\Res \; W_{2n + r}^r \simeq W_{2n + r - 1}^{r-1} \oplus W_{2n + r - 1}^{r + 1}$.
+\end{proposition}
+\begin{proof}
+  Note that we may identify the subrepresentation of $\Res \; W_{2n + r}^r$ having anchor $n$ with $W_{2n + r - 1}^{r-1}$.
+  By semisimplicity, it is sufficient to prove that $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r-1}$ is isomorphic to $W_{2n + r - 1}^{r +1}$.
+
+  Let $\phi:U \rightarrow W_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $W_{2n + r - 1}^{r + 1}$.
+  It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
+
+  Given a basis vector $w_j$ with arc $(i,2n + r)$, $\phi$ is clearly compatible with $T_{i'}$ with $i' \neq i,i-1$.
+  Further, it's easy to verify that $\phi$ is compatible with $T_{i}$ and $T_{i-1}$, as actions on one anchor were designed for this deformation.
+  When there are anchors $(i,i+1)$, then $\phi(T_iw_j) = T_i\phi(w_j) = 0$, and similar for $T_{i -1}$.
+  Hence $\phi$ is an isomorphism of representations, and the statement is proven.
+\end{proof}
+
+\begin{corollary}
+  $W_{2n + r}^r \simeq S^{(n + r,r)'}$.
+\end{corollary}
+\begin{proof}
+  We may argue by induction on $2n + r$, knowing that we have proven the base case $2n + r = 2$.
+  Assume that we have proven the isomorphism for all $W_{2n + s}^{s}$ with $2n + s = 2n + r - 2$.
+  We have proven the $n = 0$ and $r = 0$ cases already, so assume $n,r > 0$.
+  
+  Then, $W_{2n + r}^{r}$ is the unique irreducible representation of $\SH$ having restriction $S^{(n+r-1,n)'} \oplus S^{(n + r,n-1)'}$, implying the desired isomorphism.
+\end{proof}
+
+\end{document}
