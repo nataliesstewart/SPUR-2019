@@ -8,7 +8,7 @@
 \maketitle
 
 \section{Introduction}
-Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k^\times$, and let $\cbr{T_i}$ be the reflections generating $\SH$.
+Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices with $2n + r \geq 2$, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k^\times$, and let $\cbr{T_i}$ be the reflections generating $\SH$.
 Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$. 
 Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
 Either $q = 1$ and $e$ is the characteristic of $k$, or $q \neq 1$ and $q$ is a primitive $e$th root of unity.
@@ -145,7 +145,7 @@ then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may u
   We may henceforth assume that $r > 1$.
   
   Overall, we will use induction on $2n + r$;
-  this is easily shown via identification with the sign or trivial representation when $2n + r = 2$, so assume that it is true for all $W_{2m + s}^s$ with $2m + s = 2n + r - 2$.
+  this is easily shown via identification with the sign or trivial representation when $2n + r = 2$, so assume that it is true for all $W_{2m + s}^s$ with $2m + s < 2n + r$.
   
   The proof will proceed in two steps: first we will make sure a particular basis vector is represented with the earliest possible position of the last anchor $a_r$, then we will use this to generate a nonzero vector representing only vectors with a certain collection of anchors, using the inductive hypothesis to prove that $w$ is cyclic.
   
@@ -204,13 +204,17 @@ for $W_{0 + r}^{r}$, this is the sign representation, which is given correctly b
 Hence, pending information on restrictions, we may prove this via induction on $2n + r$.
 
 \begin{proposition}
-  Suppose that $n,r > 0$ and $\SH$ is semisimple.
-  Then, $\Res \; W_{2n + r}^r \simeq W_{2n + r - 1}^{r-1} \oplus W_{2n + r - 1}^{r + 1}$.
+  Suppose that $n,r > 0$.
+  Then, a filtration of $\Res W_{2n + r}^r$ is given by
+  \begin{equation}
+    0 \subset W_{2n + r - 1}^{r-1} \subset \Res \, W_{2n + r}^r \label{Filtration}
+  \end{equation}
+  with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
 \end{proposition}
 \begin{proof}
   Note that we may identify the subrepresentation of $\Res \; W_{2n + r}^r$ having anchor $n$ with $W_{2n + r - 1}^{r-1}$.
-  By semisimplicity, it is sufficient to prove that $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r-1}$ is isomorphic to $W_{2n + r - 1}^{r +1}$.
-
+  
+  Let $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r - 1}$. 
   Let $\phi:U \rightarrow W_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $W_{2n + r - 1}^{r + 1}$.
   It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
 
@@ -219,6 +223,15 @@ Hence, pending information on restrictions, we may prove this via induction on $
   When there are anchors $(i,i+1)$, then $\phi(T_iw_j) = T_i\phi(w_j) = 0$, and similar for $T_{i -1}$.
   Hence $\phi$ is an isomorphism of representations, and the statement is proven.
 \end{proof}
+
+\begin{corollary}
+  Suppose $n,r > 0$ and $e > n + 1$.
+  Then, the sequence \eqref{Filtration} is a composition series of $\Res \, W_{2n + r}^r$.\qed
+\end{corollary}
+\begin{corollary}
+  Suppose $n,r > 0$ and $\SH$ is semisimple.
+  Then, $\Res \; W_{2n + r}^r \simeq W_{2n + r - 1}^{r - 1} \oplus W_{2n + r - 1}^{r +1}$.\qed
+\end{corollary}
 
 \begin{corollary}
   When $\SH$ is semisimple, $W_{2n + r}^r \simeq S^{(n + r,r)'}$.
