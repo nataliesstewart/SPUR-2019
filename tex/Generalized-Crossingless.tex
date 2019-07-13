@@ -8,19 +8,19 @@
 \maketitle
 
 \section{Introduction}
-Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k$, and let $\cbr{T_i}$ be the simple transpositions generating $\SH$.
+Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k^\times$, and let $\cbr{T_i}$ be the reflections generating $\SH$.
 Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$. 
 Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
 Either $q = 1$ and $e$ is the characteristic of $k$, or $q \neq 1$ and $q$ is a primitive $e$th root of unity.
 
-Let $V_{2n}^r := S^{(n,n-r)'}$ be the Specht module corresponding to the young diagram with two columns with height difference $r$.
+Let $S^{(n+r,n)'}$ be the Specht module corresponding to the young diagram with two columns with height difference $r$.
 The purpose of this writing is to characterize this representation via an isomorphism with another representation of $\SH$.
 \begin{definition}
-  A \emph{generalized crossingless matching} on $2n+r$ indices with $r$ anchors is a partition of $\cbr{1,\dots,2n+r}$ into parts of size $2$ or 1 such that no two parts of size two``cross'', i.e. there are no parts $(a,a')$ and $(b,b')$ such that $a < b < a' < b'$, and no parts of size one are ``inside'' of a part of size two, i.e. there are no $c, (a,a')$ such that $a < c < a'$.
+  A \emph{generalized crossingless matching} on $2n+r$ indices with $r$ anchors is a partition of $\cbr{1,\dots,2n+r}$ into $n$ parts of size $2$ and $r$ of size 1 such that no two parts of size two``cross'', i.e. there are no parts $(a,a')$ and $(b,b')$ such that $a < b < a' < b'$, and no parts of size one are ``inside'' of a part of size two, i.e. there are no $c, (a,a')$ such that $a < c < a'$.
   We will call these arcs and anchors, respectively.
   Then, define $W^r_{2n+r}$ to be the $k$-vector space with basis the set of generalized crossingless matchings on $2n+r$ indices with $r$ anchors.
 
-  In order for this to be a $\SH$-module, endow this with the action given by Figure \ref{Action}; if this involves no anchors, act as in $W$; if it involves one loop, deform to another generalized crossingless matching and scale by $q^{1/2}$, and otherwise scale by 0.
+  In order for this to be a $\SH$-module, endow this with the action given by Figure \ref{Action}; if this involves no anchors, act as in $W_{2n}^0$; if it involves one anchor, deform to another generalized crossingless matching and scale by $q^{1/2}$, and otherwise scale by 0.
 \end{definition}
 
 \begin{figure}
@@ -55,37 +55,148 @@ This basis is illustrated for $W_{5}^1$ in Figure \ref{S5 Basis}.
   \label{S5 Basis}
 \end{figure} 
 
-We will prove that $W := W_{2n+r}^r$ and $V^{(n+r,n)'}$ are isomorphic as representations in the case that $\SH$ is semisimple.
+We will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as representations in the case that $\SH$ is semisimple.
 
 \newpage
 \section{Correspondence} 
 We can now begin by proving that $W$ is irreducible;
 then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may use branching rules to determne $W$.
-\begin{proposition}
-  Suppose $n > 2$.
-  Then, $W_{2n + r}^r$ is irreducible if $e > n + 1$.
-\end{proposition}
+\begin{lemma}
+  Every basis vector in $W_{2n + r}^r$ is cyclic.
+\end{lemma}
 \begin{proof}
-  We will prove the equivalent condition that each vector in $w \in W\backslash \cbr 0$ is \emph{cyclic}, i.e. $\SH w = W$.
-  Note that, similar to the $r = 0$ case, each basis vector is cyclic;
-  we may act between each anchor to have only anchors and length-2 arcs, move the anchors to the desired position, and use irreducibility of $W_{m}^0$ to act btween arcs in order to generate any other basis element.
+  We have already proven this in the $r = 0$ case, so suppose that $r > 0$.
 
-  Let $U_{x_1\dots x_r}$ be the subspace of $W$ with anchors $x_1,\dots,x_r$.
-  Order these in increasing lexicographical order;
-  let $U_{a_1\dots a_r}$ be the first of these on which $w$ projects to a nonzero vector.
-  Then, we may use irreducibility of $W_{m}^0$ to act between the anchors to generate a vector $w'$ which projects in $U_{a_1\dots a_r}$ to the basis element of arcs of length 2 between arcs $a_1,\dots,a_r$.
-   
-  Note that $n + r - a_r$ is even;
-  hence we can apply
-  \[
-    h = (1 + T_{n + r - 3})(1 + T_{n+r-5})(1 + T_{n+r-4})(1 + T_{n+r-7})(1 + T_{n+r-6})\dots(1 + T_{a_r +2})(1 + T_{a_r+1})
-  \]
-  and we find that all basis vectors represented in $hw'$ are one in $U_{a_1\dots a_r}$ containing arc $(2n + r - 1, 2n + r)$ or others containing anchor $2n + r$.
-  Hence $(T_{2n + r - 1} - q)hw'$ is a nonzero vector (since $q^{1/2} \neq q$ as $e > 3$) represeting a unique basis element, giving that $w$ is cyclic and $W_{2n + r}^r$ is irreducible.
+    Note that, between anchors $a<a'$ having no arc $b$ with $a < b < a'$, the $W_{a'-a}^0$ case allows us to generate the vector with all length-2 arcs between $a,a'$ and identical arcs/anchors outside of this sub-matching.\footnote{At the ends, we apply the $W_a^0$ case or the $W_{2n + r - a}^{0}$ case in the same way for the first $a$ or last $2n + r - a$ indices.}
+
+  Applying this between each arc gives us a vector with length-2 arcs and anchors, and we may use the appropriate $(1+T_i)$ to move anchors to any positions, and the reverse process from above to generate the correct matchings between arcs and generate any other basis vector.
 \end{proof}
 
+\begin{proposition}
+  \;
+
+  \begin{enumerate}[label={(\roman*)}]
+    \item The representation $W_{2+r}^r$ is reducible iff $e \mid r+2$.
+    \item When $n \neq 1$ and $e > n+1$, the representation $W_{2n + r}^r$ is irreducible.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \def\sectionsep{7pt}
+  \textbf{(i)}
+  Note that $\ima (1 + T_i)$ is 1-dimensional for each $i$, so it is equivalent that 
+  \[K := \bigcap_{i=1}^{r+1} \ker(1 + T_i) = \ker \bigoplus_{i=1}^{r+1} (1 + T_i)\] 
+  is trivial via the lemma.
+  The transformation $\bigoplus (1 + T_i)$ is a linear operator on $W_{2 + r}^r$ given by the following matrix:
+  \newcommand*\bigzero{\makebox(0,15){\text{\Huge0}}}
+  \newcommand*\bigzerotwo{\makebox(-20,15){\text{\Huge0}}}
+  \[
+    A_{r + 1} = 
+    \begin{bmatrix}
+      \begin{matrix}
+      q + 1 & q^{1/2} & \\
+      q^{1/2} & q + 1 & q^{1/2}\\
+      & q^{1/2} & q + 1 & q^{1/2}\\
+      &  & \ddots & \ddots
+      \end{matrix}
+      &   \bigzero\\
+      \bigzerotwo & \begin{matrix}
+        q^{1/2} & q+1 & q^{1/2}\\
+        &  q^{1/2} & q + 1
+       \end{matrix}
+    \end{bmatrix}
+  \].
+  Hence $K$ is trivial iff the determinant $\det A_{r + 1} = \brk{r + 2}_q$ is 0, or equivalently iff $e \mid r + 2$.
+
+  \iffalse % Previous proof, kept for archival purposes
+  \vspace{\sectionsep}
+  \textbf{(ii)}
+  We have already proven this for $r = 0$ and $n = 0$, so suppose $r > 0$ and $n > 1$.
+  We will break into case work on $r$;
+  suppose first that $r = 1$.
+  Then, it is easy to verify that $W_{2n + 1}^1 \simeq \Res W_{2n + 1}^0$, which we have already proven irreducible.
+  We may henceforth assume that $r > 1$.
+
+  We will prove the equivalent condition that each vector in $w \in W\backslash \cbr 0$ is \emph{cyclic}, i.e. $\SH w = W$.
+  This will proceed in two steps: we will make sure a particular basis vector is represented with the earliest possible position of the second to last anchor $a_{r-1}$, then we will annihilate all other vectors in order to generate a basis vector.
+  Then, by the lemma, we will have proven that $w$ is cyclic.
+
+  Overall, we will use induction on $2n + r$;
+  this is easily shown via identification with the sign or trivial representation when $2n + r = 2$, so assume that it is true for all $W_{2m + s}^s$ with $2m + s < 2n + r$.
+
+  Let $U_{x_{r-1}}$ be the subspace of $W$ containing at most one anchor at positions $i > x_{r-1}$.
+  Order these in increasing order;
+  let $U := U_{a_{r-1}}$ be the first of these into which $w$ projects to a nonzero vector.
+  Then, by our inductive hypothesis, we may use only actions $T_i$ with $i < a_{r-1}$ to generate a vector $w'$ which projects to a nonzero element in $U$ for which all basis elements represented have anchors $1,\dots,r-1$ and all length-2 arcs at indices $i \leq a_{r-1}$.
+
+  Define the element
+  \[
+    h = (1 + T_{n + r - 1})(1 + T_{n+r-3})(1 + T_{n+r-2})(1 + T_{n + r - 4})\dots(1 + T_{a_{r-1} +1})(1 + T_{a_{r-1}+2}).
+  \]
+  Note that $h$ carries a basis element to a multiples of another basis element, and a basis element is in $\ker \, h$ iff it is not in $U$.
+  Hence $hw'$ is a nonzero multiple of a basis element, giving $w$ cyclic.
+  \fi
+
+  \vspace{\sectionsep}
+  \textbf{(ii)}
+  We will prove the equivalent condition that each vector in $w \in W\backslash \cbr 0$ is \emph{cyclic}, i.e. $\SH w = W$.
+  We will break into case work on $r$;
+  suppose first that $r = 1$.
+  Then, it is easy to verify that $W_{2n + 1}^1 \simeq \Res W_{2n + 1}^0$, which we have already proven irreducible.
+  We may henceforth assume that $r > 1$.
+  
+  Overall, we will use induction on $2n + r$;
+  this is easily shown via identification with the sign or trivial representation when $2n + r = 2$, so assume that it is true for all $W_{2m + s}^s$ with $2m + s = 2n + r - 2$.
+  
+  The proof will proceed in two steps: first we will make sure a particular basis vector is represented with the earliest possible position of the last anchor $a_r$, then we will use this to generate a nonzero vector representing only vectors with a certain collection of anchors, using the inductive hypothesis to prove that $w$ is cyclic.
+  
+  \vspace{\sectionsep}
+  \textit{Step 1.}
+  Let $U_{x_r}$ be the subspace of $W$ containing only anchors at positions $i \leq x_r$.
+  Order these in increasing order;
+  let $U := U_{a_r}$ be the first of these into which $w$ projects to a nonzero vector.
+  If $a_r = n + r$, then $w$ only represents vectors containing anchor $r$;
+  then, we may use the inductive hypothesis on the first $n + r - 1$ indices to yield a basis vector, and we are done.
+
+  Henceforth assume $a_r < n + r$.
+  Then, by our inductive hypothesis, we may use only actions $T_i$ with $i < a_r$ to generate a vector $w'$ which projects to a vector in $U$ representing basis elements with anchors $1,2,\dots,r$ and all length-2 arcs at indices $r < i \leq a_r$. 
+
+  Now, recall that $\Res_{\SH(S_{2n + r - a_r-1})}^{\SH(S_{2n + r - a_r})} \; W_{2n + r - a_r}^0$ is irreducible;
+  hence we may only use actions $T_i$ with $i > a_r+1$ to generate a vector $w''$ which projects to the basis vector $U$ containing anchors $1,\dots,r$ and is otherwise all length-2 arcs.\footnote{Any action by $T_i$ with $i > a_r + 1$ sends basis vectors outside of $U$ to 0 or nonzero vectors outside of $U$, as they cannot generate a vector which doesn't have an anchor in some position $j > a_r$.}
+
+  \vspace{\sectionsep}
+  \textit{Step 2.}
+  Define an element $h \in \SH$ by
+  \[
+    h := (1 + T_{n + r - 2})(1 + T_{n+r-1})(1 + T_{n+r-3})(1 + T_{n+r-2})\dots(1 + T_{r+1})(1 + T_{r+2})
+  \]
+  Then, every basis vector represented in $hw'' \neq 0$ contains anchors $1,\dots,r-1$.
+  This is illustrated in Figure \ref{h}.
+
+  Let $U'$ be the subspace of $W$ having anchors $1,\dots,r-1$.
+  Note that $hw'' \in U'$.
+  Further, $U' \simeq W_{2n + 1}^1$ as vector spaces, and every action in $W_{2n + 1}^1$ is reflected by an action of $\SH$ on $W_{2n + r}^r$.
+  Since $r > 1$, we may use the inductive hypothesis to act on indices $i \geq r$ and generate a basis vector, giving $w$ cyclic.
+  
+  \begin{figure}
+    \[
+      \GeneralizedNAction{6}{1/2,4/5}{2}{3/1, 6/2}{3/4}{3/1, 2/2}{1/4, 2/3}{5/1, 6/2}{q}
+      \hspace{50pt}
+      \GeneralizedNAction{6}{1/2,4/5}{2}{3/1, 6/2}{3/4}{4/1, 3/2}{1/2, 3/4}{5/1, 6/2}{x}
+    \]
+  \caption{
+    Demonstration of how the transformation $(1 + T_{i+1})(1 + T_i)$ ``moves'' anchors from positions $i,i+1$ to position $i+3$, with constant $x = q^{1/2}(q+1)$.
+    Iterating this across all elements between $r+1$ and $2n + r$ via $h$ concentrates all anchors at the beginning or end; 
+    if there are at least two anchors in $w_j$ after $r+1$, then we must act on two anchors eventually, giving $w_j \in \ker \, h$.
+  }\label{h}
+\end{figure}
+\end{proof}
+
+\begin{corollary}
+  Other than $W_{3}^1$, the representation $W_{2n + r}^r$ is irreducible when $e > n + 1$.
+\end{corollary}
+
 The next piece in our puzzle is to characterize the restrictions of $W$ to $\SH' := \SH_{k,q}(S_{2n + r - 1}) \subset \SH$.
-Recall that, when $r,n>0$, $\Res S^{(n+r,n)'} \simeq S^{(n+r-1,n)'} \oplus S^{(n+r,n-1)'}$.
+Recall that, when $r,n>0$ and $\SH$ is semisimple,  $\Res S^{(n+r,n)'} \simeq S^{(n+r-1,n)'} \oplus S^{(n+r,n-1)'}$.
 Further, note that $S^{(n+r,n)'}$ is the unique irreducible having this restriction.
 
 Next, note that we have already proven the correspondence for $W_{2n}^0$;
@@ -110,7 +221,7 @@ Hence, pending information on restrictions, we may prove this via induction on $
 \end{proof}
 
 \begin{corollary}
-  $W_{2n + r}^r \simeq S^{(n + r,r)'}$.
+  When $\SH$ is semisimple, $W_{2n + r}^r \simeq S^{(n + r,r)'}$.
 \end{corollary}
 \begin{proof}
   We may argue by induction on $2n + r$, knowing that we have proven the base case $2n + r = 2$.
