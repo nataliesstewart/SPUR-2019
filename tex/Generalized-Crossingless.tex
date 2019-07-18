@@ -55,12 +55,31 @@ This basis is illustrated for $W_{5}^1$ in Figure \ref{S5 Basis}.
   \label{S5 Basis}
 \end{figure} 
 
-We will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as representations in the case that $\SH$ is semisimple.
+We will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as representations in the case that $e > n + r + 1$ is semisimple.
 
-\newpage
+\newpage 
 \section{Correspondence} 
-We can now begin by proving that $W$ is irreducible;
-then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may use branching rules to determne $W$.
+\begin{proposition}
+  Suppose that $n,r > 0$.
+  Then, a filtration of $\Res W_{2n + r}^r$ is given by
+  \begin{equation}
+    0 \subset W_{2n + r - 1}^{r-1} \subset \Res \, W_{2n + r}^r \label{Filtration}
+  \end{equation}
+  with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
+\end{proposition}
+\begin{proof}
+  Note that we may identify the subrepresentation of $\Res \; W_{2n + r}^r$ having anchor $n$ with $W_{2n + r - 1}^{r-1}$.
+  
+  Let $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r - 1}$. 
+  Let $\phi:U \rightarrow W_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $W_{2n + r - 1}^{r + 1}$.
+  It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
+
+  Given a basis vector $w_j$ with arc $(i,2n + r)$, $\phi$ is clearly compatible with $T_{i'}$ with $i' \neq i,i-1$.
+  Further, it's easy to verify that $\phi$ is compatible with $T_{i}$ and $T_{i-1}$, as actions on one anchor were designed for this deformation.
+  When there are anchors $(i,i+1)$, then $\phi(T_iw_j) = T_i\phi(w_j) = 0$, and similar for $T_{i -1}$.
+  Hence $\phi$ is an isomorphism of representations, and the statement is proven.
+\end{proof}
+
 \begin{lemma}
   Every basis vector in $W_{2n + r}^r$ is cyclic.
 \end{lemma}
@@ -73,15 +92,12 @@ then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may u
 \end{proof}
 
 \begin{proposition}
-  \;
-
-  \begin{enumerate}[label={(\roman*)}]
-    \item The representation $W_{2+r}^r$ is reducible iff $e \mid r+2$.
-    \item When $n \neq 1$ and $e > n+1$, the representation $W_{2n + r}^r$ is irreducible.
-  \end{enumerate}
+  The representation $W_{2n + r}^r$ is irreducible when $e > n + r + 1$. 
 \end{proposition}
 \begin{proof}
   \def\sectionsep{7pt}
+  \iffalse % now unnecessary, kept for archival purposes.
+  The representation $W_{2+r}^r$ is reducible iff $e \mid r+2$.
   \textbf{(i)}
   Note that $\ima (1 + T_i)$ is 1-dimensional for each $i$, so it is equivalent that 
   \[K := \bigcap_{i=1}^{r+1} \ker(1 + T_i) = \ker \bigoplus_{i=1}^{r+1} (1 + T_i)\] 
@@ -107,7 +123,6 @@ then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may u
   \].
   Hence $K$ is trivial iff the determinant $\det A_{r + 1} = \brk{r + 2}_q$ is 0, or equivalently iff $e \mid r + 2$.
 
-  \iffalse % Previous proof, kept for archival purposes
   \vspace{\sectionsep}
   \textbf{(ii)}
   We have already proven this for $r = 0$ and $n = 0$, so suppose $r > 0$ and $n > 1$.
@@ -134,7 +149,6 @@ then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may u
   \]
   Note that $h$ carries a basis element to a multiples of another basis element, and a basis element is in $\ker \, h$ iff it is not in $U$.
   Hence $hw'$ is a nonzero multiple of a basis element, giving $w$ cyclic.
-  \fi
 
   \vspace{\sectionsep}
   \textbf{(ii)}
@@ -176,7 +190,7 @@ then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may u
   Note that $hw'' \in U'$.
   Further, $U' \simeq W_{2n + 1}^1$ as vector spaces, and every action in $W_{2n + 1}^1$ is reflected by an action of $\SH$ on $W_{2n + r}^r$.
   Since $r > 1$, we may use the inductive hypothesis to act on indices $i \geq r$ and generate a basis vector, giving $w$ cyclic.
-  
+    
   \begin{figure}
     \[
       \GeneralizedNAction{6}{1/2,4/5}{2}{3/1, 6/2}{3/4}{3/1, 2/2}{1/4, 2/3}{5/1, 6/2}{q}
@@ -189,6 +203,13 @@ then $W \simeq S^\lambda$ for some partition $\lambda$ of $2n + r$, and we may u
     if there are at least two anchors in $w_j$ after $r+1$, then we must act on two anchors eventually, giving $w_j \in \ker \, h$.
   }\label{h}
 \end{figure}
+  \fi
+  We proceed by induction on $2n + r$.
+  Note that, by identification with the trivial and sign representations, the base case $2n + r = 2$ is already prove, so suppose we have proven this for each $2m + s < 2n + r$.
+
+  We will prove this in essentially the same way as before;
+  the inductive argument continues to apply assuming that $K := \ker \, \bigoplus(1 + T_i)$ is trivial, and we will prove that this is trivial when $e \not| n + r + 1$ using a similar argument.
+  This argument is very long, and I will recreate it later.
 \end{proof}
 
 \begin{corollary}
@@ -203,26 +224,6 @@ Next, note that we have already proven the correspondence for $W_{2n}^0$;
 for $W_{0 + r}^{r}$, this is the sign representation, which is given correctly by $S^{(r)}$.
 Hence, pending information on restrictions, we may prove this via induction on $2n + r$.
 
-\begin{proposition}
-  Suppose that $n,r > 0$.
-  Then, a filtration of $\Res W_{2n + r}^r$ is given by
-  \begin{equation}
-    0 \subset W_{2n + r - 1}^{r-1} \subset \Res \, W_{2n + r}^r \label{Filtration}
-  \end{equation}
-  with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
-\end{proposition}
-\begin{proof}
-  Note that we may identify the subrepresentation of $\Res \; W_{2n + r}^r$ having anchor $n$ with $W_{2n + r - 1}^{r-1}$.
-  
-  Let $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r - 1}$. 
-  Let $\phi:U \rightarrow W_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $W_{2n + r - 1}^{r + 1}$.
-  It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
-
-  Given a basis vector $w_j$ with arc $(i,2n + r)$, $\phi$ is clearly compatible with $T_{i'}$ with $i' \neq i,i-1$.
-  Further, it's easy to verify that $\phi$ is compatible with $T_{i}$ and $T_{i-1}$, as actions on one anchor were designed for this deformation.
-  When there are anchors $(i,i+1)$, then $\phi(T_iw_j) = T_i\phi(w_j) = 0$, and similar for $T_{i -1}$.
-  Hence $\phi$ is an isomorphism of representations, and the statement is proven.
-\end{proof}
 
 \begin{corollary}
   Suppose $n,r > 0$ and $e > n + 1$.
@@ -233,15 +234,45 @@ Hence, pending information on restrictions, we may prove this via induction on $
   Then, $\Res \; W_{2n + r}^r \simeq W_{2n + r - 1}^{r - 1} \oplus W_{2n + r - 1}^{r +1}$.\qed
 \end{corollary}
 
-\begin{corollary}
-  When $\SH$ is semisimple, $W_{2n + r}^r \simeq S^{(n + r,r)'}$.
-\end{corollary}
+\begin{proposition}
+  Suppose $e > n + r + 1$, and let $\lambda$ be a partition of $2n + r$.
+  \begin{enumerate}[label={(\roman*)}]
+    \item Suppose $n,r > 0$.
+      If $\Res \, S^\lambda$ admits a filtration $0 \subset S^{(n+r-1,n)'} \subset \Res \, S^\lambda$ with $\Res \, S^\lambda / S^{(n + r - 1,n)'} \simeq S^{(n + r,n-1)'}$ then $\lambda = (n+r,n)'$.
+    \item Suppose $r = 0$.
+      If $\Res \, S^\lambda \simeq S^{(n,n-1)'}$, then $\lambda = (n,n)'$.
+  \end{enumerate}
+\end{proposition}
 \begin{proof}
-  We may argue by induction on $2n + r$, knowing that we have proven the base case $2n + r = 2$.
-  Assume that we have proven the isomorphism for all $W_{2n + s}^{s}$ with $2n + s = 2n + r - 2$.
-  We have proven the $n = 0$ and $r = 0$ cases already, so assume $n,r > 0$.
+  \textbf{(i)}
+  Recall that the characteristic-free classical branching theorem gives that every specht module $S^{\lambda}$ admits a filtration 
+  \begin{equation}
+    0 = M_0 \subset \dots \subset M_l = S^{\lambda} \label{filtration}
+  \end{equation}  
+    with $M_i/M_{i-1} \simeq S^{\lambda(i)}$.
+  Hence $\lambda = (n + r, n)'$ satisfies the above formula.
+
+  Note that, when $e > n + r + 1$, this filtration gives a composition series.
+  Hence the sequence \eqref{filtration} is at most length-2.
+
+  Suppose it is length-1.
+  Then $\lambda$ is rectangle-shaped;
+  to have rows removed to the above we then need that that it be $\lambda = \prn{\frac{2n + r}{2}, \frac{2n + r}{2}}'$, so that $\Res S^{\lambda} \simeq S^{\prn{\frac{2n + r}{2}, \frac{2n + r}{2} - 1}'}$.
+  However, since $e > n + r + 1 \geq n + \frac{r}{2} + 1$, $\Res \, S^{\lambda}$ is irreducible, contradicting the existence of a length-2 composition series in the hypothesis.
+
+  Now suppose that \eqref{filtration} is length 2, so that it is also a composition series.
+  Then, by the Jordan-H\"older theorem, there is a rearranement of the composition factors of \ref{filtration} to give $S^{(n + r - 1,n)'}$ and $S^{(n + r, n - 1)'}$.
+  This implies that both $(n + r - 1,n)'$ and $(n + r,n-1)'$ can be acquired by removing rows of $\lambda$, giving that $\lambda = (n+r,n)'$.
   
-  Then, $W_{2n + r}^{r}$ is the unique irreducible representation of $\SH$ having restriction $S^{(n+r-1,n)'} \oplus S^{(n + r,n-1)'}$, implying the desired isomorphism.
+  \vspace{7pt}
+  \textbf{(ii)}
+  Note that, since $e > n + 1$, $\Res S^\lambda$ is irreducible.
+  Hence the sequence \eqref{filtration} is a composition series of length 1, and $\lambda(1) = (n,n-1)'$.
+  The first implies that $\lambda$ is rectangular, and the second implies that $\lambda = (n,n)'$.
 \end{proof}
+
+\begin{corollary}
+  If $e > n + r + 1$, then $W_{2n + r}^r \simeq S^{(n + r,n)'}$.\qed
+\end{corollary}
 
 \end{document}
