@@ -13,7 +13,15 @@ Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$.
 Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
 Either $q = 1$ and $e$ is the characteristic of $k$, or $q \neq 1$ and $q$ is a primitive $e$th root of unity.
 
-\textbf{*** Insert Jargon about Good Numbers Here ***}
+Throughout the text, we will refer to partitions of $2n + r$;
+identify each partition with a tuple $\lambda = (\lambda_1^{a_1},\dots,\lambda_l^{a_l})$ having $\lambda_i > \lambda_{i+1}$, $a_i > 0$, and $\sum_i a_i\lambda_i = 2n + r$.
+Identify each of these with a subset $\brk \lambda \subset \NN^2$ as defined in Kleshev, and define $\lambda(i) = (\lambda_1^{a_1},\dots,\lambda_{i-1}^{a_{i-1}},\lambda_i^{a_i - 1},\lambda_i-1,\lambda_{i+1}^{a_{i+1}},\dots,\lambda_l^{a_l})$ to be the partition with the $i$th row removed.
+
+Fixing some partition $\lambda$, for $1 \leq i \leq j \leq l$, let $\beta(i,j)$ be the hook length
+\[
+  \beta(i,j) = \lambda_i - \lambda_j + \sum_{t = i}^j a_t.
+\]
+Then, adopting Kleshev's terminology, $j$ is normal in $\lambda$ if $\beta(i,j) \not\equiv 0 \pmod e$ for all $i < j$, and $j$ is good if it is the largest normal number (these are stronger conditions than generally necessary). 
 
 Let $S^{(n+r,n)'}$ be the Specht module corresponding to the young diagram with two columns with height difference $r$, and let $D^{(n+r,n)'}$ be the corresponding irreducible quotient.
 The purpose of this writing is to characterize these representation via an isomorphism with two graphical representations of $\SH$.
@@ -481,18 +489,18 @@ Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrighta
   
   First, note that we have \[\Res \; D^{\lambda_{**}} \simeq D^{(n,n-2)'} \simeq \Res \; D^{(n+1,n-2)'}\] and \[\Res \; D^{\lambda_{*p}} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)'}.\]
   By semisimplicity of $\Res D^{\lambda_{**}}$ and $\Res D^{\lambda_{*p}}$, every normal cell in $\lambda_{**}$ and $\lambda_{*p}$ is good, and every good cell is removed in a summand of the restriction.
-  
-  In particular, for $\lambda_{**}$, the only tableaux which can remove a cell to yield $D^{(n,n-2)'}$ are $(n+1,n-2)'$, $(n,n-1)'$, and $(n,n-2,1)'$ as illustrated in Figure \ref{OddRes};
+  In particular, the only normal number in $\lambda_{**}$ is 1.
+
+  For $\lambda_{**}$, the only tableaux which can remove a cell to yield $D^{(n,n-2)'}$ are $(n+1,n-2)'$, $(n,n-1)'$, and $(n,n-2,1)'$ as illustrated in Figure \ref{OddRes};
   we have already seen that $D^{(n,n-1)'}$ does not have irreducible restriction, so we are left with $(n+1,n-2)'$ and $(n,n-2,1)'$.
-  To have irreducible restriction, $\lambda_{**}$ must have 1 as its only normal number;
-  we may directly check that $(n,n-2,1)'$ doesn't satisfy this, as we have the following:
+  We may directly check that $(n,n-2,1)'$ doesn't satisfy this, as we have the following:
   \begin{align*}
     \beta_\lambda(1,2) &= 3 - 2 + (n-2) = n-1\\
     \beta_\lambda(1,3) &= 3 - 1 + n = n+2\\
     \beta_\lambda(2,3) &= 2 - 1 + 3 = 4.
    \end{align*}
-  At least one of $\beta(1,2)$ and $\beta(1,3)$ is nonzero, and hence at least one of $M_2$ and $M_3$ is empty.
-  Hence at least one of 2 or 3 is normal, and $\lambda_{**} = (n+1,n-2)$.
+  At least one of $\beta(1,2)$ and $\beta(1,3)$ is nonzero, since $\beta_\lambda(1,3) - \beta_\lambda(1,2) = 3 \not\equiv 0 \pmod e$, and hence at least one of $M_2$ and $M_3$ is empty.
+  Hence at least one of 2 or 3 is normal in $(n,n-2,1)'$, and $\lambda_{**} = (n+1,n-2)$.
 
   For $\lambda_{*p}$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
   \begin{figure}
@@ -543,7 +551,7 @@ Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrighta
   \end{align*}
 \end{corollary}
 
-
+ 
 \section{Explicit Relationships}
 
 
@@ -682,9 +690,33 @@ Hence $(7 \pm 1)\tau + (1 \pm 1) = 0$, implying that $\tau = \frac{1}{4},0$, nei
 To attempt to deform this to $q = 1$ would require that we rewrite $\varc,\vard,\vare$ entirely, rather than simply modifying $\tau$. 
  
 \section{Miscellaneous Algebra Facts}
+Throughout the text, for some representation $V$, we refer to $\Res_{\SH(S_{l})}^{\SH(S_m)} V$ without specifying exactly which subalgebra $\SH(S_{l})$.
 \begin{proposition}
   Suppose $B,B'$ are subalgebras of the $k$-algebra $A$ with $B = uB'u^{-1}$, and let $V$ be a representation of $A$.
-  Then, $\Res_{B}^A V \simeq \Res_{B'}^a V$.
+  Then, the linear isomorphism $V \xrightarrow{\phi} V$ given by $v \mapsto uv$ causes the following to commute for any $b \in B$:
+  \[
+    \begin{tikzcd}
+      V \arrow[r,"\phi"] \arrow[d,"b"] & V \arrow[d,"ubu^{-1}"]\\
+      V \arrow[r,"\phi"] & V
+    \end{tikzcd}
+  \]
+  Hence, through the identification of $B$ and $B'$ via conjugation, we have $\Res_{B}^A V \simeq \Res_{B'}^A V$
 \end{proposition}
+\begin{proof}
+  This is simply given by $(ubu^{-1})uv = ubv$.
+\end{proof}
+
+\begin{corollary}
+  Suppose $\SH',\SH''$ are two subalgebras of $\SH(S_m)$ generated by $l$ reflections and $V$ is a representation of $\SH$.
+  Then, $\Res_{\SH'}^{\SH} V \simeq \Res_{\SH''}^\SH V$.
+\end{corollary}
+\begin{proof}
+  Let $\SH'$ and $\SH''$ be the subalgebras of $\SH(S_m)$ generated by the reflections $\cbr{T_{i_1},\dots,T_{i_l}}$ and $\cbr{T_{i_1},\dots,T_{i_{j-1}},T_{i_j + 1},T_{i_{j+1}},\dots,T_{i_l}}$ for $1 \leq i_1 < \dots < i_{j-1} < i_j + 1 < i_{j+1} < \dots < i_l \leq n$.
+  It is sufficient to prove that $\SH'$ and $\SH''$ are conjugate;
+  then transitivity gives conjugacy of any $S_l \subset S_m$, and the previous proposition gives isomorphisms of the representations.
+  
+  In fact, the reader can verify that $\SH'' = T_{i_j}\SH'T_{i_j}^{-1}$.
+\end{proof}
+
 
 \end{document}
