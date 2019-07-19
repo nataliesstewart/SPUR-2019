@@ -8,41 +8,48 @@
          \draw(\x/2,0) to[bend left=90] (\y/2,0);
     }
 
+    
+
+    \pgfmathtruncatemacro{\tmo}{#3-1}
+    \pgfmathtruncatemacro{\tmt}{#3-2}
+    \pgfmathtruncatemacro{\omo}{#1-1}
+    \pgfmathtruncatemacro{\omt}{#1-2}
+    \pgfmathtruncatemacro{\omth}{#1-3}
     \ifnum #3 > 2{
-    \foreach \x in {1,...,#3-2}{
+    \foreach \x in {1,...,\tmt}{
         \draw(\x/2,-3/5) to (\x/2,0);         
       }
-    }
+    }\fi
 
-    \ifnum #3 < #1-2{
-      \foreach \x in {#3,...,#1-1}{
+    \ifnum #3 < \omt{
+      \foreach \x in {#3,...,\omo}{
         \draw(\x/2+1/2,-3/5) to (\x/2+1/2,0);
       }
-    }
+    }\fi
 
     \ifnum #3 >1 {
     \foreach \x in {1,...,#3}{
         \draw(\x/2,-6/5) to (\x/2,-3/5);         
       }
-    }
+    }\fi
 
-    \ifnum #3 < #1-3{
-      \foreach \x in {#3,...,#1-3}{
+    \ifnum #3 <\omt{
+      \foreach \x in {#3,...,\omth}{
         \draw(\x/2+3/2,-6/5) to (\x/2+3/2,-3/5);
       }
-    }
+    }\fi
 
     \ifnum #3 > 1{
-    \foreach \x in {1,...,#3-1}{
+    \foreach \x in {1,...,\tmo}{
         \draw(\x/2,-9/5) to (\x/2,-6/5);         
       }
-    }
+    }\fi
 
-    \ifnum #3 < #1-2{
-      \foreach \x in {#3,...,#1-2}{
+    \ifnum #3 < \omo{
+      \foreach \x in {#3,...,\omt}{
         \draw(\x/2+1,-9/5) to (\x/2+1,-6/5);
       }
-    }
+    }\fi
 
     \draw(#3/2,0) arc[radius=1/4, start angle=0, end angle=-180];
     \draw(#3/2 - 1/2,-3/5) arc[radius=1/4, start angle=180, end angle=0];
@@ -74,17 +81,20 @@
          \draw(\x/2,0) to[bend left=90] (\y/2,0);
     }
     
+    \pgfmathtruncatemacro{\s}{#3-1}
     \ifnum #3 > 1{
-    \foreach \x in {1,...,#3-1}{
+    \foreach \x in {1,...,\s}{
         \draw(\x/2,-3/5) to (\x/2,0);         
       }
-    }
+    }\fi
 
-    \ifnum #3 < #1-2{
-      \foreach \x in {#3,...,#1-2}{
+    \pgfmathtruncatemacro{\s}{#1-2}
+    \pgfmathtruncatemacro{\t}{#1-1}
+    \ifnum #3 < \t{
+      \foreach \x in {#3,...,\s}{
         \draw(\x/2+1,-3/5) to (\x/2+1,0);
       }
-    }
+    }\fi
     
     \draw(#3/2 + 1/2,0) arc[radius=1/4, start angle=0, end angle=-180];
     \draw(#3/2,-3/5) arc[radius=1/4, start angle=180, end angle=0];
