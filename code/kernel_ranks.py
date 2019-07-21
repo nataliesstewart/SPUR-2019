@@ -136,10 +136,11 @@ for n in range(nmin,nmax+1,2):
 
 q = 1
 for n in range(4,17,2):
-    write = csv.writer(open("Representation n={}.csv".format(n),"w"))
+    f = open("Representation n={}.csv".format(n),"w")
+    
     rep = representation(n,q)
-    rep = [arr.astype(int) for arr in rep]
-    for arr in rep:
-        write.writerows(arr)
-        write.writerow(["/"])
+    rep = [arr.astype(int).tolist() for arr in rep]
+    rep = [[[str(i) for i in j] for j in k] for k in rep]
+    f.write("\n/\n".join(["\n".join([",".join(row) for row in arr]) for arr in rep]))
+    f.close()
     print("n={} completed.".format(n))
