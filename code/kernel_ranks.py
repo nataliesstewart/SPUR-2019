@@ -134,14 +134,12 @@ for n in range(nmin,nmax+1,2):
     oldtime = newtime
 """
 
-
-n = 4
 q = 1
-write = csv.writer(open("Representation n={}.csv".format(n),"w"))
-rep = representation(n,q)
-rep = [arr.astype(int) for arr in rep]
-for arr in rep:
-    write.writerows(arr)
-    write.writerow(["/"])
-
-print(rep)
+for n in range(4,17,2):
+    write = csv.writer(open("Representation n={}.csv".format(n),"w"))
+    rep = representation(n,q)
+    rep = [arr.astype(int) for arr in rep]
+    for arr in rep:
+        write.writerows(arr)
+        write.writerow(["/"])
+    print("n={} completed.".format(n))
