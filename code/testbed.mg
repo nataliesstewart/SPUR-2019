@@ -49,6 +49,13 @@ for i:= 1 to #text do
   mats := Append(mats,mat);
 end for;
 
+// Correct the (1 + T_i) matrices to T_i matrices
+for j:=1 to #mats do
+  for i:=1 to #mats[j] do
+    mats[j][i][i] -:= 1;
+  end for;
+end for;
+
 print mats;
 
 // Convert to representation
@@ -60,3 +67,4 @@ m := map<CartesianProduct(A,V)->V|t:->V!Vector(f(J(t[1]))*Transpose(Matrix(t[2\
 M:=Module(A,m);
 a,S := IsIrreducible(M); //
 print(a);
+print(Morphism(S,M));
