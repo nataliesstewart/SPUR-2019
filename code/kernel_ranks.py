@@ -136,7 +136,7 @@ for n in range(nmin,nmax+1,2):
 
 q = 1
 for n in range(4,17,2):
-    f = open("Representation n={}.csv".format(n),"w")
+    f = open("Representation n={}".format(n),"w")
     
     rep = representation(n,q)
     rep = [arr.astype(int).tolist() for arr in rep]
