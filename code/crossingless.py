@@ -88,7 +88,7 @@ class module_element:
             if basis.pair(i) == i+1:
                 new = new + \
                     module_element(
-                        self.n, {basis: self.vecpairs[basis]*sqrt(self.q)}, self.q)
+                        self.n, {basis: self.vecpairs[basis]*(self.q + 1)}, self.q)
             else:
                 match = basis.get_matches()
 
@@ -102,7 +102,7 @@ class module_element:
                 newbasis = basis_element(self.n, match)
                 new = new + \
                     module_element(
-                        self.n, {newbasis: self.vecpairs[basis]*(1 + self.q)}, self.q)
+                        self.n, {newbasis: self.vecpairs[basis]*sqrt(self.q)}, self.q)
         return new
 
     # Action by constant c, returns new element
