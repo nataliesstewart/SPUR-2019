@@ -1,0 +1,144 @@
+\documentclass{amsart}   
+
+\usepackage{NatMacros}
+\usepackage{RepStyle}
+
+\begin{document}
+	
+\title{A discussion of the intersection of the kernels of each $(1+T_i)$ acting on $W_{2n+r}^r$}
+\author{Miles Johnson \& Natalie Stewart}
+
+\maketitle
+
+{\color{magenta} Natalie comments are magenta.}
+
+\section{Introduction} 
+
+Let $\{T_i\}$ be the transpositions generating the Hecke algebra $\SH_{2n+r}(q)$. We assume $q\in \CC$.
+{\color{magenta} It seems to me so far that the results of this anchor work in an arbitrary field, and that we may only at the end have to restrict to a field of characteristic at least $n + r + 1$ whenever $e \mid n + r + 1$.
+Usually replacing $\CC^\times$ with $k^\times$ is free generality.
+}
+Let $W_{2n+r}^r$ be the generalized crossingless matchings representation with $2n+r$ nodes, $r$ of which are anchors. Fix the standard basis; we will refer to no other basis in this document. Here we characterize the intersection of the kernels of each $(1+T_i)$, a subrepresentation of $W_{2n+r}^r$. I claim this intersection is at most one dimensional, and is nontrivial if and only if $q$ is a $n+r+1$st root of unity.
+{\color{magenta} I'll stop making this point after this, but this is not equivalent to $e = n + r + 1$.}
+
+For compactness, in this document I use $\sim $ to denote "proportional to".
+
+ \section{restricting the kernel}
+
+
+\begin{definition}
+	
+  Fix some basis element $M\in W_{2n+r}^r$. Define $M(a):=b$ iff $a$ and $b$ are matched in $M$, $M(a):=a$ if $a$ is an anchor in $M$.
+  {\color{magenta} Should specify that $a,b$ are integers $1 \leq a,b \leq 2n + r$.} 
+  Given that $M$ has $r'$ anchors in the range $a,..,b$, define a \textbf{sub-matching} $M(a,b)$ of $M$ to be the basis element $K\in W_{b-a+1}^{r'}$ specified by $K(i)=M(i+a-1)-a+1$. This sub-matching is defined for $a<b$ when $M(i)\in \{a,a+1,...,b\}$ for all $i\in \{a,a+1,...,b\}$. See Figure 1.
+\end{definition}
+
+\begin{figure} 
+	\def\cbasisspacing{5mm}
+	$\cbr{
+		\begin{gathered}
+		\Matching{6}{1/2, 3/6, 4/5}, \hspace{\cbasisspacing}
+		\Matching{4}{1/4, 2/3}
+		\end{gathered}}$
+	\caption{$M\in W_6^0$ is pictured on the left, $K\in W_4^0$ is pictured on the right. $M(3,6)=K$. $M(2,5)$ is not defined.}
+	\label{S6 Basis}
+\end{figure}
+
+Define the rainbow element $R\in W_{2n+r}^r$ to be the basis element specified by $R(i)=2n+2r-i+1$ for $i>r$, $R(i)=i$ for $i\leq r$. In other words, the basis element with all anchors to the left then a rainbow.
+
+\begin{proposition}
+	Let $w$ be an arbitrary vector in $W_{2n+r}^r$. I claim that if $w\in \cap\text{ker}(1+T_i)$, the coordinate $c$ of the rainbow element $R$ in $w$ is nonzero.
+	
+\end{proposition}	
+
+\begin{proof}
+  Let $Y$ be the set of basis elements with nonzero coordinate in $w$. Let $k$ be the greatest integer such that there exists $y\in Y$ where $y(1)=...=y(k)=0$ {\color{magenta} should this be $y(1)-1 = \dots = y(k) - k = 0$? Also, we should avoid using $k$ as an integer, as it's used elsewhere as a field.}, and let $U\subset Y$ be the set of such $y$. In other words, $U$ is the set of basis elements in $Y$ which have the most anchors to the far left.
+	
+	Suppose $k<r$. Then for each $y\in U$ there exists a minimal $i_y>k+2$ such that $y(i_y)=0$. In other words, $i_y$ is the position of the next leftmost anchor in $y$.  Fix $\tilde{y}$ such that $i_{\tilde{y}}\leq i_y$ for all $y$. Then I claim the basis element $y':=q^{-1/2}(1+T_{i_{\tilde{y}}-1})\tilde{y}$ has nonzero coordinate in $(1+T_{i_{\tilde{y}}-1})w$, implying $w\not\in \cap\text{ker}(1+T_i)$. To see this, we can show that $\tilde{y}$ is the only element in $Y$ such that $q^{-1/2}(1+T_{i_{\tilde{y}}-1})\tilde{y}\sim y'$. $y'$ still has $k$ anchors on the left, and $i_{y'}<i_{\tilde{y}}$, so $y'\not\in Y$. If $x\in Y,\not\in U$, the basis element proportional to $(1+T_{i_{\tilde{y}}-1})x$ will have $k$ anchors at the far left only if the next anchor is at a position $i_{x'}>i_{\tilde{y}}$, so it cannot be $y'$. If $x\in U$ the basis element proportional to $(1+T_{i_{\tilde{y}}-1})x$ will have anchor at $i_{y'}$ if and only if $i_x=i_{\tilde{y}}$ and $x(i_{\tilde{y}})=\tilde{y}(i_{\tilde{y}})$. Since this is the only match altered by action $(1+T_{i_{\tilde{y}}-1})$ on $x$, if $(1+T_{i_{\tilde{y}}-1})x\sim y'$ this implies $x=\tilde{y}$. So if $k<r$ $w$ is not in the desired kernel.
+	
+	Suppose $k=r$ but $R\not\in U$ (so $R\not\in Y$). Let us define a sequence of subsets of $U$ in the following way: $U_0:=U$, $U_{i+1}:=\{u\in U_i| u(r+i+1)=2n+2r-i+1 \}$. Since $R\not\in U$, $\exists t<n-1$ such that $U_{t+1}=\emptyset$. Choose $\tilde{u}\in U_t$ such that $\tilde{u}(r+t+1)\geq u(r+t+1)$ for all $u\in U_t$. Consider the basis element $u':=q^{-1/2}(1+T_{\tilde{u}(r+t+1)})\tilde{u}$. I claim that $\tilde{u}$ is the only element in $Y$ such that $(1+T_{\tilde{u}(r+t+1)})\tilde{u}\sim u'$, again implying that $w$ is not in the desired kernel. $u'$ still has $k$ anchors on the left, $u'(r+i)=2n+2r-i+2$, $1\leq i\leq t$, and $u'(r+t+1)>\tilde{u}(r+t+1)$, so $u'\not\in Y$. If $x\in Y,\not\in U$,  the basis element $x'$ proportional to $(1+T_{\tilde{u}(r+t+1)})x$ will have $r$ leftmost anchors only if $x'(r+t+1)<\tilde{u}(r+t+1)$, so $x'\not=u'$. Similarly, if $x\in U,\not\in U_t$, the basis element $x'$ will have the property $x'(r+t)=2n+2r-t+2$ only if $x'(r+t+1)<\tilde{u}(r+t+1)$, so $x'\not=u'$. If $x\in U_t$, $x'(r+t+1)=u'(r+t+1)$ if and only if $x(r+t+1)=\tilde{u}(r+t+1)$ and $x(x(r+t+1)+1)=\tilde{u}(\tilde{u}(r+t+1)+1)$ (since $u'\not \in Y$). These are the only matches altered by the action $(1+T_{\tilde{u}(r+t+1)})$, so this implies $x=\tilde{u}$. Thus we have proved that if $R\not\in Y$, $w$ is not in the desired kernel.
+	
+\end{proof}
+{\color{magenta} Nice. I felt the formalism around matchings ($M(a)$, $M(a,b)$ and all that) made this proof much more clear.}
+
+Given a rainbow element $R$, define the basis elements $R_{R,i},R_{L,i}$ to be those where you move the middle hump across $i$ humps to the right or left, respectively. Examples are pictured in figure 2. Formally, $R_{R,i}:=q^{-i/2}(1+T_{r+n+i})...(1+T_{r+n+1})R$, $R_{L,i}:=q^{-i/2}(1+T_{r+n-i})...(1+T_{r+n-1})R$.
+
+\begin{figure}
+		\def\cbasisspacing{5mm}
+	$\cbr{
+		\begin{gathered}
+		\Matching{8}{1/8, 2/7, 3/6, 4/5}, \hspace{\cbasisspacing}
+		\Matching{8}{1/8, 2/7, 3/4, 5/6}, \hspace{\cbasisspacing}
+		\Matching{8}{1/8, 2/3, 4/7, 5/6}, \hspace{\cbasisspacing}
+		\Matching{8}{1/2,3/8,4/7,5/6}
+		\end{gathered}}$
+	\caption{$R_{L,0},...,R_{L,3}$ pictured from left to right}
+\end{figure}
+
+ Define $Q_n:=(q^n+...+1)/q^{n/2}(-1)^n$ for $n\in \{0,1,...\}$. The following proposition says that, for any element in the kernel, if some basis element $y$ has coordinate $c$ in that element, and if $y$ has a rainbow sub-matching, the basis elements where you replace that sub-matching by the shifted rainbow matchings $R_{L,i}$ or $R_{R,i}$ both have coordinate $Q_ic$ in the kernel element.
+ 
+\begin{proposition}
+	Let $w$ be an element in the kernel intersection $\cap (1+T_k)$ in some generalized crossingless matchings representation. Let $y$ be a basis element with coordinate $c$ in $w$. Suppose $\exists a,b$ such that $y(a,b)=R$, the rainbow element. Define the basis elements $\theta_i,\phi_i$ by $\theta_i(1,a-1)=\phi(1,a-1)=y(1,a-1)$, $\theta_i(b+1,2n)=\phi(b+1,2n)=y(b+1,2n)$, $\theta_i(a,b)=R_{R,i}$, $\phi_i(a,b)=R_{L,i}$ (leave $\theta_i$ or $\phi_i$ undefined for any $i$ where $R_{R,i},R_{L,i}$ are undefined, respectively). The coordinates of $\phi_i$ and $\theta_i$ in $w$ are both $Q_ic$.
+\end{proposition}
+
+
+Proof of this proposition requires a simple algebraic fact that will be used throughout this document, so I state it as a lemma.
+
+\begin{lemma}
+	$Q_1Q_n-Q_{n-1}=Q_{n+1}$
+\end{lemma}
+
+\textit{Proof of lemma.}
+
+$Q_1Q_n-Q_{n-1}=\frac{-(q+1)}{q^{1/2}}\frac{(-1)^n(q^n+...+1)}{q^{n/2}}-\frac{(-1)^{n-1}(q^{n-1}+...+1)}{q^{(n-1)/2}}=\frac{(-1)^{n+1}(q^{n+1}+2q^n+...+2q+1)}{q^{(n+1)/2}}-\frac{(-1)^{n+1}(q^n+...+q)}{q^{(n+1)/2}}=\frac{(-1)^{n+1}(q^{n+1}+...+1)}{q^{(n+1)/2}}=Q_{n+1}$.
+{\color{magenta} Imo the align* environment would help this.}
+
+Now let us prove the proposition.
+
+\begin{proof}
+	Consider acting on $w$ by an element $(1+T_k)$. The coordinate of $\phi_i$ in $(1+T_k)w$ will be a linear combination of the coordinates of basis elements sent to $\phi_i$ by the element $(1+T_k)$. Specifically, it will be $(1+q)c\alpha+(q^1/2)\sum c_\beta$ where $\alpha=1$ if $y(k)=k+1$, $\alpha=0$ otherwise, and $c_\beta$ are the coordinates of all basis elements $\beta$ where $(1+T_k)\beta\sim y$.
+	
+	Let $n:=a+b-1$ and $r$ be the number of anchors in $y(a,b)$. Consider the coordinate of $\phi_i$ in $(1+T_{a-1+r+n/2-i})w$. This is the transposition that acts on the "moved middle hump" in $\phi_i(a,b)=R_{L,i}$, as shown in figure 2.3. I claim that the only basis elements $\beta$ where $(1+T_{a-1+r+n/2-i})\beta\sim \phi_i$ are $\phi_i$ and $\phi_{i-1},\phi_{i+1}$ when they exist (we defined $R_{L,i}$ as far out as we can move the hump, so for $0\leq i<n+r$, and take the analogous domain for $\phi_i$).
+	
+	Note that the action of any $(1+T_k)$ on a basis element $\beta$ creates exactly two lines: an arc of length two connecting $k$ and $k+1$, and either an anchor or an arc of length $\geq 2$ connecting $\beta(k)$ and $\beta(k+1)$. The easiest way to see the claim is to see that the given transposition is surrounded by arcs on both sides, so any basis element sent to the same element can vary from $\phi_i$ by at most one of those arcs and nothing else. 
+	
+	Let us prove the claim formally: It is easy to see that the action of $(1+T_{a-1+r+n/2-i})$ will bring $\phi_{i-1},\phi_i,\phi_{i+1}$ to $\sim \phi$, as shown in figure 2.3. Suppose there was another basis element $\beta$ sent to $\phi_i$ by the given transposition. We note that if $\beta$ contains the arcs or anchors directly to the right and left of the arc $(a-1+r+n/2-i,a-1+r+n/2-i+1)$ in $\phi_i$ (formally, it contains the arc $(a-1+r+n/2-i-1,a-1+r+n/2+i+2)$ or an anchor at $a-1+r+n/2-i-1$ and the arc $(a-1+r+n/2-i+2,a-1+r+n/2+i+1)$ or an anchor at $a-1+r+n/2-i+2$), it must contain the arc $(a-1+r+n/2-i,a-1+r+n/2-i+1)$ to be a crossingless matching. Thus, if $\beta$ contains both of these arcs/anchors, $(1+T_{a-1+r+n/2-i})$ acts as the constant $(1+q)$, so $(1+T_{a-1+r+n/2-i})\beta\sim \phi_i=>\beta\sim \phi$. If $\beta$ does not contain the left arc/anchor and $(1+T_{a-1+r+n/2-i})\beta\sim \phi_i$, the action of $(1+T_{a-1+r+n/2-i})$ must create that arc/anchor, so $\beta(a-1+r+n/2-i-1)=a-1+r+n/2-i$ and $\beta(a-1+r+n/2-i+1)=a-1+r+n/2+i+2$ in the case of an arc or $a-1+r+n/2-i+1$ is an anchor. All other matchings remain unchanged, so this implies $\beta=\phi_{i+1}$. Likewise, if the right arc $((a+b-1)/2-i+2,(a+b-1)/2+i+1)$ does not exist, $\beta=\phi_{i-1}$. For boundary cases, note that for $\phi_0=\theta_0$, the only other basis element sent to this by the middle transposition is $\phi_1=\theta_1$. Also note that at the edge case $\phi_{n+r-1}$ there is not necessarily a left arc, so other elements may be sent to $\phi_{n+r-1}$ by the given transposition, and this case is unhelpful to us. Lastly, note that our argument was completely symmetric and thus applies to the $\theta_i$ case, except that for $\theta_i$ we do not have to deal with anchors. Thus the claim is proved.
+	
+	Given this claim and lemma 2.4, the proposition follows quickly through induction. 
+	
+	Acting by $(1+T_{a-1+r+n/2})$ on $w$, the new coordinate of $\phi_0=y$ is $(q+1)c+q^{1/2}c_{\phi_1}$ where $c_{\phi_1}$ is the coordinate of $\phi_1$ in $w$. Since $w$ is in the kernel, we have $(q+1)c+q^{1/2}c_{\phi_1}=0=>c_{\phi_1}=Q_1c$. $\phi_1=\theta_1$ so this gives us all our base cases.
+	
+	Acting by $(1+T_{a-1+r+n/2-i})$ on $w$, the new coordinate of $\phi_i$ is $q^{1/2}c_{\phi_{i+1}}+q^{1/2}c_{\phi_{i-1}}+(q+1)c_{\phi_{i}}=0$. By the inductive hypothesis, $q^{1/2}c_{\phi_{i+1}}+q^{1/2}Q_{i-1}c+(q+1)Q_i=0$ so $c_{\phi_{i+1}}=Q_1Q_i-Q_{i-1}=Q_{i+1}$ by lemma 2.4. $\theta_i$ is an identical proof, so the proposition follows. 
+	
+	
+	\begin{figure}
+		\[
+		\GeneralizedAction{8}{3/4,5/8,6/7}{2}{1/1,2/2}{1}{3}{3/4,5/8,6/7}{1/1,2/2}{(1+q)}
+		\]
+		\[
+		\GeneralizedAction{8}{2/3,5/8,6/7}{2}{1/1,4/2}{1}{3}{3/4,5/8,6/7}{1/1,2/2}{q^{1/2}}
+		\]
+		\[
+		\GeneralizedAction{8}{3/8,4/5,6/7}{2}{1/1,2/2}{1.25}{3}{3/4,5/8,6/7}{1/1,2/2}{q^{1/2}}
+		\]
+    \caption{The action of $(1+T_{a-1+r+n/2-i})$ on $\phi_i,\phi_{i=1},\phi_{i+1}$ (ordered from top to bottom), shown as the case where $y$ is the rainbow vector in $W_{8}^2$ and $i=2$.{\color{magenta} I made the last of these a bit taller so that the anchors weren't close to touching the arc.}}
+		\label{Action}
+	\end{figure}
+\end{proof}	
+{\color{magenta} This proof is pretty technical, and I don't quite have the time to go through it tonight. I'll go through it more closely later.}
+
+We are now ready to prove our first interesting result. Define $e$ as before.
+
+\begin{proposition}
+	Let $W_{2n+r}^r$ be a generalized crossingless matchings representation. Suppose $e$ does not divide $n+r+1$. Then $\cap\text{ker}(1+T_i)=\emptyset$.
+\end{proposition}
+
+\begin{proof}
+	Suppose $\cap\text{ker}(1+T_i)=K\not=\emptyset$. Take $w\in K$. By Proposition 2.2, the coordinate of the rainbow vector $R$ is nonzero; suppose the coordinate is $c$. By proposition 2.3, the coordinates of the basis elements $R_{L,n+r-1}$ and $R_{L,n+r-2}$ are $Q_{n+r-1}c$ and $Q_{n+r-2}c$ respectively.
+	
+	Consider the coordinate of $R_{L,n+r-1}$ in $(1+T_1)w$. Using the same logic as in the proof of proposition 2.3, we note that if a basis element $\beta$ has no anchor at position $3$ and is not equal to $R_{L,n+r-2}$, $(1+T_1)\beta\not\sim R_{L,n+r-1}$. Thus the desired coordinate is equal to $(1+q)Q_{n+r-1}c+q^{1/2}Q_{n+r-2}c=-q^{1/2}Q_{n+r}c$ by lemma 2.4. Since $w\in K$, we must have $-q^{1/2}Q_{n+r}c=0$. We have that $c$ is nonzero, and we assume $q$ nonzero, and $Q_{n+r}$ is zero iff $q$ is a root of $q^{n+r}+...+1$, implying $e|n+r+1$. Thus we have arrived at contradiction, and $K=\emptyset$.
+\end{proof}
+{\color{magenta} Nice. Is the goal that basically this style of proof with yield the same result when $e \neq n + r + 1$? At any rate, I think a final text should place more emphasis on the fact that proposition 2.3 specifies a one-dimensional subspace containing the kernel;
+in effect, this specifies that the sign representation appears at most once as a submodule, and gives a formula for when it does.}
+
+\end{document}

@@ -109,10 +109,7 @@ for constants
   \varc &= \tau(q\tau - 1)\\
   \vard &= \tau^{3/2}(q + 1)\\
   \vare &= \tau(q-\tau)\\
-  \tau &= \begin{cases}
-    \frac{1}{2}\prn{\sqrt 5 - 1} & \ell \equiv 1,4 \pmod 5\\
-    \frac{1}{2}\prn{\sqrt 5 + 1} & \ell \equiv 2,3 \pmod 5
-  \end{cases}
+  \tau &= -1-q^2-q^3
 \end{split} \label{Fib Constants} 
 \end{equation}
 with $T_i$ acting similarly on the substring $i,i+1,i+2$.
@@ -648,7 +645,7 @@ Since $\vard \neq 0$, the third is equivalently given by
   (q - 1) = \varc + \vare = t(q\tau - 1 + q - \tau) = (\tau^2 + \tau)(q - 1)
 \]
 or that $\prn{\tau^2 + \tau - 1}(q-1) = 0$.
-The reader may verify that $\tau^2 + \tau - 1 = 0$, so this is true for every $q$.
+One may verify that \[\tau^2 + \tau - 1 = q^6 + 2q^5 + q^4 + q^3 + q^2 - 1 = (-1+q+q^2)\brk{5}_q = 0.\]
 
 The fourth is given by the quadratic
 \[
@@ -680,15 +677,16 @@ Then, in verifying the braid relation \eqref{braid1} in this order, we encounter
     \vara\varc^2 + \vard^2\vare &= \vara^2\varc\\
     \vard\vare^2 + \vara\varc\vard &= \vara\vard\vare
 \end{align*}
-The reader may verify that each of these are satisfied for $q$ a primitive 5th root of unity and $\tau$ as defined.
+Substituting in $\tau$ and dividing by $\delta$ whenever possible, these are equivalent to the vanishing of the following polynomials in $q$:
+\begin{align*}
+  -q (1 + q) (1 + q^2 + q^3) (2 + q + 3 q^2 + 2 q^3) \brk{5}_q &= 0\\
+  (1 + 2 q + q^3 + q^4) \brk{5}_q &= 0\\
+  (1+q)^2 (1+q^2+q^3) (1+3q^3 - q^4 + q^6)\brk{5}_q &= 0\\
+  (1+q)^2 (1+q^2+q^3) (1+5q+5q^2+3q^3+3q^4+3q^5+q^6)\brk{5}_q &= 0\\
+  (1+q) (1+q^2+q^3) (-1+2q+q^2+q^3+q^4)\brk{5}_q &= 0.
+\end{align*}
+Notably, each of these vanish when $e = 5$.
 
-This highlights the difficulty with deforming our module to $q = 1$ at any field;
-the quadratic relations require that $(\tau^2 + \tau - 1)(\tau^2 + \tau + 1) = 0$, but neither of these appear in the first braid relation, which reads $\tau (\tau^3 - 6 \tau^2 + 1) = 0$.
-If we have $\tau^2 + \tau \pm 1 = 0$, then $\tau \neq 0$ and $-7\tau^2 \pm \tau + 1 = 0$.
-Hence $(7 \pm 1)\tau + (1 \pm 1) = 0$, implying that $\tau = \frac{1}{4},0$, neither of which satisfy $\tau^2 + \tau \pm 1 = 0$, a contradiction.
-
-To attempt to deform this to $q = 1$ would require that we rewrite $\varc,\vard,\vare$ entirely, rather than simply modifying $\tau$. 
- 
 \section{Miscellaneous Algebra Facts}
 Throughout the text, for some representation $V$, we refer to $\Res_{\SH(S_{l})}^{\SH(S_m)} V$ without specifying exactly which subalgebra $\SH(S_{l})$.
 \begin{proposition}
