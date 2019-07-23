@@ -81,7 +81,7 @@ We will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as r
 Note that, when $r = 0$, these have the same dimension given by the $n$th catalan number $C_n$.
  
 \subsection{Fibonacci Representation}
-Now suppose that $k = \CC$ and $q = \exp\prn{2 \pi i \ell/5}$ is a primitive 5th root of unity.
+Now suppose that $e = 5$ and $k$ contains the algebraic number $(-1 - q^2 - q^3)^{3/2}$.
 Let $V^m$ be a $k$-vector space with basis given by the strings $\cbr{*,p}^{n+1}$ such that the character $*$ never appears twice in a row. 
 We will surpress the superscript whenever it is clear from context.
 
@@ -557,11 +557,38 @@ Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrighta
   \end{align*}
 \end{corollary}
 
- 
-\section{Explicit Relationships}
-
+\section{Conjecture}
+Recall that $K_{2n + r}^r := K$ is the direct sum of all copies of the sign representation in $W$.
+Hence the following characterises sign subrepresentations of $W$ completely:
+\begin{proposition}
+  $K \subset W_{2n + r}^r$ is trivial when $e \neq n + r + 1$, and $\dim \, K = 1$ when $e = n + r + 1$.\qed
+\end{proposition} 
+\begin{proposition}
+  Suppose $e < n + r + 1$, and suppose $n'$ is such that $e = n' + r + 1$.
+  Note that $h := (1 + T_1)(1 + T_3)\dots(1 + T_{n - n'})$ maps $W_{2n + r}^r$ onto $W_{2n' + r}^r$.
+  Then, the preimage $h^{-1}(K_{2n + r}^r)$ is a subrepresentation of $W_{2n + r}^r$, and the series
+  \[
+    0 \subset h^{-1}(K_{2n + r}^r) \subset W_{2n + r}^r
+  \]
+  is a composition series of $W_{2n + r}^r$.\qed
+\end{proposition}
+\begin{proposition}
+  Denote the composition factor $W_{2n + r}^r / h^{-1}(K_{2n + r}^r)$ by $U_{2n + r}^r$.
+  Then, there exist some naturals $m,s$ satisfying $2m + s = 2n + r$ and $m + s > n + r$ such that the following is an isomorphism of $\SH$-modules \[h^{-1}\prn{K_{2n + r}^r} \simeq U_{2m + s}^s\].
+  \qed
+\end{proposition}
+\begin{proposition}
+  For the same $m,s$ as above, we have the following composition series of specht modules:
+  \[
+    0 \longrightarrow D^{(m+s,m)'} \longrightarrow S^{(n+r,n)'} \longrightarrow D^{(n+r,n)'} \longrightarrow 0.
+  \]
+\end{proposition}
+\begin{proposition}
+  $W_{2n + r}^r \simeq S^{(n+r,n)'}$ and $U_{2m +s}^s \simeq D^{(m+s,m)'}$.
+\end{proposition}
 
 \newpage
+
 \appendix
 \section{Compatibility of Representations with the Relations}
 In general, we define representations above for the free algebra on generators $\cbr{T_i}$.
