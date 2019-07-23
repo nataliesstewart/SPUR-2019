@@ -418,9 +418,18 @@ In particular, we can use the basis $\cbr{(p*p),(ppp)}$ and explicitly write the
     \vard & \vare
   \end{bmatrix}
 \]
-having characteristic polynomial $(c - \lambda)(e - \lambda) - d^2 = \lambda^2 - (c + e)\lambda +(ce - d^2)$.
-The reader can verify that this has roots $-1$ and $q$.
-The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $F_{pp}$ is isomorphic to a direct sum of the trivial and sign representations: $V^2_{pp} \simeq V^2_{*p} \oplus V^2_{**}$. 
+having characteristic polynomial $(\varc - \lambda)(\vare - \lambda) - \vard^2 = \lambda^2 - (\varc + \vare)\lambda +(\varc\vare - \vard^2)$.
+We may verify that, for $\lambda = -1$, this evaluates to
+\[
+  -((-1 + q + q^2) (1 + q^3 + q^4 + q^5 + 2 q^6 + q^7))\brk{5}_q = 0
+\]
+and for $\lambda = q$ this evaluates to 
+\[
+-(q^2 (-1 + q + q^2) (1 + q + q^2 + q^3 + 2 q^4 + q^5)) \brk{5}_q = 0
+\]
+hence $\rho_{T_1}$ has eigenvalues $-1$ and $q$.
+
+The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $V_{pp}$ is isomorphic to a direct sum of the trivial and sign representations: $V^2_{pp} \simeq V^2_{*p} \oplus V^2_{**}$. 
 
 Now let's prove that $V^3_{**}$ is irreducible;
 this has basis $\cbr{*p*p}, \cbr{*ppp}$, and the following matrices:
