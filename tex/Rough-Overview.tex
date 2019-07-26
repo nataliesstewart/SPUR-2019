@@ -3,9 +3,19 @@
 \usepackage{NatMacros} %********REPLACE WITH MilesMacros TO KILL RELIANCE ON \ifnum AND HAVE INCOMPLETE OUTPUT***********bleh
 \begin{document}
 
-\title{Rough Cut of Proven Work on $\SH$.}
-\author{Miles Johnson \& Natalie Stewart}
-\maketitle
+\title[Some Graphical Realizations of Two-Row Specht Modules of Hecke Algebras]{Some Graphical Realizations of Two-Row Specht Modules  of Hecke Algebras}
+\author[Miles Johnson \& Natalie Stewart]{Miles Johnson \& Natalie Stewart\\
+  Mentor Oron Propp\\
+Project Suggested by Roman Bezrukavnikov\\ \; \\
+July 31, 2019
+}
+
+\begin{titlepage}
+  \maketitle
+  \begin{abstract}
+  Abstract goes here
+  \end{abstract}
+\end{titlepage}
 
 \section{Introduction}
 Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices with $2n + r \geq 2$, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k^\times$ having square root $q^{1/2}$, and let $\cbr{T_i}$ be the reflections generating $\SH$.
@@ -15,13 +25,13 @@ Either $q = 1$ and $e$ is the characteristic of $k$ (with $0$ replaced by $\inft
 
 Throughout the text, we will refer to partitions of $2n + r$;
 identify each partition with a tuple $\lambda = (\lambda_1^{a_1},\dots,\lambda_l^{a_l})$ having $\lambda_i > \lambda_{i+1}$, $a_i > 0$, and $\sum_i a_i\lambda_i = 2n + r$.
-Identify each of these with a subset $\brk \lambda \subset \NN^2$ as defined in Kleshev, and define $\lambda(i) = (\lambda_1^{a_1},\dots,\lambda_{i-1}^{a_{i-1}},\lambda_i^{a_i - 1},\lambda_i-1,\lambda_{i+1}^{a_{i+1}},\dots,\lambda_l^{a_l})$ to be the partition with the $i$th row removed.
+Identify each of these with a subset $\brk \lambda \subset \NN^2$ as defined in Kleshchev, and define $\lambda(i) = (\lambda_1^{a_1},\dots,\lambda_{i-1}^{a_{i-1}},\lambda_i^{a_i - 1},\lambda_i-1,\lambda_{i+1}^{a_{i+1}},\dots,\lambda_l^{a_l})$ to be the partition with the $i$th row removed.
 
 Fixing some partition $\lambda$, for $1 \leq i \leq j \leq l$, let $\beta(i,j)$ be the hook length
 \[
   \beta(i,j) = \lambda_i - \lambda_j + \sum_{t = i}^j a_t.
 \]
-Then, adopting Kleshev's terminology, $j$ is normal in $\lambda$ if $\beta(i,j) \not\equiv 0 \pmod e$ for all $i < j$, and $j$ is good if it is the largest normal number (these are stronger conditions than generally necessary). 
+Then, adopting Kleshchev's terminology, $j$ is normal in $\lambda$ if $\beta(i,j) \not\equiv 0 \pmod e$ for all $i < j$, and $j$ is good if it is the largest normal number (these are stronger conditions than generally necessary). 
 
 Let $S^{(n+r,n)'}$ be the Specht module corresponding to the young diagram with two columns with height difference $r$, and let $D^{(n+r,n)'}$ be the corresponding irreducible quotient.
 The purpose of this writing is to characterize these representation via an isomorphism with two graphical representations of $\SH$.
@@ -37,7 +47,7 @@ The purpose of this writing is to characterize these representation via an isomo
   We verify that this is well-defined in appendix \ref{Cross Relations}.
 \end{definition}
 
-\begin{figure}
+\begin{figure}[b]
   \[
     \begin{tabular}{l l}
       \GeneralizedAction{6}{1/4,2/3}{2}{5/1,6/2}{1}{2}{1/4, 2/3}{5/1,6/2}{(1+q)}
@@ -81,24 +91,26 @@ We will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as r
 Note that, when $r = 0$, these have the same dimension given by the $n$th catalan number $C_n$.
  
 \subsection{Fibonacci Representation}
-Now suppose that $e = 5$ and $k$ contains the algebraic number $(-1 - q^2 - q^3)^{3/2}$.
-Let $V^m$ be a $k$-vector space with basis given by the strings $\cbr{*,p}^{n+1}$ such that the character $*$ never appears twice in a row. 
-We will surpress the superscript whenever it is clear from context.
-
-We wish to endow this with a $\SH$-action which acts on a basis vector only dependent on characters $i,i+1,i+2$, sending each basis vector to a combination of the other basis vectors having the same characters $1,\dots,i,i+2,\dots,n+1$ as follows:
 \def\vara{\alpha}
 \def\varb{\beta}
 \def\varc{\gamma}
 \def\vard{\delta}
 \def\vare{\varepsilon}
+\def\vs{\texttt{*}}
+\def\vp{\texttt{0}}
+Now suppose that $e = 5$ and $k$ contains the algebraic number $(-1 - q^2 - q^3)^{3/2}$.
+Let $V^m$ be a $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{n+1}$ such that the character $\vs$ never appears twice in a row. 
+We will suppress the superscript whenever it is clear from context.
 
-\begin{equation}
+We wish to endow this with a $\SH$-action which acts on a basis vector only dependent on characters $i,i+1,i+2$, sending each basis vector to a combination of the other basis vectors having the same characters $1,\dots,i,i+2,\dots,n+1$ as follows:
+
+\begin{equation} 
   \begin{split}
-  T_1 \, (*pp) &:= \vara(*pp)\\
-  T_1 \, (pp*) &:= \vara(pp*)\\
-  T_1 \, (*p*) &:= \varb(*p*)\\
-  T_1 \, (p*p) &:= \varc(p*p) + \vard(ppp)\\
-  T_1 \, (ppp) &:= \vard(p*p) + \vare(ppp)
+    T_1 \, \prn{\vs\vp\vp} &:= \vara\prn{\vs\vp\vp}\\
+    T_1 \, \prn{\vp\vp\vs} &:= \vara\prn{\vp\vp\vs}\\
+    T_1 \, \prn{\vs\vp\vs} &:= \varb\prn{\vs\vp\vs}\\
+    T_1 \, \prn{\vp\vs\vp} &:= \varc\prn{\vp\vs\vp} + \vard\prn{\vp\vp\vp}\\
+    T_1 \, \prn{\vp\vp\vp} &:= \vard\prn{\vp\vs\vp} + \vare\prn{\vp\vp\vp}
 \end{split} \label{Fib Action} 
 \end{equation}
 for constants
@@ -116,24 +128,23 @@ with $T_i$ acting similarly on the substring $i,i+1,i+2$.
 We will verify that this is a representation of $\SH$ in Appendix \ref{Fib Relations}
 
 This contains 4 subrepresentations based on the first and last character of the string, which are not modified by $\SH$.
-Label the subrepresentation of strings $(*\dots*)$ by $V_{**}$, and similar for the other 3.
-It is easy to see that $V_{*p} \simeq V_{p*}$, so that
+Label the subrepresentation spanned by strings $(\vs\dots\vs)$ by $V_{\vs\vs}$, and similar for the other 3.
+It is easy to see that $V_{\vs\vp} \simeq V_{\vp\vs}$, so that
 \[
-  V \simeq 2V_{*p} \oplus V_{**} \oplus V_{pp}.
+  V \simeq 2V_{\vs\vp} \oplus V_{\vs\vs} \oplus V_{\vp\vp}.
 \]
-We will show that $V_{pp} \simeq V_{*p} \oplus V_{**}$, and give the following isomorphisms with irreducible quotients of specht modules depending on the parity of the number of indices in $\SH$:
+We will show that $V_{\vp\vp} \simeq V_{\vs\vp} \oplus V_{\vs\vs}$, and give the following isomorphisms with irreducible quotients of specht modules depending on the parity of the number of indices in $\SH$:
 \begin{equation}
   \begin{split}    
-    V^{2n}_{**} &\simeq D^{(n,n)'}\\ 
-    V^{2n-1}_{**} &\simeq D^{(n+1,n-2)'}\\
-    V^{2n}_{*p} &\simeq D^{(n+1,n-1)'}\\
-    V^{2n-1}_{*p} &\simeq D^{(n,n-1)'}.
+    V^{2n}_{\vs\vs} &\simeq D^{(n,n)'}\\ 
+    V^{2n-1}_{\vs\vs} &\simeq D^{(n+1,n-2)'}\\
+    V^{2n}_{\vs\vp} &\simeq D^{(n+1,n-1)'}\\
+    V^{2n-1}_{\vs\vp} &\simeq D^{(n,n-1)'}.
   \end{split} \label{Fib Isos}
 \end{equation}
  
 \newpage
-\section{Crossingless Matchings and Specht Modules}
-Our goal is to prove that $W_{2n + r}^r \simeq S^{(n+r,n)'}$ when $e > n + r + 1$.
+\section{Preliminaries on Specht Modules}
 \begin{proposition}
   \begin{enumerate}[label={(\roman*)}]
     \item
@@ -141,13 +152,13 @@ Our goal is to prove that $W_{2n + r}^r \simeq S^{(n+r,n)'}$ when $e > n + r + 1
     Then, a filtration of $\Res W_{2n + r}^r$ is given by
     \begin{equation}
       0 \subset W_{2n + r - 1}^{r-1} \subset \Res \, W_{2n + r}^r \label{Filtration}
-    \end{equation}
-    with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
+     \end{equation}
+     with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
     \item
       We have the following isomorphism of representations:
       \begin{equation}
         W_{2n - 1}^1 \simeq \Res \; W_{2n}^0 \label{0 Restriction}
-      \end{equation}
+       \end{equation}
   \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -168,6 +179,202 @@ Our goal is to prove that $W_{2n + r}^r \simeq S^{(n+r,n)'}$ when $e > n + r + 1
 \end{proof}
 
 \begin{lemma}
+  Suppose $n,r > 0$.
+  Then, we may characterize the socle of $\Res \, D^\lambda$ as follows:
+  \[
+    \soc\prn{\Res \, D^{(n+r,n)'}} \simeq \begin{cases}
+      D^{(n + r - 1,n)'} & e \mid r+2\\
+      D^{(n + r,n-1)'} & e \nmid r+2, \; e \mid r\\
+      D^{(n+r-1,n)'} \oplus D^{(n+r,n-1)} & e \nmid r+2,r
+    \end{cases}
+  \]
+\end{lemma}
+\begin{proof}
+  This amounts to computations of the hook lengths $\beta(1,2)$ and $\gamma(1,2)$:
+  \begin{align*}
+    \beta_\lambda(1,2) &= r + 2\\
+    \gamma_\lambda(1,2) &= r
+  \end{align*}
+  Since $2$ is the largest removable number, $D^{(n+r,n-1)'} \subset D^{(n+r,n)'}$ iff $e \nmid r + 2$.
+  Further, if $e \nmid r + 2$, then $D^{(n+r-1,n)'} \subset D^{(n+r,n)'}$ iff 1 is good iff $e \nmid r$
+\end{proof}
+
+\begin{lemma}\label{S irreducibility}
+  \begin{enumerate}[label={(\roman*)}]
+    Assume $e > 2$ and $n > 0$.
+    \item Suppose $e > n$.
+      Then, $S^{(n+r,n)'}$ is irreducible iff $e \nmid l$ for all $r + 2 \leq l \leq n + r + 1$.
+    \item Suppose $e \leq n$.
+      Then, $S^{(n+r,n)'}$ is irreducible iff $e | r + 1$ and $\nu_{e,p}(h_{ab}^\lambda)$ acquires exactly two values over rows $a \leq n$.
+  \end{enumerate}  
+\end{lemma}
+\begin{proof}
+  \textbf{(i)}
+  Note that $\nu_p(l) \neq -1$ for all $l$ and only hook lengths in the first column may vanish mod $e$;
+  hence we may equivalently prove that $e$ divides no hook lengths in the first $n$ rows of the first column.
+  These hook lengths are precisely $r + 2,\dots,n+r+1$.
+
+  \textbf{(ii)}
+  Note that we have $\nu_{e,p}\prn{h^\lambda_{n-e+1,2}} \neq -1$.
+  Suppose that $e \nmid r + 1$.
+  Then, \[\nu_{e,p}\prn{h^\lambda_{n-e+1,1}} = \nu_{e,p}\prn{h^\lambda_{n-e,2} + r + 1} = -1,\]
+  giving $S^{(n+r,n)'}$ reducible.
+
+  Note that $\nu$ acquires at least two values since $e$ is a hook length.
+  Now, suppose that \[0 \leq \nu_{e,p}(h^{\lambda}_{ab}) < \nu_{e,p}\prn{h^{\lambda}_{a'b'}}\] and $S^{(n+r,n)'}$ is irreducible.
+  If $a=a'$ then we have reducibility, so assume $a \neq a'$.
+  Further, if $b = b'$, then we may replace $b$ with the other column;
+  hence we may assume WLOG that $b \neq b'$ as well.
+
+  Note that $p$-adic valuation is monotonic, so $h^\lambda_{ab} < h^\lambda_{a'b'}$.
+  If $b < b'$, then $\nu_p(h_{ab}) = \nu_p(h_{ab'}) < \nu(h_{a'b'})$ while $h_{ab'} > h_{a'b'}$, a contradiction.
+  If $b > b'$, then $\nu_p(h_{ab}) = \nu_p(h_{ab'})$ and $h_{ab} < h_{ab'}$, so there is some $c < b$ with $\nu_{e,b}(h_{ab}) = \nu_{e,p}(h_{ac})$; we may replace $b$ with $c$, and repeat until $b = b'$ to reach contradiction.
+
+  Finally, assume $e | r + 1$ and $\nu_{e,p}$ acquires two values over the top $n$ rows.
+  Since $e | r + 1$, $e \mid h_{a1}^\lambda$ iff $e \mid h_{a2}$;
+  since $\nu_{e,p}$ acquires only two values, this proves that $\nu_{e,p}(h_{a1}) = \nu_{e,p}(h_{a2})$ across these rows, giving the lemma.
+\end{proof}
+
+This is complicated and annoying, and the second amounts to a condition on $p$.
+We will illustrate that irreducibility interpolates between $p = 2$ and $p$ large:
+\begin{corollary}
+  Assume $2 < e \leq n$.
+  \begin{enumerate}[label={(\roman*)}]
+    \item Suppose $p > n + r + 1$. Then, $S^{(n + r,n)'}$ is irreducible iff $e | r + 1$.
+    \item Suppose $p = 2$. Then, $S^{(n+r,n)'}$ is not irreducible.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  (i) is clear.
+  (ii) is given by noting that $e + r + 1 \geq 2e$;
+  then, $h_{n-e+1,1} - h_{n-e+1,2} \geq 1$, giving reducibility.
+\end{proof}
+
+\begin{proposition}\label{Combinatorics}
+  Suppose that $e,n,r$ satisfy criterion (i) of Proposition \ref{S irreducibility}.
+  Let $\lambda$ be a partition of $2n + r$.
+  \begin{enumerate}[label={(\roman*)}]
+    \item Suppose $r > 0$.
+      If $D^\lambda$ has the composition series 
+      \begin{equation}\label{D Composition Series}
+        0 \subset D^{(n+r-1,n)'} \subset \Res \, D^{\lambda}
+      \end{equation}
+      with factor $\Res \, D^{\lambda} / D^{(n+r-1,n)'} \simeq D^{(n+r,n)'}$, then $\lambda = (n+r,n)'$.
+    \item Suppose $r = 0$ and $D^{(n,n-1)'} \simeq \Res \, D^\lambda$.
+      Then $\lambda = (n,n)'$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \textbf{(i)}
+  Let $\varpi := (n+r-1,n,1)$, let $\varsigma := (n+r-1,n+1)'$, and let $\mu := (n + r,n)'$.
+  Since $D^{(n+r-1,n)'} \subset \Res \, D^\lambda$, we have $(n + r - 1,n)' \longrightarrow \lambda$, implying $\lambda = \varpi,\varsigma,\mu$.
+  
+  We will show that $\varpi, \varsigma$ do not have socle compatible with \eqref{D Composition Series};
+  then, we will have $\lambda = \mu$.
+
+  First, we focus on $\varpi$;
+  Suppose $r > 1$ and $e \mid n + 1$;
+  then, $\beta_{\varpi}(2,3) = n + 1 \equiv 0 \pmod e$, so $3$ is not normal and $D^{(n+r-1,n)'}$ is not in the socle of $D^\varpi$, giving $\lambda \neq \varpi$.
+  
+  Now suppose $r > 1$ and $e \nmid n + 1$.
+  Then $S^{(n+r-2,n,1)'} \simeq D^{(n+r-2,n,1)'}$.
+  Then, we have $D^{(n + r - 2,n,1)'} \simeq S^{(n + r - 2,n,1} \subset \Res \, D^{\varpi}$ since 1 is normal;
+  this is not a composition factor in \eqref{D Composition Series}, so $\lambda \neq \varpi$.
+  
+
+  Similarly, assume $r = 1$;
+  then, by the same logic, $D^{(n+r-1,n)'} \not\subset \Res \, D^\varpi$ or $D^{(n,n-1,1)} \subset \Res \, D^\varpi$, also implying $\lambda \neq \varpi$.
+  \iffalse % keeping just in case
+  \begin{align*}
+    \beta_{\varpi}(1,2)     &= r + 1 \\
+    \beta_{\varpi}(1,3)     &= n + r + 1 \\
+    \beta_{\varpi}(2,3)     &= n + 1\\
+    \gamma_{\varpi}(1,2)    &= r\\
+    \gamma_{\varpi}(1,3)    &= n + r\\
+    \gamma_{\varpi}(2,3)    &= n\\
+  \end{align*}
+  \fi
+
+  \vspace{5pt}
+  Now, focus on $\varsigma$;
+  if $r < 2$, then $\varsigma$ is not a partition.
+  If $r = 2$, then $\Res \, D^\varsigma \simeq D^{(n+1,n)'}$ is irreducible, contradicting \eqref{D Composition Series}. 
+  If $r > 2$, then $D^{(n + r - 2,n+1)'}$ is irreducible, so $D^{(n+r-2,n+1)'} \simeq S^{(n+r-2,n+1)'} \subset D^\varsigma$, contradicting \eqref{D Composition Series}.
+
+  \textbf{(ii)}
+  This result is fundamentally similar to the previous result;
+  since the socle of $D^\lambda$ is irreducible, we require that 1 is the only normal number, which pins $\lambda$.
+\end{proof}
+
+\iffalse
+\begin{proposition}
+  Suppose that $n > 0$ and $e \nmid n + r$.
+  \begin{enumerate}[label={(\roman*)}]
+    \item Suppose $r > 0$, $n > 1$, and either $e \nmid n + 1$ or $e \nmid n + r + 1, n + r - 1$.
+      If $D^\lambda$ has the composition series 
+      \begin{equation}\label{D Composition Series}
+        0 \subset D^{(n+r-1,n)'} \subset \Res \, D^{\lambda}
+      \end{equation}
+      with factor $\Res \, D^{\lambda} / D^{(n+r-1,n)'} \simeq D^{(n+r,n)'}$, then $\lambda = (n+r,n)'$.
+    \item Suppose $n = 1$ and $e \nmid r+2$, and suppose that we have composition series \eqref{D Composition Series}.
+      Then $\lambda=(r+1,r+2)'$.
+    \item Suppose $r = 0$, either $e \nmid n+2$ or $e > 3$, and $D^{(n,n-1)'} \simeq \Res \, D^\lambda$.
+      Then $\lambda = (n,n)'$.
+  \end{enumerate}
+  The above conditions are unilaterally met whenever $e > n + r + 1$ and $(n,r) \neq (1,0)$.
+\end{proposition}
+\begin{proof}
+  \textbf{(i)}
+  Let $\lambda_1 := (n+r-1,n,1)$, let $\lambda_2 := (n+r-1,n+1)'$, and let $\lambda_3 := (n + r,n)'$.
+  Since $D^{(n+r-1,n)'} \subset \Res \, D^\lambda$, we have $(n + r - 1,n)' \longrightarrow \lambda$, implying $\lambda = \lambda_i$ for some $i = 1,2,3$.
+  We will show that $\lambda_1,\lambda_2$ each have good numbers other than 1, leading to elements of their socle that are not factors in \eqref{D Composition Series};
+  then, we will have $\lambda = \lambda_3$.
+
+  We may straightforwardly compute this.
+  First assume $n \geq 2$, so that
+  \begin{align*}
+    \beta_{\lambda_1}(1,2) &= n + 1\\
+    \beta_{\lambda_1}(1,3) &= n + r + 1\\
+    \beta_{\lambda_1}(2,3) &= n + r - 1\\
+    \beta_{\lambda_2}(1,2) &= n + r
+  \end{align*}
+
+  \textbf{(ii)}
+  The choices are the same as above, but now $\lambda_1$ only has two removable nodes, so that
+  \begin{align*}
+    \beta_{\lambda_1}(1,3) &= r + 2\\
+    \beta_{\lambda_2}(1,2) &= r + 1
+  \end{align*}
+
+  \textbf{(iii)}
+  Let $\lambda_1 := (n,n-1,1)'$, let $\lambda_2 := (n+1,n-1)'$, and let $\lambda_3 := (n,n)'$;
+  as before we know that $\lambda = \lambda_i$ for $i = 1,2,3$, so we will eliminate $\lambda_1,\lambda_2$.
+  First, we will show that $\lambda_1$ has a good number other than 1:
+  \begin{align*}
+    \beta_{\lambda_1}(1,2) &= n\\
+    \beta_{\lambda_1}(1,3) &= n + 2\\
+    \beta_{\lambda_1}(2,3) &= n\\
+  \end{align*}
+  Hence we may rule out $\lambda_1$ when $e | n$.
+
+
+  Suppose $D^{\lambda_2}$ satisfies the isomorphism;
+  then the number 2 is normal.
+  We may make the following computations:
+  \begin{align*}
+    \beta_{\lambda_2}(1,2) &= n + 2\\
+    \gamma_{\lambda_2}(1,2) &= 3.
+  \end{align*}
+  When $e | n + 2$, this brings contradiction;
+  when $e \nmid n + 2$ and $e > 3$, 2 is a good number (recalling that $e > 2$), giving non-semisimple restriction, a contradiction.
+  Hence $\lambda = \lambda_3$ and the proposition is proven.
+\end{proof}
+\fi
+
+\section{Crossingless Matchings and Specht Modules}
+\subsection{Preliminaries on Crossingless Matchings}
+\begin{lemma}
+  \label{Cyclic}
   Every basis vector in $W_{2n + r}^r$ is cyclic.
 \end{lemma}
 \begin{proof}
@@ -240,13 +447,13 @@ This will be a large technical tool in our proof of irreducibility.
    \caption{Illustrated is the row constructed for transposition $(1 + T_2)$; clearly these are the only basis elements mapping to multiples of the desired element, and they relate to each other.
      replacing the outermost and/or innermost arc with an anchor typifies the rows constructed with three nonzero coefficients.}
  \label{Submatrix}
- \end{figure}
+\end{figure}
  
   We may iterate this process as illustrated in Figure \ref{Submatrix}, eventually ending at a row with two nonzero entries, either an arc $(1,2)$ or an arc $(2,3)$, and all anchors otherwise left-aligned and arcs of maximum length.
-  These rows together form an $(n + r) \times \abs{W_{2n + r}^r}$ sumbatrix of $A$ which has a nonzero column in the row corresponding to $j$, and has (by removing zero columns) the same column space as the following square matrix:
+  These rows together form an $(n + r) \times \abs{W_{2n + r}^r}$ submatrix of $A$ which has a nonzero column in the row corresponding to $j$, and has (by removing zero columns) the same column space as the following square matrix:
   \newcommand*\bigzero{\makebox(0,15){\text{\Huge0}}}
   \newcommand*\bigzerotwo{\makebox(-20,15){\text{\Huge0}}}
-  \[
+  \begin{equation}\label{Bnr}
     B_{n + r} := \begin{bmatrix}
       \begin{matrix}
       q + 1 & q^{1/2} & \\
@@ -260,12 +467,12 @@ This will be a large technical tool in our proof of irreducibility.
         &  q^{1/2} & q + 1
        \end{matrix}
     \end{bmatrix}.
-  \]
+  \end{equation}
   We will show that this matrix is invertible;
   then, a sequence of elementary row operations will yield the identity, and in particular, when applied to $A$, will yield a row with a nonzero entry only on column $j$, giving $K = 0$.
 
   We may prove invertibility of this matrix by proving that $\det B_{n + r} = \brk{n + r + 1}_q$ inductively on $n+r$.
-  This is satisfied for our base case $n + r = 1$, so supose that it is true for each $m < n + r$.
+  This is satisfied for our base case $n + r = 1$, so suppose that it is true for each $m < n + r$.
   Then,
   \begin{align*}
     \det B_{n+r} &= (q + 1) \det B_{n + r - 1} - q \det B_{n + r - 2}\\
@@ -276,6 +483,7 @@ This will be a large technical tool in our proof of irreducibility.
   Hence $\det B_{n + r} \neq 0$, and $K = 0$.
 \end{proof}
 
+\subsection{Correspondence}
 \begin{proposition}
   The representation $W_{2n + r}^r$ is irreducible when $e > n + r + 1$. 
 \end{proposition}
@@ -315,103 +523,70 @@ This will be a large technical tool in our proof of irreducibility.
   \end{figure}
 \end{proof}
 
-\iffalse
-The next piece in our puzzle is to characterize the restrictions of $W$ to $\SH' := \SH_{k,q}(S_{2n + r - 1}) \subset \SH$.
-Recall that, when $r,n>0$ and $\SH$ is semisimple,  $\Res S^{(n+r,n)'} \simeq S^{(n+r-1,n)'} \oplus S^{(n+r,n-1)'}$.
-Further, note that $S^{(n+r,n)'}$ is the unique irreducible having this restriction.
-
-Next, note that we have already proven the correspondence for $W_{2n}^0$;
-for $W_{0 + r}^{r}$, this is the sign representation, which is given correctly by $S^{(r)}$.
-Hence, pending information on restrictions, we may prove this via induction on $2n + r$.
-\fi
-
 \begin{corollary}
   Suppose $n,r > 0$ and $e > n + 1$.
   Then, the sequence \eqref{Filtration} is a composition series of $\Res \, W_{2n + r}^r$.\qed
 \end{corollary}
 
 \begin{theorem}
-  Suppose $e > n + r + 1$, $n > 0$.
+  Suppose $e > n + r + 1$.
   Then, $W_{2n + r}^r \simeq S^{(n+r,n)'}$.
 \end{theorem}
 \begin{proof}
+  The case $n = 0$ is already proven, so suppose $n > 0$.
+
   By irreducibility, we know that $W_{2n + r}^r \simeq D^\lambda$ for some $e$-restricted partition $\lambda$.
-  We will proceed in two steps;
-  first we prove that $\lambda = (n+r,n)'$, then we prove that $S^{(n+r,n)'}$ is irreducible.
+  We will prove this inductively; by identification with the trivial and sign representations, the $2n + r = 2$ caseholds, so suppose this is true for $W_{2m + s}^s$ whenever $2m + s < 2n + r$ and $m + s \leq n + r$ (i.e. $e > m + s + 1$).
 
-  This will be done inductively; by identification with the trivial and sign representations, the $2n + r = 2$ caseholds, so suppose this is true for $W_{2m + s}^s$ whenever $2m + s < 2n + r$ and $m + s \leq n + r$ (i.e. $e > m + s + 1$).
-
-  \def\thmsep{7pt}
-  \vspace{\thmsep}
-  \textit{Step 1.}
   By the inductive hypothesis and irreducibility, we have a composition series given by 
   \begin{equation}
     \label{Composition Series} 0 \longrightarrow D^{(n + r - 1,n)'} \longrightarrow \Res \, D^\lambda \longrightarrow D^{(n+r,n-1)'} \longrightarrow 0
-  \end{equation}
-  In particular, by the Jordan-H\"older theorem, if we have some module $D^\mu \subset \Res \, D^\lambda$, then $\mu = (n+r-1,n)'$ or $\mu = (n+r,n-1)'$.
-  
-  By Kleschev, we know that $\soc(D^\lambda) = \bigoplus_{\mu} D^\mu$, where $\mu$ ranges over $\lambda(i)$ for every good number $i$ of $\lambda$.
-  Immediately this narrows down $\lambda$ to three options;
-  the only $\lambda$ with some $\lambda(i)$ giving $(n + r - 1,n)'$ are $\lambda_1 ;= (n+r-1,n,1)'$, $\lambda_2 = (n+r-1,n+1)'$, and $\lambda_3 = (n+r,n)'$.
-
-  Note numbers $\beta_l(i,j)$ correspond to hook-lengths, and each $\lambda_;$ has maximum hook length $n + r + 1$;
-  hence $\beta_l(i,j) \not\equiv 0 \pmod e$ for all $i,j,l$, and 3 is a good number in $\lambda_1$ and 2 in $\lambda_2$.
-  This implies $D^{(n+r-2,n,1)'} \subset D^{\lambda_1}$ and $D^{(n+r-2,n+1)'} \subset D^{\lambda_2}$, giving that $\lambda = \lambda_3$ as desired.
-
-  \vspace{\thmsep}
-  \textit{Step 2.}
-  Let the hook length of node $(a,b)$ in $\brk \lambda$ be written $h_{ab}^\lambda$.
-  Let $\nu_p(h_{ab}^\lambda)$ be the $p$-adic valuation of $h_{ab}^\lambda$, and let $\nu_{e,p}(h_{ab}^\lambda)$ be $\nu_p(h^{J})$.
-  Mathas Theorem 5.42 says, for $\lambda$ $e$-restricted, $S^\lambda$ is irreducible if $\nu_{e,p}(h_{ab}^\lambda) = \nu_{e,p}(h_{ac}^\lambda)$ for a suitable prime $p$.
-  In particular, since $h_{ab}^\lambda < e$ for all $a,b$, we have $\nu_{e,p}(h_{ab}^\lambda) = -1$ for all $a,b$, and $S^\lambda$ is irreducible.
+   \end{equation}
+  Hence the theorem is given by Proposition \ref{Combinatorics}.
 \end{proof}
 
 \iffalse
-\begin{proposition}
-  Suppose $e > n + r + 1$, and let $\lambda$ be a partition of $2n + r$.
-  \begin{enumerate}[label={(\roman*)}]
-    \item Suppose $n,r > 0$.
-      If $\Res \, D^\lambda$ admits a filtration $0 \subset S^{(n+r-1,n)'} \subset \Res \, S^\lambda$ with $\Res \, S^\lambda / S^{(n + r - 1,n)'} \simeq S^{(n + r,n-1)'}$ then $\lambda = (n+r,n)'$.
-    \item Suppose $r = 0$.
-      If $\Res \, S^\lambda \simeq S^{(n,n-1)'}$, then $\lambda = (n,n)'$.
-  \end{enumerate}
-\end{proposition}
+We may reuse the above structure of proof as above;
+suppose $W_{2n + r}^r$ and $S^{(n+r,n)'}$ are irreducible, and $\lambda = (n+r,n)'$ is the unique diagram having composition series \eqref{Composition Series}.
+Then, $W_{2n + r}^r \simeq S^{(n+r,n)'}$.
+
+We have covered all irreducible cases for $r = 0$ and $n = 0$ above.
+For example, another case where we may show all irreducible cases is $n = 1$, which we will do now.
+\begin{lemma}\label{n=1 irreducibility}
+    Set $n = 1$. 
+    Then $W_{2 + r}^r$ is irreducible iff $e \nmid r + 2$.
+\end{lemma}
 \begin{proof}
-  \textbf{(i)}
-  Recall that the characteristic-free classical branching theorem gives that every specht module $S^{\lambda}$ admits a filtration 
-  \begin{equation}
-    0 = M_0 \subset \dots \subset M_l = S^{\lambda} \label{filtration}
-  \end{equation}  
-    with $M_i/M_{i-1} \simeq S^{\lambda(i)}$.
-  Hence $\lambda = (n + r, n)'$ satisfies the above formula.
+  A basis element $w_i \in W$ is determined entirely by the position of the arc, of which there are $r + 1$ options.
+  Hence $\dim W = r + 1$.
 
-  Note that, when $e > n + r + 1$, this filtration gives a composition series.
-  Hence the sequence \eqref{filtration} is at most length-2.
+  Further, $\dim\prn{\ima (1 + T_i)} = 1$ for all $i$;
+  by lemma \ref{Cyclic} $W$ is irreducible iff $K := \bigcap_{i = 1}^{r+1} \ker (1 + T_i) = \ker \bigoplus (1 + T_i)$ is trivial.
+  By \ref{Trivial}, this is true iff $e \nmid r + 2$.
+\end{proof}
 
-  Suppose it is length-1.
-  Then $\lambda$ is rectangle-shaped;
-  to have rows removed to the above we then need that that it be $\lambda = \prn{\frac{2n + r}{2}, \frac{2n + r}{2}}'$, so that $\Res S^{\lambda} \simeq S^{\prn{\frac{2n + r}{2}, \frac{2n + r}{2} - 1}'}$.
-  However, since $e > n + r + 1 \geq n + \frac{r}{2} + 1$, $\Res \, S^{\lambda}$ is irreducible, contradicting the existence of a length-2 composition series in the hypothesis.
-
-  Now suppose that \eqref{filtration} is length 2, so that it is also a composition series.
-  Then, by the Jordan-H\"older theorem, there is a rearranement of the composition factors of \ref{filtration} to give $S^{(n + r - 1,n)'}$ and $S^{(n + r, n - 1)'}$.
-  This implies that both $(n + r - 1,n)'$ and $(n + r,n-1)'$ can be acquired by removing rows of $\lambda$, giving that $\lambda = (n+r,n)'$.
-  
-  \vspace{7pt}
-  \textbf{(ii)}
-  Note that, since $e > n + 1$, $\Res S^\lambda$ is irreducible.
-  Hence the sequence \eqref{filtration} is a composition series of length 1, and $\lambda(1) = (n,n-1)'$.
-  The first implies that $\lambda$ is rectangular, and the second implies that $\lambda = (n,n)'$.
+\begin{theorem}
+  Set $n = 1$ and suppose $e \nmid r + 2$.
+  Then $W_{2 + r}^r \simeq S^{(1+r,1)'}$.
+\end{theorem}
+\begin{proof}
+  Using lemma \ref{n=1 irreducibility} and \ref{S irreducibility} it is sufficient to prove that, for $D^\lambda$ having composition series \eqref{Composition Series}, we have $\lambda = (1+r,1)'$.
+  Similar to before, we consider the options $\lambda_1 := (r,1,1)'$, $\lambda_2 := (r,2)'$, and $\lambda_3 = (1+r,1);$.
+  We may straightforwardly check that $\lambda_1$ and $\lambda_2$ have socle containing partitions other than the composition factors in \eqref{Composition Series} by showing that each have a good number 2 as follows:
+  \begin{align*}
+    \beta_{\lambda_1}(1,2) &= 3 - 1 + r = r+2\\
+    \beta_{\lambda_2}(1,2) &= 2 - 1 + r + 1 = r+2.
+  \end{align*}
+  These are each nonvanishing mod $e$, so they are good and $\lambda = \lambda_3$, giving the theorem.
 \end{proof}
 \fi
 
-
-\section{The Fibonacci Representation and Specht Modules}
+\section{The Fibonacci Representation and Quotients of Specht Modules}
 We can start our study of $V$ by studying low-dimensional cases.
-First, note that $V_{*p}^2$ is the sign representation $D^{(2)}$ and $V_{**}^2$ is the trivial representation $D^{(1)^2}$.
+First, note that $V_{\vs\vp}^2$ is the sign representation $D^{(2)}$ and $V_{\vs\vp}^2$ is the trivial representation $D^{(1)^2}$.
 
-$V_{pp}^2$ is a 2-dimensional representation of a semisimple commutative algebra, and hence decomposes into a direct sum of two subrepresentations.
-In particular, we can use the basis $\cbr{(p*p),(ppp)}$ and explicitly write the matrix
+$V_{\vp\vp}^2$ is a 2-dimensional representation of a semisimple commutative algebra, and hence decomposes into a direct sum of two subrepresentations.
+In particular, we can use the basis $\cbr{(\vp\vs\vp),(\vp\vp\vp)}$ and explicitly write the matrix
 \[
   \rho_{T_1} = \begin{bmatrix}
     \varc & \vard\\
@@ -429,10 +604,10 @@ and for $\lambda = q$ this evaluates to
 \]
 hence $\rho_{T_1}$ has eigenvalues $-1$ and $q$.
 
-The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $V_{pp}$ is isomorphic to a direct sum of the trivial and sign representations: $V^2_{pp} \simeq V^2_{*p} \oplus V^2_{**}$. 
+The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $V_{\vp\vp}$ is isomorphic to a direct sum of the trivial and sign representations: $V^2_{\vp\vp} \simeq V^2_{\vs\vp} \oplus V^2_{\vs\vs}$. 
 
-Now let's prove that $V^3_{**}$ is irreducible;
-this has basis $\cbr{*p*p}, \cbr{*ppp}$, and the following matrices:
+Now let's prove that $V^3_{\vs\vs}$ is irreducible;
+this has basis $\cbr{\vs\vp\vs\vp}, \cbr{\vs\vp\vp\vp}$, and the following matrices:
 \[
   \rho_{T_1} = \begin{bmatrix}
     \varb & 0\\
@@ -445,44 +620,44 @@ this has basis $\cbr{*p*p}, \cbr{*ppp}$, and the following matrices:
 \]
 A subrepresentation must be one-dimensional, and hence an eigenspace of each of these matrices;
 since $\varb \neq \vara$, the first has eigenspaces given by the spans of basis elements, and since $\vard \neq 0$, these are not eigenspaces of the second.
-Hence $V^3_{**}$ is irreducible.
+Hence $V^3_{\vs\vs}$ is irreducible.
 Now we may move on to the general case.
 \begin{proposition}
-  The representation $V_{*p} := V^m_{*p}$ is irreducible.
+  The representation $V_{\vs\vp} := V^m_{\vs\vp}$ is irreducible.
 \end{proposition}
 \begin{proof}
   We will prove this inductively in $m$.
-  We've already proven it for $V^2_{*p}$ and $V^3_{*p}$, so suppose that $V^{m-2}_{*p}$ is irreducible.
+  We've already proven it for $V^2_{\vs\vp}$ and $V^3_{\vs\vp}$, so suppose that $V^{m-2}_{\vs\vp}$ is irreducible.
   
-  Let $\cbr{v_i}$ be the basis for $V_{*p}$.
-  Then, each $v_i$ is cyclic; indeed, we can transform every basis vector into $(*p\dots p)$ by multiplying by the appropriate $\frac{1}{\vard-\varc}(T_i - \varc)$, and we can transform $(*p\dots p)$ into any basis vector by multiplying be the appropriate $\frac{1}{\vard-\vare}(T_i - \vare)$.
-  Hence it is sufficient to show that each $v \in V_{*p}$ generate some basis element.
+  Let $\cbr{v_i}$ be the basis for $V_{\vs\vp}$.
+  Then, each $v_i$ is cyclic; indeed, we can transform every basis vector into $(\vs\vp \dots \vp)$ by multiplying by the appropriate $\frac{1}{\vard-\varc}(T_i - \varc)$, and we can transform $(\vs\vp \dots \vp)$ into any basis vector by multiplying be the appropriate $\frac{1}{\vard-\vare}(T_i - \vare)$.
+  Hence it is sufficient to show that each $v \in V_{\vs\vp}$ generate some basis element.
 
-  Let $v'$ be the basis element $(*p*p\dots p)$, which is many copies of $*p$, followed by an extra $p$ if $m$ is odd.
+  Let $v'$ be the basis element $(\vs\vp\vs\vp\dots \vp)$, which is many copies of $\vs\vp$, followed by an extra $\vp$ if $m$ is odd.
   We will show that each $v \in F$ generates $v'$.
 
-  Suppose that no elements beginning $(*p*p)$ are represented in $v_i$;
+  Suppose that no elements beginning $(\vs\vp\vs\vp)$ are represented in $v_i$;
   then, all such elements are represented in $T_3v$, so we may assume that at least one is represented in $v$.
 
-  Note that $\ima (T_2 - \vara) = \Span\cbr{\text{Basis vectors beginning }(*p*p)}$ and $(T_2 - \vara)v \neq 0$.
-  Further, note that $\Res_{\SH(S_{m-2})}^{\SH(S_m)} \ima (T_2 - \vara) \simeq V^{m-2}_{*p}$ as representations.
-  Hence irreducibility of $V^{m-2}_{*p}$ implies that $v'$ is generated by $(T_2 - \vara)v$, and $V^m_{*p}$ is irreducible.
+  Note that $\ima (T_2 - \vara) = \Span\cbr{\text{Basis vectors beginning }(\vs\vp\vs\vp)}$ and $(T_2 - \vara)v \neq 0$.
+  Further, note that $\Res_{\SH(S_{m-2})}^{\SH(S_m)} \ima (T_2 - \vara) \simeq V^{m-2}_{\vs\vp}$ as representations.
+  Hence irreducibility of $V^{m-2}_{\vs\vp}$ implies that $v'$ is generated by $(T_2 - \vara)v$, and $V^m_{\vs\vp}$ is irreducible.
 \end{proof}
 
 Knowing this, the restriction statements are clear;
-$\Res V_{*p}^m \simeq V_{pp}^{m-1}$ by considering the last $m-2$ transpositions, and $\Res V_{*p}^{m-1} \simeq V_{*p}^{m-1} \oplus V_{**}^{m-1}$ by considering the first $m-2$.
-Similarly, $\Res V_{**}^m \simeq V_{*p}^{m-1}$ by considering the first $m-2$ transpositions.
-This gives that $V \simeq 3V_{*p} \oplus 2V_{**}$.
+$\Res V_{\vs\vp}^m \simeq V_{\vp\vp}^{m-1}$ by considering the last $m-2$ transpositions, and $\Res V_{\vs\vp}^{m-1} \simeq V_{\vs\vp}^{m-1} \oplus V_{\vs\vs}^{m-1}$ by considering the first $m-2$.
+Similarly, $\Res V_{\vs\vs}^m \simeq V_{\vs\vp}^{m-1}$ by considering the first $m-2$ transpositions.
+This gives that $V \simeq 3V_{\vs\vp} \oplus 2V_{\vs\vs}$.
 
 Now we may move on and use Young Tableau to characterize $V$.
 Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrightarrow{\text{good}} \lambda} D^\mu$,  and that $D^\lambda$ is semisimple iff every $\mu \xrightarrow{\text{normal}} \lambda$ is good.
 \begin{theorem}
   The irreducible components of $V$ are given by the following isomorphisms:
-    \begin{align*} 
-      V^{2n}_{**} &\simeq D^{(n,n)'}\\ 
-      V^{2n-1}_{**} &\simeq D^{(n+1,n-2)'}\\
-      V^{2n}_{*p} &\simeq D^{(n+1,n-1)'}\\
-      V^{2n-1}_{*p} &\simeq D^{(n,n-1)'}.
+     \begin{align*}  
+      V^{2n}_{\vs\vs} &\simeq D^{(n,n)'}\\ 
+      V^{2n-1}_{\vs\vs} &\simeq D^{(n+1,n-2)'}\\
+      V^{2n}_{\vs\vp} &\simeq D^{(n+1,n-1)'}\\
+      V^{2n-1}_{\vs\vp} &\simeq D^{(n,n-1)'}.
      \end{align*}
 \end{theorem}
 \begin{proof}
@@ -490,72 +665,72 @@ Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrighta
   we have already proven the base case $V^{2}$, so suppose that we have proven these isomorphisms for $V^{2n-2}$.
   We will prove the isomorphisms for $V^{2n-1}$ and $V^{2n}$.
 
-  By irreducibility, $V^{2n-1}_{**} \simeq D^{\lambda_{**}}$ and $V^{2n-1}_{*p} \simeq D^{\lambda_{*p}}$ for some diagrams $\lambda_{**}$ and $\lambda_{*p}$.
-  We will show that $\lambda_{**} = (n+1,n-2)'$ and $\lambda_{*p} = (n+1,n-1)'$.
+  By irreducibility, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda_{\vs\vs}}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\lambda_{\vs\vp}}$ for some diagrams $\lambda_{\vs\vs}$ and $\lambda_{\vs\vp}$.
+  We will show that $\lambda_{\vs\vs} = (n+1,n-2)'$ and $\lambda_{\vs\vp} = (n+1,n-1)'$.
   
-  First, note that we have \[\Res \; D^{\lambda_{**}} \simeq D^{(n,n-2)'} \simeq \Res \; D^{(n+1,n-2)'}\] and \[\Res \; D^{\lambda_{*p}} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)'}.\]
-  By semisimplicity of $\Res D^{\lambda_{**}}$ and $\Res D^{\lambda_{*p}}$, every normal cell in $\lambda_{**}$ and $\lambda_{*p}$ is good, and every good cell is removed in a summand of the restriction.
-  In particular, the only normal number in $\lambda_{**}$ is 1.
+  First, note that we have \[\Res \; D^{\lambda_{\vs\vs}} \simeq D^{(n,n-2)'} \simeq \Res \; D^{(n+1,n-2)'}\] and \[\Res \; D^{\lambda_{\vs\vp}} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)'}.\]
+  By semisimplicity of $\Res D^{\lambda_{\vs\vs}}$ and $\Res D^{\lambda_{\vs\vp}}$, every normal cell in $\lambda_{\vs\vs}$ and $\lambda_{\vs\vp}$ is good.
+  In particular, the only normal number in $\lambda_{\vs\vs}$ is 1.
 
-  For $\lambda_{**}$, the only tableaux which can remove a cell to yield $D^{(n,n-2)'}$ are $(n+1,n-2)'$, $(n,n-1)'$, and $(n,n-2,1)'$ as illustrated in Figure \ref{OddRes};
-  we have already seen that $D^{(n,n-1)'}$ does not have irreducible restriction, so we are left with $(n+1,n-2)'$ and $(n,n-2,1)'$.
-  We may directly check that $(n,n-2,1)'$ doesn't satisfy this, as we have the following:
-  \begin{align*}
+  For $\lambda_{\vs\vs}$, the only tableaux which can remove a cell to yield $D^{(n,n-2)'}$ are $(n+1,n-2)'$, $(n,n-1)'$, and $(n,n-2,1)'$ as illustrated in Figure \ref{OddRes};
+  we have already seen that $D^{(n,n-1)'}$ does not have irreducible restriction, so we are left with $(n+1,n-2)'$ and $\lambda = (n,n-2,1)'$.
+  We may directly check that $\lambda$ doesn't satisfy this, as we have the following:
+  \begin{align*} 
     \beta_\lambda(1,2) &= 3 - 2 + (n-2) = n-1\\
     \beta_\lambda(1,3) &= 3 - 1 + n = n+2\\
     \beta_\lambda(2,3) &= 2 - 1 + 3 = 4.
-   \end{align*}
-  At least one of $\beta(1,2)$ and $\beta(1,3)$ is nonzero, since $\beta_\lambda(1,3) - \beta_\lambda(1,2) = 3 \not\equiv 0 \pmod e$, and hence at least one of $M_2$ and $M_3$ is empty.
-  Hence at least one of 2 or 3 is normal in $(n,n-2,1)'$, and $\lambda_{**} = (n+1,n-2)$.
+   \end{align*} 
+  At least one of $\beta_\lambda(1,2)$ and $\beta_\lambda(1,3)$ is nonzero, since $\beta_\lambda(1,3) - \beta_\lambda(1,2) = 3 \not\equiv 0 \pmod e$, and hence at least one of $M_2$ and $M_3$ is empty.
+  Hence at least one of 2 or 3 is normal in $(n,n-2,1)'$, and $\lambda_{\vs\vs} = (n+1,n-2)$.
 
-  For $\lambda_{*p}$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
+  For $\lambda_{\vs\vp}$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
   \begin{figure}
-    \[
+    \begin{align*}
       \cbr{
         \begin{gathered}
-        \ydiagram{2,2,2,1,1,1}. \; \;
-        \ydiagram{2,2,2,2,1}, \; \;
-        \ydiagram{3,2,2,1,1}
+        \ydiagram{6,3}. \; \;
+        \ydiagram{5,4}, \; \;
+        \ydiagram{5,3,1}
       \end{gathered} 
-    }\longrightarrow \begin{gathered}
-      \ydiagram{2,2,2,1,1}
-      \end{gathered}
-      \hspace{50pt}
+    }&\longrightarrow \begin{gathered}
+      \ydiagram{5,3}
+      \end{gathered}\\
       \cbr{
         \begin{gathered}
-          \ydiagram{2,2,2,2,1}
+          \ydiagram{5,4}
         \end{gathered}
-      }\longrightarrow
+      }&\longrightarrow
       \begin{gathered}
-        \ydiagram{2,2,2,1,1},\;\;
-        \ydiagram{2,2,2,2}.
+        \ydiagram{5,3},\;\;
+        \ydiagram{4,4}.
       \end{gathered}
-    \]
+    \end{align*}
     \caption{
       Illustration of the partitions of $9$ which can, via row removal, yield $(n,n-2)'$ alone, or both $(n,n-2)'$ and $(n-1,n-1)'$.
     }\label{OddRes}
-  \end{figure}
+  \end{figure}  
   
   We can perform a similar argument for the $V^{2n}$ case, finding now that 
-  \[\Res \; D^{\mu_{**}} \simeq D^{(n,n-1)'} \simeq \Res \; D^{(n,n)'}\] and 
-  \[\Res \; D^{\mu_{*p}} \simeq D^{(n,n-1)'} \oplus D^{(n+1,n-2)'} \simeq \Res \; D^{(n+1,n-1)'}.\]
+  \[\Res \; D^{\mu_{\vs\vs}} \simeq D^{(n,n-1)'} \simeq \Res \; D^{(n,n)'}\] and 
+  \[\Res \; D^{\mu_{\vs\vp}} \simeq D^{(n,n-1)'} \oplus D^{(n+1,n-2)'} \simeq \Res \; D^{(n+1,n-1)'}.\]
   
-  Through a similar process, we see that $\mu_{*p} = (n+1,n-1)'$.
-  We narrow down $\mu_{**}$ to one of $(n,n)'$ or $(n,n-1,1)'$, and note that
-  \begin{align*}
+  Through a similar process, we see that $\mu_{\vs\vp} = (n+1,n-1)'$.
+  We narrow down $\mu_{\vs\vs}$ to one of $(n,n)'$ or $\mu := (n,n-1,1)'$, and note that
+  \begin{align*} 
     \beta_\mu(1,2) &= 3 - 2 + (n-1) = n\\
     \beta_\mu(1,3) &= 3 - 1 + n = n+2\\
     \beta_\mu(2,3) &= 2 - 1 + 2 = 3
   \end{align*}
-  and hence at least one of 2 or 3 is normal, $\Res D^{(n,n-1,1)'}$ is not irreducible, and $\mu_{**} = (n,n)'$, finishing our proof.
+  and hence at least one of 2 or 3 is normal, $\Res D^{(n,n-1,1)'}$ is not irreducible, and $\mu_{\vs\vs} = (n,n)'$, finishing our proof.
 \end{proof}
 \begin{corollary}
   We have the following isomorphisms of representations:
-  \begin{align*}
-    V^{2n} \simeq 3D^{(n+1,n-1)'} \oplus 2D^{(n,n)'}
-    V^{2n - 1} \simeq 3D^{(n,n-1)'} \oplus 2D^{(n+1,n-2)'}
+  \begin{align*} 
+    V^{2n} &\simeq 3D^{(n+1,n-1)'} \oplus 2D^{(n,n)'}\\
+    V^{2n - 1} &\simeq 3D^{(n,n-1)'} \oplus 2D^{(n+1,n-2)'}
   \end{align*}
 \end{corollary}
+
 
 \section{Conjecture}
 Recall that $K_{2n + r}^r := K$ is the direct sum of all copies of the sign representation in $W$.
@@ -587,8 +762,33 @@ Hence the following characterises sign subrepresentations of $W$ completely:
   $W_{2n + r}^r \simeq S^{(n+r,n)'}$ and $U_{2m +s}^s \simeq D^{(m+s,m)'}$.
 \end{proposition}
 
-\newpage
+\section{Empirical Results}
 
+\section{Acknowledgements}
+
+\begin{thebibliography}{9}
+
+\bibitem{Brundan}
+  Brundan citation here
+
+\bibitem{Etingof}
+  Etingof citation here
+
+\bibitem{Kleschev}
+  Kleschev citation here
+
+\bibitem{Mathas Book}
+  Mathas book citation here
+
+\bibitem{Mathas}
+  Mathas article citation here
+
+\bibitem{Shor}
+  Shor citation here
+
+\end{thebibliography}
+
+\newpage
 \appendix
 \section{Compatibility of Representations with the Relations}
 In general, we define representations above for the free algebra on generators $\cbr{T_i}$.
@@ -633,7 +833,7 @@ Note the following expansion:
     \]
     Hence we may equivalently check that $(h-g)w = q(T_i - T_{i+1})$.
     This is illustrated in Figure \ref{braid1arc}.
-    \begin{figure}[b]
+    \begin{figure}
   \[
     \GeneralizedNAction{5}{1/2,3/4}{1}{5/1}{3/4}{2/1, 1/2,2/3}{1/4,2/3}{5/1}{q^{3/2}}
     \hspace{20pt}
@@ -703,7 +903,7 @@ which is true for every $q$.
 We now verify \eqref{braid1}.
 We may order the basis for $V^4$ as follows:
 \[
-  \cbr{(pppp),(*pp*),(ppp*),(*ppp),(*p*p),(p*p*),(pp*p),(p*pp)}.
+  \cbr{(\vp\vp\vp\vp),(\vs\vp\vp\vs),(\vp\vp\vp\vs),(\vs\vp\vp\vp),(\vs\vp\vs\vp),(\vp\vs\vp\vs),(\vp\vp\vs\vp),(\vp\vs\vp\vp)}.
 \]
 Then, in verifying the braid relation \eqref{braid1} in this order, we encounter the following quadratics (with tautologies and repetitions omitted):
 \begin{align*}
