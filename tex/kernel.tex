@@ -80,7 +80,7 @@ Given a rainbow element $R$, define the basis elements $R_{R,i},R_{L,i}$ to be t
 \begin{proposition}
 	Let $w$ be an element in the kernel intersection $\cap (1+T_k)$ in some generalized crossingless matchings representation. Let $y$ be a basis element with coordinate $c$ in $w$. Suppose $\exists a,b$ such that $y(a,b)=R$, the rainbow element. Define the basis elements $\theta_i,\phi_i$ by $\theta_i(1,a-1)=\phi(1,a-1)=y(1,a-1)$, $\theta_i(b+1,2n)=\phi(b+1,2n)=y(b+1,2n)$, $\theta_i(a,b)=R_{R,i}$, $\phi_i(a,b)=R_{L,i}$ (leave $\theta_i$ or $\phi_i$ undefined for any $i$ where $R_{R,i},R_{L,i}$ are undefined, respectively). The coordinates of $\phi_i$ and $\theta_i$ in $w$ are both $Q_ic$.
 \end{proposition}
-
+{\color{red} Need to note that some of these may not be sub-matchings}
 
 Proof of this proposition requires a simple algebraic fact that will be used throughout this document, so I state it as a lemma.
 
@@ -243,8 +243,58 @@ The structure of the proof is as follows:
 
 \vspace{10mm}
 \begin{proof}
+	Note that statement (i) was necessary to state (ii), but it is natural to prove both statements together, so this is how we will proceed.
+	\\
 	
-	Need more specific notation for the rainbow elements of specific representations.
+	By proposition 2.2 the rainbow element has coordinate 1 in $w\in W_{2n+r}^r$. By proposition 2.3 the element $R_1:=R_{L,n+r-1}$ has coordinate $Q_{n+r-1}$ in $w$. Then $R_1(3,2n+r)$ is the rainbow element in  $W_{2(n-1)+r}^r$, so the element $R_2$ defined by $R_2(1,2)=R_1(1,2)$, $R_2(3,2n+r)=R_{L,n+r-2}\in W_{2(n-1)+r}^r$ has coordinate $Q_{n-1}Q_{n-2}$. Generally, define $R_i$ by $R_i(1,2(i-1))=R_{i-1}(1,2(i-1))$, $R_i(2i-1,2n+r)=R_{L,2n+r-i}$. Then the coefficient of $R_i$ is $Q_{n+r-1}...Q_{n+r-i}$. These elements are shown in figure 5.
+	
+	\begin{figure}
+		\def\cbasisspacing{5mm}
+		
+		$\cbr{
+			\begin{gathered}
+			\GeneralizedMatching{8}{3/8, 4/7,5/6}{2}{1/1,2/2}{5/4}, \hspace{\cbasisspacing}
+			\GeneralizedMatching{8}{1/2, 5/8,6/7}{2}{3/1,4/2}{5/4}, 
+			\hspace{\cbasisspacing}
+			\GeneralizedMatching{8}{1/2, 3/4,7/8}{2}{5/1,6/2}{5/4}, \hspace{\cbasisspacing}
+			\end{gathered}}$ 
+		\caption{In order, the rainbow element, $R_1$, and $R_2$. The coordinate of the rainbow element is 1. The coordinate of $R_1$ is $Q_{4}$. The coordinate of $R_2$ is $Q_4Q_3$. Generally, $R_i$ is the element with $i$ humps then a rainbow element, and has coordinate $Q_{n+r-1}...Q_{n+r-i}$.}
+	\end{figure}
+	
+	Now define basis elements $E_i$ by $E_i(2i+1,2n+r)=R_i(2i+1,2n+r)$, $E_i(1,2i)=R$, $R$ the appropriate rainbow element. By the same argument as above, if $E_i$ has coordinate $c$ in $w$, $R_i$ has coordinate $Q_{i-1}...Q_{1}c$. One way to make this more clear is to consider intermediate basis elements $\alpha_j^{E_i}$ defined by $\alpha_j^{E_i}(2i+1,2n+r)=E_i(2i+1,2n+r)$ and $\alpha_j^{E_i}(1,2i)=R_{L,j}$. Then the coordinates of $\alpha_j^{E_i}(2i+1,2n+r)$ in terms of the coordinate $c$ of $E_i$ are $Q_{i-1}...Q_{i-j}$, and $R_i=\alpha_{i-1}^{E_i}$. 
+	
+	Since we assume $Q_i\not=0$ for $i< n+r$, this implies the coefficient of $E_i$ is $\frac{Q_{n+r-1}...Q_i}{Q_1...Q_{i-1}}$. In particular, returning to our desired basis element $\beta$, the coordinate of $E_{a/2}$ is $\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$.
+	\\
+	
+	Now, I claim that this method can be applied to any rainbow sub-matching in exactly the same way. In other words, extraneous nodes add no complexity to this argument.
+	
+	Formally, given some basis element $\alpha$, suppose $\alpha(s,t)=R$ with $2n'+r'$ nodes and $r'$ anchors, and that $\alpha$ has coordinate $c$. Then the basis elements $\theta_i$ defined by $\theta_i(1,s-1)=\alpha(1,s-1)$, $\theta_i(t+1,2n+r)=\alpha(t+1,2n+r)$, and $\theta_i(s,t)=E_i$ have coordinates $\frac{Q_{n'+r'-1}...Q_{n'+r'-i}}{Q_1...Q_{i-1}}c$.
+	
+	\begin{figure}
+		\def\cbasisspacing{5mm}
+		
+		$\cbr{
+			\begin{gathered}
+			\GeneralizedMatching{14}{1/2,3/4,5/6,9/12,10/11,13/14}{2}{7/1,8/2}{5/4}, \hspace{\cbasisspacing}
+			\GeneralizedMatching{14}{1/6,2/5,3/4,9/12,10/11,13/14}{2}{7/1,8/2}{5/4}, \hspace{\cbasisspacing}
+			\end{gathered}}$ 
+		\caption{The figure on the left has submatching $R_3$ ignoring the last two nodes. The figure on the right has sub-matching $E_3$ also ignoring the last two nodes. Since the last two nodes have the same structure for both elements, if the coordinate of the second element is $c$, the coordinate of the first is $Q_2Q_1c$.}
+	\end{figure}
+	
+	An example is given in figure 6.
+	\\
+	
+	To turn this into an inductive proof, suppose statements (i) and (ii) are true for all representations with $2n'+r'<2n+r$ nodes.
+	
+	Consider the set of basis elements $B=\{\alpha|\alpha(a+1,2n+r)=R\}$. We have shown that the element $\alpha_R\in B$ defined by $\alpha_R(1,a)=R$ has nonzero coefficient $\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$. So, by our inductive hypothesis, the element $\tilde{\alpha_1}\in B$ defined by $\tilde{\alpha_1}(1,a)=\beta(1,a)=\alpha_1$ has coefficient $x_{\alpha_1}\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$.
+	
+	Similarly, consider the set of basis elements $B'=\{\upsilon|\upsilon(1,a)=\alpha_1\}$. We have shown that the element $\upsilon_R=\tilde{\alpha_1}$ has nonzero coefficient $x_{\alpha_1}\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$. So, by our inductive hypothesis, $\beta$ has coefficient $x_{\alpha_2}x_{\alpha_1}\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$ and the inductive step is proven.
+	
+	Note that if the first node is an anchor, we need only consider the sub-matching of the rainbow element $R(2,2n+r)$ and use the inductive hypothesis. Thus the inductive step is proven in all cases.
+	
+	For base cases, we consider those representations with 2 or less nodes. If there is only one node, it must be an anchor. In this case, the single anchor element is the only element and it is the rainbow element, so it has coefficient 1. For two nodes, if there are two anchors we may use the inductive step. Otherwise, there is one match, which is again the only element and is the rainbow element. Since the number 1 is a rational function of $q$, the base cases are proved.
+	
+	So, by induction, the proposition holds.
 	
 \end{proof}
 
