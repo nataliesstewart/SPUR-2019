@@ -135,7 +135,7 @@ for n in range(nmin,nmax+1,2):
 """
 
 q = 1
-for n in range(4,17,2):
+for n in range(2,17,2):
     f = open("Representation n={}".format(n),"w")
     
     rep = representation(n,q)
