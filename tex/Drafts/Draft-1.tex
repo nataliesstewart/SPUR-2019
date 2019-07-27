@@ -68,13 +68,13 @@
 
   \end{titlepage}
 
-  \section{Introduction} 
+\section{Introduction} 
   Let $S_{2n+r}$ be the symmetric group on $2n+r$ indices with $2n + r \geq 2$, let $\SH = \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over field $k$ with parameter $q \in k^\times$ having square root $q^{1/2}$, and let $\cbr{T_i}$ be the reflections generating $\SH$.
   Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$. 
   Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
   Either $q = 1$ and $e$ is the characteristic of $k$ (with $0$ replaced by $\infty$), or $q \neq 1$ and $q$ is a primitive $e$th root of unity.
 
-  {\color{orange} Literature review and motivation goes here.}\cite{Kleshchev} 
+  {\color{orange} Literature review and motivation goes here.} 
 
   \normalsize
   Throughout the text, we will refer to partitions of $2n + r$;
@@ -285,7 +285,8 @@
         Then, $S^{(n+r,n)}$ is irreducible iff $e | r + 1$ and $\nu_{e,p}(h_{ab}^\lambda)$ acquires exactly two values.
     \end{enumerate}  
   \end{corollary}
-  In the case that $\lambda = (n+r,n)$ and $e$ satisfy hypothesis \eqref{S irreducibility}.(i), say that $\lambda$ is \emph{$e$-top-indivisible}.
+  In the case that $\lambda = (n+r,n)$ and $e \nmid r+2,r+3,\dots,n+r+1$, say that $\lambda$ is \emph{$e$-top-indivisible}.
+  Since no multiples of $e$ are in an interval of length $n$ in $\NN$, we have $e > n$, so this is precisely case (i) above.
   \begin{proof}
     The beginning condition implies that $\lambda$ is $e$-regular, which we will use below.
 
@@ -373,8 +374,9 @@
         D^{(n + r - 1,n)} & e \mid r+2\\
         D^{(n + r,n-1)} & e \nmid r+2, \; e \mid r\\
         D^{(n+r-1,n)} \oplus D^{(n+r,n-1)} & e \nmid r+2,r
-      \end{cases}
+      \end{cases}.
     \]
+    Further, when $e \nmid r$ or $e \mid r + 2$, $\Res D^{(n+r,n)}$ is semisimple.
   \end{corollary}
   \begin{proof}
     This amounts to computations of the hook lengths $\beta(1,2)$ and $\gamma(1,2)$:
@@ -518,6 +520,14 @@
 \fi
 
 \section{Crossingless Matchings and Specht Modules}\label{Crossingless Matchings Section}
+In the following section, we will analyze the crossingless matchings representation $M_{2n + r}^r$ with the goal of proving $M_{2n + r}^r \simeq S^{(n+r,n)}$ whenever possible.
+We begin by proving irreducibility of $M_{2n + r}^r$ in all cases that $(n+r,n)$ is $e$ top-indivisible;
+when $p = 2$, this is all cases where $S^{(n+r,n)}$ is irreducible.
+This is proven via an inductive process; if $e \nmid n + r + 1$, then $M$ contains no sign subrepresentation, and this allows us to ``project'' down to the case $M_{2(n-1) + r}^r$, and prove irreducibility of $M$ from irreducibility of this space.
+
+Next, we 
+
+
 \subsection{Irreducibility of $M$}
 \begin{lemma}
   \label{Cyclic}
@@ -673,11 +683,23 @@ This will be a large technical tool in our proof of irreducibility.
 \end{proof}
 
 \subsection{Correspondence}
-\begin{proposition}\;
+The following theorem of Mathas generalizes the characteristic-free version of the classical branching theorem.\cite{Mathas-article}
+It will not be necessary for our present proof of the correspondence, but analogy with $M$ is suggestive.
+\begin{theorem}[Characteristic-Free Classical Branching Theorem]
+  Let $\lambda$ be a partition of $m$ with $\ell$ removable nodes.
+  Then, $\Res \, S^\lambda$ has an $\SH_{k,q}(S_{m-1})$-module filtration
+  \[
+    0 = S^{0,\lambda} \subset S^{1,\lambda} \subset \cdots \subset S^{\ell,\lambda} = \Res S^\lambda
+  \]
+  such that $S^{t,\lambda} / S^{t-1,\lambda} \simeq S^{\lambda(t)}$ for all $1 \leq t \leq \ell$.\qed
+\end{theorem}
+
+If we replace $S^\lambda$ with the appropriate $M_{2n + r}^r$ above, we find the statement of the following proposition.
+\begin{proposition}Suppose that $n > 0$.
   
   \begin{enumerate}[label={(\roman*)}]
     \item
-    Suppose that $n,r > 0$.
+    Suppose that $r > 0$.
     Then, a filtration of $\Res M_{2n + r}^r$ is given by
     \begin{equation}
       0 \subset M_{2n + r - 1}^{r-1} \subset \Res \, M_{2n + r}^r \label{Filtration}
@@ -708,18 +730,22 @@ This will be a large technical tool in our proof of irreducibility.
   This follows with the above proof, defining $M_{2n - 1}^{-1} := 0$
 \end{proof}
 
+We've now assembled the basic pieces necessary to prove our correspondence in the case $e > n + r  1$.
+Due to some problematic phenomena in the $r = 0$ case, we will initially make an assumption that $e \neq 4$ or $r \neq 0$ so that we may use the combinatorics of Proposition \ref{Combinatorics}.
+We will then assume the remaining case $e = 4, r = 0$, and prove our correspondence using process of elimination via the other surrounding cases for $e = 4$.
+
 \begin{theorem}
   Suppose $e > n + r + 1$.
   Then, $M_{2n + r}^r \simeq S^{(n+r,n)}$.
 \end{theorem}
 \begin{proof}
   The case $n = 0$ is already proven, so suppose $n > 0$.
-  In order to use Proposition \ref{Combinatorics}, suppose either $e \nmid 4$ or $r \neq 0$.
+  In order to use Proposition \ref{Combinatorics}, suppose for now that either $e \nmid 4$ or $r \neq 0$.
 
-  By irreducibility, we know that $M_{2n + r}^r \simeq D^\lambda$ for some $e$-restricted partition $\lambda$.
   We will prove this inductively; by identification with the trivial and sign representations, the $2n + r = 2$ caseholds, so suppose this is true for $M_{2m + s}^s$ whenever $2m + s < 2n + r$ and $m + s \leq n + r$ (i.e. $e > m + s + 1$).
 
-  By the inductive hypothesis and irreducibility, we have a composition series given by 
+  By irreducibility, we know that $M_{2n + r}^r \simeq D^\lambda$ for some $e$-restricted partition $\lambda$.
+  By the inductive hypothesis and irreducibility, we have a composition series given by the exact sequence
   \begin{equation}
     \label{Composition Series} 0 \longrightarrow D^{(n + r - 1,n)} \longrightarrow \Res \, D^\lambda \longrightarrow D^{(n+r,n-1)} \longrightarrow 0
    \end{equation}
@@ -788,6 +814,26 @@ For example, another case where we may show all irreducible cases is $n = 1$, wh
 \end{proposition}
 
 \section{Fibonacci Representations and Quotients of Specht Modules}\label{Fibonacci Section}
+We have difficulty characterizing the Specht module above when it is irreducible.
+We may instead attempt to characterize the irreducible quotient $D^\lambda$ of the Specht module.
+In particular, note that, whenever $e \leq r + 2$, the restriction $\Res D^{(n+r,n)}$ decomposes into a direct sum of partitions $(m+s,m)$ such that $e \leq s + 2$ and $2m + s = 2n + r - 1$.
+This forms a recurrence among these representations, allowing a combinatorial description of their dimension.
+In this section we henceforth assume $e = 5$ and note that this recurrence resembles the Fibonacci recurrence;
+we follow this to characterize the restriction $D^{(n+r,n)}$ with $r \leq 3$.
+
+\begin{remark}
+  Let $d_{m}^{0,3}$ be the dimension $\dim D^{(n,n)}$ with $2n = m$ when $m$ is even, and $\dim D^{(n+3,n)}$ with $2n + 3 = m$ when $m$ is odd.
+  Similarly define $d_m^{1,2}$.
+  Then, Corollary \ref{D Restrictions} gives
+  \begin{align*}
+    d_m^{0,3} &= d_{m-1}^{1,2}\\
+    d_m^{1,2} &= d_{m-1}^{1,2} + d_{m-1}^{0,3}\\
+    &= d_{m-1}^{0,3} + d_{m-2}^{0,3}.
+  \end{align*}
+  Carefully following this and noting the base cases $d_2^{0,3} = d_2^{1,2} = 1$, one may note that this recurrences proves that $d_m^{1,2} = d_{m+1}^{0,3} = f_n$, where $f_n$ is the $n$th \emph{Fibonacci number}.
+  This matches the dimension our Fibonacci subrepresentations, motivating their definition.\qed
+\end{remark}
+
 We can start our study of $V$ by studying low-dimensional cases.
 First, note that $V_{\vs\vp}^2$ is the sign representation $D^{(2)}$ and $V_{\vs\vp}^2$ is the trivial representation $D^{(1)^2}$.
 
@@ -812,8 +858,8 @@ hence $\rho_{T_1}$ has eigenvalues $-1$ and $q$.
 
 The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $V_{\vp\vp}$ is isomorphic to a direct sum of the trivial and sign representations: $V^2_{\vp\vp} \simeq V^2_{\vs\vp} \oplus V^2_{\vs\vs}$. 
 
-Now let's prove that $V^3_{\vs\vp}$ is irreducible;
-this has basis $\cbr{\vs\vp\vs\vp}, \cbr{\vs\vp\vp\vp}$, and the following matrices:
+Now we may prove that $V^3_{\vs\vp}$ is irreducible;
+this has basis $\cbr{\prn{\vs\vp\vs\vp}, \prn{\vs\vp\vp\vp}}$, and the following matrices:
 \[
   \rho_{T_1} = \begin{bmatrix}
     \varb & 0\\
@@ -827,7 +873,11 @@ this has basis $\cbr{\vs\vp\vs\vp}, \cbr{\vs\vp\vp\vp}$, and the following matri
 A subrepresentation must be one-dimensional, and hence an eigenspace of each of these matrices;
 since $\varb \neq \vara$, the first has eigenspaces given by the spans of basis elements, and since $\vard \neq 0$, these are not eigenspaces of the second.
 Hence $V^3_{\vs\vp}$ is irreducible.
-Now we may move on to the general case.
+
+These establish the low-dimensional behavior that we will use as base cases below.
+The rest of this section will proceed first by proving that $V_{\vs\vp}$ and $V_{\vs\vs}$ are irreducible;
+then, we will use combinatorial arguments to prove that these are isomorphic to the correct two-row Specht module quotients.
+
 \begin{proposition}
   The representation $V_{\vs\vp} := V^m_{\vs\vp}$ is irreducible.
 \end{proposition}
@@ -850,17 +900,32 @@ Now we may move on to the general case.
   Hence irreducibility of $V^{m-2}_{\vs\vp}$ implies that $v'$ is generated by $(T_2 - \vara)v$, and $V^m_{\vs\vp}$ is irreducible.
 \end{proof}
 
-Knowing this, the restriction statements are clear;
-$\Res V_{\vs\vp}^m \simeq V_{\vp\vp}^{m-1}$ by considering the last $m-2$ transpositions, and $\Res V_{\vs\vp}^{m-1} \simeq V_{\vs\vp}^{m-1} \oplus V_{\vs\vs}^{m-1}$ by considering the first $m-2$.
-Similarly, $\Res V_{\vs\vs}^m \simeq V_{\vs\vp}^{m-1}$ by considering the first $m-2$ transpositions.
-This gives that $V \simeq 3V_{\vs\vp} \oplus 2V_{\vs\vs}$.
-
+Now, we may begin considering restrictions:
+\begin{lemma}
+  The following branching rules hold:
+  \begin{align*}
+    V^{m-1}_{\vp\vp} \simeq \Res V_{\vs\vp}^m &\simeq V^{m-1}_{\vs\vs} \oplus V^{m-1}_{\vs\vp}\\
+    \Res V_{\vs\vs}^m &\simeq V_{\vs\vp}^{m-1}.
+  \end{align*}
+\end{lemma}
+\begin{proof}
+  The first line follows by considering the last two $m-2$ transpositions for the left isomorphism, then the first two for the right isomorphism.
+  This is well-behaved by Appendix \ref{Algebra}.
+  
+  Similarly, the second line follows by considering the last $m-2$ transpositions.
+\end{proof}
+This immediately gives a rather strong characterization of $V$.
 \begin{corollary}
   The representation $V_{\vs\vs}$ is irreducible.\qed
 \end{corollary}
+\begin{corollary}
+  The representation $V$ decomposes into a direct sum of irreducible representations as follows:
+  \[
+    V \simeq 3V_{\vs\vp} \oplus 2V_{\vs\vs}.
+  \]\qed
+\end{corollary}
 
-Now we may move on and use Young Tableau to characterize $V$.
-Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrightarrow{\text{good}} \lambda} D^\mu$,  and that $D^\lambda$ is semisimple iff every $\mu \xrightarrow{\text{normal}} \lambda$ is good.
+Now we may use these in order to apply Young Tableau to characterize $V$.
 \begin{theorem}
   The irreducible components of $V$ are given by the following isomorphisms:
      \begin{align*}  
@@ -875,25 +940,24 @@ Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrighta
   we have already proven the base case $V^{2}$, so suppose that we have proven these isomorphisms for $V^{2n-2}$.
   We will prove the isomorphisms for $V^{2n-1}$ and $V^{2n}$.
 
-  By irreducibility, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda_{\vs\vs}}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\lambda_{\vs\vp}}$ for some diagrams $\lambda_{\vs\vs}$ and $\lambda_{\vs\vp}$.
-  We will show that $\lambda_{\vs\vs} = (n+1,n-2)$ and $\lambda_{\vs\vp} = (n+1,n-1)$.
+  By irreducibility, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\mu}$ for some diagrams $\lambda$ and $\mu$.
+  We will show that $\lambda = (n+1,n-2)$ and $\mu = (n+1,n-1)$.
   
-  First, note that we have \[\Res \; D^{\lambda_{\vs\vs}} \simeq D^{(n,n-2)} \simeq \Res \; D^{(n+1,n-2)}\] and \[\Res \; D^{\lambda_{\vs\vp}} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)}.\]
-  By semisimplicity of $\Res D^{\lambda_{\vs\vs}}$ and $\Res D^{\lambda_{\vs\vp}}$, every normal cell in $\lambda_{\vs\vs}$ and $\lambda_{\vs\vp}$ is good.
-  In particular, the only normal number in $\lambda_{\vs\vs}$ is 1.
-
-  For $\lambda_{\vs\vs}$, the only tableaux which can remove a cell to yield $D^{(n,n-2)}$ are $(n+1,n-2)$, $(n,n-1)$, and $(n,n-2,1)$ as illustrated in Figure \ref{OddRes};
-  we have already seen that $D^{(n,n-1)}$ does not have irreducible restriction, so we are left with $(n+1,n-2)$ and $\lambda = (n,n-2,1)$.
-  We may directly check that $\lambda$ doesn't satisfy this, as we have the following:
+  First, note that we have \[\Res \; D^{\lambda} \simeq D^{(n,n-2)} \simeq \Res \; D^{(n+1,n-2)}\] and \[\Res \; D^{\mu} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)}.\]
+  
+  By irreducibility of $\Res D^{\lambda}$, the only normal number in $\lambda$ is 1.
+  Further, the only tableaux which can remove a cell to yield $D^{(n,n-2)}$ are $(n+1,n-2)$, $(n,n-1)$, and $(n,n-2,1)$ as illustrated in Figure \ref{OddRes};
+  we have already seen that $D^{(n,n-1)}$ does not have irreducible restriction, so we are left with $(n+1,n-2)$ and $\varsigma = (n,n-2,1)$.
+  We may directly check that $\varsigma$ doesn't satisfy this, as we have the following:
   \begin{align*} 
-    \beta_\lambda(1,2) &= 3 - 2 + (n-2) = n-1\\
-    \beta_\lambda(1,3) &= 3 - 1 + n = n+2\\
-    \beta_\lambda(2,3) &= 2 - 1 + 3 = 4.
+    \beta_\varsigma(1,2) &= 3 - 2 + (n-2) = n-1\\
+    \beta_\varsigma(1,3) &= 3 - 1 + n = n+2\\
+    \beta_\varsigma(2,3) &= 2 - 1 + 3 = 4.
    \end{align*} 
-  At least one of $\beta_\lambda(1,2)$ and $\beta_\lambda(1,3)$ is nonzero, since $\beta_\lambda(1,3) - \beta_\lambda(1,2) = 3 \not\equiv 0 \pmod e$, and hence at least one of $M_2$ and $M_3$ is empty.
-  Hence at least one of 2 or 3 is normal in $(n,n-2,1)$, and $\lambda_{\vs\vs} = (n+1,n-2)$.
+  At least one of $\beta_\varsigma(1,2)$ and $\beta_\varsigma(1,3)$ is nonzero, since $\beta_\varsigma(1,3) - \beta_\varsigma(1,2) = 3 \not\equiv 0 \pmod e$, and hence at least one of $M_2$ and $M_3$ is empty.
+  Hence at least one of 2 or 3 is normal in $\varsigma$, and $\lambda = (n+1,n-2)$.
 
-  For $\lambda_{\vs\vp}$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
+  For $\mu$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
   \begin{figure}
     \begin{align*}
       \cbr{
@@ -921,17 +985,17 @@ Recall that the socle of $D^\lambda$ is given by $\bigoplus\limits_{\mu \xrighta
   \end{figure}  
   
   We can perform a similar argument for the $V^{2n}$ case, finding now that 
-  \[\Res \; D^{\mu_{\vs\vs}} \simeq D^{(n,n-1)} \simeq \Res \; D^{(n,n)}\] and 
-  \[\Res \; D^{\mu_{\vs\vp}} \simeq D^{(n,n-1)} \oplus D^{(n+1,n-2)} \simeq \Res \; D^{(n+1,n-1)}.\]
+  \[\Res \; D^{\lambda'} \simeq D^{(n,n-1)} \simeq \Res \; D^{(n,n)}\] and 
+  \[\Res \; D^{\mu'} \simeq D^{(n,n-1)} \oplus D^{(n+1,n-2)} \simeq \Res \; D^{(n+1,n-1)}.\]
   
-  Through a similar process, we see that $\mu_{\vs\vp} = (n+1,n-1)$.
-  We narrow down $\mu_{\vs\vs}$ to one of $(n,n)$ or $\mu := (n,n-1,1)$, and note that
+  Through a similar process, we see that $\mu' = (n+1,n-1)$.
+  We narrow down $\lambda'$ to one of $(n,n)$ or $\varpi := (n,n-1,1)$, and note that
   \begin{align*} 
-    \beta_\mu(1,2) &= 3 - 2 + (n-1) = n\\
-    \beta_\mu(1,3) &= 3 - 1 + n = n+2\\
-    \beta_\mu(2,3) &= 2 - 1 + 2 = 3
+    \beta_\varpi(1,2) &= 3 - 2 + (n-1) = n\\
+    \beta_\varpi(1,3) &= 3 - 1 + n = n+2\\
+    \beta_\varpi(2,3) &= 2 - 1 + 2 = 3
   \end{align*}
-  and hence at least one of 2 or 3 is normal, $\Res D^{(n,n-1,1)}$ is not irreducible, and $\mu_{\vs\vs} = (n,n)$, finishing our proof.
+  and hence at least one of 2 or 3 is normal, $\Res D^{\varpi}$ is not irreducible, and $\lambda' = (n,n)$, finishing our proof.
 \end{proof}
 \begin{corollary}
   We have the following isomorphisms of representations:
@@ -973,6 +1037,10 @@ Hence the following characterises sign subrepresentations of $W$ completely:
 \end{proposition}
 
 \section{Empirical Results}\label{Empirics Section}
+In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representaitons.
+All data will be generated via tools available on \underline{\href{https://github.com/nataliesstewart/Hecke-Heuristics}{github}}.\footnote{The full URL to the repository is \underline{\href{https://github.com/nataliesstewart/Hecke-Heuristics}{https://github.com/nataliesstewart/Hecke-Heuristics}}.}
+
+
 
 \newpage
 \appendix
