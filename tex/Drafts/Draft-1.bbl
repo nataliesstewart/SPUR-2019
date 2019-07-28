@@ -1,0 +1,34 @@
+\begin{thebibliography}{1}
+
+\bibitem{Brundan}
+Jonathan Brundan.
+\newblock Modular branching rules and the {M}ullineux map for {H}ecke algebras
+  of type {$A$}.
+\newblock {\em Proc. London Math. Soc. (3)}, 77(3):551--581, 1998.
+
+\bibitem{Etingof}
+Pavel Etingof, Oleg Golberg, Sebastian Hensel, Tiankai Liu, Alex Schwendner,
+  Dmitry Vaintrob, and Elena Yudovina.
+\newblock {\em Introduction to representation theory}, volume~59 of {\em
+  Student Mathematical Library}.
+\newblock American Mathematical Society, Providence, RI, 2011.
+\newblock With historical interludes by Slava Gerovitch.
+
+\bibitem{Kleshchev}
+Alexander~S. Kleshchev.
+\newblock Branching rules for modular representations of symmetric groups.
+  {II}.
+\newblock {\em J. Reine Angew. Math.}, 459:163--212, 1995.
+
+\bibitem{Mathas-book}
+Andrew Mathas.
+\newblock {\em Iwahori-{H}ecke algebras and {S}chur algebras of the symmetric
+  group}, volume~15 of {\em University Lecture Series}.
+\newblock American Mathematical Society, Providence, RI, 1999.
+
+\bibitem{Mathas-article}
+Andrew Mathas.
+\newblock Restricting {S}pecht modules of cyclotomic {H}ecke algebras.
+\newblock {\em Sci. China Math.}, 61(2):299--310, 2018.
+
+\end{thebibliography}

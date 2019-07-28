@@ -1,0 +1,116 @@
+\documentclass{amsart}   
+\usepackage{RepStyle} 
+\usepackage{NatMacros}
+
+% Emulates \subsection* but doesn't add to ToC (I don't know why amsart is weird 
+\newcommand{\fakesubsection}[1]{
+  \vspace{7pt}
+  \noindent \textbf{#1.}
+}
+
+\makeatletter
+%Table of Contents
+\setcounter{tocdepth}{3}
+
+% Add bold to \section titles in ToC and remove . after numbers
+\renewcommand{\tocsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2\quad}}\bfseries#3}
+% Remove . after numbers in \subsection
+\renewcommand{\tocsubsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+\let\tocsubsubsection\tocsubsection% Update for \subsubsection
+%...
+
+\newcommand\@dotsep{4.5}
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima{#6}\nobreak
+    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+    \nobreak
+    \hbox to\@pnumwidth{\@tocpagenum{\ifnum#1=1\bfseries\fi#7}}\par% <-- \bfseries for \section page
+    \nobreak
+    \endgroup
+  \fi}
+
+\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
+\makeatother
+
+\begin{document}
+
+In the case that $e > n + r + 1$, we have confirmed that there exists an iso $\varphi_{2n + r}^r:W \rightarrow V'$ for appropriate subrepresentation $V'$ and quotient $W$ of $M$.
+\def\tho{\Phi_3(q^{1/2})}
+\def\tht{\brk{3}_{q^{1/2}}}
+\def\to{q^{1/2}\brk{2}_{q^{1/2}}}
+Define the following coefficients:
+\begin{align*}
+  \tho &:= q^{3/2} + 1\\
+  \tht &:= q^{3/2} + q + q^{1/2} + 1\\
+  \to &:= q + q^{1/2}
+\end{align*}
+Then, we may empirically compute the following:
+\begin{align*}
+  \varphi_6^0 = \varphi_5^1 &= \begin{bmatrix}
+    0 & 0 & -\tho & 0 & 0\\
+    0 & -\tho & \tht & 0 & 0\\
+    0 & 0 & \tht & 0 & -\tho\\
+    -\tht & \tht & \to & 0 & \tht\\
+    \tht & 0 & \tht & -\tht & 0
+  \end{bmatrix}\\
+  \varphi_5^3 &= \begin{bmatrix}
+    -\to & \tht & q^{1/2}\\
+    q^{1/2} & q^{3/2} & 0\\
+    0 & -q - 1
+  \end{bmatrix}\\
+  \varphi_4^0 &= \begin{bmatrix}
+    0 & -\tht\\
+    -1 & 1
+  \end{bmatrix}\\
+  \varphi_4^2 &= \begin{bmatrix}
+    0 & \tht & 0\\
+    1 & -1 & 0\\
+    -1 & 0 & 1
+  \end{bmatrix}\\
+  \varphi_3^1 &= \begin{bmatrix}
+    0 & -\tht\\
+    \to & -\to
+  \end{bmatrix}
+\end{align*}
+\iffalse
+[0 0 v^3 - 1 0 0]
+[0 (v^3 - 1)*L.1 -v^3 + v^2 - v + 1 0 0]
+[0 0 -v^3 + v^2 - v + 1 0 (v^3 - 1)*L.1]
+[v^3 - v^2 + v - 1 (-v^3 + v^2 - v + 1)*L.1 v^2 - v 0 (-v^3 + v^2 - v + 1)*L.1]
+[-v^3 + v^2 - v + 1 0 -v^3 + v^2 - v + 1 (v^3 - v^2 + v - 1)*L.1 0]
+
+[0 0 v^3 - 1 0 0]
+[0 (v^3 - 1)*L.1 -v^3 + v^2 - v + 1 0 0]
+[0 0 -v^3 + v^2 - v + 1 0 (v^3 - 1)*L.1]
+[v^3 - v^2 + v - 1 (-v^3 + v^2 - v + 1)*L.1 v^2 - v 0 (-v^3 + v^2 - v + 1)*L.1]
+[-v^3 + v^2 - v + 1 0 -v^3 + v^2 - v + 1 (v^3 - v^2 + v - 1)*L.1 0]
+
+[                -v^2 + v (-v^3 + v^2 - v + 1)*L.1                   -v*L.1]
+[                      -v                 -v^3*L.1                        0]
+[                       0           (-v^2 - 1)*L.1                        0]
+
+[                  0 (v^3 - v^2 - 1)*L.1]
+[                 -1                 L.1]
+
+[                   0 (-v^3 + v^2 + 1)*L.1                    0]
+[                   1                 -L.1                    0]
+[                  -1                    0                  L.1]
+
+[                      0 (v^3 - v^2 + v - 1)*L.1]
+[                v^2 - v          (-v^2 + v)*L.1]
+\fi
+
+\end{document}

@@ -1,24 +1,67 @@
 \documentclass{amsart}   
 \usepackage{RepStyle} 
-\usepackage{NatMacros} %********REPLACE WITH MilesMacros TO KILL RELIANCE ON \ifnum AND HAVE INCOMPLETE OUTPUT***********bleh
+\usepackage{NatMacros}
+
+% Emulates \subsection* but doesn't add to ToC (I don't know why amsart is weird 
+\newcommand{\fakesubsection}[1]{
+  \vspace{7pt}
+  \noindent \textbf{#1.}
+}
+
+\makeatletter
+%Table of Contents
+\setcounter{tocdepth}{3}
+
+% Add bold to \section titles in ToC and remove . after numbers
+\renewcommand{\tocsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2\quad}}\bfseries#3}
+% Remove . after numbers in \subsection
+\renewcommand{\tocsubsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+\let\tocsubsubsection\tocsubsection% Update for \subsubsection
+%...
+
+\newcommand\@dotsep{4.5}
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima{#6}\nobreak
+    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+    \nobreak
+    \hbox to\@pnumwidth{\@tocpagenum{\ifnum#1=1\bfseries\fi#7}}\par% <-- \bfseries for \section page
+    \nobreak
+    \endgroup
+  \fi}
+
+\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
+\makeatother
+
 \begin{document}
 
-\title[Some Graphical Realizations of Two-Row Specht Modules of Hecke Algebras]{Some Graphical Realizations of Two-Row Specht Modules  of Hecke Algebras}
+\title[Some Graphical Realizations of Two-Row Specht Modules of Hecke Algebras]{Some Graphical Realizations of Two-Row Specht Modules of Iwahori-Hecke Algebras of the Symmetric Group}
 \author[Miles Johnson \& Natalie Stewart]{Miles Johnson \& Natalie Stewart\\
   Mentor Oron Propp\\
 Project Suggested by Roman Bezrukavnikov\\ \; \\
 July 31, 2019
 }
 
-\begin{titlepage}
+ \begin{titlepage}
   \maketitle
   \begin{abstract}
-    We are concerned with Specht Modules corresponding to Young diagrams of two rows.
-    When the Iwahori-Hecke algebra of the symmetric group has vanishing parameter $e$, for diagram $(n + r,n)$ we first define a \emph{Crossingless Matchings Representation} on $2n + r$ nodes with $r$ anchors $M_{2n + r}^r$, and we use modular branching rules to prove the isomorphism to the corresponding specht module $M_{2n + r}^r \simeq S^{(n+r,n)'}$ in the case that $e > n$ and the specht module is irreducible.
-    We additionally give conjecture in the direction of a proof in the general case.
-    Next, we adopt the Fibonacci representation $V$ to the Iwahori-Hecke algebra in the case $e = 5$ and characterise the quotients $D^{(n+r,n)}$ with $r \leq 3$ via isomorphism with two subrepresentations based on first and last character;
-    additionally, we decompose the other two of these into direct sums of the first two, and thus achieve a graphical realization of $D^{(n+r,n)}$ at $e = 5$, $r\leq 3$ and decompose the fibonacci representation into a direct sum of these quotients of Specht modules.
-    Last, some heuristics are presented to support our conjecture and give explicit transitions from $M \rightarrow V$ in cases with small $n$.
+    We consider the Iwahori-Hecke algebra of the symmetric group on $2n + r$ letters with parameter $q \in k^\times$.
+    Let $e$ be the smallest integer such that $\brk{e}_q = 0$, or set $e = \infty$ if none exist.
+    We modify Khovanov's Crossingless Matchings to include $2n$ nodes and $r$ anchors, and prove that the corresponding module is isomorphic to the Specht module $S^{(n+r,n)}$ when the specht module is irreducible and $e > n$.
+    Additionally, we prove heuristics in support of the general case.
+    Lastly, when $e = 5$, we prove an isomorphism between $D^{(n+r,n)}$ with $r \leq 3$ and a subrepresentations of Jordan-Shor's fibonacci representation.
   \end{abstract}
 
 \tableofcontents
@@ -44,7 +87,8 @@ Then, adopting Kleshchev's terminology, $j$ is normal in $\lambda$ if $\beta(i,j
 Let $S^{(n+r,n)'}$ be the Specht module corresponding to the young diagram with two columns with height difference $r$, and let $D^{(n+r,n)'}$ be the corresponding irreducible quotient.
 The purpose of this writing is to characterize these representation via an isomorphism with two graphical representations of $\SH$.
 
-\subsection{Crossingless Matchings}
+\fakesubsection{Crossingless Matchings}
+
 \begin{definition}
   A \emph{crossingless matching on $2n+r$ indices with $r$ anchors} is a partition of $\cbr{1,\dots,2n+r}$ into $n$ parts of size $2$ and $r$ of size 1 such that no two parts of size two``cross'', i.e. there are no parts $(a,a')$ and $(b,b')$ such that $a < b < a' < b'$, and no parts of size one are ``inside'' of a part of size two, i.e. there are no $c, (a,a')$ such that $a < c < a'$.
   We will call these arcs and anchors, respectively.
@@ -95,17 +139,18 @@ This basis is illustrated for $W_{5}^1$ in Figure \ref{S5 Basis}.
   \label{S5 Basis}
 \end{figure} 
 
-We will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as representations in the case that $e > n + r + 1$.
+Note that the representations $W_{0 + r}^r$ and $S^{(r)}$ are isomorphic to the sign representation; 
+we will prove that $W := W_{2n+r}^r$ and $S := S^{(n+r,n)'}$ are isomorphic as representations in the case that $e > n$ and $S^{(n+r,n)'}$ is irreducible.
 Note that, when $r = 0$, these have the same dimension given by the $n$th catalan number $C_n$.
- 
-\subsection{Fibonacci Representation}
-\def\vara{\alpha}
-\def\varb{\beta}
-\def\varc{\gamma}
+  
+\def\vara{\alpha_1}
+\def\varb{\alpha_2}
+\def\varc{\varepsilon_1}
 \def\vard{\delta}
-\def\vare{\varepsilon}
+\def\vare{\varepsilon_2}
 \def\vs{\texttt{*}}
 \def\vp{\texttt{0}}
+\fakesubsection{Fibonacci Representation}
 Now suppose that $e = 5$ and $k$ contains the algebraic number $(-1 - q^2 - q^3)^{3/2}$.
 Let $V^m$ be a $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{n+1}$ such that the character $\vs$ never appears twice in a row. 
 We will suppress the superscript whenever it is clear from context.
@@ -150,72 +195,54 @@ We will show that $V_{\vp\vp} \simeq V_{\vs\vp} \oplus V_{\vs\vs}$, and give the
     V^{2n-1}_{\vs\vp} &\simeq D^{(n,n-1)'}.
   \end{split} \label{Fib Isos}
 \end{equation}
- 
+
+% Acknowledgements should be given section-level heading in toc, subsection-level in text.
+\addcontentsline{toc}{section}{\textbf{Acknowledgements}}
+\fakesubsection{Acknowledgements}
+
 \newpage
+ 
 \section{Preliminaries on Specht Modules}
-\begin{proposition}
-  \begin{enumerate}[label={(\roman*)}]
-    \item
-    Suppose that $n,r > 0$.
-    Then, a filtration of $\Res W_{2n + r}^r$ is given by
-    \begin{equation}
-      0 \subset W_{2n + r - 1}^{r-1} \subset \Res \, W_{2n + r}^r \label{Filtration}
-     \end{equation}
-     with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
-    \item
-      We have the following isomorphism of representations:
-      \begin{equation}
-        W_{2n - 1}^1 \simeq \Res \; W_{2n}^0 \label{0 Restriction}
-       \end{equation}
-  \end{enumerate}
-\end{proposition}
-\begin{proof}
-  \textbf{(i)}
-  Note that we may identify the subrepresentation of $\Res \; W_{2n + r}^r$ having anchor $n$ with $W_{2n + r - 1}^{r-1}$.
+\subsection{Irreducibility of $S^\lambda$}
+Let $k$ have characteristic $\ell$;
+then, set
+\[
+  p := \begin{cases}
+    \ell & \ell > 0\\
+    \infty & \ell = 0
+  \end{cases}.
+\]  
+For $h$ a natural number, let $\nu_p(h)$ be the $p$-adic evaluation of $h$.
+As a convention, set $\nu_\infty(h) = 0$ for all $h$.
+Define the function $\nu_{e,p} : \NN \rightarrow \cbr{-1} \cup \NN$ by
+\[
+  \nu_{e,p}(h) := \begin{cases}
+    \nu_p(h) & e \mid h\\
+    -1 & e \nmid h
+  \end{cases}.
+\]
+Lastly, let $h_{ab}^\lambda$ be the hook length of node $(a,b)$ in $\brk \lambda$.
+
+\begin{theorem}[James-Mathas]
+  The following are equivalent:
+  \begin{enumerate}
+    \item $S^{\lambda} \simeq D^{\lambda}$.
+    \item $\lambda$ is $e$-restricted and $S^\lambda$ is irreducible.
+    \item $\nu_{e,p}\prn{h_{ab}^\lambda} = \nu_{e,p}\prn{h_{ac}^\lambda}$ for all nodes $(a,b)$ and $(a,c)$ in $\brk \lambda$.
+  \end{enumerate}\qed
+\end{theorem}
+
+
+\begin{corollary}\label{S irreducibility}
+  Assume $e > 2$ and $n > 0$.
   
-  Let $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r - 1}$. 
-  Let $\phi:U \rightarrow W_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $W_{2n + r - 1}^{r + 1}$.
-  It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
-
-  Given a basis vector $w_j$ with arc $(i,2n + r)$, $\phi$ is clearly compatible with $T_{i'}$ with $i' \neq i,i-1$.
-  Further, it's easy to verify that $\phi$ is compatible with $T_{i}$ and $T_{i-1}$, as actions on one anchor were designed for this deformation.
-  When there are anchors $(i,i+1)$, then $\phi(T_iw_j) = T_i\phi(w_j) = 0$, and similar for $T_{i -1}$.
-  Hence $\phi$ is an isomorphism of representations, and the statement is proven.
-
-  \textbf{(ii)}
-  This follows with the above proof, defining $W_{2n - 1}^{-1} := 0$
-\end{proof}
-
-\begin{lemma}
-  Suppose $n,r > 0$.
-  Then, we may characterize the socle of $\Res \, D^\lambda$ as follows:
-  \[
-    \soc\prn{\Res \, D^{(n+r,n)'}} \simeq \begin{cases}
-      D^{(n + r - 1,n)'} & e \mid r+2\\
-      D^{(n + r,n-1)'} & e \nmid r+2, \; e \mid r\\
-      D^{(n+r-1,n)'} \oplus D^{(n+r,n-1)} & e \nmid r+2,r
-    \end{cases}
-  \]
-\end{lemma}
-\begin{proof}
-  This amounts to computations of the hook lengths $\beta(1,2)$ and $\gamma(1,2)$:
-  \begin{align*}
-    \beta_\lambda(1,2) &= r + 2\\
-    \gamma_\lambda(1,2) &= r
-  \end{align*}
-  Since $2$ is the largest removable number, $D^{(n+r,n-1)'} \subset D^{(n+r,n)'}$ iff $e \nmid r + 2$.
-  Further, if $e \nmid r + 2$, then $D^{(n+r-1,n)'} \subset D^{(n+r,n)'}$ iff 1 is good iff $e \nmid r$
-\end{proof}
-
-\begin{lemma}\label{S irreducibility}
   \begin{enumerate}[label={(\roman*)}]
-    Assume $e > 2$ and $n > 0$.
     \item Suppose $e > n$.
       Then, $S^{(n+r,n)'}$ is irreducible iff $e \nmid l$ for all $r + 2 \leq l \leq n + r + 1$.
     \item Suppose $e \leq n$.
       Then, $S^{(n+r,n)'}$ is irreducible iff $e | r + 1$ and $\nu_{e,p}(h_{ab}^\lambda)$ acquires exactly two values over rows $a \leq n$.
   \end{enumerate}  
-\end{lemma}
+\end{corollary}
 \begin{proof}
   \textbf{(i)}
   Note that $\nu_p(l) \neq -1$ for all $l$ and only hook lengths in the first column may vanish mod $e$;
@@ -243,6 +270,8 @@ We will show that $V_{\vp\vp} \simeq V_{\vs\vp} \oplus V_{\vs\vs}$, and give the
   since $\nu_{e,p}$ acquires only two values, this proves that $\nu_{e,p}(h_{a1}) = \nu_{e,p}(h_{a2})$ across these rows, giving the lemma.
 \end{proof}
 
+In the case that $\lambda = (n+r,n)$ and $e$ satisfy hypothesis \eqref{S irreducibility}.(i), say that $\lambda$ is \emph{$e$-top-indivisible}.
+
 This is complicated and annoying, and the second amounts to a condition on $p$.
 We will illustrate that irreducibility interpolates between $p = 2$ and $p$ large:
 \begin{corollary}
@@ -257,6 +286,46 @@ We will illustrate that irreducibility interpolates between $p = 2$ and $p$ larg
   (ii) is given by noting that $e + r + 1 \geq 2e$;
   then, $h_{n-e+1,1} - h_{n-e+1,2} \geq 1$, giving reducibility.
 \end{proof}
+
+\subsection{Branching}
+\begin{theorem}[Kleshchev-Brundan]
+  We have the following isomorphisms of vector spaces
+  \begin{align*}
+    \Homarg{\SH'}{S^\mu,\Res D^\lambda} 
+    &\simeq \begin{cases}
+      k & \mu \xrightarrow{\text{normal}} \lambda\\
+      0 & \text{otherwise}
+    \end{cases}\\
+    \Homarg{\SH'}{D^\mu,\Res D^\lambda} 
+    &\simeq \begin{cases}
+      k & \mu \xrightarrow{\text{good}} \lambda\\
+      0 & \text{otherwise}
+    \end{cases}
+  \end{align*}
+  and $\Res D^\lambda$ is semisimple if and only if every normal number in $\lambda$ is good.\qed
+\end{theorem}
+
+\begin{corollary}
+  Suppose $n,r > 0$.
+  Then, we may characterize the socle of $\Res \, D^\lambda$ as follows:
+  \[
+    \soc\prn{\Res \, D^{(n+r,n)'}} \simeq \begin{cases}
+      D^{(n + r - 1,n)'} & e \mid r+2\\
+      D^{(n + r,n-1)'} & e \nmid r+2, \; e \mid r\\
+      D^{(n+r-1,n)'} \oplus D^{(n+r,n-1)} & e \nmid r+2,r
+    \end{cases}
+  \]
+\end{corollary}
+\begin{proof}
+  This amounts to computations of the hook lengths $\beta(1,2)$ and $\gamma(1,2)$:
+  \begin{align*}
+    \beta_\lambda(1,2) &= r + 2\\
+    \gamma_\lambda(1,2) &= r
+  \end{align*}
+  Since $2$ is the largest removable number, $D^{(n+r,n-1)'} \subset D^{(n+r,n)'}$ iff $e \nmid r + 2$.
+  Further, if $e \nmid r + 2$, then $D^{(n+r-1,n)'} \subset D^{(n+r,n)'}$ iff 1 is good iff $e \nmid r$
+\end{proof}
+
 
 \begin{proposition}\label{Combinatorics}
   Suppose that $e,n,r$ satisfy criterion (i) of Proposition \ref{S irreducibility}.
@@ -380,7 +449,7 @@ We will illustrate that irreducibility interpolates between $p = 2$ and $p$ larg
 \fi
 
 \section{Crossingless Matchings and Specht Modules}
-\subsection{Preliminaries on Crossingless Matchings}
+\subsection{Irreducibility of $M$}
 \begin{lemma}
   \label{Cyclic}
   Every basis vector in $W_{2n + r}^r$ is cyclic.
@@ -395,6 +464,8 @@ We will illustrate that irreducibility interpolates between $p = 2$ and $p$ larg
 
 Let $K := \bigcap_{i=1}^{2n+r-1} \ker (1 + T_i) = \ker \bigoplus_{i = 1}^{2n + r - 1} (1 + T_i)$.
 This will be a large technical tool in our proof of irreducibility.
+
+\iffalse
 \begin{lemma}\label{Represented}
   Let $w_j$ be the basis vector with anchors $1,\dots,r$ and all arcs of maximal length.
   Suppose $w \in K \backslash \cbr 0$.
@@ -427,12 +498,13 @@ This will be a large technical tool in our proof of irreducibility.
   hence $q^{-1/2}(1 + T_{r + s + t})w_i$ is represented in $(1 + T_{r+s+t})w$, giving $w \notin \ker (1 + T_{r + s + t})$.
   The $s = 0$ case is similar, and implies that $s = n$.
 \end{proof}
+\fi
 
 \begin{lemma}\label{Trivial}
   Suppose $e \nmid n + r + 1$.
   Then, $K = 0$.
 \end{lemma}
-\begin{proof}
+\begin{proof}[Proof 1.]
   Consider the matrix $A = \bigoplus (1 + T_i)$ having kernel $K$.
   It is sufficient by lemma \ref{Represented} to show that $A$ includes a row $[0,\dots,0,1,0,\dots,0]$ with a nonzero entry only on the column $j$.
 
@@ -490,8 +562,6 @@ This will be a large technical tool in our proof of irreducibility.
   \end{align*}
   Hence $\det B_{n + r} \neq 0$, and $K = 0$.
 \end{proof}
-
-\subsection{Correspondence}
 \begin{proposition}
   The representation $W_{2n + r}^r$ is irreducible when $e > n + r + 1$. 
 \end{proposition}
@@ -531,10 +601,41 @@ This will be a large technical tool in our proof of irreducibility.
   \end{figure}
 \end{proof}
 
-\begin{corollary}
-  Suppose $n,r > 0$ and $e > n + 1$.
-  Then, the sequence \eqref{Filtration} is a composition series of $\Res \, W_{2n + r}^r$.\qed
-\end{corollary}
+\subsection{Correspondence}
+\begin{proposition}\;
+  
+  \begin{enumerate}[label={(\roman*)}]
+    \item
+    Suppose that $n,r > 0$.
+    Then, a filtration of $\Res W_{2n + r}^r$ is given by
+    \begin{equation}
+      0 \subset W_{2n + r - 1}^{r-1} \subset \Res \, W_{2n + r}^r \label{Filtration}
+     \end{equation}
+     with $\Res \, W_{2n + r}^r / W_{2n + r - 1}^{r-1} \simeq W_{2n + r - 1}^{r + 1}$. 
+    \item
+      We have the following isomorphism of representations:
+      \begin{equation}
+        W_{2n - 1}^1 \simeq \Res \; W_{2n}^0 \label{0 Restriction}
+       \end{equation}
+  \end{enumerate}
+    When the case is type (i) from the irreduibility lemma, this is a composition series.
+\end{proposition}
+\begin{proof}
+  \textbf{(i)}
+  Note that we may identify the subrepresentation of $\Res \; W_{2n + r}^r$ having anchor $n$ with $W_{2n + r - 1}^{r-1}$.
+  
+  Let $U := \Res \; W_{2n + r}^r / W_{2n + r - 1}^{r - 1}$. 
+  Let $\phi:U \rightarrow W_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $W_{2n + r - 1}^{r + 1}$.
+  It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
+
+  Given a basis vector $w_j$ with arc $(i,2n + r)$, $\phi$ is clearly compatible with $T_{i'}$ with $i' \neq i,i-1$.
+  Further, it's easy to verify that $\phi$ is compatible with $T_{i}$ and $T_{i-1}$, as actions on one anchor were designed for this deformation.
+  When there are anchors $(i,i+1)$, then $\phi(T_iw_j) = T_i\phi(w_j) = 0$, and similar for $T_{i -1}$.
+  Hence $\phi$ is an isomorphism of representations, and the statement is proven.
+
+  \textbf{(ii)}
+  This follows with the above proof, defining $W_{2n - 1}^{-1} := 0$
+\end{proof}
 
 \begin{theorem}
   Suppose $e > n + r + 1$.
@@ -588,6 +689,17 @@ For example, another case where we may show all irreducible cases is $n = 1$, wh
   These are each nonvanishing mod $e$, so they are good and $\lambda = \lambda_3$, giving the theorem.
 \end{proof}
 \fi
+
+\subsection{Kernels and Further Work}
+\begin{lemma}\label{Represented}
+  Let $w_j$ be the basis vector with anchors $1,\dots,r$ and all arcs of maximal length.
+  Suppose $w \in K \backslash \cbr 0$.
+  Then, $w_j$ is represented in $w$.
+\end{lemma}
+\begin{proposition}
+  Suppose $e = n + r + 1$.
+  Then $K$ is nontrivial.
+\end{proposition}
 
 \section{The Fibonacci Representation and Quotients of Specht Modules}
 We can start our study of $V$ by studying low-dimensional cases.
@@ -772,8 +884,9 @@ Hence the following characterises sign subrepresentations of $W$ completely:
 
 \section{Empirical Results}
 
-\section{Acknowledgements}
 
+\bibliography{RepBib}
+\iffalse
 \begin{thebibliography}{9}
 
 \bibitem{Brundan}
@@ -795,6 +908,7 @@ Hence the following characterises sign subrepresentations of $W$ completely:
   Shor citation here
 
 \end{thebibliography}
+\fi
 
 \newpage
 \appendix

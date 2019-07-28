@@ -135,7 +135,7 @@ for n in range(nmin,nmax+1,2):
 """
 
 q = 1
-for n in range(4,15,2):
+for n in range(2,15,2):
     for r in range(0,15):
         if n + r <= 12:
             f = open("Representation n={} r={}".format(n,r),"w")
