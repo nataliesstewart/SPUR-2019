@@ -1,5 +1,5 @@
 \usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=1.5in]{geometry}
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -14,6 +14,7 @@
 \usepackage{ifthen}
 \usepackage{ytableau}
 \usepackage{xcolor}
+\usepackage{adjustbox}
 \usepackage[font=small,labelfont=bf]{caption}
 
 % ugly macros for crossingless matchings
@@ -54,6 +55,7 @@
 \def\NN{\mathbb{N}}
 \def\CC{\mathbb{C}}
 \def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\prn}[1]{\left( #1 \right)}
 \newcommand{\brk}[1]{\left[ #1 \right]}
@@ -105,3 +107,36 @@
 
 % Equation numbers are tagged by section
 \numberwithin{equation}{section}
+
+% #1 is size, #2 is 
+\newcommand\ENRGrid[2]{
+  \def\size{.6}
+  \begin{tikzpicture}
+    \foreach \n/\m/\col in {#2}{
+      \node[fill=magenta!30!white, minimum width=\size cm,minimum height=\size cm] at (\n*\size,\m*\size) {};
+    }
+    \foreach \x/\y in {#1}{
+      \node at (-.5*\size,\y*\size/2+\size/2) {\Huge $n$};
+      \node at (\x*\size/2+\size/2,-.5*\size) {\Huge $r$};
+      
+      
+      \foreach \c in {1,\y}{
+        \node at (\size-.5,\c*\size) {\scriptsize \c}; 
+      }
+      
+      \foreach \r in {1,\x}{
+        \pgfmathtruncatemacro{\dif}{\r-1}
+        \node at (\r*\size,\size-.5) {\scriptsize \dif}; 
+      }
+
+      \draw (.5*\size,.5*\size) rectangle (\size*\x+.5*\size,\size*\y+.5*\size);
+      \foreach \r in {1,...,\x}{
+        \pgfmathtruncatemacro{\dt}{\r/2+1/2}
+        \foreach \c in {1,...,\dt}{
+          \pgfmathtruncatemacro{\sum}{\x-\r+\c+1}
+          \node[draw, very thin, dotted,minimum width=\size cm, minimum height = \size cm] at (\x*\size-\r*\size+\size,\c*\size) {\scriptsize \sum};
+        }
+      }
+    }
+  \end{tikzpicture}
+}

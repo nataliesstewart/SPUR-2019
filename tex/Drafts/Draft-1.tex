@@ -105,7 +105,7 @@
 
 
   \begin{figure}[b]
-    \[
+    \begin{adjustbox}{width=\textwidth}
       \begin{tabular}{l l}
         \GeneralizedAction{6}{1/4,2/3}{2}{5/1,6/2}{1}{2}{1/4, 2/3}{5/1,6/2}{(1+q)}
         \hspace{20pt}
@@ -115,8 +115,8 @@
         &
         \GeneralizedZeroAction{6}{1/4,2/3}{2}{5/1,6/2}{1}{5}
       \end{tabular}
-    \]
-      
+  \end{adjustbox}
+
     \caption{Illustration of the actions $(1 + T_i)w_{\abs{M^2_6}}$.
       In general, we act by deleting loops, deforming into a new crossingless matching, and scaling by either $q^{1/2}$, $(q + 1)$, or 0.
     }
@@ -132,6 +132,7 @@
 
   \begin{figure} 
     \def\cbasisspacing{5mm}
+    \begin{adjustbox}{width=\textwidth}
     $\cbr{
       \begin{gathered}
         \GeneralizedMatching{5}{1/2, 3/4}{1}{5/1}{3/4}, \hspace{\cbasisspacing}
@@ -140,7 +141,8 @@
         \GeneralizedMatching{5}{2/3, 4/5}{1}{1/1}{3/4}, \hspace{\cbasisspacing}
         \GeneralizedMatching{5}{2/5, 3/4}{1}{1/1}{3/4}, \hspace{\cbasisspacing}
        \end{gathered}}$ 
-      \caption{The basis for $M_5^1$.}
+     \end{adjustbox}
+       \caption{The basis for $M_5^1$.}
     \label{S5 Basis}
    \end{figure} 
 
@@ -667,14 +669,14 @@ This will be a large technical tool in our proof of irreducibility.
   Then, due to the inductive hypothesis, there is some action $h' \in \SH(S_{2(n-1) + r})$ sending $\varphi((1 + T_i)w)$ to the image of a basis vector;
   then, the action $\SH$ generates the endomorphism $\varphi^{-1}h'\varphi$ sending $(1 + T_i)w$ to a basis vector, giving $w$ cyclic and hence $M_{2n + r}^r$ irreducible.
   \begin{figure}
-  \[
+  \begin{adjustbox}{width=\textwidth}
     \Action{6}{1/6, 2/5, 3/4}{2}{1/6, 2/3, 4/5 }{q^{1/2}} \hspace{20pt} 
     \IsoAction{8}{1/8, 2/7, 3/4, 5/6}{3}{1/8, 2/5, 3/4, 6/7}{q^{1/2}}
-  \]
-  \[
+  \end{adjustbox}
+  \begin{adjustbox}{width=\textwidth}
     \Action{4}{1/4, 2/3}{2}{1/4,2/3}{(1 + q)} \hspace{20pt}
     \IsoAction{6}{1/6, 2/5, 3/4}{3}{1/6, 2/5, 3/4}{(1 + q)}
-  \]
+\end{adjustbox}
   \caption{The correspondence between the action of $(1 + T_2)$ on $w'_5 \in M^0_6$ and the action of $q^{-1}(1 + T_3)(1 + T_4)(1 + T_2)$ on the corresponding vector in $M^0_8$ having arc $(3,4)$ first, then on $w'_2 \in M^0_4$.
   This demonstrates that the action works with and without creating a loop.
   }
@@ -959,27 +961,27 @@ Now we may use these in order to apply Young Tableau to characterize $V$.
 
   For $\mu$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
   \begin{figure}
-    \begin{align*}
+  \[
       \cbr{
         \begin{gathered}
         \ydiagram{6,3}. \; \;
         \ydiagram{5,4}, \; \;
         \ydiagram{5,3,1}
       \end{gathered} 
-    }&\longrightarrow \begin{gathered}
+    }\longrightarrow \begin{gathered}
       \ydiagram{5,3}
-      \end{gathered}\\
-      \cbr{
+  \end{gathered}\]
+      \[\cbr{
         \begin{gathered}
           \ydiagram{5,4}
         \end{gathered}
-      }&\longrightarrow
+      }\longrightarrow
       \begin{gathered}
         \ydiagram{5,3},\;\;
         \ydiagram{4,4}.
       \end{gathered}
-    \end{align*}
-    \caption{
+    \]
+      \caption{
       Illustration of the partitions of $9$ which can, via row removal, yield $(n,n-2)$ alone, or both $(n,n-2)$ and $(n-1,n-1)$.
     }\label{OddRes}
   \end{figure}  
@@ -1040,9 +1042,84 @@ Hence the following characterises sign subrepresentations of $W$ completely:
 In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representaitons.
 All data will be generated via tools available on \underline{\href{https://github.com/nataliesstewart/Hecke-Heuristics}{github}}.\footnote{The full URL to the repository is \underline{\href{https://github.com/nataliesstewart/Hecke-Heuristics}{https://github.com/nataliesstewart/Hecke-Heuristics}}.}
 
+The following computations are done in characteristic 0.
+If $p < \infty$ is mentioned, then the computation is done over the algebraic extension of $\FF_p$ by roots of the polynomials $x^{2e} - 1$ and $x^2 - \tau$.
 
+\begin{remark}
+  These results are restricted by two things; first and less fixably, this was computed in Magma, a closed source language with bugs that could not be resolved in certain cases.
+  Second, the memory necessary to store the Hecke algebra via basis elements and structure constants grows with $(n!)^3$;
+  this is probitively large when $m > 7$.
+  An implimentation as a quotient by a free algebra or only specifying multiplication by generators may fix this, however, this is not possible with the Magma language, and the closed source renders modification of the language impossible.\qed
+\end{remark}
 
-\newpage
+We give in Figure \ref{Fib Data} some isomorphisms between $M/K$ and $V$ for $e \geq n + r + 1$ with $p = \infty$;
+all but one of these are cases with $e > n + r + 1$, so $K=0$ and this is an isomorphism with our crossingless matchings representation.
+The case $n = 1$, $r = 3$ gives an example of an isomorphism not proven in general, but proven via our computation.
+All of these computations are done for $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by a root of the polynomial $x^2 - \tau$.
+
+We give in Figure \ref{Empirical Kernel} some data supporting a conjecture concerning sign subrepresentations of $M_{2n + r}^r$.
+The computations to support this were done over $\CC$ with $qq$ a 5th root of unity.
+
+\begin{figure}
+\iffalse
+\def\tho{\Phi_3(q^{1/2})}
+\def\tht{\brk{3}_{q^{1/2}}}
+\def\to{q^{1/2}\brk{2}_{q^{1/2}}}
+Define the following coefficients:
+\begin{align*}
+  \tho &:= q^{3/2} + 1\\
+  \tht &:= q^{3/2} + q + q^{1/2} + 1\\
+  \to &:= q + q^{1/2}
+\end{align*}
+\fi
+
+\def\tho{q^{3/2} + 1}
+\def\tht{\brk{4}_{q^{1/2}}}
+\def\to{q^{1/2}\prn{q^{1/2} + 1}}
+\begin{align*}
+  \varphi_6^0, \varphi_5^1 &= \begin{bmatrix}
+    0 & 0 & -\tho & 0 & 0\\
+    0 & -\tho & \tht & 0 & 0\\
+    0 & 0 & \tht & 0 & -\tho\\
+    -\tht & \tht & \to & 0 & \tht\\
+    \tht & 0 & \tht & -\tht & 0
+  \end{bmatrix}\\
+  \varphi_5^3 &= \begin{bmatrix}
+    -\to & \tht & q^{1/2}\\
+    q^{1/2} & q^{3/2} & 0\\
+    0 & -q - 1
+  \end{bmatrix}  \hspace{30pt} 
+  \varphi_4^0 = \begin{bmatrix}
+    0 & -\tht\\
+    -1 & 1
+  \end{bmatrix}\\
+  \varphi_3^1 &= \begin{bmatrix}
+    0 & -\tht\\
+    \to & -\to
+  \end{bmatrix} \hspace{27pt}
+  \varphi_4^2 = \begin{bmatrix}
+    0 & \tht & 0\\
+    1 & -1 & 0\\
+    -1 & 0 & 1
+  \end{bmatrix}
+\end{align*}
+\caption{We define representations $\varphi_{2n + r}^r:M_{2n + r}^r/K_{2n + r}^r \rightarrow V^{2n + r}_{s}$, where $s = \vs\vs$ if $r = 0,3$ and $s = \vs\vp$ otherwise.
+These are given with respect to the basis on $M_{2n + r}^r$ induced by the increasing lexicographic order basis on $M_{2n + 2r}^0$ and the quotient $M_{2n + 2r}^0 \twoheadrightarrow M_{2n + r}^r$.
+These are also given with respect to the basis on $V$ given by increasing lexicographic order $\vs < \vp$.
+  }\label{Fib Data}
+\end{figure}
+
+\begin{figure}
+  \[
+    \ENRGrid{13/7}{3/1,7/1,11/1,2/2,6/2,10/2,1/3,5/3,9/3}
+  \]
+  \caption{
+    Illustration of the modules $M_{2n + r}^r$ having sign submodules for $p = \infty$ and $e = 4$.
+    The value $n + r + 1$ is filled in the squares, and modules having sign submodules are colored magenta.
+    For $p = \infty$ and $2n + r \leq 14$, it has been verified, through a combination of theorems here and empirical computations, that $K_{2n + r}^r$ is nontrivial if and only if $e | n+r+1$ and $e < n$.
+  }\label{Empirical Kernel}
+\end{figure}
+
 \appendix
 \section{Compatibility of Representations with the Relations}
 In general, we define representations above for the free algebra on generators $\cbr{T_i}$.

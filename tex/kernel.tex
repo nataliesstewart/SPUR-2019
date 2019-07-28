@@ -120,8 +120,12 @@ Now let us prove the proposition.
 		\[
 		\GeneralizedAction{8}{3/8,4/5,6/7}{2}{1/1,2/2}{1.25}{3}{3/4,5/8,6/7}{1/1,2/2}{q^{1/2}}
 		\]
-    \caption{The action of $(1+T_{a-1+r+n/2-i})$ on $\phi_i,\phi_{i=1},\phi_{i+1}$ (ordered from top to bottom), shown as the case where $y$ is the rainbow vector in $W_{8}^2$ and $i=2$.{\color{magenta} I made the last of these a bit taller so that the anchors weren't close to touching the arc.}}
-		\label{Action}
+    \caption{The action of $(1+T_{a-1+r+n/2-i})$ on $\phi_i,\phi_{i=1},\phi_{i+1}$ (ordered from top to bottom), shown as the case where $y$ is the rainbow vector in $W_{8}^2$ and $i=2$.{\color{magenta} I made the last of these a bit taller so that the anchors weren't close to touching the arc.
+    \LARGE NOTE: I've commented out the Action label because it is multiply defined.
+    I'm not sure why each figure is labeled with the same label, or how this compiles on your machine.
+  }
+  }
+		%\label{Action}
 	\end{figure}
 \end{proof}	
 {\color{magenta} This proof is pretty technical, and I don't quite have the time to go through it tonight. I'll go through it more closely later.}
@@ -143,7 +147,6 @@ in effect, this specifies that the sign representation appears at most once as a
 
 \newpage
 \section{Defining the kernel for $e=n+r+1$}
-
 In this section we will fully characterize $\cap\text{ker}(1+T_i)$ when $e=n+r+1$. We will prove that it is one dimensional and give a basis. Note that we still have not proved the kernel is trivial when $e$ divides but is not equal to $n+r+1$. That proof requires results from this section, and will come next section.
 
 \vspace{5mm}
@@ -394,7 +397,7 @@ The next lemma characterizes cases where the transposition is not under any arcs
 	
 	\caption{In the first line we act under an arc, so if another element without that arc is sent to that element, it must fix the arc as shown in the second line. In the third line we act to the right of an anchor, so if another element without that anchor is sent to that element, it must fix the anchor as shown in the fourth line. 
 	}
-	\label{Action}
+	%\label{Action}
 \end{figure}
 
 Essentially, this lemma states that the only elements sent to the same element are those which break at most one of the top level arcs to the left of the leftmost anchor, or that break the leftmost anchor. An illustration is given in figure 8.
@@ -460,7 +463,7 @@ Essentially, this lemma states that the only elements sent to the same element a
 	
 	\caption{The action of $(1+T_7)$ fixes the first basis element. Shown are all the basis vectors sent to the same element by the same transposition. Note that in all of them nodes 2-5 and 12-15 are the same. This illustrates (i) and (ii) in lemma 3.5. Note that in the last case where the anchor is in a different place, 1,6 and 9,10 are still matched. This illustrates (iii). In the middle two cases where the anchor is in the same place, only one of 1,6 or 9,10 are not paired. This illustrates (iiii). 
 	}
-	\label{Action}
+	%\label{Action}
 \end{figure}
 
 
