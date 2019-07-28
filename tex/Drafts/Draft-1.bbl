@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{Ariki}
+Susumu Ariki.
+\newblock On the decomposition numbers of the {H}ecke algebra of {$G(m,1,n)$}.
+\newblock {\em J. Math. Kyoto Univ.}, 36(4):789--808, 1996.
+
 \bibitem{Brundan}
 Jonathan Brundan.
 \newblock Modular branching rules and the {M}ullineux map for {H}ecke algebras
@@ -20,6 +25,12 @@ Alexander~S. Kleshchev.
   {II}.
 \newblock {\em J. Reine Angew. Math.}, 459:163--212, 1995.
 
+\bibitem{LLT}
+Alain Lascoux, Bernard Leclerc, and Jean-Yves Thibon.
+\newblock Hecke algebras at roots of unity and crystal bases of quantum affine
+  algebras.
+\newblock {\em Comm. Math. Phys.}, 181(1):205--263, 1996.
+
 \bibitem{Mathas-book}
 Andrew Mathas.
 \newblock {\em Iwahori-{H}ecke algebras and {S}chur algebras of the symmetric
@@ -30,5 +41,16 @@ Andrew Mathas.
 Andrew Mathas.
 \newblock Restricting {S}pecht modules of cyclotomic {H}ecke algebras.
 \newblock {\em Sci. China Math.}, 61(2):299--310, 2018.
+
+\bibitem{Murphy1}
+G.~E. Murphy.
+\newblock On the representation theory of the symmetric groups and associated
+  {H}ecke algebras.
+\newblock {\em J. Algebra}, 152(2):492--513, 1992.
+
+\bibitem{Murphy2}
+G.~E. Murphy.
+\newblock The representations of {H}ecke algebras of type {$A_n$}.
+\newblock {\em J. Algebra}, 173(1):97--121, 1995.
 
 \end{thebibliography}
