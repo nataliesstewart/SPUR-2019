@@ -29,7 +29,7 @@
   %...
 
   \newcommand\@dotsep{4.5}
-  \def\@tocline#1#2#3#4#5#6#7{\relax
+  \def\@ocline#1#2#3#4#5#6#7{\relax
     \ifnum #1>\c@tocdepth % then omit
     \else
       \par \addpenalty\@secpenalty\addvspace{#2}%
@@ -56,19 +56,20 @@
 
   \title[Some Graphical Realizations of Two-Row Specht Modules of Hecke Algebras]{Some Graphical Realizations of Two-Row Specht Modules of Iwahori-Hecke Algebras of the Symmetric Group}
   \author[Miles Johnson \& Natalie Stewart]{Miles Johnson \& Natalie Stewart\\
-    Mentor Oron Propp\\
-  Project Suggested by Roman Bezrukavnikov\\ \; \\
+    Mentor : Oron Propp\\
+  Project Suggested by : Roman Bezrukavnikov\\ \; \\
   July 31, 2019
   }
 
    \begin{titlepage}
     \maketitle
     \begin{abstract}
-      We consider the Iwahori-Hecke algebra of the symmetric group on $2n + r$ indices with parameter $q \in k^\times$.
-      Let $e$ be the smallest integer such that $\brk{e}_q = 0$, or set $e = \infty$ if none exist.
-      We modify Khovanov's crossingless matchings to include $2n$ nodes and $r$ anchors, and prove that the corresponding module is isomorphic to the Specht module $S^{(n+r,n)}$ when $e > n + r + 1$.
-      Additionally, we prove heuristics in support of the general case.
-      Lastly, when $e = 5$, we prove an isomorphism between $D^{(n+r,n)}$ with $r \leq 3$ and some subrepresentations of Jordan-Shor's Fibonacci representation.
+      We consider the Iwahori--Hecke algebra of the symmetric group on $2n + r$ letters with parameter $q$.
+      Let $e$ be the smallest positive integer such that the $q$-number $\brk{e}_q = 0$, or set $e = \infty$ if none exist.
+      We modify Khovanov's crossingless matchings to include $2n$ ``nodes'' and $r$ ``anchors,'' and prove in the case $e > n + r + 1$ that the associated module is isomorphic to the Specht module $S^{(n+r,n)}$ which corresponds to the partition $(n + r,n) \vdash 2n + r$.
+      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and for $2n + r \leq 6$. 
+      Lastly, when $e = 5$, we prove an isomorphism between the irreducible quotient $D^{(n+r,n)}$ with $r \leq 3$ and some subrepresentations of Jordan--Shor's Fibonacci representation.
+      We provide explicit transition matrices between this representation and the crossingless matchings representation for almost all cases where $2n + r \leq 6$.
     \end{abstract}
 
   \begingroup
