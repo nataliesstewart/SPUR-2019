@@ -55,7 +55,7 @@
   \begin{document}
 
   \title[Some Graphical Realizations of Two-Row Specht Modules of Hecke Algebras]{Some Graphical Realizations of Two-Row Specht Modules of Iwahori-Hecke Algebras of the Symmetric Group}
-  \author[Miles Johnson \& Natalie Stewart]{Miles Johnson \& Natalie Stewart\\
+  \author[Miles Johnson and Natalie Stewart]{Miles Johnson and Natalie Stewart\\
     Mentor : Oron Propp\\
   Project Suggested by : Roman Bezrukavnikov\\ \; \\
   July 31, 2019
@@ -67,7 +67,7 @@
       We consider the Iwahori--Hecke algebra of the symmetric group on $2n + r$ letters with parameter $q$.
       Let $e$ be the smallest positive integer such that the $q$-number $\brk{e}_q = 0$, or set $e = \infty$ if none exist.
       We modify Khovanov's crossingless matchings to include $2n$ ``nodes'' and $r$ ``anchors,'' and prove in the case $e > n + r + 1$ that the associated module is isomorphic to the Specht module $S^{(n+r,n)}$ which corresponds to the partition $(n + r,n) \vdash 2n + r$.
-      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and for $2n + r \leq 6$. 
+      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and almost all cases where $2n + r \leq 6$. 
       Lastly, when $e = 5$, we prove an isomorphism between the irreducible quotient $D^{(n+r,n)}$ with $r \leq 3$ and some subrepresentations of Jordan--Shor's Fibonacci representation.
       We provide explicit transition matrices between this representation and the crossingless matchings representation for almost all cases where $2n + r \leq 6$.
     \end{abstract}
@@ -128,18 +128,23 @@
   Throughout this paper, we analyze the \emph{two-row partitions} $(n+r,n) \vdash 2n + r$ and their corresponding modules $S^{(n+r,n)}$ and $D^{(n+r,n)}$.
 
   \fakesubsection{Crossingless Matchings}
-
+  The following definition modifies the crossingless matchings defined by Khovanov.\cite{Khovanov}
   \begin{definition}
     A \emph{crossingless matching on $2n+r$ indices with $r$ anchors} is a partition of $\cbr{1,\dots,2n+r}$ into $n$ parts of size $2$ and $r$ of size 1 such that no two parts of size two``cross'', i.e. there are no parts $(a,a')$ and $(b,b')$ such that $a < b < a' < b'$, and no parts of size one are ``inside'' of a part of size two, i.e. there are no $c, (a,a')$ such that $a < c < a'$.
     We will call these arcs and anchors, respectively.
     Then, define $M^r_{2n+r}$ to be the $k$-vector space with basis the set of generalized crossingless matchings on $2n+r$ indices with $r$ anchors.
 
-    In order for this to be a $\SH$-module, endow this with the action given by Figure \ref{Action}; 
-    if a ``loop'' is created, scale by $q+1$, if a loop is not created and the action involves fewer than 2 anchors, deform into a new crossingless matching and scale by $q^{1/2}$, and if it involves two anchors, scale by 0.
+    For convenience, given a basis element $w_j \in M_{2n + r}^r$ and integers $1 \leq a,b \leq 2n + r$, define the $w_j(a) := b$ if $(a,b)$ is an arc in $M$, and $w_j(a) := a$ if $a$ is an anchor in $M$.
+
+    In order to endow this with an $\SH$-action, consider some basis element $w_j$ and some element $(1 + T_i)$ of $\SH$.
+    The elements $\cbr{1} \cup \cbr{1 + T_i | 1 \leq i < 2n + r}$ generate $\SH$, so it is sufficient to define the action of $1 + T_i$ on $w_j$.
+    
+    If $w_j$ has arc $(i,i+1)$, define $(1 + T_i)w_j := (1 + q)w_j$.
+    If $w_j$ has anchors $W(i) = i$ and $W(i+1) = i+1$, define $(1 + T_i)w_j := 0$.
+    If $w_j$ has anchor $W(i) = i$ and arc $W(i+1) = b$, define $(1 + T_i)w_j := q^{1/2}w_l$, where $w_l(i) = i+1$, $w_l(b) = b$, and all other arcs agree with $w_j$.
+    If $w_j$ has arcs $W(i) = a$ and $W(i+1) = b$, then define $(1 + T_i)w_j := q^{1/2}w_l$, where $w_l(i) = i+1$,$w(a) = b$, and all other acts agree with $w_j$. 
     We verify that this is well-defined in appendix \ref{Cross Relations}.
   \end{definition}
-  {\color{orange} Fix Definition with isotopy.}
-
 
   \begin{figure}[b]
     \begin{adjustbox}{width=\textwidth}
@@ -155,10 +160,33 @@
   \end{adjustbox}
 
     \caption{Illustration of the actions $(1 + T_i)w_{\abs{M^2_6}}$.
-      In general, we act by deleting loops, deforming into a new crossingless matching, and scaling by either $q^{1/2}$, $(q + 1)$, or 0.
+      In general, we act by deleting loops, isotoping onto a new crossingless matching, and scaling by either $q^{1/2}$, $(q + 1)$, or 0.
     }
     \label{Action}
   \end{figure}
+
+  We may alternately define $M_{2n + r}^r$ topologically;
+  fix $2n + r$ distinct points $a_1,\dots,a_{2n + r}$ points along $\RR \times \cbr{0} \subset \RR^2$ and $r$ distinct points $b_1,\dots,b_r$ along $\RR \times \cbr{1}$, and define $M_{2n + r}^r$ to have basis given by the isotopy classes of $n + r$ paths connecting the points $a_1,\dots,a_{2n+r},b_1,\dots,b_r$ such that no distinct $b_i,b_j$ are connected by a path. 
+  
+  We will take some basis element $w_j \in M_{2n +r}^r$ and define the action $(1 + T_i)w_j$.
+  To do so, map $w_j$ through the natural embedding $\RR \times \brk{0,1} \hookrightarrow \RR \times \brk{\frac{1}{2},1}$, and form the figure $w_j^i$ by adjoining the lines connecting $a_l$ and $a_l + \prn{0,\frac{1}{2}}$ for all $l \neq i,i+1$ as well as paths from $a_i$ to $a_{i+1}$ and $a_i + \prn{0,\frac{1}{2}}$ to $a_{i+1} + \prn{0,\frac{1}{2}}$.
+  This has either 0 or 1 path components which do not intersect $\RR \times \cbr{0,1}$;
+  these form ``loops.''
+
+  Take the figure $\tilde w_j^i$ without this component.
+  If $\tilde w_j^i$ is not isotopic to some $w_l$, then define $(1 + T_i)w_j := 0$.
+  If $\tilde w_j^i$ is isotopic to some $w_l$, define $(1 + T_i)w_j := (1 + q)w_l$ if $w_j^i$ has a loop and $(1 + T_i)w_j := q^{1/2}w_l$ otherwise.
+  This process is illustrated in Figure \ref{Action}.
+
+  \begin{remark}
+    This definition gives a graphical calculus for working with our module.
+    It should be clear that, if $w_j^i$ has a loop then $w_l(i) = i+1$ and $w_l = w_j$.
+    Further, this easily defines an arbitrary composition:
+    \[
+      (1 + T_{i_1})\cdots(1 + T_{i_\ell})w_j = q^{(\ell - t)\frac{1}{2}}(1 + q)^tw_l
+    \]
+    if the figure we make  via $(1+T_{i_1})\cdots(1+T_{i_\ell})$ is isotopic to $w_l$ after removing $t$ loops.
+  \end{remark}
 
   Let the length of an arc $(i,j)$ be $l(i,j) := j - i + 1$.
   Note that the crossingless matchings on $2n$ indices with no anchors can all be identified with a list of $n$ integers describing the lengths of the arcs from left to right;
@@ -268,7 +296,11 @@
   % Acknowledgements should be given section-level heading in toc, subsection-level in text.
   \addcontentsline{toc}{section}{\textbf{Acknowledgements}}
   \fakesubsection{Acknowledgements}
-  {\color{orange} Acknowledgements go here.}
+  The authors thank Professor Roman Bezrukavnikov for suggesting this project, as well as Dr. Slava Gerovitch for his support via organization of the SPUR+ program.
+  We would also like to thank Professor David David Jerison, Professor Ankur Moitra for their role in SPUR+ as well as general and mathematical advice.
+  We would also thank Professor Alexander Kleshchev for his mathematical guidance concerning branching theorems.
+  Lastly, we would like to express our gratitude to our mentor Oron Propp for his help and advice in both acquiring background knowledge and in executing the mathematics in this paper;
+  this project would not be possible without him.
 
   \newpage
    
@@ -1077,17 +1109,13 @@ Hence the following characterises sign subrepresentations of $W$ completely:
 \end{proposition}
 
 \section{Empirical Results}\label{Empirics Section}
-In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representaitons.
-All data will be generated via tools available on \href{https://github.com/nataliesstewart/Hecke-Heuristics}{github}.\footnote{The full URL to the repository is \href{https://github.com/nataliesstewart/Hecke-Heuristics}{https://github.com/nataliesstewart/Hecke-Heuristics}.}
-
-The following computations are done in characteristic 0.
-If $p < \infty$ is mentioned, then the computation is done over the algebraic extension of $\FF_p$ by roots of the polynomials $x^{2e} - 1$ and $x^2 - \tau$.
+In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representations.\cite{Github}
 
 \begin{remark}
-  These results are restricted by two things; first and less fixably, this was computed in Magma, a closed source language with bugs that could not be resolved in certain cases.
+  These results are restricted by two things; first and with less recourse, this was computed in Magma, a closed source language with bugs that could not be resolved in certain cases.
   Second, the memory necessary to store the Hecke algebra via basis elements and structure constants grows with $(n!)^3$;
-  this is probitively large when $m > 7$.
-  An implimentation as a quotient by a free algebra or only specifying multiplication by generators may fix this, however, this is not possible with the Magma language, and the closed source renders modification of the language impossible.\qed
+  this is prohibitively large when $m \geq 7$.
+  An implementation as a quotient by a free algebra or only specifying multiplication by generators may fix this, however, this is not possible with the Magma language, and the closed source renders modification of the language impossible.
 \end{remark}
 
 We give in Figure \ref{Fib Data} some isomorphisms between $M/K$ and $V$ for $e \geq n + r + 1$ with $p = \infty$;
@@ -1096,7 +1124,7 @@ The case $n = 1$, $r = 3$ gives an example of an isomorphism not proven in gener
 All of these computations are done for $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by a root of the polynomial $x^2 - \tau$.
 
 We give in Figure \ref{Empirical Kernel} some data supporting a conjecture concerning sign subrepresentations of $M_{2n + r}^r$.
-The computations to support this were done over $\CC$ with $qq$ a 5th root of unity.
+The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity.
 
 \begin{figure}
 \iffalse
@@ -1173,7 +1201,7 @@ We call \eqref{quadratic} the \emph{quadratic relation} and \eqref{braid1}, \eqr
 It is easily seen that a representation of $\SH$ is equivalent to a representation of the free algebra $k\langle T_i \rangle$ which acts as 0 on the relations (henceforth referred to as \emph{compatibility} with the relations).
 We will prove in the following sections that $V$ and $W$ are compatible with the Hecke algebra relations.
 
-\subsection{Verifying the Crossingless Matchings Representaitons}
+\subsection{Verifying the Crossingless Matchings Representations}
 \label{Cross Relations}
 Take some basis vector $w_i$.
 We will first check \eqref{quadratic} by case work:
@@ -1187,7 +1215,7 @@ We will first check \eqref{quadratic} by case work:
   \item Suppose $i,i+1$ are anchrors;
     then $(T_i + 1)w = 0$, giving \eqref{quadratic}.
 \end{itemize}
-   
+  
 \vspace{5pt}
 Now we verify \eqref{braid1}.
 Let $h := (1 + T_i)(1 + T_{i+1})(1+T_i)$, and let $g := (1 + T_{i+1})(1 + T_i)(1 + T_{i+1})$.
@@ -1203,26 +1231,24 @@ Note the following expansion:
       (h-g)w = q(T_i - T_{i+1}) + T_iT_{i+1}T_i - T_{i+1}T_iT_{i+1}.
     \]
     Hence we may equivalently check that $(h-g)w = q(T_i - T_{i+1})$.
-    This is illustrated in Figure \ref{braid1arc}.
-    \begin{figure}[b]
-  \[
-    \GeneralizedNAction{5}{1/2,3/4}{1}{5/1}{3/4}{2/1, 1/2,2/3}{1/4,2/3}{5/1}{q^{3/2}}
-    \hspace{20pt}
-    \GeneralizedNAction{5}{1/2,3/4}{1}{5/1}{3/4}{1/1, 2/2,1/3}{1/2,3/4}{5/1}{q(q+1)}
-  \]
-  \[
-    \NAction{6}{1/6,2/5,3/4}{1/1,2/2,1/3}{1/2,3/4,5/6}{q^{3/2}}
-    \hspace{20pt}
-    \NAction{6}{1/6,2/5,3/4}{2/1,1/2,2/3}{1/6,2/3,4/5}{q^{3/2}}
-  \]
-  \[
-    \GeneralizedZeroAction{4}{3/4}{2}{1/1,2/2}{.5}{1}
-    \hspace{20pt}
-    \GeneralizedNAction{4}{3/4}{2}{1/1,2/2}{.5}{2/1, 1/2,2/3}{2/3}{1/1,4/2}{q(q+1)}
-  \]
+    In fact, $hw = q(1 + T_i)$ and $gw = q(1 + T_j)$ by Figure \ref{braid1arc}, giving compatibiliy.
+    \begin{figure}
+\[
+  \begin{gathered}\EmptyNAction{3}{1/1,2/2,1/3}\end{gathered}
+  \longsquigrightarrow
+  \begin{gathered}\EmptyNAction{3}{1/2}\end{gathered}
+  \hspace{50pt}
+  \begin{gathered}\EmptyNAction{3}{2/1,1/2,2/3}\end{gathered}
+  \longsquigrightarrow
+  \begin{gathered}\EmptyNAction{3}{2/1}\end{gathered}
+  \hspace{50pt}
+  \begin{gathered}\EmptyNAction{4}{1/1,3/2}\end{gathered}
+  \longsquigrightarrow
+  \begin{gathered}\EmptyNAction{4}{3/1,1/2}\end{gathered}
+\]
   \caption{
-    Here we verify in small cases that $hw = qT_i$ and $gw = qT_{i+1}$.
-    These 6 cases cover the situations that there is an arc among the indices $i,i+1,i+2$, that there isn't and there are not two arcs, and that there are two arcs.
+    The following give visual intuition for isotopy between $(1 + T_i)(1 + T_{i-1})(1 + T_i)w_j$ and $q(1 + T_i)$,between $(1 + T_{i+1})(1 + T_i)(1 + T_{i+1})w_j$ and $q(1 + T_i)$, and between $(1 + T_i)(1+T_j)w_l$ and $(1 + T_j)(1 + T_i)w_l$.
+    In all cases, these isotopies imply equality between the elements listed.
   }
   \label{braid1arc}
 \end{figure}
@@ -1231,7 +1257,7 @@ Lastly, we have the equation
 \[
   (1 + T_i)(1 + T_j) - (1 + T_j)(1 + T_i) = T_iT_j - T_jT_i
 \]
-and hence we simply need to verify that $(1 + T_i)$ and $(1 + T_j)$ commute, which the reader may easily check.
+and hence we simply need to verify that $(1 + T_i)$ and $(1 + T_j)$ commute, as shown in Figure \ref{braid1arc}
  
 \subsection{Verifying the Fibonacci Representations} 
 \label{Fib Relations}
@@ -1294,7 +1320,7 @@ Substituting in $\tau$ and dividing by $\delta$ whenever possible, these are equ
 \end{align*}
 Notably, each of these vanish when $e = 5$.
   
-\section{Miscellaneous Algebra Facts}\label{Algebra}
+\section{Conjugate Subalgebras}\label{Algebra}
 Throughout the text, for some representation $V$, we refer to $\Res_{\SH(S_{l})}^{\SH(S_m)} V$ without specifying exactly which subalgebra $\SH(S_{l})$.
 \begin{proposition}
   Suppose $B,B'$ are subalgebras of the $k$-algebra $A$ with $B = uB'u^{-1}$, and let $V$ be a representation of $A$.

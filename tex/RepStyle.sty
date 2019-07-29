@@ -15,8 +15,21 @@
 \usepackage{ytableau}
 \usepackage{xcolor}
 \usepackage{adjustbox}
+\usetikzlibrary{decorations.pathmorphing}
 \usepackage[square,super]{natbib}
 \usepackage[font=small,labelfont=bf]{caption}
+
+\newcommand\longsquigrightarrow{
+ \; \tikz \draw [->,
+line join=round,
+decorate, decoration={
+    zigzag,
+    segment length=7,
+    amplitude=1.5,post=lineto,
+    post length=3pt
+}]  (0,0) -- (1,0); \;
+}
+
 
 % ugly macros for crossingless matchings
 % if you ever need to use these, message me
@@ -55,6 +68,7 @@
 % Nat's macros for convenience
 \def\NN{\mathbb{N}}
 \def\CC{\mathbb{C}}
+\def\RR{\mathbb{R}}
 \def\FF{\mathbb{F}}
 \def\QQ{\mathbb{Q}}
 \newcommand{\abs}[1]{\left| #1 \right|}

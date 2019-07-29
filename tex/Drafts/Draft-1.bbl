@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Ariki}
 Susumu Ariki.
@@ -20,6 +20,20 @@ Pavel Etingof, Oleg Golberg, Sebastian Hensel, Tiankai Liu, Alex Schwendner,
   representation theory}}, volume~59 of {\em Student Mathematical Library}.
 \newblock American Mathematical Society, Providence, RI, 2011.
 \newblock With historical interludes by Slava Gerovitch.
+
+\bibitem{Github}
+Miles Johnson and Natalie Stewart.
+\newblock Github repository associated with some graphical realizations of
+  two-row {S}pecht modules of {I}wahori-{H}ecke algebras of the symmetric
+  group.
+\newblock \url{https://github.com/nataliesstewart/Hecke-Heuristics}, 2019.
+
+\bibitem{Khovanov}
+Mikhail Khovanov.
+\newblock
+  \href{https://www.worldscientific.com/doi/abs/10.1142/S0219199704001471}{Crossingless
+  matchings and the cohomology of {$(n,n)$} {S}pringer varieties}.
+\newblock {\em Commun. Contemp. Math.}, 6(4):561--577, 2004.
 
 \bibitem{Kleshchev}
 Alexander~S. Kleshchev.
@@ -49,7 +63,7 @@ Andrew Mathas.
 \newblock {\em Sci. China Math.}, 61(2):299--310, 2018.
 
 \bibitem{Murphy1}
-G.~E. Murphy.
+Gerard Murphy.
 \newblock
   \href{https://www.sciencedirect.com/science/article/pii/S0021869385710794?via%3Dihub}{On
   the representation theory of the symmetric groups and associated {H}ecke
@@ -57,7 +71,7 @@ G.~E. Murphy.
 \newblock {\em J. Algebra}, 152(2):492--513, 1992.
 
 \bibitem{Murphy2}
-G.~E. Murphy.
+Gerard Murphy.
 \newblock
   \href{https://www.sciencedirect.com/science/article/pii/S0021869385710794?via%3Dihub}{The
   representations of {H}ecke algebras of type {$A_n$}}.
