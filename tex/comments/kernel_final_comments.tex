@@ -1,0 +1,726 @@
+\documentclass{amsart}   
+
+\usepackage{../NatMacros}
+\usepackage{../RepStyle}
+
+\begin{document}
+	
+\title{A discussion of the intersection of the kernels of each $(1+T_i)$ acting on $W_{2n+r}^r$}
+\author{Miles Johnson \& Natalie Stewart}
+
+\maketitle
+
+{\color{magenta} Natalie comments are magenta. This document contains comments on sections not covered in kernel\_comments}
+
+\section{Introduction} 
+
+Let $\{T_i\}$ be the transpositions generating the Hecke algebra $\SH_{2n+r}(q)$. We assume $q\in \CC$.
+{\color{magenta} It seems to me so far that the results of this anchor work in an arbitrary field, and that we may only at the end have to restrict to a field of characteristic at least $n + r + 1$ whenever $e \mid n + r + 1$.
+Usually replacing $\CC^\times$ with $k^\times$ is free generality.
+}
+Let $W_{2n+r}^r$ be the generalized crossingless matchings representation with $2n+r$ nodes, $r$ of which are anchors. Fix the standard basis; we will refer to no other basis in this document. Here we characterize the intersection of the kernels of each $(1+T_i)$, a subrepresentation of $W_{2n+r}^r$. I claim this intersection is at most one dimensional, and is nontrivial if and only if $q$ is a $n+r+1$st root of unity.
+{\color{magenta} I'll stop making this point after this, but this is not equivalent to $e = n + r + 1$.}
+
+For compactness, in this document I use $\sim $ to denote "proportional to".
+
+ \section{restricting the kernel}
+
+
+\begin{definition}
+	
+  Fix some basis element $M\in W_{2n+r}^r$. Define $M(a):=b$ iff $a$ and $b$ are matched in $M$, $M(a):=a$ if $a$ is an anchor in $M$.
+  {\color{magenta} Should specify that $a,b$ are integers $1 \leq a,b \leq 2n + r$.} 
+  Given that $M$ has $r'$ anchors in the range $a,..,b$, define a \textbf{sub-matching} $M(a,b)$ of $M$ to be the basis element $K\in W_{b-a+1}^{r'}$ specified by $K(i)=M(i+a-1)-a+1$. This sub-matching is defined for $a<b$ when $M(i)\in \{a,a+1,...,b\}$ for all $i\in \{a,a+1,...,b\}$. See Figure 1.
+  
+  If $b\geq a$ and nodes $1\leq a,...,b\leq 2n+r$, $M(a,b)$ will still refer to those nodes, but will not be a sub-matching. For any other $a,b$, we define $M(a,b)$ to be an element of the representation with no nodes.
+\end{definition}
+
+\begin{figure} 
+	\def\cbasisspacing{5mm}
+	$\cbr{
+		\begin{gathered}
+		\Matching{6}{1/2, 3/6, 4/5}, \hspace{\cbasisspacing}
+		\Matching{4}{1/4, 2/3}
+		\end{gathered}}$
+	\caption{$M\in W_6^0$ is pictured on the left, $K\in W_4^0$ is pictured on the right. $M(3,6)=K$. $M(2,5)$ is not defined.}
+	\label{S6 Basis}
+\end{figure}
+
+Define the rainbow element $R\in W_{2n+r}^r$ to be the basis element specified by $R(i)=2n+2r-i+1$ for $i>r$, $R(i)=i$ for $i\leq r$. In other words, the basis element with all anchors to the left then a rainbow.
+
+\begin{proposition}
+	Let $w$ be an arbitrary vector in $W_{2n+r}^r$. I claim that if $w\in \cap\text{ker}(1+T_i)$, the coordinate $c$ of the rainbow element $R$ in $w$ is nonzero.
+\end{proposition}	
+
+\begin{proof}
+  Let $Y$ be the set of basis elements with nonzero coordinate in $w$. Let $k$ be the greatest integer such that there exists $y\in Y$ where $y(1)=...=y(k)=0$ {\color{magenta} should this be $y(1)-1 = \dots = y(k) - k = 0$? Also, we should avoid using $k$ as an integer, as it's used elsewhere as a field.}, and let $U\subset Y$ be the set of such $y$. In other words, $U$ is the set of basis elements in $Y$ which have the most anchors to the far left.
+	
+	Suppose $k<r$. Then for each $y\in U$ there exists a minimal $i_y>k+2$ such that $y(i_y)=0$. In other words, $i_y$ is the position of the next leftmost anchor in $y$.  Fix $\tilde{y}$ such that $i_{\tilde{y}}\leq i_y$ for all $y$. Then I claim the basis element $y':=q^{-1/2}(1+T_{i_{\tilde{y}}-1})\tilde{y}$ has nonzero coordinate in $(1+T_{i_{\tilde{y}}-1})w$, implying $w\not\in \cap\text{ker}(1+T_i)$. To see this, we can show that $\tilde{y}$ is the only element in $Y$ such that $q^{-1/2}(1+T_{i_{\tilde{y}}-1})\tilde{y}\sim y'$. $y'$ still has $k$ anchors on the left, and $i_{y'}<i_{\tilde{y}}$, so $y'\not\in Y$. If $x\in Y,\not\in U$, the basis element proportional to $(1+T_{i_{\tilde{y}}-1})x$ will have $k$ anchors at the far left only if the next anchor is at a position $i_{x'}>i_{\tilde{y}}$, so it cannot be $y'$. If $x\in U$ the basis element proportional to $(1+T_{i_{\tilde{y}}-1})x$ will have anchor at $i_{y'}$ if and only if $i_x=i_{\tilde{y}}$ and $x(i_{\tilde{y}})=\tilde{y}(i_{\tilde{y}})$. Since this is the only match altered by action $(1+T_{i_{\tilde{y}}-1})$ on $x$, if $(1+T_{i_{\tilde{y}}-1})x\sim y'$ this implies $x=\tilde{y}$. So if $k<r$ $w$ is not in the desired kernel.
+	
+	Suppose $k=r$ but $R\not\in U$ (so $R\not\in Y$). Let us define a sequence of subsets of $U$ in the following way: $U_0:=U$, $U_{i+1}:=\{u\in U_i| u(r+i+1)=2n+2r-i+1 \}$. Since $R\not\in U$, $\exists t<n-1$ such that $U_{t+1}=\emptyset$. Choose $\tilde{u}\in U_t$ such that $\tilde{u}(r+t+1)\geq u(r+t+1)$ for all $u\in U_t$. Consider the basis element $u':=q^{-1/2}(1+T_{\tilde{u}(r+t+1)})\tilde{u}$. I claim that $\tilde{u}$ is the only element in $Y$ such that $(1+T_{\tilde{u}(r+t+1)})\tilde{u}\sim u'$, again implying that $w$ is not in the desired kernel. $u'$ still has $k$ anchors on the left, $u'(r+i)=2n+2r-i+2$, $1\leq i\leq t$, and $u'(r+t+1)>\tilde{u}(r+t+1)$, so $u'\not\in Y$. If $x\in Y,\not\in U$,  the basis element $x'$ proportional to $(1+T_{\tilde{u}(r+t+1)})x$ will have $r$ leftmost anchors only if $x'(r+t+1)<\tilde{u}(r+t+1)$, so $x'\not=u'$. Similarly, if $x\in U,\not\in U_t$, the basis element $x'$ will have the property $x'(r+t)=2n+2r-t+2$ only if $x'(r+t+1)<\tilde{u}(r+t+1)$, so $x'\not=u'$. If $x\in U_t$, $x'(r+t+1)=u'(r+t+1)$ if and only if $x(r+t+1)=\tilde{u}(r+t+1)$ and $x(x(r+t+1)+1)=\tilde{u}(\tilde{u}(r+t+1)+1)$ (since $u'\not \in Y$). These are the only matches altered by the action $(1+T_{\tilde{u}(r+t+1)})$, so this implies $x=\tilde{u}$. Thus we have proved that if $R\not\in Y$, $w$ is not in the desired kernel.
+	
+\end{proof}
+{\color{magenta} Nice. I felt the formalism around matchings ($M(a)$, $M(a,b)$ and all that) made this proof much more clear.}
+
+Given a rainbow element $R$, define the basis elements $R_{R,i},R_{L,i}$ to be those where you move the middle hump across $i$ humps to the right or left, respectively. Examples are pictured in figure 2. Formally, $R_{R,i}:=q^{-i/2}(1+T_{r+n+i})...(1+T_{r+n+1})R$, $R_{L,i}:=q^{-i/2}(1+T_{r+n-i})...(1+T_{r+n-1})R$.
+
+\begin{figure}
+		\def\cbasisspacing{5mm}
+	$\cbr{
+		\begin{gathered}
+		\Matching{8}{1/8, 2/7, 3/6, 4/5}, \hspace{\cbasisspacing}
+		\Matching{8}{1/8, 2/7, 3/4, 5/6}, \hspace{\cbasisspacing}
+		\Matching{8}{1/8, 2/3, 4/7, 5/6}, \hspace{\cbasisspacing}
+		\Matching{8}{1/2,3/8,4/7,5/6}
+		\end{gathered}}$
+	\caption{$R_{L,0},...,R_{L,3}$ pictured from left to right}
+\end{figure}
+
+ Define $Q_n:=(q^n+...+1)/q^{n/2}(-1)^n$ for $n\in \{0,1,...\}$. The following proposition says that, for any element in the kernel, if some basis element $y$ has coordinate $c$ in that element, and if $y$ has a rainbow sub-matching, the basis elements where you replace that sub-matching by the shifted rainbow matchings $R_{L,i}$ or $R_{R,i}$ both have coordinate $Q_ic$ in the kernel element.
+ 
+\begin{proposition}
+	Let $w$ be an element in the kernel intersection $\cap (1+T_k)$ in some generalized crossingless matchings representation. Let $y$ be a basis element with coordinate $c$ in $w$. Suppose $\exists a,b$ such that $y(a,b)=R$, the rainbow element. Define the basis elements $\theta_i,\phi_i$ by $\theta_i(1,a-1)=\phi(1,a-1)=y(1,a-1)$, $\theta_i(b+1,2n)=\phi(b+1,2n)=y(b+1,2n)$, $\theta_i(a,b)=R_{R,i}$, $\phi_i(a,b)=R_{L,i}$ (leave $\theta_i$ or $\phi_i$ undefined for any $i$ where $R_{R,i},R_{L,i}$ are undefined, respectively). The coordinates of $\phi_i$ and $\theta_i$ in $w$ are both $Q_ic$.
+\end{proposition}
+
+Proof of this proposition requires a simple algebraic fact that will be used throughout this document, so I state it as a lemma.
+
+\begin{lemma}
+	$Q_1Q_n-Q_{n-1}=Q_{n+1}$
+\end{lemma}
+
+\textit{Proof of lemma.}
+
+$Q_1Q_n-Q_{n-1}=\frac{-(q+1)}{q^{1/2}}\frac{(-1)^n(q^n+...+1)}{q^{n/2}}-\frac{(-1)^{n-1}(q^{n-1}+...+1)}{q^{(n-1)/2}}=\frac{(-1)^{n+1}(q^{n+1}+2q^n+...+2q+1)}{q^{(n+1)/2}}-\frac{(-1)^{n+1}(q^n+...+q)}{q^{(n+1)/2}}=\frac{(-1)^{n+1}(q^{n+1}+...+1)}{q^{(n+1)/2}}=Q_{n+1}$.
+{\color{magenta} Imo the align* environment would help this.}
+
+Now let us prove the proposition.
+
+\begin{proof}
+	Consider acting on $w$ by an element $(1+T_k)$. The coordinate of $\phi_i$ in $(1+T_k)w$ will be a linear combination of the coordinates of basis elements sent to $\phi_i$ by the element $(1+T_k)$. Specifically, it will be $(1+q)c\alpha+(q^1/2)\sum c_\beta$ where $\alpha=1$ if $y(k)=k+1$, $\alpha=0$ otherwise, and $c_\beta$ are the coordinates of all basis elements $\beta$ where $(1+T_k)\beta\sim y$.
+	
+	Let $n:=a+b-1$ and $r$ be the number of anchors in $y(a,b)$. Consider the coordinate of $\phi_i$ in $(1+T_{a-1+r+n/2-i})w$. This is the transposition that acts on the "moved middle hump" in $\phi_i(a,b)=R_{L,i}$, as shown in figure 2.3. I claim that the only basis elements $\beta$ where $(1+T_{a-1+r+n/2-i})\beta\sim \phi_i$ are $\phi_i$ and $\phi_{i-1},\phi_{i+1}$ when they exist (we defined $R_{L,i}$ as far out as we can move the hump, so for $0\leq i<n+r$, and take the analogous domain for $\phi_i$).
+	
+	Note that the action of any $(1+T_k)$ on a basis element $\beta$ creates exactly two lines: an arc of length two connecting $k$ and $k+1$, and either an anchor or an arc of length $\geq 2$ connecting $\beta(k)$ and $\beta(k+1)$. The easiest way to see the claim is to see that the given transposition is surrounded by arcs on both sides, so any basis element sent to the same element can vary from $\phi_i$ by at most one of those arcs and nothing else. 
+	
+	Let us prove the claim formally: It is easy to see that the action of $(1+T_{a-1+r+n/2-i})$ will bring $\phi_{i-1},\phi_i,\phi_{i+1}$ to $\sim \phi$, as shown in figure 2.3. Suppose there was another basis element $\beta$ sent to $\phi_i$ by the given transposition. We note that if $\beta$ contains the arcs or anchors directly to the right and left of the arc $(a-1+r+n/2-i,a-1+r+n/2-i+1)$ in $\phi_i$ (formally, it contains the arc $(a-1+r+n/2-i-1,a-1+r+n/2+i+2)$ or an anchor at $a-1+r+n/2-i-1$ and the arc $(a-1+r+n/2-i+2,a-1+r+n/2+i+1)$ or an anchor at $a-1+r+n/2-i+2$), it must contain the arc $(a-1+r+n/2-i,a-1+r+n/2-i+1)$ to be a crossingless matching. Thus, if $\beta$ contains both of these arcs/anchors, $(1+T_{a-1+r+n/2-i})$ acts as the constant $(1+q)$, so $(1+T_{a-1+r+n/2-i})\beta\sim \phi_i=>\beta\sim \phi$. If $\beta$ does not contain the left arc/anchor and $(1+T_{a-1+r+n/2-i})\beta\sim \phi_i$, the action of $(1+T_{a-1+r+n/2-i})$ must create that arc/anchor, so $\beta(a-1+r+n/2-i-1)=a-1+r+n/2-i$ and $\beta(a-1+r+n/2-i+1)=a-1+r+n/2+i+2$ in the case of an arc or $a-1+r+n/2-i+1$ is an anchor. All other matchings remain unchanged, so this implies $\beta=\phi_{i+1}$. Likewise, if the right arc $((a+b-1)/2-i+2,(a+b-1)/2+i+1)$ does not exist, $\beta=\phi_{i-1}$. For boundary cases, note that for $\phi_0=\theta_0$, the only other basis element sent to this by the middle transposition is $\phi_1=\theta_1$. Also note that at the edge case $\phi_{n+r-1}$ there is not necessarily a left arc, so other elements may be sent to $\phi_{n+r-1}$ by the given transposition, and this case is unhelpful to us. Lastly, note that our argument was completely symmetric and thus applies to the $\theta_i$ case, except that for $\theta_i$ we do not have to deal with anchors. Thus the claim is proved.
+	
+	Given this claim and lemma 2.4, the proposition follows quickly through induction. 
+	
+	Acting by $(1+T_{a-1+r+n/2})$ on $w$, the new coordinate of $\phi_0=y$ is $(q+1)c+q^{1/2}c_{\phi_1}$ where $c_{\phi_1}$ is the coordinate of $\phi_1$ in $w$. Since $w$ is in the kernel, we have $(q+1)c+q^{1/2}c_{\phi_1}=0=>c_{\phi_1}=Q_1c$. $\phi_1=\theta_1$ so this gives us all our base cases.
+	
+	Acting by $(1+T_{a-1+r+n/2-i})$ on $w$, the new coordinate of $\phi_i$ is $q^{1/2}c_{\phi_{i+1}}+q^{1/2}c_{\phi_{i-1}}+(q+1)c_{\phi_{i}}=0$. By the inductive hypothesis, $q^{1/2}c_{\phi_{i+1}}+q^{1/2}Q_{i-1}c+(q+1)Q_i=0$ so $c_{\phi_{i+1}}=Q_1Q_i-Q_{i-1}=Q_{i+1}$ by lemma 2.4. $\theta_i$ is an identical proof, so the proposition follows. 
+	
+	
+	\begin{figure}
+		\[
+		\GeneralizedAction{8}{3/4,5/8,6/7}{2}{1/1,2/2}{1}{3}{3/4,5/8,6/7}{1/1,2/2}{(1+q)}
+		\]
+		\[
+		\GeneralizedAction{8}{2/3,5/8,6/7}{2}{1/1,4/2}{1}{3}{3/4,5/8,6/7}{1/1,2/2}{q^{1/2}}
+		\]
+		\[
+		\GeneralizedAction{8}{3/8,4/5,6/7}{2}{1/1,2/2}{1.25}{3}{3/4,5/8,6/7}{1/1,2/2}{q^{1/2}}
+		\]
+    \caption{The action of $(1+T_{a-1+r+n/2-i})$ on $\phi_i,\phi_{i=1},\phi_{i+1}$ (ordered from top to bottom), shown as the case where $y$ is the rainbow vector in $W_{8}^2$ and $i=2$.{\color{magenta} I made the last of these a bit taller so that the anchors weren't close to touching the arc.}}
+		\label{Action}
+	\end{figure}
+\end{proof}	
+{\color{magenta} This proof is pretty technical, and I don't quite have the time to go through it tonight. I'll go through it more closely later.}
+
+We are now ready to prove our first interesting result. Define $e$ as before.
+
+\begin{proposition}
+	Let $W_{2n+r}^r$ be a generalized crossingless matchings representation. Suppose $e$ does not divide $n+r+1$. Then $\cap\text{ker}(1+T_i)=\emptyset$.
+\end{proposition}
+
+\begin{proof}
+	Suppose $\cap\text{ker}(1+T_i)=K\not=\emptyset$. Take $w\in K$. By Proposition 2.2, the coordinate of the rainbow vector $R$ is nonzero; suppose the coordinate is $c$. By proposition 2.3, the coordinates of the basis elements $R_{L,n+r-1}$ and $R_{L,n+r-2}$ are $Q_{n+r-1}c$ and $Q_{n+r-2}c$ respectively.
+	
+	Consider the coordinate of $R_{L,n+r-1}$ in $(1+T_1)w$. Using the same logic as in the proof of proposition 2.3, we note that if a basis element $\beta$ has no anchor at position $3$ and is not equal to $R_{L,n+r-2}$, $(1+T_1)\beta\not\sim R_{L,n+r-1}$. Thus the desired coordinate is equal to $(1+q)Q_{n+r-1}c+q^{1/2}Q_{n+r-2}c=-q^{1/2}Q_{n+r}c$ by lemma 2.4. Since $w\in K$, we must have $-q^{1/2}Q_{n+r}c=0$. We have that $c$ is nonzero, and we assume $q$ nonzero, and $Q_{n+r}$ is zero iff $q$ is a root of $q^{n+r}+...+1$, implying $e|n+r+1$. Thus we have arrived at contradiction, and $K=\emptyset$.
+\end{proof}
+{\color{magenta} Nice. Is the goal that basically this style of proof with yield the same result when $e \neq n + r + 1$? At any rate, I think a final text should place more emphasis on the fact that proposition 2.3 specifies a one-dimensional subspace containing the kernel;
+in effect, this specifies that the sign representation appears at most once as a submodule, and gives a formula for when it does.}
+
+
+\newpage
+\section{Defining the kernel for $e=n+r+1$}
+
+In this section we will fully characterize $\cap\text{ker}(1+T_i)$ when $e=n+r+1$. We will prove that it is one dimensional and give a basis. Note that we still have not proved the kernel is trivial when $e$ divides but is not equal to $n+r+1$. That proof requires results from this section, and will come next section.
+
+\vspace{5mm}
+The following proposition states the forward direction of our characterization: if the kernel is nontrivial, it must have the following properties.
+
+\vspace{5mm}
+\begin{proposition}
+	
+	Let $W_{2n+r}^r$ be a crossingless matchings representation, and suppose $Q_1,...Q_{n+r-1},\not=0$. Let $w\in\cap\text{ker}(1+T_i)$. WLOG the rainbow element $R$ has coordinate 1 in $w$ (by proposition 2.2).
+	\\
+	
+	\begin{center}	
+		(i) For any basis element $\beta\in W_{2n+r}^r$, the coordinate of $\beta$ in $w$ must be some rational function of $q$, say $x_\beta(q)$.
+		
+	\end{center}
+	\vspace{5mm}
+	
+	
+	Generally, for any matching $\alpha$, define $x_\alpha$ to be the rational function corresponding to the necessary coordinate of that basis element in its respective kernel element. These functions are defined recursively in the next statement.
+	
+	\vspace{5mm}
+	Suppose $\beta(1)=a$. Assume 1 is not an anchor. Then $\beta$ has two sub-matchings $\alpha_1=\beta(2,a-1)$ and $\alpha_2=\beta(a+1,2n+r)$, and we have the following:
+	\\
+	
+	\begin{center}
+		
+		(ii) $x_\beta(q)=x_{\alpha_1}(q)x_{\alpha_2}(q)\frac{Q_{n+r-1}...Q_{n+r-(a/2)}}{Q_1...Q_{a/2-1}}$
+		
+		
+	\end{center}
+	
+	\vspace{5mm}
+	
+	If 1 is an anchor, we have a sub-matching $\alpha_3=\beta(2,2n+r)$ and I claim $x_\beta(q)=x_{\alpha_3}(q)$. 
+	
+\end{proposition}
+
+\vspace{5mm}
+Before proving this proposition, it will be useful to clarify exactly what it states.
+
+\vspace{5mm}
+The first statement of this proposition says that, given an element of the kernel $w$, we can write the coordinate of any basis element $\beta$ in $w$ as a rational function of $q$ as long as $Q_1...Q_{n+r-1}\not=0$.
+
+\vspace{5mm}
+The second statement is meant to inductively define the coordinate of an arbitrary basis element. The first statement lets this induction make sense. Essentially, the second statement says the following: we can find the coordinate of any basis element by dividing it into two sub-matchings and scaling by a specific constant which depends on the lengths of the sub-matchings.
+
+\vspace{5mm}
+An illustration of this proposition is shown in figure 4.
+
+	
+	\begin{figure}
+		\def\cbasisspacing{5mm}
+		
+		$\cbr{
+			\begin{gathered}
+			\GeneralizedMatching{11}{1/6, 2/3,4/5,7/10,8/9}{1}{11/1}{11/8}, \hspace{\cbasisspacing}
+			\Matching{4}{1/2, 3/4}, 
+			\hspace{\cbasisspacing}
+			\GeneralizedMatching{5}{1/4, 2/3}{1}{5/1}{3/4}, \hspace{\cbasisspacing}
+			\end{gathered}}$ 
+		\caption{Suppose the second and third elements have coordinates $x_2(q_1)$ and $x_3(q_2)$ in their respective kernel elements, where for $q_1$, $e=3$ and for $q_2$ $e=4$. The coordinate of the first element is $x(q)=x_2(q)x_3(q)\frac{Q_5Q_4Q_3}{Q_1Q_2}$, where for $q$, $e=7$}
+	\end{figure}
+
+\vspace{5mm}
+The structure of the proof is as follows: 
+
+\begin{enumerate}
+	\item Use proposition 2.3 to find the coefficient of the basis element with $a/2$ humps then a rainbow element.
+	
+	\item Use proposition 2.3 in a somewhat reversed manner to find the coefficient of the basis element consisting of the rainbow for the first $a$ nodes then the rainbow for the final $2n+r-a$ nodes.
+	
+	\item Finish the proof through induction.
+\end{enumerate}
+
+\vspace{10mm}
+\begin{proof}
+	Note that statement (i) was necessary to state (ii), but it is natural to prove both statements together, so this is how we will proceed.
+	\\
+	
+	By proposition 2.2 the rainbow element has coordinate 1 in $w\in W_{2n+r}^r$. By proposition 2.3 the element $R_1:=R_{L,n+r-1}$ has coordinate $Q_{n+r-1}$ in $w$. Then $R_1(3,2n+r)$ is the rainbow element in  $W_{2(n-1)+r}^r$, so the element $R_2$ defined by $R_2(1,2)=R_1(1,2)$, $R_2(3,2n+r)=R_{L,n+r-2}\in W_{2(n-1)+r}^r$ has coordinate $Q_{n-1}Q_{n-2}$. Generally, define $R_i$ by $R_i(1,2(i-1))=R_{i-1}(1,2(i-1))$, $R_i(2i-1,2n+r)=R_{L,2n+r-i}$. Then the coefficient of $R_i$ is $Q_{n+r-1}...Q_{n+r-i}$. These elements are shown in figure 5.
+	
+	\begin{figure}
+		\def\cbasisspacing{5mm}
+		
+		$\cbr{
+			\begin{gathered}
+			\GeneralizedMatching{8}{3/8, 4/7,5/6}{2}{1/1,2/2}{5/4}, \hspace{\cbasisspacing}
+			\GeneralizedMatching{8}{1/2, 5/8,6/7}{2}{3/1,4/2}{5/4}, 
+			\hspace{\cbasisspacing}
+			\GeneralizedMatching{8}{1/2, 3/4,7/8}{2}{5/1,6/2}{5/4}, \hspace{\cbasisspacing}
+			\end{gathered}}$ 
+		\caption{In order, the rainbow element, $R_1$, and $R_2$. The coordinate of the rainbow element is 1. The coordinate of $R_1$ is $Q_{4}$. The coordinate of $R_2$ is $Q_4Q_3$. Generally, $R_i$ is the element with $i$ humps then a rainbow element, and has coordinate $Q_{n+r-1}...Q_{n+r-i}$.}
+	\end{figure}
+	
+	Now define basis elements $E_i$ by $E_i(2i+1,2n+r)=R_i(2i+1,2n+r)$, $E_i(1,2i)=R$, $R$ the appropriate rainbow element. By the same argument as above, if $E_i$ has coordinate $c$ in $w$, $R_i$ has coordinate $Q_{i-1}...Q_{1}c$. One way to make this more clear is to consider intermediate basis elements $\alpha_j^{E_i}$ defined by $\alpha_j^{E_i}(2i+1,2n+r)=E_i(2i+1,2n+r)$ and $\alpha_j^{E_i}(1,2i)=R_{L,j}$. Then the coordinates of $\alpha_j^{E_i}(2i+1,2n+r)$ in terms of the coordinate $c$ of $E_i$ are $Q_{i-1}...Q_{i-j}$, and $R_i=\alpha_{i-1}^{E_i}$. 
+	
+	Since we assume $Q_i\not=0$ for $i< n+r$, this implies the coefficient of $E_i$ is $\frac{Q_{n+r-1}...Q_i}{Q_1...Q_{i-1}}$. In particular, returning to our desired basis element $\beta$, the coordinate of $E_{a/2}$ is $\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$.
+	\\
+	
+	Now, I claim that this method can be applied to any rainbow sub-matching in exactly the same way. In other words, extraneous nodes add no complexity to this argument.
+	
+	Formally, given some basis element $\alpha$, suppose $\alpha(s,t)=R$ with $2n'+r'$ nodes and $r'$ anchors, and that $\alpha$ has coordinate $c$. Then the basis elements $\theta_i$ defined by $\theta_i(1,s-1)=\alpha(1,s-1)$, $\theta_i(t+1,2n+r)=\alpha(t+1,2n+r)$, and $\theta_i(s,t)=E_i$ have coordinates $\frac{Q_{n'+r'-1}...Q_{n'+r'-i}}{Q_1...Q_{i-1}}c$.
+	
+	\begin{figure}
+		\def\cbasisspacing{5mm}
+		
+		$\cbr{
+			\begin{gathered}
+			\GeneralizedMatching{14}{1/2,3/4,5/6,9/12,10/11,13/14}{2}{7/1,8/2}{5/4}, \hspace{\cbasisspacing}
+			\GeneralizedMatching{14}{1/6,2/5,3/4,9/12,10/11,13/14}{2}{7/1,8/2}{5/4}, \hspace{\cbasisspacing}
+			\end{gathered}}$ 
+		\caption{The figure on the left has submatching $R_3$ ignoring the last two nodes. The figure on the right has sub-matching $E_3$ also ignoring the last two nodes. Since the last two nodes have the same structure for both elements, if the coordinate of the second element is $c$, the coordinate of the first is $Q_2Q_1c$.}
+	\end{figure}
+	
+	An example is given in figure 6.
+	\\
+	
+	To turn this into an inductive proof, suppose statements (i) and (ii) are true for all representations with $2n'+r'<2n+r$ nodes.
+	
+	Consider the set of basis elements $B=\{\alpha|\alpha(a+1,2n+r)=R\}$. We have shown that the element $\alpha_R\in B$ defined by $\alpha_R(1,a)=R$ has nonzero coefficient $\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$. So, by our inductive hypothesis, the element $\tilde{\alpha_1}\in B$ defined by $\tilde{\alpha_1}(1,a)=\beta(1,a)=\alpha_1$ has coefficient $x_{\alpha_1}\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$.
+	
+	Similarly, consider the set of basis elements $B'=\{\upsilon|\upsilon(1,a)=\alpha_1\}$. We have shown that the element $\upsilon_R=\tilde{\alpha_1}$ has nonzero coefficient $x_{\alpha_1}\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$. So, by our inductive hypothesis, $\beta$ has coefficient $x_{\alpha_2}x_{\alpha_1}\frac{Q_{n+r-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$ and the inductive step is proven.
+	
+	Note that if the first node is an anchor, we need only consider the sub-matching of the rainbow element $R(2,2n+r)$ and use the inductive hypothesis. Thus the inductive step is proven in all cases.
+	
+	For base cases, we consider those representations with 2 or less nodes. If there is only one node, it must be an anchor. In this case, the single anchor element is the only element and it is the rainbow element, so it has coefficient 1. For two nodes, if there are two anchors we may use the inductive step. Otherwise, there is one match, which is again the only element and is the rainbow element. Since the number 1 is a rational function of $q$, the base cases are proved.
+	
+	So, by induction, the proposition holds.
+	
+\end{proof}
+
+\vspace{5mm}
+The following few corollaries will help to simplify some later proofs.
+
+\begin{corollary}
+	Let $w\in\cap\text{ker}(1+T_i)$, $w\not=0$. Suppose $\beta(1,a)$ is a sub-matching with no anchors. Then:
+	
+	$$x_\beta=x_{\beta(1,a)}(q)x_{\beta(a+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a/2}}{Q_1...Q_{a/2-1}}$$
+\end{corollary}
+
+\begin{proof}
+	Define $a_1=\beta(1)$, $a_i=\beta(a_{i-1}+1)$. Then for some $j$ we have $a_j=a$. If $j=1$, the statement is the same as the proposition. Suppose that the statement is true for any matching with $a_v=a$, $v<j$. Then the statement holds for the sub-matching $\beta(a_1+1,2n+r)$, and we have:
+	
+	$$x_\beta(q)=x_{\beta(1,a_1)}(q)x_{\beta(a_1+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}}=$$
+
+	$$x_{\beta(1,a_1)}(q)x_{\beta(a_1+1,a)}(q)x_{\beta(a+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}}\frac{Q_{n+r-a_1/2-1}...Q_{n+r-a/2}}{Q_1...Q_{a/2-a_1/2-1}}=$$
+	
+	$$x_{\beta(1,a_1)}(q)x_{\beta(a_1+1,a)}(q)x_{\beta(a+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}}\frac{Q_{n+r-a_1/2-1}...Q_{n+r-a/2}}{Q_1...Q_{a/2-a_1/2-1}}(\frac{Q_{a/2-1}...Q_{a/2-a_1/2}}{Q_{a/2-1}...Q_{a/2-a_1/2}})=$$
+	
+	$$x_{\beta(1,a_1)}(q)x_{\beta(a_1+1,a)}(q)x_{\beta(a+1,2n+r)}(q)\frac{Q_{a/2-1}...Q_{a/2-a_1/2}}{Q_1...Q_{a_1/2-1}}\frac{Q_{n+r-1}...Q_{n+r-a/2}}{Q_1...Q_{a/2-1}}=$$
+	
+	$$=x_{\beta(1,a)}(q)x_{\beta(a+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a/2}}{Q_1...Q_{a/2-1}}$$
+	
+	This proves the inductive step, so with base case $j=1$ the corollary holds.
+
+\end{proof}
+
+\vspace{5mm}
+\begin{corollary}
+	$\beta\in W_{2n+r}^r$, then $x_\beta(q)\not=0$ if $e>n+r$.
+\end{corollary}
+
+\begin{proof}
+	For our base cases, if $2n+r=2$ all coefficients are 1, which is nonzero for any $q$.
+	
+	Assume the statement is true for all $2n'+r'<2n+r$. We have $$x_\beta(q)=x_{\alpha_1}(q)x_{\alpha_2}(q)\frac{Q_{n+r-1}...Q_{n+r-(a/2)}}{Q_1...Q_{a/2-1}}$$
+	or $$x_\beta(q)=x_{\beta(2,2n+r)}(q)$$
+	
+	If $e>n+r$, non of the $Q_i$ terms are zero, and $n'+r'<n+r<e$ for any of the sub-matchings that appear, so those coordinates are nonzero and the corollary holds.
+	
+	
+\end{proof}
+
+
+\vspace{5mm}
+The previous proposition fully characterizes any possible kernel element when $Q_1...Q_{n+r-1}\not=0$. In particular, the following corollary holds:
+
+\begin{corollary}
+	When $Q_1..Q_{n+r-1}\not=0$ and the kernel is nontrivial, the kernel is one dimensional.
+\end{corollary}
+
+This corollary follows from the fact that we may write the coordinate of any basis element as proportional to the coordinate of the rainbow basis element.
+
+\vspace{5mm}
+\noindent\rule{16.5cm}{0.4pt}
+
+\vspace{5mm}
+The remainder of this section will be used to prove that when $e=n+r+1$, the element specified by proposition 3.2 is indeed an element of the kernel.
+
+In service of this goal, a few lemmas will be helpful. The first lemma states that sub-matchings behave identically to the corresponding representations.
+
+\vspace{5mm}
+\begin{lemma}
+	Take a basis element $\beta\in W_{2n+r}^r$. Suppose $\beta$ has some sub-matching $\beta(a,b)$ with $r'$ anchors. 
+	
+	We may consider the restriction $\text{Res}_{\SH_{b-a+1}(q)}^{\SH_{2n+r}(q)}W_{2n+r}^r$ of this representation to the algebra generated by transpositions $T_a,...,T_{b-1}$. 
+	
+	Define $Y_\beta\subset \text{Res}_{\SH_{b-a+1}(q)}^{\SH_{2n+r}(q)}W_{2n+r}^r$ to be the subrepresentation generated by the set of basis elements $\{\alpha| \alpha(1,a-1)=\beta(1,a-1),\ \alpha(b+1,2n+r)=\beta(b+1,2n+r)\}$. Then the map $\rho:Y_\beta\rightarrow W_{b-a+1}^{r'}$ defined by $$\rho(\alpha)=\alpha(a,b)$$ is an isomorphism of representations.
+\end{lemma}
+
+\vspace{5mm}
+\begin{proof}
+	
+	The map is clearly bijective. Thus it is sufficient to prove the following: $$\rho(T_{i+a-1}\alpha)=T_i\rho(\alpha)$$.
+	
+	As mentioned in the previous section, the action of a transposition $T_i$ can change at most 4 nodes, so we need to show that the transpositions end up changing the same nodes in the same way in  $\rho(T_{i+a-1}\alpha)$ and $T_i\rho(\alpha)$.
+	
+	Suppose $\alpha(i+a-1)=s,\alpha(i+a)=t$. Then $(T_{i+a-1}\alpha)(i+a-1)=i+a$, $(T_{i+a-1}\alpha)(s)=t$, so $\rho(T_{i+a-1}\alpha)(i)=i+1$, $\rho(T_{i+a-1}\alpha)(s-a+1)=t-a+1$. Separately, $\rho(\alpha)(i)=s-a+1$ and $\rho(\alpha)(i+1)=t-a+1$, so $T_i\rho(\alpha)(i)=i+1$ and $T_i\rho(\alpha)(s-a+1)=t-a+1$ as desired. So the map is an isomorphism and the lemma is proved.
+\end{proof}
+
+
+\vspace{5mm}
+To verify the kernel element, we will need to know exactly which basis elements are mapped to a specific basis element by a given $(1+T_i)$. The next two lemmas help address this question.
+
+\begin{lemma}
+	Take some basis element $\beta\in W_{2n+r}^r$. Suppose $\beta(a)=b$ for some $b>a+1$, and that $(1+T_i)\beta=(1+q)\beta$ for some $a<i<b-1$. We then have a subrepresentation $\beta(a,b)$ and can define $Y_\beta$ as in the previous lemma. Then for all basis elements $\alpha$ such that $(1+T_i)\alpha=q^{1/2}\beta$, we have that $$\alpha\in Y_\beta$$.
+	
+	Similarly, if $\beta$ has some anchor at position $u$, and $(1+T_i)\beta=(1+q)\beta$ for some $i>u$, we again have a subrepresentation $\beta(u,2n+r)$ and may define $Y_\beta$ as before. Then for all basis elements $\alpha$ such that $(1+T_i)\alpha=q^{1/2}\beta$, we have that $\alpha\in Y_\beta$ again.
+\end{lemma}
+
+\begin{proof}
+	This lemma follows from an observation I made in section 2: a transposition can only create two arcs or an arc and an anchor. 
+	
+	For the first case of this lemma, if $\alpha\not\in Y_\beta$ either $\alpha(1,a-1)\not=\beta(1,a-1)$ or $\alpha(b+1,2n+r)\not=\beta(b+1,2n+r)$. Suppose it is the first case. Then for some $s,t\in [1,a-1]$, $s<t$, we have $\beta(s)=t$ and $\alpha(s)\not=t$. To have $(1+T_i)\alpha=q^{1/2}\beta$ we must have $\alpha(t)=i+1$, $\alpha(s)=i$. But then $\alpha(a)\not=b$ and $\alpha(a)\not=i$ or $i+1$, so $((1+T_i)\alpha)(a)\not=b$ and $(1+T_i)\alpha\not=q^{1/2}\beta$. The same argument proves the $\alpha(b+1,2n+r)\not=\beta(b+1,2n+r)$ case. 
+	
+	An analogous argument proves the anchor case. Specifically, the anchor cannot exist at position $u$ and is not created by action of $(1+T_i)$ if $\alpha(s)=i$ and $\alpha(t)=i+1$.
+	
+\end{proof}
+
+\vspace{5mm}
+It is important to note that lemma 3.6 only references cases where a transposition acts under an arc or to the right of an anchor. An example is given in figure 7. 
+
+The next lemma characterizes cases where the transposition is not under any arcs and all anchors are to the right.
+
+\begin{figure}[b]
+	\[
+	\begin{tabular}{l l l l}
+	\GeneralizedAction{13}{1/4,2/3,6/7,8/13,9/10,11/12}{1}{5/1}{5/4}{9}{1/4,2/3,6/7,8/13,9/10,11/12}{5/1}{(1+q)}\\
+	
+	\GeneralizedAction{13}{1/4,2/3,6/7,8/9,10/13,11/12}{1}{5/1}{5/4}{9}{1/4,2/3,6/7,8/13,9/10,11/12}{5/1}{(q^{1/2})}\\
+	
+	\GeneralizedAction{13}{1/4,2/3,6/7,8/13,9/10,11/12}{1}{5/1}{5/4}{6}{1/4,2/3,6/7,8/13,9/10,11/12}{5/1}{(1+q)}\\
+	
+	\GeneralizedAction{13}{1/4,2/3,5/6,8/13,9/10,11/12}{1}{7/1}{5/4}{6}{1/4,2/3,6/7,8/13,9/10,11/12}{5/1}{(q^{1/2})}\\
+	
+	\end{tabular}
+	\]
+	
+	\caption{In the first line we act under an arc, so if another element without that arc is sent to that element, it must fix the arc as shown in the second line. In the third line we act to the right of an anchor, so if another element without that anchor is sent to that element, it must fix the anchor as shown in the fourth line. 
+	}
+	%\label{Action}
+\end{figure}
+
+Essentially, this lemma states that the only elements sent to the same element are those which break at most one of the top level arcs to the left of the leftmost anchor, or that break the leftmost anchor. An illustration is given in figure 8.
+
+\vspace{5mm}
+\begin{lemma}
+	Take a basis element $\beta\in W_{2n+r}^r$. Suppose the leftmost anchor in $\beta$ is at index $b$, or let $b=2n+r+1$ if there is no anchor. Define $a_j$ such that $\beta(a_j)=a_{j-1}+1$ and $\beta(a_1)=1$ for all $j$ such that $a_j<b$. 
+	
+	Suppose $(1+T_i)\beta=(1+q)\beta$ for some $i<b-1$ where $\not\exists s,t$ such that $\beta(s)=t$ and $s<i,t>i+1$. Suppose there is some basis element $\alpha$ such that $(1+T_i)\alpha=q^{1/2}\beta$. Then I claim the following:
+	
+	\vspace{5mm}
+	\begin{center}
+		(i) $\beta(a_{j-1}+2,a_j-1)=\alpha(a_{j-1}+2,a_j-1)$ for all $j$.
+		
+		\vspace{5mm}
+		(ii) $\beta(b+1,2n+r)=\alpha(b+1,2n+r)$
+		
+		\vspace{5mm}
+		(iii)
+		If $b$ is not an anchor in $\alpha$, $\beta(a_j)=\alpha(a_j)$ for all $j$ such that $a_j\not=i+1$.
+		
+		\vspace{5mm}
+		(iiii) If $b$ is an anchor in $\alpha$, there exists exactly one value of $j$ such that $\alpha(a_j)\not=\beta(a_j)$ and $a_j\not=i+1$
+	\end{center}
+\end{lemma}
+
+\begin{proof}
+	
+	(i)
+	
+	Suppose that, for some $j$ there exists $s,t\in [a_{j-1}+2,a_j-1]$ such that $\beta(s)=t$ but $\alpha(s)\not=t$. Then if $(1+T_i)\alpha=q^{1/2}\beta$ we must have $\alpha(i)=s$ or $t$ and $\alpha(i+1)=s$ or $t$. But, by definition, $i,i+1\not\in[a_{j-1}+1,a_j]$, so this implies $\alpha(a_j)\not=a_{j-1}+1,i,i+1$, so $((1+T_i)\alpha)(a_j)\not=a_{j-1}+1$ and $(1+T_i)\alpha\not=q^{1/2}\beta$. So (i) is proved.
+	
+	\vspace{5mm}
+	(ii)
+	
+	The proof of (ii) is analogous to the proof of (i). We cannot have $\beta(b+1,2n+r)\not=\alpha(b+1,2n+r)$ and $\beta(b+1,2n+r)=((1+T_i)\alpha)(b+1,2n+r)$ if $((1+T_i)\alpha)(b)=b$.
+	
+	\vspace{5mm}
+	(iii)
+	
+	If $b$ is not an anchor in $\alpha$ and $(1+T_i)\alpha=q^{1/2}\beta$, we must have $i$ an anchor in $\alpha$, and $\alpha(i+1)=b$. No other nodes in $\alpha$ are changed, so this proves (iii).
+	
+	\vspace{5mm}
+	(iiii)
+	From (i)-(iii) we have that the only remaining matchings that can differ are the $(a_{j-1}+1,a_j)$ matchings. If one of them differs, by the same argument as before it must be fixed by the action of $(1+T_i)$, and no other nodes are changed, so (iiii) is proved.
+	
+\end{proof}
+
+
+\begin{figure}[b]
+	\[
+	\begin{tabular}{l l l l}
+	\GeneralizedAction{15}{1/6,2/3,4/5,7/8,9/10,12/15,13/14}{1}{11/1}{5/4}{7}{1/6,2/3,4/5,7/8,9/10,12/15,13/14}{11/1}{(1+q)}\\
+	
+	\GeneralizedAction{15}{1/8,2/3,4/5,6/7,9/10,12/15,13/14}{1}{11/1}{5/4}{7}{1/6,2/3,4/5,7/8,9/10,12/15,13/14}{11/1}{(q^{1/2})}\\
+	
+	\GeneralizedAction{15}{1/6,2/3,4/5,7/10,8/9,12/15,13/14}{1}{11/1}{5/4}{7}{1/6,2/3,4/5,7/8,9/10,12/15,13/14}{11/1}{(q^{1/2})}\\
+	
+	\GeneralizedAction{15}{1/6,2/3,4/5,8/11,9/10,12/15,13/14}{1}{7/1}{5/4}{7}{1/6,2/3,4/5,7/8,9/10,12/15,13/14}{11/1}{(q^{1/2})}\\
+	
+	\end{tabular}
+	\]
+	
+	\caption{The action of $(1+T_7)$ fixes the first basis element. Shown are all the basis vectors sent to the same element by the same transposition. Note that in all of them nodes 2-5 and 12-15 are the same. This illustrates (i) and (ii) in lemma 3.5. Note that in the last case where the anchor is in a different place, 1,6 and 9,10 are still matched. This illustrates (iii). In the middle two cases where the anchor is in the same place, only one of 1,6 or 9,10 are not paired. This illustrates (iiii). 
+	}
+	%\label{Action}
+\end{figure}
+
+\vspace{5mm}
+Lastly, we will need a small combinatorial result.
+
+\begin{lemma}
+	Suppose $n>b\geq a>0$ and $e>n$. Then $$Q_{n-a}Q_b-Q_{n-b-1}Q_{a-1}=Q_{n}Q_{b-a}$$
+\end{lemma}
+
+\begin{proof}
+	If $b=1$, the only possibility for $a$ is 1, in which reduces to lemma 2.4.
+	
+	Suppose the lemma is true for all $\tilde{b}<b+1$. Then for $a< b$ we have 
+	
+	$$Q_{n-a}Q_b -Q_{n-b-1}Q_{a-1}=Q_{n}Q_{b-a}$$
+	
+	$$Q_1Q_{n-a}Q_b-Q_1Q_{n-b-1}Q_{a-1}=Q_1Q_{n}Q_{b-a}$$
+	
+	from lemma 2.4, we have
+	
+	$$Q_{n-a}(Q_{b+1}+Q_{b-1})-(Q_{n-b}+Q_{n-b-2})Q_{a-1}=Q_{n}(Q_{b-a-1}+Q_{b-a+1})$$
+	
+	and from the inductive hypothesis we have
+	
+	$$Q_{n-a}Q_{b+1}-Q_{n-b}Q_{a-1}=Q_{n}Q_{b-a+1}$$
+	
+	as desired.
+	
+	For $a=b$ we have 
+	
+	$$Q_{n-b}Q_b -Q_{n-b-1}Q_{b-1}=Q_{n}$$
+	
+	$$Q_1Q_{n-b}Q_b-Q_1Q_{n-b-1}Q_{b-1}=Q_1Q_{n}$$
+	
+	from lemma 2.4, we have
+	
+	$$Q_{n-b}(Q_{b+1}+Q_{b-1})-(Q_{n-b}+Q_{n-b-2})Q_{b-1}=Q_1Q_{n}$$
+	
+	$$Q_{n-b}Q_{b+1}-Q_{n-b-2}Q_{b-1}=Q_1Q_{n}$$
+	
+	as desired.
+	
+	For $a=b+1$, we continue:
+	
+	$$Q_1Q_{n-b}Q_{b+1}-Q_1Q_{n-b-2}Q_{b-1}=Q_1Q_1Q_{n}$$
+	
+	$$(Q_{n-b-1}+Q_{n-b+1})Q_{b+1}-Q_{n-b-2}(Q_{b}+Q_{b-2})=(1+Q_2)Q_{n}$$
+	
+	So by the inductive hypothesis
+	
+	$$Q_{n-b-1}Q_{b+1}-Q_{n-b-2}Q_{b}=Q_{n}$$
+	
+	as desired, and the proof is finished by induction.
+	
+\end{proof}
+
+\vspace{5mm}
+We are now ready to prove existence of a kernel element. To prove this, we will show that if $w\in W_{2n+r}^r$ is as characterized above, the coordinate of any basis element in $(1+T_i)w$ is zero. This will split into various cases related to the previous lemmas.
+
+\vspace{5mm}
+\begin{proposition}
+	Suppose $e=n+r+1$. Then $\cap\text{ker}(1+T_i)\not=\emptyset$.
+\end{proposition}
+
+\begin{proof}
+	
+	Assume inductively that the statement holds for all $W_{2n'+r'}^{r'}$ where $2n'+r'<2n+r$.
+	
+	As a base case, when $2n'+r'\leq 2$, the representation is at most one dimensional. If the one basis element has only anchors, it is sent to zero by any $(1+T_i)$, and is in the kernel. If the single basis element is a single arc, it is sent to $(1+q)$ times itself, and we take $e=n+r+1=2$ so $1+q=0$ and the base case holds.
+	
+	\vspace{5mm}
+	Now we will prove the inductive step. Take $w$ as recursively defined by proposition 3.1. Formally, suppose $x_\alpha$ is the rational function corresponding to the coordinate of $\alpha$ in its respective kernel element for $\alpha\in W_{2n'+r'}^{r'}$, $2n'+r'<2n+r$. Then we define $w$ by its coordinate vector: $\beta\in W_{2n+r}^r$, if $\beta(1)=a\not=1$ then the coordinate of $\beta$ is $x_{\beta(2,a-1)}(q)x_{a+1,2n+r}(q)\frac{Q_{n-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$; if $\beta(1)=1$ then the coordinate of $\beta$ is $x_{\beta(2,2n+r)}(q)$. 
+	\\
+	
+	Let $E_\beta\subset W_{2n+r}^r$ be the pre-image of $\beta\in (1+T_i)W_{2n+r}^r$ under the action of $(1+T_i)$. To prove $w$ is in the kernel, we must show the following: 
+	\begin{center}
+	(i) $(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=0\text{ for all basis elements }\beta$
+	\end{center}
+	Inductively, we assume this equation holds for basis elements in smaller representations $W_{2n'+r'}^{r'}$, but only for $q$ such that $e=n'+r'+1$. For the following proof we will need a slightly stronger inductive assumption. Take $\beta'\in W_{2n'+r'}^{r'}$, and suppose either that $\beta'(1)=2n'+r'$, and that $T_i\beta'=(1+q)\beta'$, $1<i<2n'+r'-1$, or that 1 is an anchor in $\beta$. Defining $E_{\beta'}$ as before, we assume
+	
+	\begin{center}
+		(ii) $(1+q)x_{\beta'}+\sum_{\alpha\in E_{\beta'},\alpha\not=\beta'}q^{1/2}x_\alpha=0\text{ for any } q \text{ with }e>n'+r'$
+	\end{center}
+	
+	\vspace{5mm}
+	To prove the inductive step for both (i) and (ii), we must split into cases. Note that if $E_\beta$ is defined to be the pre-image of $\beta$ under the action of $(1+T_i)$, $E_{\beta(a,b)}$ is defined to be the pre-image of $\beta(a,b)$ under action of $(1+T_{i-a+1})$:
+	
+	\begin{enumerate}
+	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, and that $\exists s,t$ such that $s<i<t-1$, $s>1$ or $t<2n+r$, and $\beta(s)=t$. Also suppose the leftmost anchor is at some index $u>t$, or that there are no anchors. Then we have a sub-matching $\beta(s,t)$, and by lemma 3.6 $E_\beta\subset Y_\beta$. Then, using corollary 3.2, the following equality holds:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(1,s-1)}(q)\frac{Q_{n+r-1}...Q_{n+r-(s-1)/2}}{Q_1...Q_{(s-1)/2-1}})((1+q)x_{\beta(s,2n+r)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_{\alpha(s,2n+r)}(q))=$$
+	
+	$$(x_{\beta(t+1,2n+r)}(q)\frac{Q_{n+r-(s-1)/2-1}...Q_{n+r-t/2}}{Q_1...Q_{(t-s+1)/2-1}})(x_{\beta(1,s-1)}(q)\frac{Q_{n+r-1}...Q_{n+r-(s-1)/2}}{Q_1...Q_{(s-1)/2-1}})((1+q)x_{\beta(s,t)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_{\alpha(s,t)}(q))$$
+	
+	We have that $e>j$ for any $Q_j$ term appearing in the equation above, and $e>n'+r'$ for any sub-matching coordinate appearing above, so by corollary 3.3:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=0$$
+	
+	if and only if
+	
+	$$(1+q)x_{\beta(s,t)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_{\alpha(s,t)}(q)=0$$
+	
+	Note that $(\beta(s,t))(1)=t-s+1$. So by our inductive hypothesis (ii), we have 
+	
+	$$(1+q)x_{\beta(s,t)}(q)+\sum_{\alpha\in E_{\beta(s,t)},\alpha\not=\beta(s,t)}q^{1/2}x_{\alpha}(q)=0$$
+	
+	By lemma 3.5, if $\alpha\in Y_\beta$, $(1+T_i)\alpha=q^{1/2}\beta$ if and only if $(1+T_{i-s+1})\alpha(s,t)=q^{1/2}\beta(s,t)$, so the previous equation implies $$(1+q)x_{\beta(s,t)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_{\alpha(s,t)}(q)=0$$
+	
+	as desired, and this case is proved.
+	
+	\vspace{5mm}
+	\item Again take $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, but suppose the leftmost anchor is at some position $u$ where $1<u<i$. Then, as before, we have a sub-matching $\beta(u,2n+r)$ and by lemma 3.6 $E_\beta\subset Y_\beta$.
+	
+	Note that in both corollary 3.2 and our inductive hypothesis (ii) we specified cases involving anchors. This allows the exact same logic from the proof of the first case to prove this case.
+	
+	\vspace{5mm}
+	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, the leftmost anchor is at a position $u>i+1$ or there are no anchors, and $\not\exists s,t$ such that $\beta(s)=t$ and $s<i<t-1$. Lemma $3.7$ characterizes all $\alpha\in E_\beta$. We would like to prove the following for arbitrary $q$ where $e>n+r$:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}$$
+	
+	See figure 9 for an example of this equality. Note that if $e=n+r+1$, $Q_{n+r}$ is the only zero component in the right side of this equation, so proving this equation is sufficient to prove case three.
+	\\
+	
+	We will prove this equality through yet another inductive proof, this time inducting on the number of top level humps, including the leftmost anchor.
+	
+	Formally, as we have in earlier lemmas, we will define $a_j$ by $a_1:=\beta(1)$, $a_j:=\beta(a_{j-1}+1)$. Then define $b_\beta$ such that $a_{b_\beta}=u$ if there is an anchor or $a_{b_\beta}=2n+r$ otherwise. We induct on $b_\beta$.
+	\\
+	
+	If $b_\beta=1$, we must be in $W_2^0$ to be in case 3 (otherwise $s<i<t-1$ for some $s,t$ where $\beta(s)=t$), which is trivially satisfied. 
+	\\
+	
+%	For our base case we will prove $b=2$. This means either $a_1+1$ is an anchor, or $\beta(a_1+1)=2n+r$. 
+%	\\
+%	
+%	First base case:
+%	
+%	If $a_1+1$ is an anchor, to still be in case 3 we must have $i=1$ and $a_1=2$. In this case, lemma 3.7 gives that there is only one element in $E_\beta$, and that element is $\alpha$ defined by $\alpha(4,2n+r)=\beta(4,2n+r)$, $\alpha(1)=1$, and $\alpha(2)=3$. Then $x_\beta=Q_{n+r-1}x_\beta(3,2n+r)=Q_{n+r-1}\beta(4,2n+r)$ and $x_\alpha=x_{\alpha(2,2n+r)}=Q_{n+r-2}x_{\beta(4,2n+r)}$. So, using lemma 2.4, we have $(q+1)x_\beta(q)+q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(4,2n+4)}(q)Q_{n+r}$ as desired.
+%	\\
+%	
+%	Second base case: 
+%	
+%	If $\beta(a_1+1)=2n+r$, to be in case 3 we need either $a_1=2$ or $a_1=2n+r-2$. In both cases lemma 3.7 gives only one element $\alpha$ in $E_\beta$. In the first case $x_\beta=Q_{n+r-1}x_{\beta(3,2n+r)}=Q_{n+r-1}x_{\beta(4,2n+r-1)}$, and $x_\alpha=x_{\alpha(2,2n+r-1)}=Q_{n+r-2}x_{\beta(4,2n+r-1)}$ so again using lemma 2.4 $(q+1)x_\beta(q)+q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(4,2n+r)}(q)Q_{n+r}$ as desired. In the second case $x_\beta=\frac{Q_{n+r-1}...Q_{1}}{Q_1...Q_{n+r-2}}x_{\beta(2,2n+r-3)}=Q_{n+r-1}x_{\beta(2,2n+r-3)}$, and, using corollary 3.3, $x_\alpha=\frac{Q_{n+r-2}...Q_{1}}{Q_1...Q_{n+r-3}}x_{\alpha(2,2n+r-3)}=Q_{n+r-2}x_{\beta(2,2n+r-3)}$, so again using lemma 2.4, we have $(q+1)x_\beta(q)+q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(1,2n+r-2)}(q)Q_{n+r}$ as desired, and all base cases are proved.
+%	\\
+	
+	Suppose for all basis elements $\alpha$ such that $b_\alpha<b_\beta$, the equality holds. Suppose $i\not=1$. Then $a_1<i$ and lemma 3.7 gives that there is a unique $\upsilon\in E_\beta$ such that $\upsilon(1)\not=a_1$. Thus we have the following equality:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(1,a_1)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}})((1+q)x_{\beta(a_1+1,2n+r)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_{\alpha(a_1+1,2n+r)}(q))$$
+	
+	Define $Y_\beta$ as before with respect to the sub-matching $\beta(a_1+1,2n+r)$. Then $\alpha\in E_\beta$, $\alpha\not=\upsilon$ implies $\alpha\in Y_\beta$. By our inductive hypothesis, we have that 
+	$$(1+q)x_{\beta(a_1+1,2n+r)}(q)+\sum_{\alpha\in E_{\beta(a_1+1,2n+r)},\alpha\not=\beta(a_1+1,2n+r)}q^{1/2}x_{\alpha}(q)=$$
+	$$
+	-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}}$$
+	
+	By lemma 3.5, $\alpha\subset Y_\beta$, $\alpha\in E_\beta$ if and only if $\alpha(a_1+1,2n+r)\in E_{\beta(a_1+1,2n+r)}$. This implies:
+	
+	$$(1+q)x_{\beta(a_1+1,2n+r)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_{\alpha(a_1+1,2n+r)}(q)=$$
+	
+	$$-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}}$$
+	
+	So, combining with the aforementioned equality, we have 
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(1,a_1)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}})(-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}})=$$
+	
+	$$(x_{\beta(1,a_1)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}})(-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}})(\frac{Q_{(i-1)/2-1}...Q_{(i-1-a_1)/2}}{Q_{(i-1)/2-1}...Q_{(i-1-a_1)/2}})=$$
+	
+	$$-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}(\frac{Q_{n+r-a_1/2}Q_{(i-1)/2}}{Q_{(i-1-a_1)/2}})$$
+	\\
+	
+	Separately, note that $\upsilon$ is defined by $\upsilon(2,a_1-1)=\beta(2,a_1-1)$, $\upsilon(a_1+1,i-1)=\beta(a_1+1,i-1)$, $\upsilon(i+2,2n+r)=\beta(i+2,2n+r)$, and $\upsilon(1)=i+1$, $\upsilon(a_1)=i$. Thus we may determine $x_\upsilon$, again utilizing corollary 3.2:
+	
+	$$x_\upsilon=x_{\beta(i+2,2n+r)}x_{\upsilon(2,i)}\frac{Q_{n+r-1}...Q_{n+r-(i+1)/2}}{Q_1...Q_{(i-1)/2}}=$$
+	
+	$$x_{\beta(i+2,2n+r)}(x_{\beta(2,a_1-1)}x_{\upsilon(a_1,i)}\frac{Q_{(i-1)/2-1}...Q_{(i-1)/2-(a_1-2)/2}}{Q_1...Q_{(a_1-2)/2-1}})\frac{Q_{n+r-1}...Q_{n+r-(i+1)/2}}{Q_1...Q_{(i-1)/2}}=$$
+	
+	$$x_{\beta(i+2,2n+r)}(x_{\beta(1,a_1)}x_{\beta(a_1+1,i-1)}\frac{Q_{(i-1)/2-1}...Q_{(i-1)/2-(a_1-2)/2}}{Q_1...Q_{(a_1-2)/2-1}})\frac{Q_{n+r-1}...Q_{n+r-(i+1)/2}}{Q_1...Q_{(i-1)/2}}=$$
+	
+	$$x_{\beta(i+2,2n+r)}x_{\beta(1,i-1)}\frac{Q_{n+r-1}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}(\frac{Q_{n+r-(i+1)/2}Q_{a_1/2-1}}{Q_{(i-1-a_1)/2}})$$
+	\\
+	
+	Adding this into our previous equation, we have:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
+	
+	$$-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}(\frac{Q_{n+r-a_1/2}Q_{(i-1)/2}-Q_{n+r-(i+1)/2}Q_{a_1/2-1}}{Q_{(i-1-a_1)/2}})$$
+	
+	Applying lemma 3.8 to the portion of the equation above in parenthesis, the above is equivalent to
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}$$
+	
+	as desired. Note that if $e\geq n+r+1$ the only term above that can be zero is $Q_{n+r}$ (by corollary 3.3). Thus we have proved the inductive step for the case where $i\not=1$.
+	
+	\vspace{5mm}
+	If $i=1$, we instead look at the sub-matchings $\beta(1,a_{(b_\beta-1)})$, $\beta(a_{(b_\beta-1)}+1,2n+r)$. Again lemma 3.7 gives that there is a unique $\upsilon\in E_\beta$ such that $\upsilon(a_{(b_\beta-1)}+1)\not=\beta(a_{(b_\beta-1)}+1)$. Taking $Y_\beta$ with respect to the sub-matching $\beta(a_{(b_\beta-1)}+1,a_{b_\beta})$ again we have that $\alpha\in E_\beta$, $\alpha\not=\upsilon$ implies $\alpha\in Y_\beta$. Thus, following the same logic as before, we arrive at the following equality:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(a_{(b_\beta-1)}+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}})(-q^{1/2}x_{\beta(3,a_{(b_\beta-1)})}(q)Q_{a_{(b_\beta-1)}/2})=$$
+	
+	$$-q^{1/2}x_{\beta(3,2n+r)}\frac{Q_{n+r-1}Q_{a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$
+	\\
+	
+	Again, we know the structure of $\upsilon$ from lemma 3.7. Suppose for now that $a_{b_\beta}$ is not an anchor, so it is $2n+r$. Then $\upsilon$ is defined by $\upsilon(3,a_{(b_\beta-1)})=\beta(3,a_{(b_\beta-1)})$, $\upsilon(a_{(b_\beta-1)}+2,2n+r-1)=\beta(a_{(b_\beta-1)}+2,2n+r-1)$, and $\upsilon(1)=2n+r$, $\upsilon(2)=a_{(b_\beta-1)}+1$. So we may again find $x_\upsilon$:
+	
+	$$x_\upsilon=x_{\upsilon(2,2n+r-1)}=x_{\beta(3,a_{(b_\beta-1)})}x_{\beta(a_{(b_\beta-1)}+2,2n+r-1)}\frac{Q_{n+r-2}...Q_{n+r-1-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}}=$$
+	
+	$$x_{\beta(3,a_{(b_\beta-1)})}x_{\beta(a_{(b_\beta-1)}+1,2n+r)}\frac{Q_{n+r-2}...Q_{n+r-1-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}}=x_{\beta(3,2n+r)}\frac{Q_{n-r-1-a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$
+	
+	Alternatively, if $a_{b_\beta}$ is an anchor, the definition of $\upsilon$ is now $\upsilon(3,a_{b_\beta}-1)=\beta(3,a_{b_\beta}-1)$, $\upsilon(a_{b_\beta}+1,2n+r)=\beta(a_{b_\beta}+1,2n+r)$, and $\upsilon(1)=1$, $\upsilon(2)=a_{b_\beta}$, so we have:
+	
+	$$x_\upsilon=x_{\upsilon(2,2n+r)}=x_{\beta(3,a_{(b_\beta-1)})}x_{\beta(a_{b_\beta}+1,2n+r)}\frac{Q_{n+r-2}...Q_{n+r-1-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}}=x_{\beta(3,2n+r)}\frac{Q_{n-r-1-a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$
+	
+	so for our purposes $x_\upsilon$ is the same in either case.
+	
+	Incorporating into the above equation, we have:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
+	
+	
+	$$-q^{1/2}x_{\beta(3,2n+r)}\frac{Q_{n+r-1}Q_{a_{(b_\beta-1)}/2}-Q_{n-r-1-a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$	
+	
+	By lemma 3.8, this is simply $-q^{1/2}x_{\beta(3,2n+r)}Q_{n+r}$ as desired, and we have finished proving case 3.
+	\\
+	
+	\item The only cases we have not yet dealt with are those where either $1$ is an anchor or $\beta(1)=2n+r$. These are those cases related to our inductive hypothesis (ii).
+	
+	To not be in case 1 or 2, we must have that there are no anchors between index 1 and $i$, and that there is no integer $s$ such that $1<s<i<\beta(s)-1$. It follows from the same argument that proved lemma 3.6 that there exists exactly one $\upsilon\in E_\beta$ such that $\upsilon(1)\not=\beta(1)$. Define $N$ to be $2n+r$ if 1 is an anchor, or $2n+r-1$ if 1 is not an anchor. Then, defining $Y_\beta$ with respect to the sub-matching $\beta(2,N)$, we have that $\alpha\in E_\beta, \alpha\not=\upsilon$ if and only if $\alpha(2,N)\in E_{\beta(2,N)}$. Note that for $E_{\beta(2,N)}$ we may apply the inductive hypothesis from case 3, so we have:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	
+	$$(1+q)x_{\beta(2,N)}(q)+\sum_{\alpha\in E_{\beta(2,N)},\alpha\not=\beta(2,N)}q^{1/2}x_{\alpha}(q)=$$
+	
+	$$-q^{1/2}x_{\beta(2,i-1)}x_{\beta(i+2,N)}\frac{Q_{n+r-1}...Q_{n+r-i/2}}{Q_1...Q_{(i/2-1}}$$
+	
+	As in case 3, we can also determine $x_\upsilon$. $\upsilon$ is defined by $\upsilon(2,i-1)=\beta(2,i-1)$, $\upsilon(i+2,N)=\beta(i+2,N)$, $\upsilon(1)=i$, and $\upsilon(i+1)=2n+r$ if 1 is not an anchor or $i+1$ if 1 is an anchor, and we have:
+	
+	$$x_\upsilon=x_{\beta(2,i-1)}x_{\upsilon(i+2,N)}\frac{Q_{n+r-1}...Q_{n+r-i/2}}{Q_1...Q_{i/2-1}}$$
+	
+	Thus we have
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
+	
+	$$-q^{1/2}x_{\beta(2,i-1)}x_{\beta(i+2,N)}\frac{Q_{n+r-1}...Q_{n+r-i/2}}{Q_1...Q_{(i/2-1}}(1-1)=0$$
+	
+	as desired, and the last case is proved.
+	\end{enumerate}
+
+It should be noted that the induction for all of the above cases are codependent, but they only depend on the inductive hypotheses for $2n'+r'<2n+r$. So, since our base case holds for all the cases that apply to it, induction holds and the proposition is proved.
+
+\end{proof}
+
+\begin{corollary}
+	If $e=n+r+1$, $W_{2n+r}^r$ is reducible, and has a unique sign subrepresentation.
+\end{corollary}
+
+\end{document}
