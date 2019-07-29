@@ -16,7 +16,7 @@
 \usepackage{xcolor}
 \usepackage{adjustbox}
 \usetikzlibrary{decorations.pathmorphing}
-\usepackage[square,super,comma]{natbib}
+\usepackage[square,super,comma,sort]{natbib}
 \usepackage[font=small,labelfont=bf]{caption}
 
 \newcommand\longsquigrightarrow{
@@ -80,16 +80,15 @@ decorate, decoration={
 \newcommand{\id}[1]{\text{id}_{#1}}
 \def\SH{\mathscr{H}}
 
-\def\Tr{\text{Tr}}
-\def\ker{\text{ker}}
-\def\ima{\text{im}}
-\def\dim{\text{dim}}
-\def\Res{\text{Res}}
-\def\Span{\text{Span}}
-\def\End{\text{End}}
-\def\Ind{\text{Ind}}
-\def\GL{\text{GL}}
-\def\soc{\text{soc}}
+\def\Tr{\operatorname{Tr}}
+\def\ker{\operatorname{ker}}
+\def\ima{\operatorname{im}}
+\def\dim{\operatorname{dim}}
+\def\Res{\operatorname{Res}}
+\def\Span{\operatorname{Span}}
+\def\End{\operatorname{End}}
+\def\Ind{\operatorname{Ind}}
+\def\soc{\operatorname{soc}}
 \newcommand{\Hom}[1]{\txt{Hom}{#1}}
 \newcommand{\Homarg}[2]{\text{Hom}_{#1}\prn{#2}}
 \newcommand{\Mod}[1]{\text{Mod}_{#1}}
