@@ -67,7 +67,7 @@
       We consider the Iwahori--Hecke algebra of the symmetric group on $2n + r$ letters with parameter $q$.
       Let $e$ be the smallest positive integer such that the $q$-number $\brk{e}_q = 0$, or set $e = \infty$ if none exist.
       We modify Khovanov's crossingless matchings to include $2n$ ``nodes'' and $r$ ``anchors,'' and prove in the case $e > n + r + 1$ that the associated module is isomorphic to the Specht module $S^{(n+r,n)}$ which corresponds to the partition $(n + r,n) \vdash 2n + r$.
-      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and for $2n + r \leq 6$. 
+      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and for $2n + r \leq 7$. 
       Lastly, when $e = 5$, we prove an isomorphism between the irreducible quotient $D^{(n+r,n)}$ with $r \leq 3$ and some subrepresentations of Jordan--Shor's Fibonacci representation.
       We provide explicit transition matrices between this representation and the crossingless matchings representation for $2n + r \leq 6$.
     \end{abstract}
@@ -225,8 +225,11 @@
   \def\vp{\texttt{0}}
   \fakesubsection{Fibonacci Representation}
   Now suppose that $e = 5$ and $k$ contains the algebraic number $(-1 - q^2 - q^3)^{3/2}$.
-  Let $V^m$ be a $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{n+1}$ such that the character $\vs$ never appears twice in a row. 
-  We will suppress the superscript whenever it is clear from context.
+  The following is a modification of Shor--Jordan's Fibonacci representation of the braid group.
+ 
+  \begin{definition}
+  Let $V^m$ be a $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{n+1}$ such that the bit $\vs$ never appears twice in a row. 
+  We will refer to this as the \emph{Fibonacci representation} and suppress the superscript whenever it is clear from context.
 
   We wish to endow this with a $\SH$-action which acts on a basis vector only dependent on characters $i,i+1,i+2$, sending each basis vector to a combination of the other basis vectors having the same characters $1,\dots,i,i+2,\dots,n+1$ as follows:
 
@@ -252,6 +255,7 @@
   \end{equation}
   with $T_i$ acting similarly on the substring $i,i+1,i+2$.
   We will verify that this is a representation of $\SH$ in Appendix \ref{Fib Relations}
+  \end{definition}
 
   This contains 4 subrepresentations based on the first and last character of the string, which are not modified by $\SH$.
   Label the subrepresentation spanned by strings $(\vs\dots\vs)$ by $V_{\vs\vs}$, and similar for the other 3.
@@ -301,8 +305,6 @@
   We would also thank Professor Alexander Kleshchev for his mathematical guidance concerning branching theorems.
   Lastly, we would like to express our gratitude to our mentor Oron Propp for his help and advice in both acquiring background knowledge and in executing the mathematics in this paper;
   this project would not be possible without him.
-
-  \newpage
    
 \section{Preliminaries on Specht Modules}\label{Specht Modules Section}
   For this section and the rest of the paper, assume $n > 0$.
@@ -1214,22 +1216,22 @@ These are also given with respect to the basis on $V$ given by increasing lexico
   \pi_{3,3}^1 = \pi_{3,4}^0 &=  
 \begin{bmatrix}
   1 & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{3,5}^1 = \pi_{3,6}^0&=  
 \begin{bmatrix}
   1 & 0 & 0 & 0 & 0\\
   0 & 0 & 1 & 1 & 0\\
   0 & 1 & 0 & 1 & 0\\
   0 & 0 & 0 & 1 & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{3,6}^4&=  
 \begin{bmatrix}
   -1 & -1 & 0 & 1 & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{3,7}^3&=  
 \begin{bmatrix}
  1 & 0 &-1 &-1 & 1 & 0 & -1 & -1 & 0 & 0 & 0 & 0 & 1 & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{3,7}^1&=  
 \begin{bmatrix}
  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &-1\\
@@ -1245,7 +1247,7 @@ These are also given with respect to the basis on $V$ given by increasing lexico
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 &-1\\
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 &-1\\
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1
-\end{bmatrix}
+\end{bmatrix}^\intercal
 \end{align*}
 \caption{The maps of representations $\pi_{e,2n+r}^r:M_{2n + r}^r \twoheadrightarrow U_{2n+r}^r$ for $e = 3$.}
 \label{Composition series e=3}
@@ -1256,11 +1258,11 @@ These are also given with respect to the basis on $V$ given by increasing lexico
   \pi_{4,4}^2&=  
 \begin{bmatrix}
   1 & \qqo & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{4,4}^1&=  
 \begin{bmatrix}
   1 & \frac{1}{2}\qqo & \frac{1}{2}\qqo & 1 & \frac{1}{2}\qqo
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{4,6}^2 &=
 \begin{bmatrix}
   1& 0& 0& 0& 0& 0& \qqo & 1& 0\\
@@ -1268,11 +1270,11 @@ These are also given with respect to the basis on $V$ given by increasing lexico
   0& 0& 1& 0& 0& \qqo& 0 &1 &0\\
   0& 0& 0& 1& 0& 0& -1& -\qqo &-1\\
   0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo &1 &\frac{1}{2}\qqo
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{4,6}^0 &=
 \begin{bmatrix}
   \qqo & 1 & 1 & \qqo & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{4,7}^1 &=
 \begin{bmatrix}
 1& 0& 0& 0& \frac{1}{2}\qqo& 0& -\frac{1}{2}& -\frac{1}{2}& 0& 0& 1& 1/2& \qqo& \frac{1}{2}\\
@@ -1281,7 +1283,7 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 0& 0& 0& 1& \qqo& 0& 0& -1& -\qqo& 0& 1& -1& 0& 0\\
 0& 0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo& 0& 0& 0& \frac{1}{2}\qqo& -1& \frac{1}{2}\qqo\\
 0& 0& 0& 0& 0& 0& 0& 0& 0& 1& -\frac{1}{2}\qqo& \frac{1}{2}\qqo& 1& \frac{1}{2}\qqo
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \end{align*}
 \caption{The maps of representations $\pi_{e,2n+r}^r:M_{2n + r}^r \twoheadrightarrow U_{2n+r}^r$ for $e = 4$.}
 \label{Composition series e=4}
@@ -1292,11 +1294,11 @@ These are also given with respect to the basis on $V$ given by increasing lexico
   \pi_{5,5}^3 &=
 \begin{bmatrix}
   1 & \tto & \tto & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{5,6}^2 &=
 \begin{bmatrix}
   \tto& \tto& 1& 1& \tto+1& \tto & \tto & \tto & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{5,7}^3 &=
 \begin{bmatrix}
 1& \tto& \tto& 1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
@@ -1305,23 +1307,23 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 \tto& \tto& 1& 0& 1& \tto+1& \tto& 0& \tto& \tto& 0& 1& 0& 0\\
 -\tto-1& -\tto& -\tto& 0& -\tto& -\tto-1& -\tto-1& 0& -\tto-1& -\tto-1& 0& 0& 1& 0\\
 0& 0& 1& 0& 0& 0& \tto& 0& 0& \tto& 0& 0& 0& 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{5,7}^1 &=
 \begin{bmatrix}
 1& \qqo& \qqo& \qqo& -\tto& \qqo& -\tto& \qqo& -\tto& 1& \qqo& \qqo& \qqo& -\tto
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{6,6}^4 &=
 \begin{bmatrix}
   1 & \vtv & 2 & \vtv & 1 
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{6,7}^3 &=
 \begin{bmatrix}
   \vtv & 2 & \vtv & 1 & 1 & 2\vtv & 3 & \vtv & 2 & 2\vtv & 2 & 2 & \vtv & 1
-\end{bmatrix}\\
+\end{bmatrix}^\intercal\\
 \pi_{6,7}^5 &=
 \begin{bmatrix}
   1 & \fft & \fto & \fto & \fft & 1
-\end{bmatrix}
+\end{bmatrix}^\intercal
 \end{align*}
 \caption{The maps of representations $\pi_{e,2n+r}^r:M_{2n + r}^r \twoheadrightarrow U_{2n+r}^r$ for $e = 5,6$.}
 \label{Composition series e=6}

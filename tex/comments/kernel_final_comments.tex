@@ -337,6 +337,10 @@ The remainder of this section will be used to prove that when $e=n+r+1$, the ele
 In service of this goal, a few lemmas will be helpful. The first lemma states that sub-matchings behave identically to the corresponding representations.
 
 \vspace{5mm}
+{\color{magenta} I think the definition of $Y_\beta$ could be moved into a definition environment, as its referenced in multiple lemmas.
+Further, it may save a lot of wordy statements to define it as $Y_\beta^{a,b}$ or something else dependent on the restriction.
+}
+
 \begin{lemma}
 	Take a basis element $\beta\in W_{2n+r}^r$. Suppose $\beta$ has some sub-matching $\beta(a,b)$ with $r'$ anchors. 
 	
@@ -355,7 +359,6 @@ In service of this goal, a few lemmas will be helpful. The first lemma states th
 	Suppose $\alpha(i+a-1)=s,\alpha(i+a)=t$. Then $(T_{i+a-1}\alpha)(i+a-1)=i+a$, $(T_{i+a-1}\alpha)(s)=t$, so $\rho(T_{i+a-1}\alpha)(i)=i+1$, $\rho(T_{i+a-1}\alpha)(s-a+1)=t-a+1$. Separately, $\rho(\alpha)(i)=s-a+1$ and $\rho(\alpha)(i+1)=t-a+1$, so $T_i\rho(\alpha)(i)=i+1$ and $T_i\rho(\alpha)(s-a+1)=t-a+1$ as desired. So the map is an isomorphism and the lemma is proved.
 \end{proof}
 
-
 \vspace{5mm}
 To verify the kernel element, we will need to know exactly which basis elements are mapped to a specific basis element by a given $(1+T_i)$. The next two lemmas help address this question.
 
@@ -364,10 +367,13 @@ To verify the kernel element, we will need to know exactly which basis elements 
 	
 	Similarly, if $\beta$ has some anchor at position $u$, and $(1+T_i)\beta=(1+q)\beta$ for some $i>u$, we again have a subrepresentation $\beta(u,2n+r)$ and may define $Y_\beta$ as before. Then for all basis elements $\alpha$ such that $(1+T_i)\alpha=q^{1/2}\beta$, we have that $\alpha\in Y_\beta$ again.
 \end{lemma}
+{\color{magenta} This may be nice in an enumerate environment;
+for consistency, use [label=\{($\backslash$roman*)\}]}
 
 \begin{proof}
 	This lemma follows from an observation I made in section 2: a transposition can only create two arcs or an arc and an anchor. 
-	
+  {\color{magenta} Put a $\backslash$label at the beginning of section 2, and a $\backslash$ref to that label rather than a 2 here.}
+
 	For the first case of this lemma, if $\alpha\not\in Y_\beta$ either $\alpha(1,a-1)\not=\beta(1,a-1)$ or $\alpha(b+1,2n+r)\not=\beta(b+1,2n+r)$. Suppose it is the first case. Then for some $s,t\in [1,a-1]$, $s<t$, we have $\beta(s)=t$ and $\alpha(s)\not=t$. To have $(1+T_i)\alpha=q^{1/2}\beta$ we must have $\alpha(t)=i+1$, $\alpha(s)=i$. But then $\alpha(a)\not=b$ and $\alpha(a)\not=i$ or $i+1$, so $((1+T_i)\alpha)(a)\not=b$ and $(1+T_i)\alpha\not=q^{1/2}\beta$. The same argument proves the $\alpha(b+1,2n+r)\not=\beta(b+1,2n+r)$ case. 
 	
 	An analogous argument proves the anchor case. Specifically, the anchor cannot exist at position $u$ and is not created by action of $(1+T_i)$ if $\alpha(s)=i$ and $\alpha(t)=i+1$.
@@ -405,7 +411,7 @@ Essentially, this lemma states that the only elements sent to the same element a
 	Take a basis element $\beta\in W_{2n+r}^r$. Suppose the leftmost anchor in $\beta$ is at index $b$, or let $b=2n+r+1$ if there is no anchor. Define $a_j$ such that $\beta(a_j)=a_{j-1}+1$ and $\beta(a_1)=1$ for all $j$ such that $a_j<b$. 
 	
 	Suppose $(1+T_i)\beta=(1+q)\beta$ for some $i<b-1$ where $\not\exists s,t$ such that $\beta(s)=t$ and $s<i,t>i+1$. Suppose there is some basis element $\alpha$ such that $(1+T_i)\alpha=q^{1/2}\beta$. Then I claim the following:
-	
+  {\color{magenta} I don't think it's necessary to say that you claim these. Also, $\backslash$nexists looks like $\nexists$.}	
 	\vspace{5mm}
 	\begin{center}
 		(i) $\beta(a_{j-1}+2,a_j-1)=\alpha(a_{j-1}+2,a_j-1)$ for all $j$.
@@ -421,6 +427,7 @@ Essentially, this lemma states that the only elements sent to the same element a
 		(iiii) If $b$ is an anchor in $\alpha$, there exists exactly one value of $j$ such that $\alpha(a_j)\not=\beta(a_j)$ and $a_j\not=i+1$
 	\end{center}
 \end{lemma}
+  {\color{magenta} Why are these centered?}
 
 \begin{proof}
 	
@@ -443,7 +450,7 @@ Essentially, this lemma states that the only elements sent to the same element a
 	From (i)-(iii) we have that the only remaining matchings that can differ are the $(a_{j-1}+1,a_j)$ matchings. If one of them differs, by the same argument as before it must be fixed by the action of $(1+T_i)$, and no other nodes are changed, so (iiii) is proved.
 	
 \end{proof}
-
+{\color{magenta} Minor suggestion (not by any means a real issue): have you considered \textbf{(i)} in each paragraph just before the text?}
 
 \begin{figure}[b]
 	\[
@@ -463,6 +470,7 @@ Essentially, this lemma states that the only elements sent to the same element a
 	}
 	%\label{Action}
 \end{figure}
+
 
 \vspace{5mm}
 Lastly, we will need a small combinatorial result.
@@ -515,29 +523,37 @@ Lastly, we will need a small combinatorial result.
 	$$Q_{n-b-1}Q_{b+1}-Q_{n-b-2}Q_{b}=Q_{n}$$
 	
 	as desired, and the proof is finished by induction.
-	
+  
+  {\color{magenta} Please use the align or align* environment here. The current solution is way more spacy than necessary, and the non-aligned equalities hare hard to follow.}
 \end{proof}
+
+{\color{magenta} After reading this, I think that all of the last 4 lemmas may be best stated in the main text and proven in an appendix.}
 
 \vspace{5mm}
 We are now ready to prove existence of a kernel element. To prove this, we will show that if $w\in W_{2n+r}^r$ is as characterized above, the coordinate of any basis element in $(1+T_i)w$ is zero. This will split into various cases related to the previous lemmas.
 
 \vspace{5mm}
 \begin{proposition}
+  {\color{magenta} Need $\cap \ker (1 + T_i) \neq 0$; it is never empty.}
 	Suppose $e=n+r+1$. Then $\cap\text{ker}(1+T_i)\not=\emptyset$.
 \end{proposition}
 
 \begin{proof}
-	
+  {\color{magenta} I think this should go after the base case.}	
 	Assume inductively that the statement holds for all $W_{2n'+r'}^{r'}$ where $2n'+r'<2n+r$.
 	
 	As a base case, when $2n'+r'\leq 2$, the representation is at most one dimensional. If the one basis element has only anchors, it is sent to zero by any $(1+T_i)$, and is in the kernel. If the single basis element is a single arc, it is sent to $(1+q)$ times itself, and we take $e=n+r+1=2$ so $1+q=0$ and the base case holds.
 	
-	\vspace{5mm}
+  \vspace{5mm}
 	Now we will prove the inductive step. Take $w$ as recursively defined by proposition 3.1. Formally, suppose $x_\alpha$ is the rational function corresponding to the coordinate of $\alpha$ in its respective kernel element for $\alpha\in W_{2n'+r'}^{r'}$, $2n'+r'<2n+r$. Then we define $w$ by its coordinate vector: $\beta\in W_{2n+r}^r$, if $\beta(1)=a\not=1$ then the coordinate of $\beta$ is $x_{\beta(2,a-1)}(q)x_{a+1,2n+r}(q)\frac{Q_{n-1}...Q_{a/2}}{Q_1...Q_{a/2-1}}$; if $\beta(1)=1$ then the coordinate of $\beta$ is $x_{\beta(2,2n+r)}(q)$. 
 	\\
 	
-	Let $E_\beta\subset W_{2n+r}^r$ be the pre-image of $\beta\in (1+T_i)W_{2n+r}^r$ under the action of $(1+T_i)$. To prove $w$ is in the kernel, we must show the following: 
-	\begin{center}
+  {\color{magenta} Is $i$ arbitrary? It seems like we should require that $\beta(i) = i+1$ so that $\beta$ is actually in $\ima (1 + T_i)$.}
+  Let $E_\beta\subset W_{2n+r}^r$ be the pre-image of $\beta\in (1+T_i)W_{2n+r}^r$ under the action of $(1+T_i)$. To prove $w$ is in the kernel, we must show the following: 
+	
+  {\color{magenta} I think that there are a lot of ways to present these, but IMO just centring doesn't really work well. Putting these in an equation environment would assign them numbers that are continuous with the other such envioronments, which I think is more usual.
+otherwise, they could be put in an enumerate environment with roman numberal labels for a more uniform presentation. I mentioned how to do this in a comment above.} 
+  \begin{center}
 	(i) $(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=0\text{ for all basis elements }\beta$
 	\end{center}
 	Inductively, we assume this equation holds for basis elements in smaller representations $W_{2n'+r'}^{r'}$, but only for $q$ such that $e=n'+r'+1$. For the following proof we will need a slightly stronger inductive assumption. Take $\beta'\in W_{2n'+r'}^{r'}$, and suppose either that $\beta'(1)=2n'+r'$, and that $T_i\beta'=(1+q)\beta'$, $1<i<2n'+r'-1$, or that 1 is an anchor in $\beta$. Defining $E_{\beta'}$ as before, we assume
@@ -549,7 +565,8 @@ We are now ready to prove existence of a kernel element. To prove this, we will 
 	\vspace{5mm}
 	To prove the inductive step for both (i) and (ii), we must split into cases. Note that if $E_\beta$ is defined to be the pre-image of $\beta$ under the action of $(1+T_i)$, $E_{\beta(a,b)}$ is defined to be the pre-image of $\beta(a,b)$ under action of $(1+T_{i-a+1})$:
 	
-	\begin{enumerate}
+  {\color{magenta} I think that an itemize environment (bullet points) would be better here; the numbers feel like they suggest that these are in some way ordered or reliant on each other. That being said, I don't really know what is common for case-work like this.}
+  \begin{enumerate}
 	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, and that $\exists s,t$ such that $s<i<t-1$, $s>1$ or $t<2n+r$, and $\beta(s)=t$. Also suppose the leftmost anchor is at some index $u>t$, or that there are no anchors. Then we have a sub-matching $\beta(s,t)$, and by lemma 3.6 $E_\beta\subset Y_\beta$. Then, using corollary 3.2, the following equality holds:
 	
 	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
@@ -557,7 +574,9 @@ We are now ready to prove existence of a kernel element. To prove this, we will 
 	$$(x_{\beta(1,s-1)}(q)\frac{Q_{n+r-1}...Q_{n+r-(s-1)/2}}{Q_1...Q_{(s-1)/2-1}})((1+q)x_{\beta(s,2n+r)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_{\alpha(s,2n+r)}(q))=$$
 	
 	$$(x_{\beta(t+1,2n+r)}(q)\frac{Q_{n+r-(s-1)/2-1}...Q_{n+r-t/2}}{Q_1...Q_{(t-s+1)/2-1}})(x_{\beta(1,s-1)}(q)\frac{Q_{n+r-1}...Q_{n+r-(s-1)/2}}{Q_1...Q_{(s-1)/2-1}})((1+q)x_{\beta(s,t)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_{\alpha(s,t)}(q))$$
-	
+
+  {\color{magenta} Please use an align environment, either prn or left( right), and simplify these equations if possible.}
+
 	We have that $e>j$ for any $Q_j$ term appearing in the equation above, and $e>n'+r'$ for any sub-matching coordinate appearing above, so by corollary 3.3:
 	
 	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=0$$
@@ -718,6 +737,8 @@ We are now ready to prove existence of a kernel element. To prove this, we will 
 It should be noted that the induction for all of the above cases are codependent, but they only depend on the inductive hypotheses for $2n'+r'<2n+r$. So, since our base case holds for all the cases that apply to it, induction holds and the proposition is proved.
 
 \end{proof}
+{\color{magenta} This is technical and I didn't go through all of it;
+in general, I think that it occasionally has a somewhat conversational tone (e.g. ``the only cases we have not yet dealt with''), but otherwise I like this.}
 
 \begin{corollary}
 	If $e=n+r+1$, $W_{2n+r}^r$ is reducible, and has a unique sign subrepresentation.
