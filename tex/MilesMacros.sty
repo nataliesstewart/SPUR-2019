@@ -89,6 +89,13 @@
 
     \draw[left] ( 1/2 - 1/8 + \offset,0) node  {$#5$};
   \end{tikzpicture}}
+\newcommand\EmptyNAction[2]{
+  \begin{tikzpicture}
+    \foreach \n/\m in {#2}{
+      \draw(\n/2 + 1/2,-3/5*\m+3/5) arc[radius=1/4, start angle=0, end angle=-180];
+      \draw(\n/2,-3/5*\m) arc[radius=1/4, start angle=180, end angle=0];
+    }
+  \end{tikzpicture}}
   
 \newcommand\GeneralizedAction[9]{
   \def\GMOffset{#1/4-#3/4}

@@ -67,9 +67,9 @@
       We consider the Iwahori--Hecke algebra of the symmetric group on $2n + r$ letters with parameter $q$.
       Let $e$ be the smallest positive integer such that the $q$-number $\brk{e}_q = 0$, or set $e = \infty$ if none exist.
       We modify Khovanov's crossingless matchings to include $2n$ ``nodes'' and $r$ ``anchors,'' and prove in the case $e > n + r + 1$ that the associated module is isomorphic to the Specht module $S^{(n+r,n)}$ which corresponds to the partition $(n + r,n) \vdash 2n + r$.
-      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and almost all cases where $2n + r \leq 6$. 
+      We then give heuristics in support of the general case, including explicit composition series for $e = n + r + 1$ and for $2n + r \leq 6$. 
       Lastly, when $e = 5$, we prove an isomorphism between the irreducible quotient $D^{(n+r,n)}$ with $r \leq 3$ and some subrepresentations of Jordan--Shor's Fibonacci representation.
-      We provide explicit transition matrices between this representation and the crossingless matchings representation for almost all cases where $2n + r \leq 6$.
+      We provide explicit transition matrices between this representation and the crossingless matchings representation for $2n + r \leq 6$.
     \end{abstract}
 
   \begingroup
@@ -1114,7 +1114,7 @@ In this section we aim both to support conjecture with data and to provide trans
 \begin{remark}
   These results are restricted by two things; first and with less recourse, this was computed in Magma, a closed source language with bugs that could not be resolved in certain cases.
   Second, the memory necessary to store the Hecke algebra via basis elements and structure constants grows with $(n!)^3$;
-  this is prohibitively large when $m \geq 7$.
+  this is prohibitively large when $m > 7$.
   An implementation as a quotient by a free algebra or only specifying multiplication by generators may fix this, however, this is not possible with the Magma language, and the closed source renders modification of the language impossible.
 \end{remark}
 
@@ -1125,6 +1125,9 @@ All of these computations are done for $q$ a primitive 5th root of unity in the 
 
 We give in Figure \ref{Empirical Kernel} some data supporting a conjecture concerning sign subrepresentations of $M_{2n + r}^r$.
 The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity.
+
+It is known that, for small $2n + r$, each specht module $S^{(n+r,n)}$ has a composition series of length 2.
+We give in Figures \ref{Composition series e=3} through \ref{Composition series e=6} the map $M_{2n + r}^r \twoheadrightarrow U_{2n + r}^r$, which conjecturally illustrates the quotient $S^{(n+r,n)} \twoheadrightarrow U_{2n + r}^r$ for all $2n + r \leq 7$.
 
 \begin{figure}
 \iffalse
@@ -1150,6 +1153,16 @@ Define the following coefficients:
     -\tht & \tht & \to & 0 & \tht\\
     \tht & 0 & \tht & -\tht & 0
   \end{bmatrix}\\
+  \varphi_6^2 &= \begin{bmatrix}
+    0 & 0 & - q - 1 & 0 & 0 & 0 & 0 & 0\\
+    0 & -q - 1 & -q^{1/2} & 0 & 0 & 0 & 0 & 0\\
+    0 & q + 1 & 0 & q^{1/2} & 0 & 0 & 0 & 0\\
+    0 & 0 & -q^{1/2} & 0 & 0 & 0 & -q^2 - 1 & 0\\
+    q^{1/2} & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & 0 & 0 & -q^{1/2} & 0\\
+   -q^{1/2} & q^{1/2} & 0 & \brk{3}_{q^{1/2}} &0 & 0 & 0 & q^{1/2}\\
+   -q^{1/2} & 0 & -q^{1/2} & 0 & q^{1/2} & 0 & 0 & 0\\
+    q^{1/2} & 0 & 0 & 0 & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & -q^{1/2}
+  \end{bmatrix}\\
   \varphi_5^3 &= \begin{bmatrix}
     -\to & \tht & q^{1/2}\\
     q^{1/2} & q^{3/2} & 0\\
@@ -1169,6 +1182,7 @@ Define the following coefficients:
     -1 & 0 & 1
   \end{bmatrix}
 \end{align*}
+
 \caption{We define representations $\varphi_{2n + r}^r:M_{2n + r}^r/K_{2n + r}^r \rightarrow V^{2n + r}_{s}$, where $s = \vs\vs$ if $r = 0,3$ and $s = \vs\vp$ otherwise.
 These are given with respect to the basis on $M_{2n + r}^r$ induced by the increasing lexicographic order basis on $M_{2n + 2r}^0$ and the quotient $M_{2n + 2r}^0 \twoheadrightarrow M_{2n + r}^r$.
 These are also given with respect to the basis on $V$ given by increasing lexicographic order $\vs < \vp$.
@@ -1177,15 +1191,141 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 
 \begin{figure}
   \[
+    \ENRGrid{13/7}{2/1,5/1,8/1,11/1,1/2,4/2,7/2,10/2}
+  \]\[
     \ENRGrid{13/7}{3/1,7/1,11/1,2/2,6/2,10/2,1/3,5/3,9/3}
   \]
   \caption{
-    Illustration of the modules $M_{2n + r}^r$ having sign submodules for $p = \infty$ and $e = 4$.
+    Illustration of the modules $M_{2n + r}^r$ having sign submodules for $p = \infty$ and $e = 3,4$ respectively.
     The value $n + r + 1$ is filled in the squares, and modules having sign submodules are colored magenta.
     For $p = \infty$ and $2n + r \leq 14$, it has been verified, through a combination of theorems here and empirical computations, that $K_{2n + r}^r$ is nontrivial if and only if $e | n+r+1$ and $e < n$.
   }\label{Empirical Kernel}
 \end{figure}
 
+\def\qqo{\alpha}
+\def\tto{\beta}
+\def\vtv{\gamma}
+\def\fft{\delta}
+\def\fto{\varepsilon}
+\setcounter{MaxMatrixCols}{20}
+
+\begin{figure}
+\begin{align*} 
+  \pi_{3,3}^1 = \pi_{3,4}^0 &=  
+\begin{bmatrix}
+  1 & 1
+\end{bmatrix}\\
+\pi_{3,5}^1 = \pi_{3,6}^0&=  
+\begin{bmatrix}
+  1 & 0 & 0 & 0 & 0\\
+  0 & 0 & 1 & 1 & 0\\
+  0 & 1 & 0 & 1 & 0\\
+  0 & 0 & 0 & 1 & 1
+\end{bmatrix}\\
+\pi_{3,6}^4&=  
+\begin{bmatrix}
+  -1 & -1 & 0 & 1 & 1
+\end{bmatrix}\\
+\pi_{3,7}^3&=  
+\begin{bmatrix}
+ 1 & 0 &-1 &-1 & 1 & 0 & -1 & -1 & 0 & 0 & 0 & 0 & 1 & 1
+\end{bmatrix}\\
+\pi_{3,7}^1&=  
+\begin{bmatrix}
+ 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &-1\\
+ 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+ 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+ 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &-1\\
+ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+ 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 &-1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 &-1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 &-1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 &-1\\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1
+\end{bmatrix}
+\end{align*}
+\caption{The maps of representations $\pi_{e,2n+r}^r:M_{2n + r}^r \twoheadrightarrow U_{2n+r}^r$ for $e = 3$.}
+\label{Composition series e=3}
+\end{figure}
+  
+\begin{figure}
+\begin{align*}
+  \pi_{4,4}^2&=  
+\begin{bmatrix}
+  1 & \qqo & 1
+\end{bmatrix}\\
+\pi_{4,4}^1&=  
+\begin{bmatrix}
+  1 & \frac{1}{2}\qqo & \frac{1}{2}\qqo & 1 & \frac{1}{2}\qqo
+\end{bmatrix}\\
+\pi_{4,6}^2 &=
+\begin{bmatrix}
+  1& 0& 0& 0& 0& 0& \qqo & 1& 0\\
+  0& 1& 0& 0& 0& -1& -1& -\qqo &0\\
+  0& 0& 1& 0& 0& \qqo& 0 &1 &0\\
+  0& 0& 0& 1& 0& 0& -1& -\qqo &-1\\
+  0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo &1 &\frac{1}{2}\qqo
+\end{bmatrix}\\
+\pi_{4,6}^0 &=
+\begin{bmatrix}
+  \qqo & 1 & 1 & \qqo & 1
+\end{bmatrix}\\
+\pi_{4,7}^1 &=
+\begin{bmatrix}
+1& 0& 0& 0& \frac{1}{2}\qqo& 0& -\frac{1}{2}& -\frac{1}{2}& 0& 0& 1& 1/2& \qqo& \frac{1}{2}\\
+0& 1& 0& 0& -1& 0& \frac{1}{2}\qqo& \frac{1}{2}\qqo& 1& 0& \qqo& \frac{1}{2}\qqo& -1 & \frac{1}{2}\qqo\\
+0& 0& 1& 0& -1& 0& 0& \qqo& 1& 0& -\qqo& 0& -1& 0\\
+0& 0& 0& 1& \qqo& 0& 0& -1& -\qqo& 0& 1& -1& 0& 0\\
+0& 0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo& 0& 0& 0& \frac{1}{2}\qqo& -1& \frac{1}{2}\qqo\\
+0& 0& 0& 0& 0& 0& 0& 0& 0& 1& -\frac{1}{2}\qqo& \frac{1}{2}\qqo& 1& \frac{1}{2}\qqo
+\end{bmatrix}\\
+\end{align*}
+\caption{The maps of representations $\pi_{e,2n+r}^r:M_{2n + r}^r \twoheadrightarrow U_{2n+r}^r$ for $e = 4$.}
+\label{Composition series e=4}
+\end{figure}
+
+\begin{figure}
+\begin{align*}
+  \pi_{5,5}^3 &=
+\begin{bmatrix}
+  1 & \tto & \tto & 1
+\end{bmatrix}\\
+\pi_{5,6}^2 &=
+\begin{bmatrix}
+  \tto& \tto& 1& 1& \tto+1& \tto & \tto & \tto & 1
+\end{bmatrix}\\
+\pi_{5,7}^3 &=
+\begin{bmatrix}
+1& \tto& \tto& 1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
+0& 0& 0& 0& 1& \tto& \tto& 1& 0& 0& 0& 0& 0& 0\\
+1& 0& 0& 0& 0& 0& 0& 0& \tto& \tto& 1& 0& 0& 0\\
+\tto& \tto& 1& 0& 1& \tto+1& \tto& 0& \tto& \tto& 0& 1& 0& 0\\
+-\tto-1& -\tto& -\tto& 0& -\tto& -\tto-1& -\tto-1& 0& -\tto-1& -\tto-1& 0& 0& 1& 0\\
+0& 0& 1& 0& 0& 0& \tto& 0& 0& \tto& 0& 0& 0& 1
+\end{bmatrix}\\
+\pi_{5,7}^1 &=
+\begin{bmatrix}
+1& \qqo& \qqo& \qqo& -\tto& \qqo& -\tto& \qqo& -\tto& 1& \qqo& \qqo& \qqo& -\tto
+\end{bmatrix}\\
+\pi_{6,6}^4 &=
+\begin{bmatrix}
+  1 & \vtv & 2 & \vtv & 1 
+\end{bmatrix}\\
+\pi_{6,7}^3 &=
+\begin{bmatrix}
+  \vtv & 2 & \vtv & 1 & 1 & 2\vtv & 3 & \vtv & 2 & 2\vtv & 2 & 2 & \vtv & 1
+\end{bmatrix}\\
+\pi_{6,7}^5 &=
+\begin{bmatrix}
+  1 & \fft & \fto & \fto & \fft & 1
+\end{bmatrix}
+\end{align*}
+\caption{The maps of representations $\pi_{e,2n+r}^r:M_{2n + r}^r \twoheadrightarrow U_{2n+r}^r$ for $e = 5,6$.}
+\label{Composition series e=6}
+\end{figure}
 
 \newpage
 \appendix
