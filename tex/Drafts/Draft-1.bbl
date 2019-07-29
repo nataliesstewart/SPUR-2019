@@ -1,34 +1,80 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Ariki}
+Susumu Ariki.
+\newblock \href{https://projecteuclid.org/euclid.kjm/1250518452}{On the
+  decomposition numbers of the {H}ecke algebra of {$G(m,1,n)$}}.
+\newblock {\em J. Math. Kyoto Univ.}, 36(4):789--808, 1996.
 
 \bibitem{Brundan}
 Jonathan Brundan.
-\newblock Modular branching rules and the {M}ullineux map for {H}ecke algebras
-  of type {$A$}.
+\newblock
+  \href{https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/S0024611598000562}{Modular
+  branching rules and the {M}ullineux map for {H}ecke algebras of type {$A$}}.
 \newblock {\em Proc. London Math. Soc. (3)}, 77(3):551--581, 1998.
 
 \bibitem{Etingof}
 Pavel Etingof, Oleg Golberg, Sebastian Hensel, Tiankai Liu, Alex Schwendner,
   Dmitry Vaintrob, and Elena Yudovina.
-\newblock {\em Introduction to representation theory}, volume~59 of {\em
-  Student Mathematical Library}.
+\newblock {\em \href{https://doi.org/10.1090/stml/059}{Introduction to
+  representation theory}}, volume~59 of {\em Student Mathematical Library}.
 \newblock American Mathematical Society, Providence, RI, 2011.
 \newblock With historical interludes by Slava Gerovitch.
 
+\bibitem{Github}
+Miles Johnson and Natalie Stewart.
+\newblock Github repository associated with some graphical realizations of
+  two-row {S}pecht modules of {I}wahori-{H}ecke algebras of the symmetric
+  group.
+\newblock \url{https://github.com/nataliesstewart/Hecke-Heuristics}, 2019.
+
+\bibitem{Khovanov}
+Mikhail Khovanov.
+\newblock
+  \href{https://www.worldscientific.com/doi/abs/10.1142/S0219199704001471}{Crossingless
+  matchings and the cohomology of {$(n,n)$} {S}pringer varieties}.
+\newblock {\em Commun. Contemp. Math.}, 6(4):561--577, 2004.
+
 \bibitem{Kleshchev}
 Alexander~S. Kleshchev.
-\newblock Branching rules for modular representations of symmetric groups.
-  {II}.
+\newblock \href{https://doi.org/10.1515/crll.1995.459.163}{Branching rules for
+  modular representations of symmetric groups. {II}}.
 \newblock {\em J. Reine Angew. Math.}, 459:163--212, 1995.
+
+\bibitem{LLT}
+Alain Lascoux, Bernard Leclerc, and Jean-Yves Thibon.
+\newblock
+  \href{https://www.sciencedirect.com/science/article/pii/S0021869385710794?via%3Dihub}{Hecke
+  algebras at roots of unity and crystal bases of quantum affine algebras}.
+\newblock {\em Comm. Math. Phys.}, 181(1):205--263, 1996.
 
 \bibitem{Mathas-book}
 Andrew Mathas.
-\newblock {\em Iwahori-{H}ecke algebras and {S}chur algebras of the symmetric
-  group}, volume~15 of {\em University Lecture Series}.
+\newblock {\em \href{http://www.ams.org/books/ulect/015/}{Iwahori-{H}ecke
+  algebras and {S}chur algebras of the symmetric group}}, volume~15 of {\em
+  University Lecture Series}.
 \newblock American Mathematical Society, Providence, RI, 1999.
 
 \bibitem{Mathas-article}
 Andrew Mathas.
-\newblock Restricting {S}pecht modules of cyclotomic {H}ecke algebras.
+\newblock
+  \href{https://link.springer.com/article/10.1007%2Fs11425-016-9032-2}{Restricting
+  {S}pecht modules of cyclotomic {H}ecke algebras}.
 \newblock {\em Sci. China Math.}, 61(2):299--310, 2018.
+
+\bibitem{Murphy1}
+Gerard Murphy.
+\newblock
+  \href{https://www.sciencedirect.com/science/article/pii/S0021869385710794?via%3Dihub}{On
+  the representation theory of the symmetric groups and associated {H}ecke
+  algebras}.
+\newblock {\em J. Algebra}, 152(2):492--513, 1992.
+
+\bibitem{Murphy2}
+Gerard Murphy.
+\newblock
+  \href{https://www.sciencedirect.com/science/article/pii/S0021869385710794?via%3Dihub}{The
+  representations of {H}ecke algebras of type {$A_n$}}.
+\newblock {\em J. Algebra}, 173(1):97--121, 1995.
 
 \end{thebibliography}

@@ -25,7 +25,7 @@ def make_matrix_generalized(n,q,restriction = 0,r=0):
     C = len(basis)
     m = numpy.zeros(C)
     # i iterates over the simple transpositions considered
-    for i in range(n - restriction - 1):
+    for i in range(n + r - restriction - 1):
         # generate the matrix by applying the transposition to each basis vector and taking the resulting coefficients
         outs = [b.mult_generator(i+1) for b in basis]
         outsmat = numpy.matrix([[out.coeff(b) for out in outs] for b in basisraw])
@@ -59,7 +59,7 @@ def kernel_dimension(n,q,restriction=1,r=0):
     """
     Find the dimension of the kernel of the matrix found above.
     """
-    m = make_matrix(n,q,restriction,r)
+    m = make_matrix_generalized(n,q,restriction,r)
     return m.shape[1] - numpy.linalg.matrix_rank(m)
 
 def test_modular_kernels(nmax,nmin=4,restrictions=[1],debug=False,write=None):
@@ -120,20 +120,33 @@ restrictions = [0,1,2,3,4,5,6]
 write = csv.writer(open("Heuristic_data.csv","w"))
 test_modular_kernels(nmax,nmin,restrictions,debug,write)
 """
-"""
+
 # another test simply printing kernels for a particular q and restriction
-nmin = 4
-nmax = 16
-q = 1
-restriction = 1
+nmin = 2
+nmax = 14
+emax = 12
+restriction = 0
 oldtime = time.process_time()
+dimensions = [[["" for asdf in range(nmax)] for sdfg in range(nmax//2)] for dfgt in range(emax)]
+for e in range(2,10):
+    q = cmath.exp(2*cmath.pi*cmath.sqrt(-1)/e)
+    for n in range(nmin,nmax+1,2):
+        for r in range(0,nmax-n+1):
+            dim = kernel_dimension(n,q,restriction,r)
+            newtime = time.process_time()
+            print("Case e = {:2d} \t 2n = {:2d} \t r = {:2d} \t has kernel dmension {} \t and took {:4f} seconds.".format(e,n,r,dim,newtime - oldtime))
+            dimensions[e-1][n//2-1][r] = dim
+            oldtime = newtime
+    for row in dimensions[e-1]:
+        print(row)
+"""
 for n in range(nmin,nmax+1,2):
     dim = kernel_dimension(n,q,restriction)
     newtime = time.process_time()
     print("Semisimple case n = {:2d} \t has kernel dmension {} \t and took {:4f} seconds.".format(n,dim,newtime - oldtime))
     oldtime = newtime
 """
-
+"""
 q = 1
 for n in range(2,15,2):
     for r in range(0,15):
@@ -146,3 +159,4 @@ for n in range(2,15,2):
             f.write("\n/\n".join(["\n".join([",".join(row) for row in arr]) for arr in rep]))
             f.close()
             print("n={},r={} completed.".format(n,r))
+"""
