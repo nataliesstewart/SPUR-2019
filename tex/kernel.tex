@@ -31,6 +31,8 @@ For compactness, in this document I use $\sim $ to denote "proportional to".
   Fix some basis element $M\in W_{2n+r}^r$. Define $M(a):=b$ iff $a$ and $b$ are matched in $M$, $M(a):=a$ if $a$ is an anchor in $M$.
   {\color{magenta} Should specify that $a,b$ are integers $1 \leq a,b \leq 2n + r$.} 
   Given that $M$ has $r'$ anchors in the range $a,..,b$, define a \textbf{sub-matching} $M(a,b)$ of $M$ to be the basis element $K\in W_{b-a+1}^{r'}$ specified by $K(i)=M(i+a-1)-a+1$. This sub-matching is defined for $a<b$ when $M(i)\in \{a,a+1,...,b\}$ for all $i\in \{a,a+1,...,b\}$. See Figure 1.
+  
+  If $b\geq a$ and nodes $1\leq a,...,b\leq 2n+r$, $M(a,b)$ will still refer to those nodes, but will not be a sub-matching. For any other $a,b$, we define $M(a,b)$ to be an element of the representation with no nodes.
 \end{definition}
 
 \begin{figure} 
@@ -79,7 +81,6 @@ Given a rainbow element $R$, define the basis elements $R_{R,i},R_{L,i}$ to be t
 \begin{proposition}
 	Let $w$ be an element in the kernel intersection $\cap (1+T_k)$ in some generalized crossingless matchings representation. Let $y$ be a basis element with coordinate $c$ in $w$. Suppose $\exists a,b$ such that $y(a,b)=R$, the rainbow element. Define the basis elements $\theta_i,\phi_i$ by $\theta_i(1,a-1)=\phi(1,a-1)=y(1,a-1)$, $\theta_i(b+1,2n)=\phi(b+1,2n)=y(b+1,2n)$, $\theta_i(a,b)=R_{R,i}$, $\phi_i(a,b)=R_{L,i}$ (leave $\theta_i$ or $\phi_i$ undefined for any $i$ where $R_{R,i},R_{L,i}$ are undefined, respectively). The coordinates of $\phi_i$ and $\theta_i$ in $w$ are both $Q_ic$.
 \end{proposition}
-{\color{red} Need to note that some of these may not be sub-matchings}
 
 Proof of this proposition requires a simple algebraic fact that will be used throughout this document, so I state it as a lemma.
 
@@ -401,7 +402,7 @@ Essentially, this lemma states that the only elements sent to the same element a
 
 \vspace{5mm}
 \begin{lemma}
-	Take a basis element $\beta\in W_{2n+r}^r$. Suppose the leftmost anchor in $\beta$ is at index $b$. Define $a_j$ such that $\beta(a_j)=a_{j-1}+1$ and $\beta(a_1)=1$ for all $j$ such that $a_j<b$. 
+	Take a basis element $\beta\in W_{2n+r}^r$. Suppose the leftmost anchor in $\beta$ is at index $b$, or let $b=2n+r+1$ if there is no anchor. Define $a_j$ such that $\beta(a_j)=a_{j-1}+1$ and $\beta(a_1)=1$ for all $j$ such that $a_j<b$. 
 	
 	Suppose $(1+T_i)\beta=(1+q)\beta$ for some $i<b-1$ where $\not\exists s,t$ such that $\beta(s)=t$ and $s<i,t>i+1$. Suppose there is some basis element $\alpha$ such that $(1+T_i)\alpha=q^{1/2}\beta$. Then I claim the following:
 	
@@ -463,6 +464,59 @@ Essentially, this lemma states that the only elements sent to the same element a
 	\label{Action}
 \end{figure}
 
+\vspace{5mm}
+Lastly, we will need a small combinatorial result.
+
+\begin{lemma}
+	Suppose $n>b\geq a>0$ and $e>n$. Then $$Q_{n-a}Q_b-Q_{n-b-1}Q_{a-1}=Q_{n}Q_{b-a}$$
+\end{lemma}
+
+\begin{proof}
+	If $b=1$, the only possibility for $a$ is 1, in which reduces to lemma 2.4.
+	
+	Suppose the lemma is true for all $\tilde{b}<b+1$. Then for $a< b$ we have 
+	
+	$$Q_{n-a}Q_b -Q_{n-b-1}Q_{a-1}=Q_{n}Q_{b-a}$$
+	
+	$$Q_1Q_{n-a}Q_b-Q_1Q_{n-b-1}Q_{a-1}=Q_1Q_{n}Q_{b-a}$$
+	
+	from lemma 2.4, we have
+	
+	$$Q_{n-a}(Q_{b+1}+Q_{b-1})-(Q_{n-b}+Q_{n-b-2})Q_{a-1}=Q_{n}(Q_{b-a-1}+Q_{b-a+1})$$
+	
+	and from the inductive hypothesis we have
+	
+	$$Q_{n-a}Q_{b+1}-Q_{n-b}Q_{a-1}=Q_{n}Q_{b-a+1}$$
+	
+	as desired.
+	
+	For $a=b$ we have 
+	
+	$$Q_{n-b}Q_b -Q_{n-b-1}Q_{b-1}=Q_{n}$$
+	
+	$$Q_1Q_{n-b}Q_b-Q_1Q_{n-b-1}Q_{b-1}=Q_1Q_{n}$$
+	
+	from lemma 2.4, we have
+	
+	$$Q_{n-b}(Q_{b+1}+Q_{b-1})-(Q_{n-b}+Q_{n-b-2})Q_{b-1}=Q_1Q_{n}$$
+	
+	$$Q_{n-b}Q_{b+1}-Q_{n-b-2}Q_{b-1}=Q_1Q_{n}$$
+	
+	as desired.
+	
+	For $a=b+1$, we continue:
+	
+	$$Q_1Q_{n-b}Q_{b+1}-Q_1Q_{n-b-2}Q_{b-1}=Q_1Q_1Q_{n}$$
+	
+	$$(Q_{n-b-1}+Q_{n-b+1})Q_{b+1}-Q_{n-b-2}(Q_{b}+Q_{b-2})=(1+Q_2)Q_{n}$$
+	
+	So by the inductive hypothesis
+	
+	$$Q_{n-b-1}Q_{b+1}-Q_{n-b-2}Q_{b}=Q_{n}$$
+	
+	as desired, and the proof is finished by induction.
+	
+\end{proof}
 
 \vspace{5mm}
 We are now ready to prove existence of a kernel element. To prove this, we will show that if $w\in W_{2n+r}^r$ is as characterized above, the coordinate of any basis element in $(1+T_i)w$ is zero. This will split into various cases related to the previous lemmas.
@@ -493,10 +547,10 @@ We are now ready to prove existence of a kernel element. To prove this, we will 
 	\end{center}
 	
 	\vspace{5mm}
-	To prove the inductive step for both (i) and (ii), we must split into cases:
+	To prove the inductive step for both (i) and (ii), we must split into cases. Note that if $E_\beta$ is defined to be the pre-image of $\beta$ under the action of $(1+T_i)$, $E_{\beta(a,b)}$ is defined to be the pre-image of $\beta(a,b)$ under action of $(1+T_{i-a+1})$:
 	
 	\begin{enumerate}
-	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, and that $\exists s,t$ such that $s<i<t-1$, $s>1$ or $t<2n+r$, and $\beta(s)=t$. Also suppose the leftmost anchor is at some index $u>t$. Then we have a sub-matching $\beta(s,t)$, and by lemma 3.6 $E_\beta\subset Y_\beta$. Then, using corollary 3.2, the following equality holds:
+	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, and that $\exists s,t$ such that $s<i<t-1$, $s>1$ or $t<2n+r$, and $\beta(s)=t$. Also suppose the leftmost anchor is at some index $u>t$, or that there are no anchors. Then we have a sub-matching $\beta(s,t)$, and by lemma 3.6 $E_\beta\subset Y_\beta$. Then, using corollary 3.2, the following equality holds:
 	
 	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
 	
@@ -526,19 +580,147 @@ We are now ready to prove existence of a kernel element. To prove this, we will 
 	Note that in both corollary 3.2 and our inductive hypothesis (ii) we specified cases involving anchors. This allows the exact same logic from the proof of the first case to prove this case.
 	
 	\vspace{5mm}
-	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, the leftmost anchor is at a position $u>i+1$, and $\not\exists s,t$ such that $\beta(s)=t$ and $s<i<t-1$. Lemma $3.7$ characterizes all $\alpha\in E_\beta$. We would like to prove the following for arbitrary $q$ where $e>n+r$:
+	\item Suppose $\beta\in (1+T_i)W_{2n+r}^r$ for some $i$, the leftmost anchor is at a position $u>i+1$ or there are no anchors, and $\not\exists s,t$ such that $\beta(s)=t$ and $s<i<t-1$. Lemma $3.7$ characterizes all $\alpha\in E_\beta$. We would like to prove the following for arbitrary $q$ where $e>n+r$:
 	
 	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}$$
 	
-	See figure 9 for an example of this equality.
+	See figure 9 for an example of this equality. Note that if $e=n+r+1$, $Q_{n+r}$ is the only zero component in the right side of this equation, so proving this equation is sufficient to prove case three.
 	\\
 	
-	We will prove this equality through yet another inductive proof, this time inducting on the number of top level humps to the left of the rightmost anchor.
+	We will prove this equality through yet another inductive proof, this time inducting on the number of top level humps, including the leftmost anchor.
 	
-	Formally, as we have in earlier lemmas, we will define $a_j$ by $a_1:=\beta(1)$, $a_j:=\beta(a_{j-1}+1)$. Then $a_b=u$ for some $b>1$. 
+	Formally, as we have in earlier lemmas, we will define $a_j$ by $a_1:=\beta(1)$, $a_j:=\beta(a_{j-1}+1)$. Then define $b_\beta$ such that $a_{b_\beta}=u$ if there is an anchor or $a_{b_\beta}=2n+r$ otherwise. We induct on $b_\beta$.
+	\\
+	
+	If $b_\beta=1$, we must be in $W_2^0$ to be in case 3 (otherwise $s<i<t-1$ for some $s,t$ where $\beta(s)=t$), which is trivially satisfied. 
+	\\
+	
+%	For our base case we will prove $b=2$. This means either $a_1+1$ is an anchor, or $\beta(a_1+1)=2n+r$. 
+%	\\
+%	
+%	First base case:
+%	
+%	If $a_1+1$ is an anchor, to still be in case 3 we must have $i=1$ and $a_1=2$. In this case, lemma 3.7 gives that there is only one element in $E_\beta$, and that element is $\alpha$ defined by $\alpha(4,2n+r)=\beta(4,2n+r)$, $\alpha(1)=1$, and $\alpha(2)=3$. Then $x_\beta=Q_{n+r-1}x_\beta(3,2n+r)=Q_{n+r-1}\beta(4,2n+r)$ and $x_\alpha=x_{\alpha(2,2n+r)}=Q_{n+r-2}x_{\beta(4,2n+r)}$. So, using lemma 2.4, we have $(q+1)x_\beta(q)+q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(4,2n+4)}(q)Q_{n+r}$ as desired.
+%	\\
+%	
+%	Second base case: 
+%	
+%	If $\beta(a_1+1)=2n+r$, to be in case 3 we need either $a_1=2$ or $a_1=2n+r-2$. In both cases lemma 3.7 gives only one element $\alpha$ in $E_\beta$. In the first case $x_\beta=Q_{n+r-1}x_{\beta(3,2n+r)}=Q_{n+r-1}x_{\beta(4,2n+r-1)}$, and $x_\alpha=x_{\alpha(2,2n+r-1)}=Q_{n+r-2}x_{\beta(4,2n+r-1)}$ so again using lemma 2.4 $(q+1)x_\beta(q)+q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(4,2n+r)}(q)Q_{n+r}$ as desired. In the second case $x_\beta=\frac{Q_{n+r-1}...Q_{1}}{Q_1...Q_{n+r-2}}x_{\beta(2,2n+r-3)}=Q_{n+r-1}x_{\beta(2,2n+r-3)}$, and, using corollary 3.3, $x_\alpha=\frac{Q_{n+r-2}...Q_{1}}{Q_1...Q_{n+r-3}}x_{\alpha(2,2n+r-3)}=Q_{n+r-2}x_{\beta(2,2n+r-3)}$, so again using lemma 2.4, we have $(q+1)x_\beta(q)+q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(1,2n+r-2)}(q)Q_{n+r}$ as desired, and all base cases are proved.
+%	\\
+	
+	Suppose for all basis elements $\alpha$ such that $b_\alpha<b_\beta$, the equality holds. Suppose $i\not=1$. Then $a_1<i$ and lemma 3.7 gives that there is a unique $\upsilon\in E_\beta$ such that $\upsilon(1)\not=a_1$. Thus we have the following equality:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(1,a_1)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}})((1+q)x_{\beta(a_1+1,2n+r)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_{\alpha(a_1+1,2n+r)}(q))$$
+	
+	Define $Y_\beta$ as before with respect to the sub-matching $\beta(a_1+1,2n+r)$. Then $\alpha\in E_\beta$, $\alpha\not=\upsilon$ implies $\alpha\in Y_\beta$. By our inductive hypothesis, we have that 
+	$$(1+q)x_{\beta(a_1+1,2n+r)}(q)+\sum_{\alpha\in E_{\beta(a_1+1,2n+r)},\alpha\not=\beta(a_1+1,2n+r)}q^{1/2}x_{\alpha}(q)=$$
+	$$
+	-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}}$$
+	
+	By lemma 3.5, $\alpha\subset Y_\beta$, $\alpha\in E_\beta$ if and only if $\alpha(a_1+1,2n+r)\in E_{\beta(a_1+1,2n+r)}$. This implies:
+	
+	$$(1+q)x_{\beta(a_1+1,2n+r)}(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_{\alpha(a_1+1,2n+r)}(q)=$$
+	
+	$$-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}}$$
+	
+	So, combining with the aforementioned equality, we have 
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(1,a_1)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}})(-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}})=$$
+	
+	$$(x_{\beta(1,a_1)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_1/2}}{Q_1...Q_{a_1/2-1}})(-q^{1/2}x_{\beta(a_1+1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-a_1/2}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1-a_1)/2}})(\frac{Q_{(i-1)/2-1}...Q_{(i-1-a_1)/2}}{Q_{(i-1)/2-1}...Q_{(i-1-a_1)/2}})=$$
+	
+	$$-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}(\frac{Q_{n+r-a_1/2}Q_{(i-1)/2}}{Q_{(i-1-a_1)/2}})$$
+	\\
+	
+	Separately, note that $\upsilon$ is defined by $\upsilon(2,a_1-1)=\beta(2,a_1-1)$, $\upsilon(a_1+1,i-1)=\beta(a_1+1,i-1)$, $\upsilon(i+2,2n+r)=\beta(i+2,2n+r)$, and $\upsilon(1)=i+1$, $\upsilon(a_1)=i$. Thus we may determine $x_\upsilon$, again utilizing corollary 3.2:
+	
+	$$x_\upsilon=x_{\beta(i+2,2n+r)}x_{\upsilon(2,i)}\frac{Q_{n+r-1}...Q_{n+r-(i+1)/2}}{Q_1...Q_{(i-1)/2}}=$$
+	
+	$$x_{\beta(i+2,2n+r)}(x_{\beta(2,a_1-1)}x_{\upsilon(a_1,i)}\frac{Q_{(i-1)/2-1}...Q_{(i-1)/2-(a_1-2)/2}}{Q_1...Q_{(a_1-2)/2-1}})\frac{Q_{n+r-1}...Q_{n+r-(i+1)/2}}{Q_1...Q_{(i-1)/2}}=$$
+	
+	$$x_{\beta(i+2,2n+r)}(x_{\beta(1,a_1)}x_{\beta(a_1+1,i-1)}\frac{Q_{(i-1)/2-1}...Q_{(i-1)/2-(a_1-2)/2}}{Q_1...Q_{(a_1-2)/2-1}})\frac{Q_{n+r-1}...Q_{n+r-(i+1)/2}}{Q_1...Q_{(i-1)/2}}=$$
+	
+	$$x_{\beta(i+2,2n+r)}x_{\beta(1,i-1)}\frac{Q_{n+r-1}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}(\frac{Q_{n+r-(i+1)/2}Q_{a_1/2-1}}{Q_{(i-1-a_1)/2}})$$
+	\\
+	
+	Adding this into our previous equation, we have:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
+	
+	$$-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}(\frac{Q_{n+r-a_1/2}Q_{(i-1)/2}-Q_{n+r-(i+1)/2}Q_{a_1/2-1}}{Q_{(i-1-a_1)/2}})$$
+	
+	Applying lemma 3.8 to the portion of the equation above in parenthesis, the above is equivalent to
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=-q^{1/2}x_{\beta(1,i-1)}(q)x_{\beta(i+2,2n+r)}(q)\frac{Q_{n+r}...Q_{n+r-(i-1)/2}}{Q_1...Q_{(i-1)/2}}$$
+	
+	as desired. Note that if $e\geq n+r+1$ the only term above that can be zero is $Q_{n+r}$ (by corollary 3.3). Thus we have proved the inductive step for the case where $i\not=1$.
+	
+	\vspace{5mm}
+	If $i=1$, we instead look at the sub-matchings $\beta(1,a_{(b_\beta-1)})$, $\beta(a_{(b_\beta-1)}+1,2n+r)$. Again lemma 3.7 gives that there is a unique $\upsilon\in E_\beta$ such that $\upsilon(a_{(b_\beta-1)}+1)\not=\beta(a_{(b_\beta-1)}+1)$. Taking $Y_\beta$ with respect to the sub-matching $\beta(a_{(b_\beta-1)}+1,a_{b_\beta})$ again we have that $\alpha\in E_\beta$, $\alpha\not=\upsilon$ implies $\alpha\in Y_\beta$. Thus, following the same logic as before, we arrive at the following equality:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	$$(x_{\beta(a_{(b_\beta-1)}+1,2n+r)}(q)\frac{Q_{n+r-1}...Q_{n+r-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}})(-q^{1/2}x_{\beta(3,a_{(b_\beta-1)})}(q)Q_{a_{(b_\beta-1)}/2})=$$
+	
+	$$-q^{1/2}x_{\beta(3,2n+r)}\frac{Q_{n+r-1}Q_{a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$
+	\\
+	
+	Again, we know the structure of $\upsilon$ from lemma 3.7. Suppose for now that $a_{b_\beta}$ is not an anchor, so it is $2n+r$. Then $\upsilon$ is defined by $\upsilon(3,a_{(b_\beta-1)})=\beta(3,a_{(b_\beta-1)})$, $\upsilon(a_{(b_\beta-1)}+2,2n+r-1)=\beta(a_{(b_\beta-1)}+2,2n+r-1)$, and $\upsilon(1)=2n+r$, $\upsilon(2)=a_{(b_\beta-1)}+1$. So we may again find $x_\upsilon$:
+	
+	$$x_\upsilon=x_{\upsilon(2,2n+r-1)}=x_{\beta(3,a_{(b_\beta-1)})}x_{\beta(a_{(b_\beta-1)}+2,2n+r-1)}\frac{Q_{n+r-2}...Q_{n+r-1-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}}=$$
+	
+	$$x_{\beta(3,a_{(b_\beta-1)})}x_{\beta(a_{(b_\beta-1)}+1,2n+r)}\frac{Q_{n+r-2}...Q_{n+r-1-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}}=x_{\beta(3,2n+r)}\frac{Q_{n-r-1-a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$
+	
+	Alternatively, if $a_{b_\beta}$ is an anchor, the definition of $\upsilon$ is now $\upsilon(3,a_{b_\beta}-1)=\beta(3,a_{b_\beta}-1)$, $\upsilon(a_{b_\beta}+1,2n+r)=\beta(a_{b_\beta}+1,2n+r)$, and $\upsilon(1)=1$, $\upsilon(2)=a_{b_\beta}$, so we have:
+	
+	$$x_\upsilon=x_{\upsilon(2,2n+r)}=x_{\beta(3,a_{(b_\beta-1)})}x_{\beta(a_{b_\beta}+1,2n+r)}\frac{Q_{n+r-2}...Q_{n+r-1-a_{(b_\beta-1)}/2}}{Q_1...Q_{a_{(b_\beta-1)}/2-1}}=x_{\beta(3,2n+r)}\frac{Q_{n-r-1-a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$
+	
+	so for our purposes $x_\upsilon$ is the same in either case.
+	
+	Incorporating into the above equation, we have:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
 	
 	
+	$$-q^{1/2}x_{\beta(3,2n+r)}\frac{Q_{n+r-1}Q_{a_{(b_\beta-1)}/2}-Q_{n-r-1-a_{(b_\beta-1)}/2}}{Q_{a_{(b_\beta-1)}/2-1}}$$	
+	
+	By lemma 3.8, this is simply $-q^{1/2}x_{\beta(3,2n+r)}Q_{n+r}$ as desired, and we have finished proving case 3.
+	\\
+	
+	\item The only cases we have not yet dealt with are those where either $1$ is an anchor or $\beta(1)=2n+r$. These are those cases related to our inductive hypothesis (ii).
+	
+	To not be in case 1 or 2, we must have that there are no anchors between index 1 and $i$, and that there is no integer $s$ such that $1<s<i<\beta(s)-1$. It follows from the same argument that proved lemma 3.6 that there exists exactly one $\upsilon\in E_\beta$ such that $\upsilon(1)\not=\beta(1)$. Define $N$ to be $2n+r$ if 1 is an anchor, or $2n+r-1$ if 1 is not an anchor. Then, defining $Y_\beta$ with respect to the sub-matching $\beta(2,N)$, we have that $\alpha\in E_\beta, \alpha\not=\upsilon$ if and only if $\alpha(2,N)\in E_{\beta(2,N)}$. Note that for $E_{\beta(2,N)}$ we may apply the inductive hypothesis from case 3, so we have:
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta,\upsilon}q^{1/2}x_\alpha(q)=$$
+	
+	
+	$$(1+q)x_{\beta(2,N)}(q)+\sum_{\alpha\in E_{\beta(2,N)},\alpha\not=\beta(2,N)}q^{1/2}x_{\alpha}(q)=$$
+	
+	$$-q^{1/2}x_{\beta(2,i-1)}x_{\beta(i+2,N)}\frac{Q_{n+r-1}...Q_{n+r-i/2}}{Q_1...Q_{(i/2-1}}$$
+	
+	As in case 3, we can also determine $x_\upsilon$. $\upsilon$ is defined by $\upsilon(2,i-1)=\beta(2,i-1)$, $\upsilon(i+2,N)=\beta(i+2,N)$, $\upsilon(1)=i$, and $\upsilon(i+1)=2n+r$ if 1 is not an anchor or $i+1$ if 1 is an anchor, and we have:
+	
+	$$x_\upsilon=x_{\beta(2,i-1)}x_{\upsilon(i+2,N)}\frac{Q_{n+r-1}...Q_{n+r-i/2}}{Q_1...Q_{i/2-1}}$$
+	
+	Thus we have
+	
+	$$(1+q)x_\beta(q)+\sum_{\alpha\in E_\beta,\alpha\not=\beta}q^{1/2}x_\alpha(q)=$$
+	
+	$$-q^{1/2}x_{\beta(2,i-1)}x_{\beta(i+2,N)}\frac{Q_{n+r-1}...Q_{n+r-i/2}}{Q_1...Q_{(i/2-1}}(1-1)=0$$
+	
+	as desired, and the last case is proved.
 	\end{enumerate}
+
+It should be noted that the induction for all of the above cases are codependent, but they only depend on the inductive hypotheses for $2n'+r'<2n+r$. So, since our base case holds for all the cases that apply to it, induction holds and the proposition is proved.
+
 \end{proof}
+
+\begin{corollary}
+	If $e=n+r+1$, $W_{2n+r}^r$ is reducible, and has a unique sign subrepresentation.
+\end{corollary}
 
 \end{document}
