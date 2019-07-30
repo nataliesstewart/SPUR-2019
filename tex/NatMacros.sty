@@ -164,6 +164,8 @@
           \draw(\x/2,-3/5*\m) to (\x/2,-3/5*\m+3/5);         
         }
       }\fi
+      
+      \draw[dotted,black!60!white](1/2,-3/5*\m+3/5) -- ++ (#1/2-1/2,0);
 
       \pgfmathtruncatemacro{\s}{#1-2}
       \pgfmathtruncatemacro{\t}{#1-1}
@@ -176,7 +178,121 @@
       \draw(\n/2,-3/5*\m) arc[radius=1/4, start angle=180, end angle=0];
     }
   \end{tikzpicture}}
+\newcommand\CapNAction[3]{
+  \begin{tikzpicture}
+    \foreach \n/\m in {#2}{
+      \draw[dotted](1/2,-3/5*\m+3/5) -- ++ (#1/2-1/2,0);
+      \pgfmathtruncatemacro{\t}{\n-1}
+      \ifnum \n > 1{
+      \foreach \x in {1,...,\t}{
+          \draw(\x/2,-3/5*\m) to (\x/2,-3/5*\m+3/5);         
+        }
+      }\fi
+
+      \pgfmathtruncatemacro{\s}{#1-2}
+      \pgfmathtruncatemacro{\t}{#1-1}
+      \ifnum \n < \t{
+        \foreach \x in {\n,...,\s}{
+          \draw(\x/2+1,-3/5*\m) to (\x/2+1,-3/5*\m+3/5);
+        }
+      }\fi
+      \draw(\n/2 + 1/2,-3/5*\m+3/5) arc[radius=1/4, start angle=0, end angle=-180];
+      \draw(\n/2,-3/5*\m) arc[radius=1/4, start angle=180, end angle=0];
+    }
+      \draw(#3/2,0) arc[radius=1/4, start angle=180, end angle=0];
+  \end{tikzpicture}}
+\newcommand\BigNAction{
+  \begin{tikzpicture}
+    \draw[dotted](0,0) -- ++ (-3/2,0);
+    \draw(0,0) arc[radius=3/4, start angle=0, end angle=-180];
+    \draw(-3/2,-9/5) arc[radius=3/4, start angle=180, end angle=0];
+    \draw(-1,-9/5) arc[radius=1/4, start angle=180, end angle=0];
+  \end{tikzpicture}}
+
+\newcommand\PreGeneralizedAction[8]{
+  \def\voffset{#7}
+  \def\hoffset{#8}
+    \def\GMOffset{#1/4-#3/4}
+    \draw[dotted](1/2+\hoffset,\voffset) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2+\hoffset,\voffset)circle[radius=.2mm];
+     }
+      \foreach \x/\y in {#2} {
+         \draw(\x/2+\hoffset,\voffset) to[bend left=90] (\y/2+\hoffset,\voffset);
+       }
+
+    \foreach \x in {1,...,#3}{
+      \draw[circle,fill] (\x/2+\GMOffset+\hoffset,#5+\voffset) circle[radius=.2mm];
+    }
+    \foreach \x/\y in {#4} {
+      \draw(\x/2+\hoffset,\voffset) to (\y/2+\GMOffset+\hoffset,#5+\voffset);
+    }
+
+    \pgfmathtruncatemacro{\t}{#6-1}
+    \ifnum #6 > 1{
+      \foreach \x in {1,...,\t}{
+        \draw(\x/2+\hoffset,-3/5+\voffset) to (\x/2+\hoffset,\voffset);         
+      }
+    }\fi
+
+    \pgfmathtruncatemacro{\s}{#1-2}
+    \pgfmathtruncatemacro{\t}{#1-1}
+    \ifnum #6 < \t{
+      \foreach \x in {#6,...,\s}{
+        \draw(\x/2+1+\hoffset,-3/5+\voffset) to (\x/2+1+\hoffset,\voffset);
+      }
+    }\fi
+
+    \draw(#6/2 + 1/2+\hoffset,\voffset) arc[radius=1/4, start angle=0, end angle=-180];
+    \draw(#6/2+\hoffset,-3/5+\voffset) arc[radius=1/4, start angle=180, end angle=0];
+}
+\newcommand\PreGeneralizedMatching[7]{
+  \def\voffset{#6}
+  \def\hoffset{#7}
+    \def\GMOffset{#1/4-#3/4}
+    \draw (1/2+\hoffset,\voffset) -- ++ (#1/2-1/2,0);
+    \foreach \x in {1,...,#1}{
+       \draw[circle,fill] (\x/2+\hoffset,\voffset)circle[radius=.5mm];
+     }
+      \foreach \x/\y in {#2} {
+         \draw(\x/2+\hoffset,\voffset) to[bend left=90] (\y/2+\hoffset,\voffset);
+       }
+
+    \foreach \x in {1,...,#3}{
+      \draw[circle,fill] (\x/2+\GMOffset+\hoffset,#5+\voffset) circle[radius=.2mm];
+    }
+    \foreach \x/\y in {#4} {
+      \draw(\x/2+\hoffset,\voffset) to (\y/2+\GMOffset+\hoffset,#5+\voffset);
+    }
+}
+
+\newcommand\QuotDiagram{
+  \begin{tikzpicture}
+  \PreGeneralizedAction{5}{2/5,3/4}{1}{1/1}{3/4}{1}{3}{0}
+  \PreGeneralizedMatching{5}{1/2,3/4}{1}{5/1}{3/4}{3}{5}
+  \PreGeneralizedAction{4}{3/4}{2}{1/1,2/2}{3/4}{1}{0}{1/4}
+ \draw [|->,
+line join=round,
+]  (10+1/4,9/4) -- (10+1/4,3/4); 
+ \draw [|->,
+line join=round,
+]  (2-1/4,9/4) -- (2-1/4,5/4); 
+ \draw [|->,
+line join=round,
+]  (3,0) -- (9+1/2,0); 
+ \draw [|->,
+line join=round,
+]  (3,3) -- (4,3); 
+ \draw [|->,
+line join=round,
+]  (8,3) -- (9+1/2,3); 
   
+
+  \node at (5-1/8,3) {$q^{1/2}$};
+  \node at (10+1/4,0) {\Huge $0$};
+  \node at (10+1/4,3) {\Huge $0$};
+  \end{tikzpicture}
+}
 \newcommand\GeneralizedAction[9]{
   \def\GMOffset{#1/4-#3/4}
   \begin{tikzpicture}
