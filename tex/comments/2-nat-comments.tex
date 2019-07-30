@@ -115,7 +115,7 @@
   The following definition modifies the crossingless matchings defined by Khovanov.\cite{Khovanov}
 
   \begin{definition}
-  Define a \emph{crossingless matching on $2n + r$ nodes and $r$ anchors} to be an isotopy class of $n + r$ nonintersecting paths in the slice $\RR \times \brk{0,1}$ connecting $2n + r$ disctinct points of $\RR \times \cbr{0}$ and $r$ points of $\RR \times \cbr{1}$ such that none of the latter points are conected. 
+  Define a \emph{crossingless matching on $2n + r$ nodes and $r$ anchors} to be an isotopy class of $n + r$ non-intersecting paths in the slice $\RR \times \brk{0,1}$ connecting $2n + r$ distinct points of $\RR \times \cbr{0}$ and $r$ points of $\RR \times \cbr{1}$ such that none of the latter points are connected. 
   Let $M_{2n + r}^r$ have basis given by these matchings.
   This is illustrated in Figure \ref{S5 Basis}.
   
@@ -183,8 +183,8 @@
   For convenience set $m := 2n + 4$.
   The following is a modification of Shor--Jordan's Fibonacci representation of the braid group.\cite{Shor}
  
-  \begin{definition}
-  Let $V^m$ be the $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{n+1}$ such that the bit $\vs$ never appears twice consecutively. 
+  \begin{definition}\label{Fib definition}
+  Let $V^m$ be the $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{m+1}$ such that the bit $\vs$ never appears twice consecutively. 
   We will refer to $V^m$ as the \emph{Fibonacci representation} and suppress the superscript whenever it is clear from context.
 
   We wish to endow this with a $\SH$-action which acts on a basis vector only dependent on bits $i,i+1,i+2$, sending each basis vector to a combination of the other basis vectors having the same bits $1,\dots,i,i+2,\dots,n+1$ as follows:
@@ -274,7 +274,7 @@
   The authors thank Prof. Roman Bezrukavnikov for suggesting this project, as well as Dr. Slava Gerovitch for organizing the SPUR+ program.
   We would also like to thank Profs. David Jerison and Ankur Moitra for their role in SPUR+ as well as general advice.
   We would also thank Professor Alexander Kleshchev for our helpful conversations concerning branching theorems.
-  Lastly, we would like to express our gratitude to our mentor Oron Propp for his help and advice in both acquiring background knowledge and in executing the mathematics in this paper;
+  Lastly, we would like to express our gratitude to our mentor Oron Propp for his help and advice in both acquiring background knowledge and in executing the mathematics in this paper, as well as his comments on early drafts of this paper;
   this project would not be possible without him.
    
 \section{Preliminaries on Specht modules}\label{Specht Modules Section}
@@ -1065,7 +1065,6 @@ We are now ready to prove proposition \ref{Trivial}.
 Also, lowercase section titles.}
 \subsubsection{Kernel Basis}
 
-
 In this section, we determine an explicit basis for $K$ when $e=n+r+1$, assuming $K\not=0$. In the next section, we prove $K\not=0$.
 
 First let us formalize a useful property of sub-matchings.
@@ -1622,52 +1621,83 @@ Me are now ready to prove existence of a kernel element. To prove this, we will 
 
 
 \section{Fibonacci representations and quotients of Specht modules}\label{Fibonacci Section}
-We have difficulty characterizing the Specht module above when it is irreducible.
-We may instead attempt to characterize the irreducible quotient $D^\lambda$ of the Specht module.
-In particular, note that, whenever $e \leq r + 2$, the restriction $\Res D^{(n+r,n)}$ decomposes into a direct sum of partitions $(m+s,m)$ such that $e \leq s + 2$ and $2m + s = 2n + r - 1$.
-This forms a recurrence among these representations, allowing a combinatorial description of their dimension.
-In this section we henceforth assume $e = 5$ and note that this recurrence resembles the Fibonacci recurrence;
-we follow this to characterize the restriction $D^{(n+r,n)}$ with $r \leq 3$.
+The irreducibility of $S^{(n+r,n)}$ is integral to arguments of Section \ref{Crossingless Matchings Section};
+without irreducibility of $M_{2n + r}^r$ (conjecturally equivalent to irreducibility of $S^{(n+r,n)}$), $M$ is not necessarily isomorphic to any Specht module $S^\lambda$ or quotient $D^\lambda$, preventing the arguments of Section \ref{Specht Modules Section} from being used.
+Further, when $S^{(n+r,n)}$ is reducible, we have $e \mid l$ for some $r+2 \leq l \leq n+r+1$, and hence the filtration provided in Proposition \ref{Filtration} fails to be a composition series.
+In summary, for $S^{(n+r,n)}$, nearly every argument in Sections \ref{Specht Modules Section} and \ref{Crossingless Matchings Section} break down, and hence it is difficult to characterize the Specht module $S^{(n+r,n)}$ via crossingless matchings.
 
-\begin{remark}
-  Let $d_{m}^{0,3}$ be the dimension $\dim D^{(n,n)}$ with $2n = m$ when $m$ is even, and $\dim D^{(n+3,n)}$ with $2n + 3 = m$ when $m$ is odd.
-  Similarly define $d_m^{1,2}$.
-  Then, Corollary \ref{D Restrictions} gives
-  \begin{align*}
-    d_m^{0,3} &= d_{m-1}^{1,2}\\
+Due to these difficulties, we instead seek a graphical realization of the irreducible quotient $D^{(n+r,n)}$.
+In doing so, we may study their branching via Corollary \ref{D Restrictions}, which gives an interesting recurrence in their dimension. 
+\begin{example}
+Let $e = 5$. If $m$ is even, let $t$ be such that $2t = m$;
+if $m$ is odd, let $t'$ be such that $2t' + 3 = m$.
+Then, we may define the following quantity:
+\[
+  d_{m}^{0,3} := \begin{cases}
+    \dim D^{(t,t)} & \text{if } m \text{ is even,}\\
+    \dim D^{(t'+3,t')} & \text{if } m \text{ is odd.}
+  \end{cases}
+\]
+Define $d_m^{1,2}$ similarly.
+Then, by Corollary \ref{D Restrictions}, we have
+\begin{align*}
+    d_m^{0,3} &= d_{m-1}^{1,2},\\
     d_m^{1,2} &= d_{m-1}^{1,2} + d_{m-1}^{0,3}\\
-    &= d_{m-1}^{0,3} + d_{m-2}^{0,3}.
+    &= d_{m-1}^{1,2} + d_{m-2}^{1,2}.
+\end{align*}
+Further, by lemma \ref{Base cases}, we have that $d_2^{0,3} = d_3^{1,2} = 1$;
+hence $d_m^{1,2} = d_{m+1}^{0,3} = f_m$, where $f_m$ is the $n$th \emph{Fibonacci number}.
+\end{example}
+
+In this section, we henceforth restrict to the case $e = 5$ and $r \leq 3$.
+We note that Shor--Jordan have conveniently used complex representations of the braid group on $m$ letters in \cite{Shor} having dimension $f_m$ and $f_{m-1}$.
+We have rescaled these representations, called subrepresentations of the \emph{Fibonacci representation} in Definition \ref{Fib definition}, in order to satisfy the quadratic relation of $\SH$, and we have otherwise modified them to to fit a general parameter $q$ and field $k$ having $e = 5$.  
+
+Note that, Shor--Jordan does not characterize this representation any more than the definition and decomposition into four subrepresentations;
+we will give a characterization of this representation which is stronger than presented in \cite{Shor}.
+
+We will start our study of the Fibonacci representation $V := V^m$ by studying low-dimensional cases.
+Recall that we have decomposed $V$ into a direct sum of the subrepresentations $V_{\vs\vs}$, $V_{\vs\vp}$, $V_{\vp\vs}$, and $V_{\vp\vp}$, indexed by the first and last bit of the basis.
+\begin{proposition}
+  We have the following isomorphisms of representations:
+  \begin{align*}
+    V_{\vs\vs}^2 &\simeq D^{(1^2)}\\
+    V_{\vs\vp}^2 &\simeq D^{(2)}\\
+    V_{\vp\vp}^2 &\simeq V_{\vs\vs}^2 \oplus V_{\vs\vp}.
   \end{align*}
-  Carefully following this and noting the base cases $d_2^{0,3} = d_2^{1,2} = 1$, one may note that this recurrences proves that $d_m^{1,2} = d_{m+1}^{0,3} = f_n$, where $f_n$ is the $n$th \emph{Fibonacci number}.
-  This matches the dimension our Fibonacci subrepresentations, motivating their definition.\qed
-\end{remark}
+\end{proposition}
+\begin{proof}
+  The first isomorphism follows via identification with the trivial representation, and the second with the sign representation.
 
-We can start our study of $V$ by studying low-dimensional cases.
-First, note that $V_{\vs\vp}^2$ is the sign representation $D^{(1^2)}$ and $V_{\vs\vp}^2$ is the trivial representation $D^{(2)}$.
+  Further, $V_{\vp\vp}^2$ is a 2-dimensional representation of a semisimple commutative algebra, and hence decomposes into a direct sum of two 1-dimensional subrepresentations.
+  In particular, we may fix basis $\cbr{(\vp\vs\vp),(\vp\vp\vp)}$ for $V_{\vp\vp}^2$ and note that $T_1$ acts by the matrix
+  \[
+    \rho_{T_1} = \begin{bmatrix}
+      \varc & \vard\\
+      \vard & \vare
+    \end{bmatrix},
+  \]
+  which has characteristic polynomial \[\lambda^2 - (\varc + \vare)\lambda +(\varc\vare - \vard^2).\]
+  We may verify that, for $\lambda = -1$, this evaluates to
+  \[
+    -((-1 + q + q^2) (1 + q^3 + q^4 + q^5 + 2 q^6 + q^7))\brk{5}_q = 0,
+  \]
+  and for $\lambda = q$ this evaluates to 
+  \[
+  -(q^2 (-1 + q + q^2) (1 + q + q^2 + q^3 + 2 q^4 + q^5)) \brk{5}_q = 0.
+  \]
+  Hence $\rho_{T_1}$ has eigenvalues $-1$ and $q$.
 
-$V_{\vp\vp}^2$ is a 2-dimensional representation of a semisimple commutative algebra, and hence decomposes into a direct sum of two subrepresentations.
-In particular, we can use the basis $\cbr{(\vp\vs\vp),(\vp\vp\vp)}$ and explicitly write the matrix
-\[
-  \rho_{T_1} = \begin{bmatrix}
-    \varc & \vard\\
-    \vard & \vare
-  \end{bmatrix}
-\]
-having characteristic polynomial $(\varc - \lambda)(\vare - \lambda) - \vard^2 = \lambda^2 - (\varc + \vare)\lambda +(\varc\vare - \vard^2)$.
-We may verify that, for $\lambda = -1$, this evaluates to
-\[
-  -((-1 + q + q^2) (1 + q^3 + q^4 + q^5 + 2 q^6 + q^7))\brk{5}_q = 0
-\]
-and for $\lambda = q$ this evaluates to 
-\[
--(q^2 (-1 + q + q^2) (1 + q + q^2 + q^3 + 2 q^4 + q^5)) \brk{5}_q = 0
-\]
-hence $\rho_{T_1}$ has eigenvalues $-1$ and $q$.
+  The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $V_{\vp\vp}$ is isomorphic to a direct sum of the trivial and sign representations, as required.
+\end{proof}
 
-The eigenspaces with eigenvalues $-1$ and $q$ are subrepresentations isomorphic to the sign and trivial representation, hence $V_{\vp\vp}$ is isomorphic to a direct sum of the trivial and sign representations: $V^2_{\vp\vp} \simeq V^2_{\vs\vp} \oplus V^2_{\vs\vs}$. 
-
-Now we may prove that $V^3_{\vs\vp}$ is irreducible;
-this has basis $\cbr{\prn{\vs\vp\vs\vp}, \prn{\vs\vp\vp\vp}}$, and the following matrices:
+We may further study the low-dimensional Fibonacci representations with the following proposition:
+\begin{proposition}
+  The representation $V^3_{\vs\vp}$ is irreducible.
+\end{proposition}
+\begin{proof}
+  Fix the basis $\cbr{\prn{\vs\vp\vs\vp}, \prn{\vs\vp\vp\vp}}$ for $V^3_{\vs\vp}$.
+  Then, $T_1$ and $T_2$ act by the following matrices:
 \[
   \rho_{T_1} = \begin{bmatrix}
     \varb & 0\\
@@ -1678,91 +1708,101 @@ this has basis $\cbr{\prn{\vs\vp\vs\vp}, \prn{\vs\vp\vp\vp}}$, and the following
     \vard & \vare
   \end{bmatrix}.
 \]
-A proper nontrivial subrepresentation of $V_{\vs\vp}^3$ must be one-dimensional, and hence an eigenspace of each of these matrices;
-since $\varb \neq \vara$, the first has eigenspaces given by the spans of basis elements, and since $\vard \neq 0$, these are not eigenspaces of the second.
-Hence $V^3_{\vs\vp}$ is irreducible.
+  A proper nontrivial subrepresentation of $V_{\vs\vp}^3$ must be one-dimensional, and hence an eigenspace of each of these matrices;
+  since $\varb \neq \vara$, the first has eigenspaces given by the spans of basis elements, and since $\vard \neq 0$, these are not eigenspaces of the second.
+  Hence $V^3_{\vs\vp}$ is irreducible.
+\end{proof}
 
-These establish the low-dimensional behavior that we will use as base cases below.
-The rest of this section will proceed first by proving that $V_{\vs\vp}$ and $V_{\vs\vs}$ are irreducible;
-then, we will use combinatorial arguments to prove that these are isomorphic to the correct two-row Specht module quotients.
+These propositions establish the low-dimensional behavior of $V^m$ that we will use in our analysis of general $V^m$ below.
+We will proceed first by proving that $V^m_{\vs\vp}$ and $V^m_{\vs\vs}$ are irreducible;
+then, we will use combinatorial arguments to prove that these are isomorphic to the desired irreducible quotients two-row Specht modules.
 
-\begin{proposition}
-  The representation $V_{\vs\vp} := V^m_{\vs\vp}$ is irreducible.
+\begin{proposition}\label{Fib irreducibility}
+  The representation $V^m_{\vs\vp}$ is irreducible.
 \end{proposition}
 \begin{proof}
   We will prove this inductively in $m$.
   We've already proven it for $V^2_{\vs\vp}$ and $V^3_{\vs\vp}$, so suppose that $V^{m-2}_{\vs\vp}$ is irreducible.
   
   Let $\cbr{v_i}$ be the basis for $V_{\vs\vp}$.
-  Then, each $v_i$ is cyclic; indeed, we can transform every basis vector into $(\vs\vp \dots \vp)$ by multiplying by the appropriate $\frac{1}{\vard-\varc}(T_i - \varc)$, and we can transform $(\vs\vp \dots \vp)$ into any basis vector by multiplying be the appropriate $\frac{1}{\vard-\vare}(T_i - \vare)$.
-  Hence it is sufficient to show that each $v \in V_{\vs\vp}$ generate some basis element.
+  Then each $v_i$ is cyclic; indeed, we can transform every basis vector into $(\vs\vp \dots \vp)$ via action by the appropriate $\frac{1}{\vard}(T_i - \varc)$, and we can transform $(\vs\vp \dots \vp)$ into any basis vector by multiplying be the appropriate $\frac{1}{\vard}(T_i - \vare)$.
+  Hence it is sufficient to show that each $v \in V_{\vs\vp}$ generates some basis element.
 
-  Let $v'$ be the basis element $(\vs\vp\vs\vp\dots \vp)$, which is many copies of $\vs\vp$, followed by an extra $\vp$ if $m$ is odd.
-  We will show that each $v \in F$ generates $v'$.
+  Let $v_j$ be the basis element $(\vs\vp\vs\vp\dots \vp)$, which is many copies of $\vs\vp$, followed by an extra $\vp$ if $m$ is odd.
+  We will show that each $v \in V^m_{\vs\vp}$ generates $v_j$.
+  Then, we will have
 
-  Suppose that no elements beginning $(\vs\vp\vs\vp)$ are represented in $v_i$;
-  then, all such elements are represented in $T_3v$, so we may assume that at least one is represented in $v$.
+  Suppose that no basis elements beginning $(\vs\vp\vs\vp)$ have nonzero coefficient in $v$;
+  then, there is some basis element $v_i$ beginning $(\vs\vp\vp\vp)$ having nonzero coefficient in $v$, and the basis element having all other bits identical to $v_i$ except for beginning $(\vs\vp\vs\vp)$ has nonzero coefficient in $T_3v$.
+  Hence we may assume that at least one element beginning $(\vs\vp\vs\vp)$ has nonzero coefficient in $v$.
 
-  Note that $\ima (T_2 - \vara) = \Span\cbr{\text{Basis vectors beginning }(\vs\vp\vs\vp)}$ and $(T_2 - \vara)v \neq 0$.
-  Further, note that $\Res_{\SH(S_{m-2})}^{\SH(S_m)} \ima (T_2 - \vara) \simeq V^{m-2}_{\vs\vp}$ as representations.
-  Hence irreducibility of $V^{m-2}_{\vs\vp}$ implies that $v'$ is generated by $(T_2 - \vara)v$, and $V^m_{\vs\vp}$ is irreducible.
+  Note that \[\ima (T_1 - \vara) = \Span\cbr{\text{Basis vectors beginning }(\vs\vp\vs\vp)}\] and $(T_1 - \vara)v \neq 0$.
+  Further, note that we may consider $\ima (T_1 - \vara)$ to be a subrepresentation of $\Res_{\SH(S_{m-2})}^{\SH(S_m)} V^m_{\vs\vp}$;
+  this yields that $\ima (T_1 - \vara) \simeq V^{m-2}_{\vs\vp}$ as representations.
+  Hence irreducibility of $V^{m-2}_{\vs\vp}$ implies that $v_j$ is generated by $(T_1 - \vara)v$, and $v$ is cyclic, as desired.
 \end{proof}
 
-Now, we may begin considering restrictions:
-\begin{lemma}
+Note that the structure of this proof is parallel to the structure of Theorem \ref{Irreducibility Theorem}:
+we project down to the analogous representation on fewer letters, and we inductively lift irreducibility from this smaller representation to our original one.
+
+Now we may begin considering restrictions of Fibonacci representations:
+\begin{lemma}\label{Fib branching}
   The following branching rules hold:
   \begin{align*}
-    V^{m-1}_{\vp\vp} \simeq \Res V_{\vs\vp}^m &\simeq V^{m-1}_{\vs\vs} \oplus V^{m-1}_{\vs\vp}\\
-    \Res V_{\vs\vs}^m &\simeq V_{\vs\vp}^{m-1}.
+    V^{m-1}_{\vp\vp} \simeq \Res V_{\vs\vp}^m &\simeq V^{m-1}_{\vs\vs} \oplus V^{m-1}_{\vs\vp},\\
+    V_{\vp\vs}^{m-1} \simeq \Res V_{\vs\vs}^m &\simeq V_{\vs\vp}^{m-1}.
   \end{align*}
 \end{lemma}
 \begin{proof}
-  The first line follows by considering the last two $m-2$ transpositions for the left isomorphism, then the first two for the right isomorphism.
-  This is well-behaved by Appendix \ref{Algebra}.
-  
-  Similarly, the second line follows by considering the last $m-2$ transpositions.
+  By the results of Appendix \ref{Algebra}, any two restrictions to distinct subalgebras of $\SH$ generated each by $m-2$ characters are isomorphic.
+  Hence the leftmost isomorphism on each line follows by considering the restrictions to the subalgebra of $\SH$ generated by $\cbr{T_2,\dots,T_{m-1}}$.
+  Further, the rightmost isomorphism on each line follows by considering the restrictions to the subalgebra of $\SH$ generated by $\cbr{T_1,\dots,T_{m-2}}$.
 \end{proof}
-This immediately gives a rather strong characterization of $V$.
 \begin{corollary}
-  The representation $V_{\vs\vs}$ is irreducible.\qed
+  The representation $V^m_{\vs\vs}$ is irreducible.\qed
 \end{corollary}
+\begin{proof}
+  By Lemma \ref{Fib branching} and Proposition \ref{Fib irreducibility}, we have $\Res V^m_{\vs\vs} \simeq V^{m-1}_{\vs\vp}$ is irreducible, implying that $V^m_{\vs\vs}$ is also irreducible.
+\end{proof}
+Recall the decomposition $V^m \simeq V^m_{\vs\vs} \oplus V^m_{\vs\vp} \oplus V^m_{\vp\vs} \oplus V^m_{\vp\vp}$.
+Using this, we may now decompose $V$ into a direct sum of irreducible representations.
 \begin{corollary}
-  The representation $V$ decomposes into a direct sum of irreducible representations as follows:
+  The representation $V^m$ decomposes into a direct sum of irreducible representations as follows:
   \[
-    V \simeq 3V_{\vs\vp} \oplus 2V_{\vs\vs}.
+    V^m \simeq 3V^m_{\vs\vp} \oplus 2V^m_{\vs\vs}.
   \]\qed
 \end{corollary}
 
-Now we may use these in order to apply Young Tableau to characterize $V$.
+Now we may use these in order to characterize $V$ via irreducible quotients of Specht modules.
 \begin{theorem}\label{Fibonacci Theorem}
-  The irreducible components of $V$ are given by the following isomorphisms:
+  We have the following isomorphisms:
      \begin{align*}  
-      V^{2n}_{\vs\vs} &\simeq D^{(n,n)}\\ 
-      V^{2n-1}_{\vs\vs} &\simeq D^{(n+1,n-2)}\\
-      V^{2n}_{\vs\vp} &\simeq D^{(n+1,n-1)}\\
+      V^{2n}_{\vs\vs} &\simeq D^{(n,n)},\\ 
+      V^{2n-1}_{\vs\vs} &\simeq D^{(n+1,n-2)},\\
+      V^{2n}_{\vs\vp} &\simeq D^{(n+1,n-1)},\\
       V^{2n-1}_{\vs\vp} &\simeq D^{(n,n-1)}.
      \end{align*}
 \end{theorem}
 \begin{proof}
-  We will prove this by induction on $n$;
+  We will prove this by induction on $m = 2n$;
   we have already proven the base case $V^{2}$, so suppose that we have proven these isomorphisms for $V^{2n-2}$.
   We will prove the isomorphisms for $V^{2n-1}$ and $V^{2n}$.
 
-  By irreducibility, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\mu}$ for some diagrams $\lambda$ and $\mu$.
+  By Proposition \ref{Fib irreducibility}, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\mu}$ for some diagrams $\lambda$ and $\mu$.
   We will show that $\lambda = (n+1,n-2)$ and $\mu = (n+1,n-1)$.
   
-  First, note that we have \[\Res \; D^{\lambda} \simeq D^{(n,n-2)} \simeq \Res \; D^{(n+1,n-2)}\] and \[\Res \; D^{\mu} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)}.\]
+  First, by Lemma \ref{Fib branching} and the inductive hypothesis, we have \[\Res \; D^{\lambda} \simeq D^{(n,n-2)} \simeq \Res \; D^{(n+1,n-2)}\] and \[\Res \; D^{\mu} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)}.\]
   
-  By irreducibility of $\Res D^{\lambda}$, the only normal number in $\lambda$ is 1.
-  Further, the only tableaux which can remove a cell to yield $D^{(n,n-2)}$ are $(n+1,n-2)$, $(n,n-1)$, and $(n,n-2,1)$ as illustrated in Figure \ref{OddRes};
-  we have already seen that $D^{(n,n-1)}$ does not have irreducible restriction, so we are left with $(n+1,n-2)$ and $\varsigma = (n,n-2,1)$.
-  We may directly check that $\varsigma$ doesn't satisfy this, as we have the following:
+  By irreducibility of $\Res D^{\lambda}$, the only normal number in $\lambda$ is 1.\cite{Kleshchev,Brundan}
+  Further, the only diagrams which can be transformed into $(n,n-2)$ by removing a cell are $(n+1,n-2)$, $(n,n-1)$, and $(n,n-2,1)$ as illustrated in Figure \ref{OddRes};
+  we have already seen that $D^{(n,n-1)}$ does not have irreducible restriction via Corollary \ref{D Restrictions}, so we are left with $(n+1,n-2)$ and $\varsigma := (n,n-2,1)$.
+  We may directly check that $\varsigma$ doesn't satisfy this, as we have
   \begin{align*} 
-    \beta_\varsigma(1,2) &= 3 - 2 + (n-2) = n-1\\
-    \beta_\varsigma(1,3) &= 3 - 1 + n = n+2\\
+    \beta_\varsigma(1,2) &= 3 - 2 + (n-2) = n-1,\\
+    \beta_\varsigma(1,3) &= 3 - 1 + n = n+2,\\
     \beta_\varsigma(2,3) &= 2 - 1 + 3 = 4.
    \end{align*} 
-  At least one of $\beta_\varsigma(1,2)$ and $\beta_\varsigma(1,3)$ is nonzero, since $\beta_\varsigma(1,3) - \beta_\varsigma(1,2) = 3 \not\equiv 0 \pmod e$, and hence at least one of $M_2$ and $M_3$ is empty.
+  At least one of $\beta_\varsigma(1,2)$ and $\beta_\varsigma(1,3)$ is nonzero, since $\beta_\varsigma(1,3) - \beta_\varsigma(1,2) = 3 \not\equiv 0 \pmod e$.
   Hence at least one of 2 or 3 is normal in $\varsigma$, and $\lambda = (n+1,n-2)$.
 
   For $\mu$, we immediately see from Figure \ref{OddRes} that the only option is $(n,n-1)$.
@@ -1788,11 +1828,12 @@ Now we may use these in order to apply Young Tableau to characterize $V$.
       \end{gathered}
     \]
       \caption{
-      Illustration of the partitions of $9$ which can, via row removal, yield $(n,n-2)$ alone, or both $(n,n-2)$ and $(n-1,n-1)$.
+      Illustration of the partitions of $9$ which can, via removal of cells, yield $(n,n-2)$ alone, or both $(n,n-2)$ and $(n-1,n-1)$.
     }\label{OddRes}
 \end{figure}  
   
-  We can perform a similar argument for the $V^{2n}$ case, finding now that 
+  We can perform a similar argument for the $V^{2n}$ case;
+  for $V^{2n}_{\vs\vs} \simeq D^{\lambda'}$ and $V^{2n}_{\vs\vp} \simeq D^{\mu'}$, we have
   \[\Res \; D^{\lambda'} \simeq D^{(n,n-1)} \simeq \Res \; D^{(n,n)}\] and 
   \[\Res \; D^{\mu'} \simeq D^{(n,n-1)} \oplus D^{(n+1,n-2)} \simeq \Res \; D^{(n+1,n-1)}.\]
   
@@ -1808,11 +1849,12 @@ Now we may use these in order to apply Young Tableau to characterize $V$.
 \begin{corollary}
   We have the following isomorphisms of representations:
   \begin{align*} 
-    V^{2n} &\simeq 3D^{(n+1,n-1)} \oplus 2D^{(n,n)}\\
-    V^{2n - 1} &\simeq 3D^{(n,n-1)} \oplus 2D^{(n+1,n-2)}
+    V^{2n} &\simeq 3D^{(n+1,n-1)} \oplus 2D^{(n,n)},\\
+    V^{2n - 1} &\simeq 3D^{(n,n-1)} \oplus 2D^{(n+1,n-2).}
   \end{align*}
 \end{corollary}
 
+Hence we have entirely characterized Shor--Jordan's Fibonacci representation \cite{Shor} as a direct sum of irreducible quotients of Specht modules, and we have given graphical realizations of $D^{(n+r,n)}$ for $e = 5$ and $r \leq 3$.
 
 \section{Conjecture}\label{Conjecture Section}
 Recall that $K_{2n + r}^r := K$ is the direct sum of all copies of the sign representation in $M$.
@@ -2298,6 +2340,6 @@ It is known that, for small $2n + r$, each Specht module $S^{(n+r,n)}$ has a com
 We give in Figures \ref{Composition series e=3} through \ref{Composition series e=6} the map $\iota_{e,2n+r}^r:U_{2n + r}^r \hookrightarrow M_{2n + r}^r \twoheadrightarrow U_{2n + r}^r$, which conjecturally illustrates the inclusion of the first composition factor of $S^{(n+r,n)}$ into $S^{(n+r,n)}$ for all $2n + r \leq 7$.
 
 
-\bibliographystyle{numeric} 
+\bibliographystyle{plain} 
  \bibliography{../RepBib}
 \end{document}
