@@ -16,7 +16,7 @@
 \usepackage{xcolor}
 \usepackage{adjustbox}
 \usetikzlibrary{decorations.pathmorphing}
-\usepackage[square,super,comma,sort]{natbib}
+\usepackage[square,comma,sort,numbers]{natbib}
 \usepackage[font=small,labelfont=bf]{caption}
 
 \newcommand\longsquigrightarrow{
@@ -91,7 +91,7 @@ decorate, decoration={
 \def\Ind{\operatorname{Ind}}
 \def\soc{\operatorname{soc}}
 \newcommand{\Hom}[1]{\txt{Hom}{#1}}
-\newcommand{\Homarg}[2]{\text{Hom}_{#1}\prn{#2}}
+\newcommand{\Homarg}[2]{\operatorname{Hom}_{#1}\prn{#2}}
 \newcommand{\Mod}[1]{\text{Mod}_{#1}}
 
 \def\emptyset{\varnothing}
@@ -114,6 +114,10 @@ decorate, decoration={
 \newtheorem*{lemma*}{Lemma}
 \newtheorem*{corollary*}{Corollary}
 \newtheorem*{claim*}{Claim}
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{customthm}[1]
+{\renewcommand\theinnercustomthm{#1}\innercustomthm}
+{\endinnercustomthm}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}

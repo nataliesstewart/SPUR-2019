@@ -279,38 +279,42 @@
    
 \section{Preliminaries on Specht Modules}\label{Specht Modules Section}
   For this section and the rest of the paper, assume $n > 0$.
+  
+  Throughout the rest of the paper, it will be useful to have precise notation;
+  identify each partition with a tuple $\lambda = (\lambda_1^{a_1},\dots,\lambda_l^{a_l})$ having $\lambda_i > \lambda_{i+1}$, $a_i > 0$, and $\sum_i a_i\lambda_i = 2n + r$.
+  Identify each of these with a subset $\brk \lambda \subset \NN^2$ as in \cite{Kleshchev}, and define $\lambda(i) = (\lambda_1^{a_1},\dots,\lambda_{i-1}^{a_{i-1}},\lambda_i^{a_i - 1},\lambda_i-1,\lambda_{i+1}^{a_{i+1}},\dots,\lambda_l^{a_l})$ to be the partition with the $i$th row removed.
+  Say that $\lambda$ is \emph{$e$-regular} if $\lambda_i - \lambda_{i+1} < e$ for all $i$ and $\lambda_l < e$.
 
-  In the following section, we cite a theorem of James-Mathas which precisely characterizes the irreducibility of $S^\lambda$ in the case that $\lambda$ is $e$-regular, and we specialize this result to the case of two-row Specht modules.
-  This falls into two cases: either $e > n$, where $S^{(n+r,n)}$ is irreducible iff $e \nmid r+2,\dots,n+r+1$, or $e \leq n$, where the irreducibility of $S^{(n+r,n)}$ is complicated and depends on the characteristic of $k$.
+  In the following subsection, we cite a theorem of James--Mathas which precisely characterizes the irreducibility of $S^\lambda$ in the case that $\lambda$ is $e$-regular, and we specialize this result to the case of two-row Specht modules.
+  This falls into two cases: either $e > n$, where $S^{(n+r,n)}$ is irreducible iff $e \nmid r+2,\dots,n+r+1$, or $e \leq n$, where the irreducibility of $S^{(n+r,n)}$ is more complicated and depends also on the characteristic of $k$.
   We will focus primarily on the former case.
 
-  Following this, we cite the branching theorems of Kleshchev-Brundan, which allow us to fully characterize the Socle of $\Res S^{\lambda}$.
-  This and some combinatorial arguments allow us to come to the main result of this section, which may loosely be stated as follows:
-  the composition series of $D^{(n+r,n)}$ is restrictive enough in many cases with $S^{(n+r,n)}$ irreducible and $e > n$ case that such a composition series uniquely characterizes irreducibles.
-  This will be immensely useful later for characterizing $M$ via Specht modules, as it will include all cases with $e > n + r + 1$.
+  Following this, we reproduce the branching theorems of Kleshchev--Brundan, which allow us to fully characterize the socle of $\Res D^{\lambda}$.
+  This and some combinatorial arguments yield the main result of this section, which allows us to determine certain $D^{(n+r,n)}$ via their composition series.
+  This will be instrumental later for characterizing the crossingless matchings representation $M_{2n + r}^r$ as a Specht module, and it will extend to all cases with $e > n + r + 1$.
 
   \subsection{Irreducibility of $S^\lambda$}
-  Let $k$ have characteristic $\ell$;
+  Let $\ell$ be the characteristic of $k$;
   then, set
   \[
     p := \begin{cases}
-      \ell & \ell > 0\\
-      \infty & \ell = 0
-    \end{cases}.
+      \ell & \text{if }\ell > 0,\\
+      \infty & \text{if }\ell = 0.
+    \end{cases}
   \]
   Note that $p = e$ when $q = 1$.
-  For $h$ a natural number, let $\nu_p(h)$ be the $p$-adic evaluation of $h$.
-  As a convention, set $\nu_\infty(h) = 0$ for all $h$.
+  For $h$ a natural number, let $\nu_p(h)$ be the $p$-adic valuation of $h$.
+  By convention, set $\nu_\infty(h) = 0$ for all $h$.
   Define the function $\nu_{e,p} : \NN \rightarrow \cbr{-1} \cup \NN$ by
   \[
     \nu_{e,p}(h) := \begin{cases}
-      \nu_p(h) & e \mid h\\
-      -1 & e \nmid h
+      \nu_p(h) & e \text{if }\mid h\\
+      -1 & e \text{if }\nmid h
     \end{cases}.
   \]
-  Lastly, let $h_{ab}^\lambda$ be the hook length of node $(a,b)$ in $\brk \lambda$.
-  With this language, we may express the following theorem, part (ii) of which is named the \emph{carter criterion}, due to James-Mathas.\cite{Mathas-book}
-  \begin{theorem}[James-Mathas]
+  Lastly, let $h_{ab}^\lambda$ be the hook length of node $(a,b)$ in $\brk \lambda$ as defined in \cite{Kleshchev}.
+  With this language, we may express the following theorem, parts (ii)-(iii) of which are known as the \emph{Carter criterion} in the symmetric group case, due to James--Mathas.\cite{Mathas-book}
+  \begin{theorem}[James--Mathas]\label{Mathas Irreducibility}
     The following are equivalent:
     \begin{enumerate}[label={(\roman*)}]
       \item $S^{\lambda} \simeq D^{\lambda}$.
@@ -318,102 +322,89 @@
       \item $\nu_{e,p}\prn{h_{ab}^\lambda} = \nu_{e,p}\prn{h_{ac}^\lambda}$ for all nodes $(a,b)$ and $(a,c)$ in $\brk \lambda$.
     \qed\end{enumerate}
   \end{theorem}
+  \begin{proof}
+    See \cite{Mathas-book} theorem 5.42.
+  \end{proof}
   This result gives information solely on $e$-regular partitions, and the general irreducibility of $S^\lambda$ away from $p=2$ is not well understood.
-  We will henceforth specialize slightly to the case that $(n+r,n)$ is $e$-restricted. 
+  We will henceforth specialize slightly to the case that $(n+r,n)$ is $e$-regular. 
 
   \begin{corollary}\label{S irreducibility}
     If $r = 0$, assume $e > 2$.
     \begin{enumerate}[label={(\roman*)}]
       \item Suppose $e > n$.
-        Then, $S^{(n+r,n)}$ is irreducible iff $e \nmid l$ for all $r + 2 \leq l \leq n + r + 1$.
+        Then, $S^{(n+r,n)}$ is irreducible iff $e \nmid r + 2,r+3,\dots,n + r + 1$.
       \item Suppose $e \leq n$.
-        Then, $S^{(n+r,n)}$ is irreducible iff $e | r + 1$ and $\nu_{e,p}(h_{ab}^\lambda)$ acquires exactly two values.
+        If $S^{(n+r,n)}$ is irreducible, then $e \mid r + 1$.
     \end{enumerate}  
   \end{corollary}
-  In the case that $\lambda = (n+r,n)$ and $e \nmid r+2,r+3,\dots,n+r+1$, say that $\lambda$ is \emph{$e$-top-indivisible}.
-  Since no multiples of $e$ are in an interval of length $n$ in $\NN$, we have $e > n$, so this is precisely case (i) above.
+  Note that the condition $e \nmid r+2,r+3,\dots,n+r+1$ implies that $e > n$.
   \begin{proof}
-    The beginning condition implies that $\lambda$ is $e$-regular, which we will use below.
+    Our initial assumption on $e$ implies that $\lambda$ is $e$-regular, which we will use below.
 
     \textbf{(i)}
-    Note that $\nu_p(l) \neq -1$ for all $l$ and only hook lengths in the top row may vanish mod $e$;
-    hence we may equivalently prove that $e$ divides no hook lengths in the leftmost $n$ columns of the second column.
+    Note that $\nu_p(h) \neq -1$ for all naturals $h$ and only hook lengths in the top row may vanish mod $e$ by Figure \ref{Hooks};
+    hence we may equivalently prove that $e$ divides no hook lengths in the leftmost $n$ columns of the second row by Theorem \ref{Mathas Irreducibility}.
     These hook lengths are precisely $r + 2,\dots,n+r+1$.
 
     \textbf{(ii)}
-    Note that we have $\nu_{e,p}\prn{h^\lambda_{n-e+1,2}} \neq -1$.
+    Note that we have $\nu_{e,p}\prn{h^\lambda_{2,n-e+1}} \neq -1$, and $\nu_{e,p}\prn{h^\lambda_{2,n+r}} = -1$ so $\nu_{e,p}$ acquires at least two values.
     Suppose that $e \nmid r + 1$.
-    Then, \[\nu_{e,p}\prn{h^\lambda_{n-e+1,1}} = \nu_{e,p}\prn{h^\lambda_{n-e,2} + r + 1} = -1,\]
-    giving $S^{(n+r,n)}$ reducible.
-
-    \def\corsecsep{5pt}
-    \vspace{\corsecsep}
-    Now, suppose that $\nu$ acquires at least three values, and \[0 \leq \nu_{e,p}(h^{\lambda}_{ab}) < \nu_{e,p}\prn{h^{\lambda}_{a'b'}}\] and $S^{(n+r,n)}$ is irreducible.
-    If $b=b'$ then we have reducibility, so assume $b \neq b'$.
-    Further, if $a = a'$, then we may replace $a$ with the other column;
-    hence we may assume WLOG that $a \neq a'$ as well.
-
-    Note that $p$-adic valuation is monotonic, so $h^\lambda_{ab} < h^\lambda_{a'b'}$.
-    If $(a,b)$ is in the rightmost $r$ columns, then we may $0 \leq \nu_{e,p}\prn{h^\lambda_{a''b''}} \leq \nu_{e,p}\prn{h^\lambda_{ab}}$ for some $(a'',b'')$ in the rightmost $n$ columns;
-    this has the same hook length as a cell in the leftmost $n$ columns and bottom row, so we may assume $(a,b)$ is not in the rightmost $r$ columns.
-    Similar logic allows us to assume $(a',b')$ is in the leftmost $n$ columns as well.
-
-    If $b < b'$, then $\nu_p(h_{ab}) = \nu_p(h_{ab'}) < \nu(h_{a'b'})$ while $h_{ab'} > h_{a'b'}$, a contradiction.
-    If $b > b'$, then $\nu_p(h_{ab}) = \nu_p(h_{ab'})$ and $h_{ab} < h_{ab'}$, so there is some $c < b$ with $\nu_{e,b}(h_{ab}) = \nu_{e,p}(h_{ac})$; we may replace $b$ with $c$, and repeat until $b = b'$ to reach contradiction.
-    
-    \vspace{\corsecsep}
-    Finally, assume $e | r + 1$ and $\nu_{e,p}$ acquires two values.
-    Since $e | r + 1$, $e \mid h_{a1}^\lambda$ iff $e \mid h_{a2}$;
-    since $\nu_{e,p}$ acquires only two values, this proves that $\nu_{e,p}(h_{a1}) = \nu_{e,p}(h_{a2})$ across these rows, giving the lemma.
+    Then, \[\nu_{e,p}\prn{h^\lambda_{1,n-e+1}} = \nu_{e,p}\prn{h^\lambda_{2,n-e+1} + r + 1} = -1,\]
+    giving $S^{(n+r,n)}$ reducible by Theorem \ref{Mathas Irreducibility}.
   \end{proof}
 
-  From condition (ii) we see that irreducibiliy at $e > n$ is not dependent on $p$, and we may cover many modular cases without reference to the characteristic of $k$.
-  We will finish our discussion of irreducibilty of $S^\lambda$ via the following special cases of (ii) above.
+  \begin{figure}
+  \ytableausetup{mathmode,boxsize=4.5em}
+  \begin{ytableau}
+    n+r+1 & n + r & \dots & r + 2 & r & r-1 & \dots & 1\\ 
+    n & n-1 & \dots & 1
+  \end{ytableau}
+  \ytableausetup{mathmode,boxsize=normal}
+  \caption{The young diagram corresponding to the partition $(n+r,n)$ with filled-in ook lengths.}\label{Hooks}
+\end{figure}
+
+  From part (i) we see that irreducibility at $e > n$ is not dependent on $p$, and we may cover many modular cases without reference to the characteristic of $k$.
+  We will finish our discussion of irreducibility of $S^\lambda$ via sharp characterization of the $e \leq n$ case.
   \begin{corollary}
     If $r = 0$, assume $e > 2$.
-    Suppose $e \leq n$.
-    \begin{enumerate}[label={(\roman*)}]
-      \item Suppose $p > n + r + 1$. Then, $S^{(n + r,n)}$ is irreducible iff $e | r + 1$.
-      \item Suppose $p = 2$. Then, $S^{(n+r,n)}$ is not irreducible.
-    \end{enumerate}
+    Suppose $e \leq n$, and suppose $p > n + r + 1$.
+    Then, $S^{(n+r,n)}$ is irreducible if and only if $e \mid r+1$.
   \end{corollary}
   \begin{proof}
-    (i) is clear.
-    (ii) is given by noting that $e + r + 1 \geq 2e$;
-    then, $h_{n-e+1,1} - h_{n-e+1,2} \geq 1$, giving reducibility.
+    This follows from the proof of Corollary \ref{S irreducibility} part (ii) and the fact that $\nu_p(h) = \nu_p(h')$ for all naturalls $h,h'$. 
   \end{proof}
   \subsection{Branching}
-  In this section as well as later sections, we will consider the restruction of representations of $\SH$ to particular subalgebras isomorphic to $\SH_{k,q}\prn{S_{2n + r - 1}}$.
-  We verify in Appendix \ref{Algebra} that any two subalgebras of $\SH$ generated by $2n + r - 2$ simple transpositions give isomorphic restrictions of representations (through a particular isomorphism of the subalgebras).
+  In this section as well as later sections, we will consider the restriction of representations of $\SH$ to particular subalgebras isomorphic to $\SH_{k,q}\prn{S_{2n + r - 1}}$.
+  We verify in Appendix \ref{Algebra} that any two subalgebras of $\SH$ generated by $2n + r - 2$ simple transpositions are canonically isomorphic, and the corresponding restrictions are canonically isomorphic via this isomorphism of algebras.
   We will hence abuse notation, pick one such subalgebra $\SH'$, and notate $\Res_{\SH'}^\SH W$ by $\Res W$ for any $\SH$-module $W$.
   
 
-  Throughout the rest of the paper, it will be useful to have precise notation;
-  identify each partition with a tuple $\lambda = (\lambda_1^{a_1},\dots,\lambda_l^{a_l})$ having $\lambda_i > \lambda_{i+1}$, $a_i > 0$, and $\sum_i a_i\lambda_i = 2n + r$.
-  Identify each of these with a subset $\brk \lambda \subset \NN^2$ as is standard, and define $\lambda(i) = (\lambda_1^{a_1},\dots,\lambda_{i-1}^{a_{i-1}},\lambda_i^{a_i - 1},\lambda_i-1,\lambda_{i+1}^{a_{i+1}},\dots,\lambda_l^{a_l})$ to be the partition with the $i$th row removed.\cite{Kleshchev}
   
   Fixing some partition $\lambda \vdash 2n + r$, for $1 \leq i \leq j \leq l$, let $\beta_\lambda(i,j)$ and $\gamma_\lambda$ be the quantities
   \begin{align*}
     \beta_\lambda(i,j) &= \lambda_i - \lambda_j + \sum_{t = i}^j a_t\\
     \gamma_\lambda(i,j) &= \lambda_i - \lambda_j + \sum_{t = i+1}^j a_t.
   \end{align*}
+  Note that $\beta_\lambda(i,j)$ is the hook length of cell $(a_1 + \dots + a_{i-1}+1,\lambda_j)$.
+
   Results due to Kleshchev and Brundan refer to \emph{normal} and \emph{good} numbers;
   for these, we will use the facts that 1 is always normal and that $j$ is normal when $\beta_\lambda(i,j) \not\equiv 0 \pmod e$ for all $i \leq j$.
   Further, we will use that $j$ is good if and only if $j$ is normal and $\gamma_\lambda(j,j') \not\equiv 0 \pmod e$ for all $j' \geq j$ normal.\cite{Brundan,Kleshchev}
-  
-  The following statements, collectively called \emph{modular branching rules} of $D^\lambda$, were originally written by Kleshchev for Specht modules of the group algebra $k\brk{S_n}$, then generalized to the Hecke algebra case by Brundan.\cite{Kleshchev}\cite{Brundan} 
-  They entirely characterize the Socle of $\Res D^\lambda$, as well as the condition that $\soc\prn{\Res D^\lambda} \simeq \Res D^\lambda$.
+  When $\lambda(i) = \mu$ for $i$ normal, write $\mu \xrightarrow{\text{normal}} \lambda$, and similar in the good case.
+
+  The following statements, collectively known as \emph{modular branching rules} of $D^\lambda$, were originally written by Kleshchev for Specht modules of the group algebra $k\brk{S_n}$, then generalized to the Hecke algebra case by Brundan.\cite{Kleshchev,Brundan} 
+  They entirely characterize the socle of $\Res D^\lambda$, as well as semisimplicity od $\Res D^\lambda$.
   \begin{theorem}[Kleshchev-Brundan]
     We have the following isomorphisms of vector spaces
     \begin{align*}
       \Homarg{\SH'}{S^\mu,\Res D^\lambda} 
       &\simeq \begin{cases}
-        k & \mu \xrightarrow{\text{normal}} \lambda\\
-        0 & \text{otherwise}
+        k & \text{if }\mu \xrightarrow{\text{normal}} \lambda,\\
+        0 & \text{otherwise}.
       \end{cases}\\
       \Homarg{\SH'}{D^\mu,\Res D^\lambda} 
       &\simeq \begin{cases}
-        k & \mu \xrightarrow{\text{good}} \lambda\\
+        k & \text{if } \mu \xrightarrow{\text{good}} \lambda\\
         0 & \text{otherwise}
       \end{cases}
     \end{align*}
@@ -430,10 +421,10 @@
     Then, we may characterize the socle of $\Res \, D^\lambda$ as follows:
     \[
       \soc\prn{\Res \, D^{(n+r,n)}} \simeq \begin{cases}
-        D^{(n + r - 1,n)} & e \mid r+2\\
-        D^{(n + r,n-1)} & e \nmid r+2, \; e \mid r\\
-        D^{(n+r-1,n)} \oplus D^{(n+r,n-1)} & e \nmid r+2,r
-      \end{cases}.
+        D^{(n + r - 1,n)} & \text{if }e \mid r+2\\
+        D^{(n + r,n-1)} &e \text{if }e\nmid r+2, \; e \mid r\\
+        D^{(n+r-1,n)} \oplus D^{(n+r,n-1)} & \text{if } e \nmid r+2,r
+      \end{cases}
     \]
     Further, when $e \nmid r$ or $e \mid r + 2$, $\Res D^{(n+r,n)}$ is semisimple.
   \end{corollary}
@@ -443,16 +434,17 @@
       \beta_\lambda(1,2) &= r + 2\\
       \gamma_\lambda(1,2) &= r
     \end{align*}
-    Since $2$ is the largest removable number, $D^{(n+r,n-1)} \subset D^{(n+r,n)}$ iff $e \nmid r + 2$.
-    Further, if $e \nmid r + 2$, then $D^{(n+r-1,n)} \subset D^{(n+r,n)}$ iff 1 is good iff $e \nmid r$
+    Since $2$ is the largest removable number, $D^{(n+r,n-1)} \subset D^{(n+r,n)}$ if and only if $e \nmid r + 2$.
+    Further, if $e \nmid r + 2$, then $D^{(n+r-1,n)} \subset D^{(n+r,n)}$ if and only if 1 is good;
+    this is equivalent to $e \nmid r$.
   \end{proof}
 
-  Now that we've characterized how these restrict, we can describe how strongly these restrictions characterize irreducibles.
-  Namely, we will prove that a composition series consistent with $(n+r,n)$ and $e$ top-indivisibility of $(n+r-1,n+1)$ is sufficient to determine that an irreducible is $D^{(n+r,n)}$ when either $r \neq 0$ or $e \neq 4$.
+  Now that we've characterized how $D^\lambda$ restrict, we can describe how strongly these restrictions characterize irreducibles.
+  Namely, we will prove that some $D^\lambda$ having the same composition series as  $D^{(n+r,n)}$ is sufficient to determine that $\lambda = (n+r,n)$ in the case that condition (i) of Corollary \ref{S irreducibility} holds and either $r \neq 0$ or $e \neq 4$.
   \begin{proposition}\label{Combinatorics}
     Let $\lambda$ be an $e$-regular partition of $2n + r$.
     \begin{enumerate}[label={(\roman*)}]
-      \item Suppose $r > 0$, suppose $e \nmid r+1, r + 2,\dots,n + r + 1$, and suppose either $e \mid r$ or $e \nmid r$.
+      \item Suppose $r > 0$, suppose $e \nmid r+1, r + 2,\dots,n + r + 1$, and suppose either $e \mid r$ or $e \nmid r-2$.
         If $D^\lambda$ has the composition series 
         \begin{equation}\label{D Composition Series}
           0 \subset D^{(n+r-1,n)} \subset \Res \, D^{\lambda}
@@ -464,23 +456,27 @@
   \end{proposition}
   \begin{proof}
     Note that $e > n$.
+    Further, note that the above characterizations are necessary regardless of $e$-regularity;
+    in the case that $\mu$ below fails too be $e$-regular, this proposition will prove that $\lambda$ does not satisfy \label{D Composition Series}, a contradiction.
 
     \textbf{(i)}
     Let $\varpi := (n+r-1,n,1)$, let $\varsigma := (n+r-1,n+1)$, and let $\mu := (n + r,n)$.
-    Since $D^{(n+r-1,n)} \subset \Res \, D^\lambda$, we have $(n + r - 1,n) \longrightarrow \lambda$, implying $\lambda = \varpi,\varsigma,\mu$.
-    We will show that $\varpi, \varsigma$ do not have socle compatible with \eqref{D Composition Series};
-    then, we will have $\lambda = \mu$.
+    Since $D^{(n+r-1,n)} \subset \Res \, D^\lambda$, we have $(n + r - 1,n) \longrightarrow \lambda$, implying $\lambda \in \cbr{\varpi,\varsigma,\mu}$.
+    We will show that $\varpi, \varsigma$ do not have socle compatible with \eqref{D Composition Series}, allowing us to conclude $\lambda = \mu$.
     
-    Suppose that $\lambda = \varpi$.
+    If $\varpi$ or $\varsigma$ are not $e$-regular, then $D^\varpi = 0$ or $D^\varsigma = 0$, and we may immediately rule these out;
+    henceforth assume that these are each $e$-regular.
+
+    First suppose that that $\lambda = \varpi$.
     We will break into cases with $r$.
     \begin{itemize}
       \item Suppose that $r > 1$.
         Note that $e \nmid r + 1 = \beta_\varpi(1,2)$, so $2$ is normal.
         Further, $\gamma_\varpi(2,3) = n \not\equiv 0 \pmod e$, so 2 is good and $D^{(n+r-1,n-1,1)} \subset D^\varpi$, which is not a composition factor in \eqref{D Composition Series}.
-        Hence, by Jordan-H\"older, $\lambda \neq \varpi$.\cite{Etingof}
+        Hence, by the Jordan-H\"older theorem \cite{Etingof}, we have $\lambda \neq \varpi$.
 
       \item Suppose that $r = 1$.
-        Then, $\varpi = (n,n,1)$ has $\gamma_{\varpi}(1,2) = n \not\equiv 0 \pmod e$, giving $D^{(n,n-1,1)} \subset D^\varpi$ and hence $\lambda \neq \varpi$.
+        Then, $\varpi = (n,n,1)$ has $\gamma_{\varpi}(1,2) = n \not\equiv 0 \pmod e$, giving $D^{(n,n-1,1)} \subset D^\varpi$ and hence $\lambda \neq \varpi$ as in the previous case.
     \end{itemize} 
   \iffalse % keeping just in case
    \begin{align*}
@@ -500,14 +496,16 @@
       Then, by Corollary \ref{D Restrictions}, we require that $e \nmid r$ and $e \mid r - 2$;
       these are not satisfied, so $\lambda \neq \varsigma$.
     \item Suppose $r = 2$.
-      Then $\Res \, D^\varsigma \simeq D^{(n+1,n)}$ is irreducible, contradicting \eqref{D Composition Series}. 
+      Then $\Res \, D^\varsigma \simeq D^{(n+1,n)}$ is irreducible, as $\varsigma = (n+1,n+1)$ has rows of the same length;
+      this contradicts \eqref{D Composition Series}. 
     \item Suppose $r < 2$. 
       Then $\varsigma$ is not a partition.
   \end{itemize}
+  This completes the proof.
+
 
   \textbf{(ii)}
-  This result is easier than the previous result;
-  since the socle of $D^\lambda$ is irreducible, we require that 1 is the only normal number and $\lambda(1) = (n,n-1)$.
+  Since the socle of $D^\lambda$ is irreducible, we require that 1 is the only normal number and $\lambda(1) = (n,n-1)$.
   This reduces to the cases of $\varsigma := (n + 1, n - 1)$ and $\mu := (n,n)$;
   if $\lambda = \varsigma$, then we have that $e \mid \beta_\varsigma(1,2) = 4$, a contradiction.
   Hence $\lambda = \mu$.
@@ -699,7 +697,7 @@ This will be a large technical tool in our proof of irreducibility.
   Hence $\det B_{n + r} \neq 0$, and $K = 0$.
 \end{proof}
 \begin{theorem}\label{Irreducibility Theorem}
-  Suppose that $(n+r,n)$ is $e$ top-indivisible.
+  Suppose that $e \nmid r+2,r+3,\dots,n+r+1$.
   Then, the representation $M_{2n + r}^r$ is irreducible. 
 \end{theorem}
 \begin{proof}
@@ -720,7 +718,7 @@ This will be a large technical tool in our proof of irreducibility.
   \]
   Indeed, when $i \neq j$ this is given by $h_j = 1 + T_j$, and we have $h_i = q^{-1}(1 + T_i)(1 + T_{i+1})(1 + T_{i-1})$, as given by Figure \ref{bigloop}.
   
-  Note that, by $e$ top-indivisibility of $(n+r,n)$, we have $e \nmid r+2,\dots,n+r$, and hence $(n+r-1,n-1)$ is $e$ top-indivisible as well.
+  Note that, by definition, $e \nmid r+2,\dots,n+r$ as well, and hence $(n+r-1,n-1)$ satisfies the hypotheses of the proposition as well..
   Then, due to the inductive hypothesis, there is some action $h' \in \SH(S_{2(n-1) + r})$ sending $\varphi((1 + T_i)w)$ to the image of a basis vector;
   then, the action $\SH$ generates the endomorphism $\varphi^{-1}h'\varphi$ sending $(1 + T_i)w$ to a basis vector, giving $w$ cyclic and hence $M_{2n + r}^r$ irreducible.
   \begin{figure}
@@ -1527,6 +1525,6 @@ Throughout the text, for some representation $V$, we refer to $\Res_{\SH(S_{l})}
   In fact, the reader can verify that $\SH'' = T_{i_j}\SH'T_{i_j}^{-1}$.
 \end{proof}
 
-\bibliographystyle{plain} 
+\bibliographystyle{numeric} 
  \bibliography{../RepBib}
 \end{document}
