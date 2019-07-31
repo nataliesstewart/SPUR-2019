@@ -112,7 +112,7 @@
   Throughout this paper, we analyze the \emph{two-row partitions} $(n+r,n) \vdash 2n + r$ and their corresponding modules $S^{(n+r,n)}$ and $D^{(n+r,n)}$.
   \begin{remark}
     Note that we follow the convention of Murphy--Kleshchev concerning the correspondence $\lambda \leftrightarrow S^\lambda$, which is dual to the conventions of Dipper--James--Mathas;
-    one may translate our results to the latter convention by transposing all partitions.\cite{Kleshchev,Mathas-book,Murphy1} 
+    one may translate our results to the latter convention by transposing all partitions \cite{Kleshchev,Mathas-book,Murphy1}. 
     For instance, we refer to the \emph{sign representation} as $S^{(1^{2n + r})}$.
   \end{remark}
 
@@ -138,7 +138,7 @@
   
   A more explicit definition is given in Appendix \ref{Explicit Definition} and we verify that this is well-defined in Appendix \ref{Cross Relations}.
   \end{definition}
-  \begin{figure}[b] 
+  \begin{figure} 
     \def\cbasisspacing{5mm}
     \begin{adjustbox}{width=\textwidth}
     $\cbr{
@@ -197,6 +197,7 @@
   However, when $S^\lambda$ is reducible, the crossingless matchings representations cannot provide a graphical realization of the irreducible quotients $D^\lambda$;
   our next goal is to provide a similar graphical realization of the modules $D^{(n+r,n)}$ with $r \leq 3$ when $e=5$, using a modification of Shor--Jordan's Fibonacci representation of the braid group \cite{Shor}.
   It is possible that similar graphical representations can be constructed for other $r$ and $e$, but we do not attempt to do so here.
+  
   \def\vara{\alpha_1}
   \def\varb{\alpha_2}
   \def\varc{\varepsilon_1}
@@ -207,7 +208,7 @@
   \fakesubsection{Fibonacci representation}
   Now suppose that $e = 5$ and $k$ contains the algebraic number $\sqrt{q + q^4}$ (for reasons which will be apparent soon).
   For convenience set $m := 2n + r$.
-  The following, in the case that $k = \CC$ and  of Shor--Jordan's Fibonacci representation of the braid group.\cite{Shor}
+  The following is essentially a rescaling of Shor--Jordan's Fibonacci representation of the braid group \cite{Shor}.
  
   {\color{orange} Literature goes here.}
 
@@ -328,9 +329,9 @@
   Define the function $\nu_{e,p} : \NN \rightarrow \cbr{-1} \cup \NN$ by
   \[
     \nu_{e,p}(h) := \begin{cases}
-      \nu_p(h) & e \text{if }\mid h\\
-      -1 & e \text{if }\nmid h
-    \end{cases}.
+      \nu_p(h) & \text{if }e \mid h,\\
+      -1 & \text{if }e \nmid h.
+    \end{cases}
   \]
   Lastly, let $h_{ab}^\lambda$ be the hook length of node $(a,b)$ in $\brk \lambda$ as defined in \cite{Kleshchev}.
   With this language, we may express the following theorem, parts (ii)-(iii) of which are known as the \emph{Carter criterion} in the symmetric group case, due to James--Mathas \cite{Mathas-book}.
@@ -402,17 +403,17 @@
   
   Fixing some partition $\lambda \vdash 2n + r$, for $1 \leq i \leq j \leq l$, let $\beta_\lambda(i,j)$ and $\gamma_\lambda$ be the quantities
   \begin{align*}
-    \beta_\lambda(i,j) &= \lambda_i - \lambda_j + \sum_{t = i}^j a_t\\
+    \beta_\lambda(i,j) &= \lambda_i - \lambda_j + \sum_{t = i}^j a_t,\\
     \gamma_\lambda(i,j) &= \lambda_i - \lambda_j + \sum_{t = i+1}^j a_t.
   \end{align*}
   Note that $\beta_\lambda(i,j)$ is the hook length of cell $(a_1 + \dots + a_{i-1}+1,\lambda_j)$.
 
   Results due to Kleshchev and Brundan refer to \emph{normal} and \emph{good} numbers;
   for these, we will use the facts that 1 is always normal and that $j$ is normal when $\beta_\lambda(i,j) \not\equiv 0 \pmod e$ for all $i \leq j$.
-  Further, we will use that $j$ is good if and only if $j$ is normal and $\gamma_\lambda(j,j') \not\equiv 0 \pmod e$ for all $j' \geq j$ normal.\cite{Brundan,Kleshchev}
+  Further, we will use that $j$ is good if and only if $j$ is normal and $\gamma_\lambda(j,j') \not\equiv 0 \pmod e$ for all $j' \geq j$ normal \cite{Brundan,Kleshchev}.
   When $\lambda(i) = \mu$ for $i$ normal, write $\mu \xrightarrow{\text{normal}} \lambda$, and similar in the good case.
 
-  The following statements, collectively known as \emph{modular branching rules} of $D^\lambda$, were originally written by Kleshchev for Specht modules of the group algebra $k\brk{S_n}$, then generalized to the Hecke algebra case by Brundan.\cite{Kleshchev,Brundan} 
+  The following statements, collectively known as \emph{modular branching rules} of $D^\lambda$, were originally written by Kleshchev for Specht modules of the group algebra $k\brk{S_n}$, then generalized to the Hecke algebra case by Brundan \cite{Kleshchev,Brundan}. 
   They entirely characterize the socle of $\Res D^\lambda$, as well as semisimplicity od $\Res D^\lambda$.
   \begin{theorem}[Kleshchev-Brundan]
     We have the following isomorphisms of vector spaces
@@ -424,8 +425,8 @@
       \end{cases}\\
       \Homarg{\SH'}{D^\mu,\Res D^\lambda} 
       &\simeq \begin{cases}
-        k & \text{if } \mu \xrightarrow{\text{good}} \lambda\\
-        0 & \text{otherwise}
+        k & \text{if } \mu \xrightarrow{\text{good}} \lambda,\\
+        0 & \text{otherwise}.
       \end{cases}
     \end{align*}
     and $\Res D^\lambda$ is semisimple if and only if every normal number in $\lambda$ is good.\qed
@@ -486,118 +487,42 @@
     
     If $\varpi$ or $\varsigma$ are not $e$-regular, then $D^\varpi = 0$ or $D^\varsigma = 0$, and we may immediately rule these out;
     henceforth assume that these are each $e$-regular.
-
     First suppose that that $\lambda = \varpi$.
     We will break into cases with $r$.
-    \begin{itemize}
+    \begin{enumerate}[label={\textit{Case \arabic*.}}]
       \item Suppose that $r > 1$.
         Note that $e \nmid r + 1 = \beta_\varpi(1,2)$, so $2$ is normal.
-        Further, $\gamma_\varpi(2,3) = n \not\equiv 0 \pmod e$, so 2 is good and $D^{(n+r-1,n-1,1)} \subset D^\varpi$, which is not a composition factor in \eqref{D Composition Series}.
-        Hence, by the Jordan-H\"older theorem \cite{Etingof}, we have $\lambda \neq \varpi$.
+        Further, \[\gamma_\varpi(2,3) = n \not\equiv 0 \pmod e,\] so 2 is good and $D^{(n+r-1,n-1,1)} \subset D^\varpi$, which is not a composition factor in \eqref{D Composition Series}.
+        Hence, by the Jordan-H\"older theorem \cite[Thm.~3.7.1]{Etingof}, we have $\lambda \neq \varpi$.
 
       \item Suppose that $r = 1$.
-        Then, $\varpi = (n,n,1)$ has $\gamma_{\varpi}(1,2) = n \not\equiv 0 \pmod e$, giving $D^{(n,n-1,1)} \subset D^\varpi$ and hence $\lambda \neq \varpi$ as in the previous case.
-    \end{itemize} 
-  \iffalse % keeping just in case
-   \begin{align*}
-    \beta_{\varpi}(1,2)     &= r + 1 \\
-    \beta_{\varpi}(1,3)     &= n + r + 1 \\
-    \beta_{\varpi}(2,3)     &= n + 1\\
-    \gamma_{\varpi}(1,2)    &= r\\
-    \gamma_{\varpi}(1,3)    &= n + r\\
-    \gamma_{\varpi}(2,3)    &= n\\
-  \end{align*}
-  \fi
+        Then, $\varpi = (n,n,1)$ has \[\gamma_{\varpi}(1,2) = n \not\equiv 0 \pmod e,\] giving $D^{(n,n-1,1)} \subset D^\varpi$ and hence $\lambda \neq \varpi$ as in the previous case.
+    \end{enumerate} 
 
   \vspace{5pt}
-  Now suppose that $\lambda = \varsigma$ and break into cases with $r$:
-  \begin{itemize}
+  Now suppose that $\lambda = \varsigma$.
+  Note that $\varsigma$ is not a partition when $r < 2$, so we may assume that $r \geq 2$.
+  We further break into cases with $r$:
+  \begin{enumerate}[label={\textit{Case \arabic*.}}]
     \item Suppose $r > 2$.
       Then, by Corollary \ref{D Restrictions}, we require that $e \nmid r$ and $e \mid r - 2$;
       these are not satisfied, so $\lambda \neq \varsigma$.
     \item Suppose $r = 2$.
-      Then $\Res \, D^\varsigma \simeq D^{(n+1,n)}$ is irreducible, as $\varsigma = (n+1,n+1)$ has rows of the same length;
-      this contradicts \eqref{D Composition Series}. 
-    \item Suppose $r < 2$. 
-      Then $\varsigma$ is not a partition.
-  \end{itemize}
-  This completes the proof.
-
+      Then, we have the restriction \[\Res \, D^\varsigma \simeq D^{(n+1,n)},\] as $\varsigma = (n+1,n+1)$ has tworows of the same length.
+      This contradicts \eqref{D Composition Series}. 
+  \end{enumerate}
+  Hence $\lambda = \mu$, completing the proof.
 
   \textbf{(ii)}
   Since the socle of $D^\lambda$ is irreducible, we require that 1 is the only normal number and $\lambda(1) = (n,n-1)$.
   This reduces to the cases of $\varsigma := (n + 1, n - 1)$ and $\mu := (n,n)$;
-  if $\lambda = \varsigma$, then we have that $e \mid \beta_\varsigma(1,2) = 4$, a contradiction.
+  if $\lambda = \varsigma$, then we have that \[\beta_\varsigma(1,2) = 4 \equiv 0 \pmod e,\] a contradiction.
   Hence $\lambda = \mu$.
 \end{proof}
-
-\iffalse
-\begin{proposition}
-  Suppose that $n > 0$ and $e \nmid n + r$.
-  \begin{enumerate}[label={(\roman*)}]
-    \item Suppose $r > 0$, $n > 1$, and either $e \nmid n + 1$ or $e \nmid n + r + 1, n + r - 1$.
-      If $D^\lambda$ has the composition series 
-      \begin{equation}\label{D Composition Series}
-        0 \subset D^{(n+r-1,n)} \subset \Res \, D^{\lambda}
-      \end{equation}
-      with factor $\Res \, D^{\lambda} / D^{(n+r-1,n)} \simeq D^{(n+r,n)}$, then $\lambda = (n+r,n)$.
-    \item Suppose $n = 1$ and $e \nmid r+2$, and suppose that we have composition series \eqref{D Composition Series}.
-      Then $\lambda=(r+1,r+2)$.
-    \item Suppose $r = 0$, either $e \nmid n+2$ or $e > 3$, and $D^{(n,n-1)} \simeq \Res \, D^\lambda$.
-      Then $\lambda = (n,n)$.
-  \end{enumerate}
-  The above conditions are unilaterally met whenever $e > n + r + 1$ and $(n,r) \neq (1,0)$.
-\end{proposition}
-\begin{proof}
-  \textbf{(i)}
-  Let $\lambda_1 := (n+r-1,n,1)$, let $\lambda_2 := (n+r-1,n+1)$, and let $\lambda_3 := (n + r,n)$.
-  Since $D^{(n+r-1,n)} \subset \Res \, D^\lambda$, we have $(n + r - 1,n) \longrightarrow \lambda$, implying $\lambda = \lambda_i$ for some $i = 1,2,3$.
-  We will show that $\lambda_1,\lambda_2$ each have good numbers other than 1, leading to elements of their socle that are not factors in \eqref{D Composition Series};
-  then, we will have $\lambda = \lambda_3$.
-
-  We may straightforwardly compute this.
-  First assume $n \geq 2$, so that
-  \begin{align*}
-    \beta_{\lambda_1}(1,2) &= n + 1\\
-    \beta_{\lambda_1}(1,3) &= n + r + 1\\
-    \beta_{\lambda_1}(2,3) &= n + r - 1\\
-    \beta_{\lambda_2}(1,2) &= n + r
-  \end{align*}
-
-  \textbf{(ii)}
-  The choices are the same as above, but now $\lambda_1$ only has two removable nodes, so that
-  \begin{align*}
-    \beta_{\lambda_1}(1,3) &= r + 2\\
-    \beta_{\lambda_2}(1,2) &= r + 1
-  \end{align*}
-
-  \textbf{(iii)}
-  Let $\lambda_1 := (n,n-1,1)$, let $\lambda_2 := (n+1,n-1)$, and let $\lambda_3 := (n,n)$;
-  as before we know that $\lambda = \lambda_i$ for $i = 1,2,3$, so we will eliminate $\lambda_1,\lambda_2$.
-  First, we will show that $\lambda_1$ has a good number other than 1:
-  \begin{align*}
-    \beta_{\lambda_1}(1,2) &= n\\
-    \beta_{\lambda_1}(1,3) &= n + 2\\
-    \beta_{\lambda_1}(2,3) &= n\\
-  \end{align*}
-  Hence we may rule out $\lambda_1$ when $e | n$.
-
-
-  Suppose $D^{\lambda_2}$ satisfies the isomorphism;
-  then the number 2 is normal.
-  We may make the following computations:
-   \begin{align*}
-    \beta_{\lambda_2}(1,2) &= n + 2\\
-    \gamma_{\lambda_2}(1,2) &= 3.
-  \end{align*}
-  When $e | n + 2$, this brings contradiction;
-  when $e \nmid n + 2$ and $e > 3$, 2 is a good number (recalling that $e > 2$), giving non-semisimple restriction, a contradiction.
-  Hence $\lambda = \lambda_3$ and the proposition is proven.
-\end{proof}
-\fi
+This will be an integral technical tool in proving the correspondence between the crossingless matchings representation $M_{2n + r}^r$ and the Specht module $S^{(n+r,n)}$ in the following section. 
 
 \section{Crossingless matchings and Specht modules}\label{Crossingless Matchings Section}
-In this section, we will analyze the crossingless matchings representation $M := M_{2n + r}^r$ with the goal of proving $M_{2n + r}^r \simeq S^{(n+r,n)}$ under certain conditions in $e$.
+In this section, we analyze the crossingless matchings representation $M := M_{2n + r}^r$ with the goal of proving $M_{2n + r}^r \simeq S^{(n+r,n)}$ under certain conditions in $e$.
 We begin by proving irreducibility of $M_{2n + r}^r$ whenever $e \nmid r+2,r+3,\dots,n+r+1$;
 when $e>n$, this is true if and only if $S^{(n+r,n)}$ is irreducible by Corollary \ref{S irreducibility}.
 This is proven via an inductive process; if $e \nmid n + r + 1$, then $M$ contains no sign subrepresentation, and this allows us to ``project'' down to the case $M_{2(n-1) + r}^r$ and deduce irreducibility of $M$ from irreducibility of this representation.
@@ -619,7 +544,7 @@ We will use the following base case to the correspondence throughout:
 
 \subsection{Irreducibility of $M$}
 We refer to a vector $w \in M$ satisfying $\SH w = M$ as \emph{cyclic}.
-It is a classical result that a representation $W$ is irreducible if and only if every nonzero element of $W$ is cyclic.\cite{Etingof}
+It is a classical result that a representation $W$ is irreducible if and only if every nonzero element of $W$ is cyclic \cite{Etingof}.
 We will prove irreducibility by showing that every nonzero $w \in M$ is cyclic;
 the following lemma is integral in showing this.
 
@@ -718,17 +643,17 @@ We give two proofs of the following proposition. The first, below, intuits the n
   Hence, as vector spaces, there is an isomorphism $\varphi:\ima(1 + T_i) \rightarrow M_{2(n-1) + r}^r$ ``deleting'' the arc $(i,i+1)$.
 
   We will show that, for every element $(1 + T_j') \in \SH(S_{2(n-1) + r})$, there is some element $h_j \in \SH(S_{2n + r})$ such that the following commutes:
-  \[
+  \begin{equation}\label{Irreducibility commutative diagram}
     \begin{tikzcd}
       \ima (1 + T_i) \arrow[r,"\varphi" above, "\sim" below] \arrow[d,"h_j"] & M_{2(n-1) + r}^r \arrow[d,"1 + T_j'"]\\
       \ima (1 + T_i) \arrow[r,"\varphi" above, "\sim" below] & M_{2(n-1) + r}^r
     \end{tikzcd}
-  \]
+  \end{equation}
   Indeed, when $i+1 \neq j$ this is given by $h_j = 1 + T_j$, and we have $h_{i+1} = q^{-1}(1 + T_i)(1 + T_{i+1})(1 + T_{i-1})$, as given by Figure \ref{bigloop}.
   
   Note that, by definition, $e \nmid r+2,\dots,n+r$ as well, and hence $(n+r-1,n-1)$ satisfies the hypotheses of the proposition as well.
   Then, by the inductive hypothesis, there is some element $h' \in \SH(S_{2(n-1) + r})$ sending $\varphi((1 + T_i)w)$ to the image of a basis vector of $M_{2n + r}^r$ via $\varphi$;
-  then, the action $\SH$ generates the endomorphism $\varphi^{-1}h'\varphi$ of $M$, which sends $(1 + T_i)w$ to a basis vector in $M_{2n + r}^r$.
+  then, by \eqref{Irreducibility commutative diagram} the action $\SH$ generates the endomorphism $\varphi^{-1}h'\varphi$ of $M$, which sends $(1 + T_i)w$ to a basis vector in $M_{2n + r}^r$.
   This implies that $w$ is cyclic, and hence $M_{2n + r}^r$ is irreducible.
   \begin{figure}
   \begin{adjustbox}{width=\textwidth}
@@ -757,8 +682,8 @@ We give two proofs of the following proposition. The first, below, intuits the n
 \end{figure}
 
 \subsection{Correspondence with Specht modules}
-The following theorem due to Mathas (theorem 5.5 in \cite{Mathas-article}) generalizes the classical branching theorem of the symmetric group.
-It will not be necessary for our present proof of the correspondence, but analogy with $M$ is suggestive.
+The following theorem due to Mathas \cite[Thm.~5.5]{Mathas-article} generalizes the classical branching theorem of the symmetric group.
+This result is not be necessary for our present proof of the correspondence in the case $e > n + r + 1$, but the analogy with $M$ is suggestive.
 \begin{theorem}[Characteristic-free classical branching theorem]
   Let $\lambda$ be a partition of $m$ with $\ell$ removable nodes.
   Then, $\Res S^\lambda$ has an $\SH_{k,q}(S_{m-1})$-module filtration
@@ -785,31 +710,34 @@ If we replace $S^\lambda$ with the appropriate $M_{2n + r}^r$ above, we find the
         M_{2n - 1}^1 \simeq \Res M_{2n}^0. \label{0 Restriction}
        \end{equation}
   \end{enumerate}
-  In the case that $e \nmid r+1,\dots,n + r + 1$, \ref{Filtration} and \ref{0 Restriction} are composition series.
+  In the case that $e \nmid r+1,\dots,n + r + 1$, \eqref{Filtration} and \eqref{0 Restriction} are composition series.
 \end{proposition}
 \begin{proof}
   \textbf{(i)}
-  Note that we may identify the subrepresentation of $\Res M_{2n + r}^r$ having anchor at index $2n+r$ with $M_{2n + r - 1}^{r-1}$.
+  Note that the span of the matchings having an anchor at index $2n + r$ is a subrepresentation of $\Res M_{2n + r}^r$;
+  this subrepresentation is easily verified to be isomorphic to $M_{2n + r - 1}^{r-1}$, and we will henceforth refer to it as such. 
   
   Let $U := \Res M_{2n + r}^r / M_{2n + r - 1}^{r - 1}$, and let $\pi: \Res M_{2n + r}^r \twoheadrightarrow U$ be the associated projection to $U$.
   Let $\phi:U \rightarrow M_{2n + r - 1}^{r + 1}$ be the $k$-linear map which regards the arc $(i,2n + r)$ in $U$ as an anchor at $i$ in $M_{2n + r - 1}^{r + 1}$.
   It is not hard to verify that this is a well-defined isomorphism of vector spaces, so we must show that it is $\SH$-linear.
 
-  Given a basis vector $w_j$ containing arc $(i,2n + r)$, $\phi$ is clearly compatible with $(1 + T_{i'})$ with $i' \neq i,i-1$.
-  Further, it is easy to verify that $\phi$ is compatible with $T_i$ by definition of the relevant modules, as well as with $(1 + T_{i-1})$ when $w_j$ does not have anchor $i-1$.
-  The case that $w_j$ has anchor $i-1$ is illustrated in the following commutative diagram:
-  \[
+  We begin by showing commutativity of the following diagram:
+  \begin{equation}\label{Branching commutative diagram}
     \begin{tikzcd}
-      M_{2n + r}^r \arrow[r,"1 + T_i"] \arrow[d,"\phi \circ \pi"] & M_{2n + t}^r \arrow[r,"\pi"] & U \arrow[d,"\phi"]\\
-      M_{2(n-1) + r + 1}^{r+1} \arrow[rr,"1 + T_i"] & & M_{2(n-1) + r + 1}^{r+1}
+      M_{2n + r}^r \arrow[r,"1 + T_i"] \arrow[d,"\phi \circ \pi"] & M_{2n + t}^r \arrow[d,"\phi \circ \pi"]\\
+      M_{2(n-1) + r + 1}^{r+1} \arrow[r,"1 + T_i"] &  M_{2(n-1) + r + 1}^{r+1}
     \end{tikzcd}
+  \end{equation}
+  We illustrate this compatibility in the following graphic.
+  \[
+    \QuotDiagramOne
+    \hspace{50pt}
+    \QuotDiagramTwo
   \]
-  which we may diagram chase as follows
-    \[
-    \QuotDiagram
-  \]
-  
-  In each of these cases, linearity of $\SH$-action and $\phi$ give 
+  In both the left and right square, we see that $\phi$ may be treated as an isotopy which ``unfolds'' the last node into an anchor.
+  This isotopy may equivalently be pre- or post-composed with the isotopy defining the action of $1 + T_i$, implying commutativity of \eqref{Branching commutative diagram}. 
+
+  Now, using \eqref{Branching commutative diagram}, we have
   \begin{align*}
     \phi(T_jw_i) 
     &= \phi(-w_j + (1+T_j)w)\\
@@ -820,7 +748,7 @@ If we replace $S^\lambda$ with the appropriate $M_{2n + r}^r$ above, we find the
 
   \textbf{(ii)}
   This follows from an analogous proof:
-  now, $\phi:\Res M_{2n}^0 \rightarrow M_{2(n-1)+1}^1$ is an isomorphism of representaitons, which is proven to be $\SH$-linear by the same proof.
+  now, $\phi:\Res M_{2n}^0 \rightarrow M_{2(n-1)+1}^1$ is an isomorphism of representations, which is proven to be $\SH$-linear by the same logic.
 \end{proof}
 
 We've now assembled the basic pieces necessary to prove our correspondence in the case $e > n + r + 1$.
@@ -1642,14 +1570,15 @@ Me are now ready to prove existence of a kernel element. To prove this, we will 
 
 \section{Fibonacci representations and quotients of Specht modules}\label{Fibonacci Section}
 The irreducibility of $S^{(n+r,n)}$ is integral to arguments of Section \ref{Crossingless Matchings Section};
-without irreducibility of $M_{2n + r}^r$ (conjecturally equivalent to irreducibility of $S^{(n+r,n)}$), $M$ is not necessarily isomorphic to any Specht module $S^\lambda$ or quotient $D^\lambda$, preventing the arguments of Section \ref{Specht Modules Section} from being used.
+without irreducibility of $M_{2n + r}^r$ (which is conjecturally equivalent to irreducibility of $S^{(n+r,n)}$), $M$ is not necessarily isomorphic to any Specht module $S^\lambda$ or quotient $D^\lambda$, preventing the arguments of Section \ref{Specht Modules Section} from being used.
 Further, when $S^{(n+r,n)}$ is reducible, we have $e \mid l$ for some $r+2 \leq l \leq n+r+1$, and hence the filtration provided in Proposition \ref{Filtration} fails to be a composition series.
 In summary, for $S^{(n+r,n)}$, nearly every argument in Sections \ref{Specht Modules Section} and \ref{Crossingless Matchings Section} break down, and hence it is difficult to characterize the Specht module $S^{(n+r,n)}$ via crossingless matchings.
 
-Due to these difficulties, we instead seek a graphical realization of the irreducible quotient $D^{(n+r,n)}$.
+Due to these difficulties, we additionally seek a graphical realization of the irreducible quotient $D^{(n+r,n)}$.
 In doing so, we may study their branching via Corollary \ref{D Restrictions}, which gives an interesting recurrence in their dimension. 
 \begin{example}
-Let $e = 5$. If $m$ is even, let $t$ be such that $2t = m$;
+Suppose $e = 5$. 
+If $m$ is even, let $t$ be such that $2t = m$;
 if $m$ is odd, let $t'$ be such that $2t' + 3 = m$.
 Then, we may define the following quantity:
 \[
@@ -1665,25 +1594,25 @@ Then, by Corollary \ref{D Restrictions}, we have
     d_m^{1,2} &= d_{m-1}^{1,2} + d_{m-1}^{0,3}\\
     &= d_{m-1}^{1,2} + d_{m-2}^{1,2}.
 \end{align*}
-Further, by lemma \ref{Base cases}, we have that $d_2^{0,3} = d_3^{1,2} = 1$;
+Further, by Lemma \ref{Base cases}, we have that $d_2^{0,3} = d_3^{1,2} = 1$;
 hence $d_m^{1,2} = d_{m+1}^{0,3} = f_m$, where $f_m$ is the $n$th \emph{Fibonacci number}.
 \end{example}
 
 In this section, we henceforth restrict to the case $e = 5$ and $r \leq 3$.
-We note that Shor--Jordan have conveniently used complex representations of the braid group on $m$ letters in \cite{Shor} having dimension $f_m$ and $f_{m-1}$.
-We have rescaled these representations, called subrepresentations of the \emph{Fibonacci representation} in Definition \ref{Fib definition}, in order to satisfy the quadratic relation of $\SH$, and we have otherwise modified them to to fit a general parameter $q$ and field $k$ having $e = 5$.  
+We note that Shor--Jordan \cite{Shor} have conveniently used complex representations of the braid group on $m$ strands in \cite{Shor} having dimensions $f_m$ and $f_{m-1}$.
+In fact, the \emph{Fibonacci representation} of Definition \ref{Fib definition} with $k = \CC$ and $q = e^{-3\pi i /5}$ is a rescaling of Shor--Jordan's Fibonacci representation.
 
-Note that, Shor--Jordan does not characterize this representation any more than the definition and decomposition into four subrepresentations;
+Note that Shor--Jordan does not characterize this representation any more than the definition and decomposition into four subrepresentations;
 we will give a characterization of this representation which is stronger than presented in \cite{Shor}.
 
 We will start our study of the Fibonacci representation $V := V^m$ by studying low-dimensional cases.
-Recall that we have decomposed $V$ into a direct sum of the subrepresentations $V_{\vs\vs}$, $V_{\vs\vp}$, $V_{\vp\vs}$, and $V_{\vp\vp}$, indexed by the first and last bit of the basis.
+Recall that we have decomposed $V$ into a direct sum of the subrepresentations $V_{\vs\vs}$, $V_{\vs\vp}$, $V_{\vp\vs}$, and $V_{\vp\vp}$, indexed by the first and last bit of the character of the strings in $V$.
 \begin{proposition}
   We have the following isomorphisms of representations:
-  \begin{align*}
+  \begin {align*}
     \emph{$V_{\vs\vs}^2$} &\simeq D^{(1^2)}\\
     \emph{$V_{\vs\vp}^2$} &\simeq D^{(2)}\\
-    \emph{$V_{\vp\vp}^2$} &\simeq V_{\vs\vs}^2 \oplus V_{\vs\vp}.
+    \emph{$V_{\vp\vp}^2$} &\simeq \emph{$V_{\vs\vs}^2 \oplus V_{\vs\vp}$}.
   \end{align*}
 \end{proposition}
 \begin{proof}
@@ -1713,7 +1642,7 @@ Recall that we have decomposed $V$ into a direct sum of the subrepresentations $
 
 We may further study the low-dimensional Fibonacci representations with the following proposition:
 \begin{proposition}
-  The representation $V^3_{\vs\vp}$ is irreducible.
+  The representation \emph{$V^3_{\vs\vp}$} is irreducible.
 \end{proposition}
 \begin{proof}
   Fix the basis $\cbr{\prn{\vs\vp\vs\vp}, \prn{\vs\vp\vp\vp}}$ for $V^3_{\vs\vp}$.
@@ -1729,7 +1658,7 @@ We may further study the low-dimensional Fibonacci representations with the foll
   \end{bmatrix}.
 \]
   A proper nontrivial subrepresentation of $V_{\vs\vp}^3$ must be one-dimensional, and hence an eigenspace of each of these matrices;
-  since $\varb \neq \vara$, the first has eigenspaces given by the spans of basis elements, and since $\vard \neq 0$, these are not eigenspaces of the second.
+  since $\varb \neq \vara$, the $\rho_{T_1}$ has two independent eigenspaces given by the spans each basis element; since $\vard \neq 0$, neither basis element is an eigenvector of $\rho_{T_2}$.
   Hence $V^3_{\vs\vp}$ is irreducible.
 \end{proof}
 
@@ -1738,22 +1667,22 @@ We will proceed first by proving that $V^m_{\vs\vp}$ and $V^m_{\vs\vs}$ are irre
 then, we will use combinatorial arguments to prove that these are isomorphic to the desired irreducible quotients two-row Specht modules.
 
 \begin{proposition}\label{Fib irreducibility}
-  The representation $V^m_{\vs\vp}$ is irreducible.
+  The representation \emph{$V^m_{\vs\vp}$} is irreducible.
 \end{proposition}
 \begin{proof}
   We will prove this inductively in $m$.
-  We've already proven it for $V^2_{\vs\vp}$ and $V^3_{\vs\vp}$, so suppose that $V^{m-2}_{\vs\vp}$ is irreducible.
+  We've already proven irreducibility of $V^2_{\vs\vp}$ and $V^3_{\vs\vp}$, so suppose that $V^{m-2}_{\vs\vp}$ is irreducible.
   
   Let $\cbr{v_i}$ be the basis for $V_{\vs\vp}$.
-  Then each $v_i$ is cyclic; indeed, we can transform every basis vector into $(\vs\vp \dots \vp)$ via action by the appropriate $\frac{1}{\vard}(T_i - \varc)$, and we can transform $(\vs\vp \dots \vp)$ into any basis vector by multiplying be the appropriate $\frac{1}{\vard}(T_i - \vare)$.
+  Then each $v_i$ is cyclic; indeed, we can transform every basis vector into $(\vs\vp \dots \vp)$ via action by the appropriate $\frac{1}{\vard}(T_i - \varc)$, and we can transform $(\vs\vp \dots \vp)$ into any basis vector via action by the appropriate $\frac{1}{\vard}(T_i - \vare)$.
   Hence it is sufficient to show that each $v \in V_{\vs\vp}$ generates some basis element.
 
   Let $v_j$ be the basis element $(\vs\vp\vs\vp\dots \vp)$, which is many copies of $\vs\vp$, followed by an extra $\vp$ if $m$ is odd.
   We will show that each $v \in V^m_{\vs\vp}$ generates $v_j$.
-  Then, we will have
+  Then, each $v$ will be cyclic, implying the proposition.
 
   Suppose that no basis elements beginning $(\vs\vp\vs\vp)$ have nonzero coefficient in $v$;
-  then, there is some basis element $v_i$ beginning $(\vs\vp\vp\vp)$ having nonzero coefficient in $v$, and the basis element having all other bits identical to $v_i$ except for beginning $(\vs\vp\vs\vp)$ has nonzero coefficient in $T_3v$.
+  then, there is some basis element $v_i$ beginning $(\vs\vp\vp\vp)$ having nonzero coefficient in $v$, and the basis element having all other characters identical to $v_i$ except for the beginning $(\vs\vp\vs\vp)$ has nonzero coefficient in $T_3v$.
   Hence we may assume that at least one element beginning $(\vs\vp\vs\vp)$ has nonzero coefficient in $v$.
 
   Note that \[\ima (T_1 - \vara) = \Span\cbr{\text{Basis vectors beginning }(\vs\vp\vs\vp)}\] and $(T_1 - \vara)v \neq 0$.
@@ -1769,27 +1698,30 @@ Now we may begin considering restrictions of Fibonacci representations:
 \begin{lemma}\label{Fib branching}
   The following branching rules hold:
   \begin{align*}
-    V^{m-1}_{\vp\vp} \simeq \Res V_{\vs\vp}^m &\simeq V^{m-1}_{\vs\vs} \oplus V^{m-1}_{\vs\vp},\\
-    V_{\vp\vs}^{m-1} \simeq \Res V_{\vs\vs}^m &\simeq V_{\vs\vp}^{m-1}.
+    \emph{$V^{m-1}_{\vp\vp}$} \simeq \emph{$\Res V_{\vs\vp}^m$} &\simeq \emph{$V^{m-1}_{\vs\vs} \oplus V^{m-1}_{\vs\vp}$},\\
+    \emph{$V_{\vp\vs}^{m-1} \simeq \Res V_{\vs\vs}^m$} &\simeq \emph{$V_{\vs\vp}^{m-1}$}.
   \end{align*}
 \end{lemma}
 \begin{proof}
   By the results of Appendix \ref{Algebra}, any two restrictions to distinct subalgebras of $\SH$ generated each by $m-2$ characters are isomorphic.
-  Hence the leftmost isomorphism on each line follows by considering the restrictions to the subalgebra of $\SH$ generated by $\cbr{T_2,\dots,T_{m-1}}$.
+  Using this fact, the leftmost isomorphism on each line follows by considering the restrictions to the subalgebra of $\SH$ generated by $\cbr{T_2,\dots,T_{m-1}}$.
   Further, the rightmost isomorphism on each line follows by considering the restrictions to the subalgebra of $\SH$ generated by $\cbr{T_1,\dots,T_{m-2}}$.
 \end{proof}
 \begin{corollary}
-  The representation $V^m_{\vs\vs}$ is irreducible.\qed
+  The representation \emph{$V^m_{\vs\vs}$} is irreducible.\qed
 \end{corollary}
 \begin{proof}
   By Lemma \ref{Fib branching} and Proposition \ref{Fib irreducibility}, we have $\Res V^m_{\vs\vs} \simeq V^{m-1}_{\vs\vp}$ is irreducible, implying that $V^m_{\vs\vs}$ is also irreducible.
 \end{proof}
-Recall the decomposition $V^m \simeq V^m_{\vs\vs} \oplus V^m_{\vs\vp} \oplus V^m_{\vp\vs} \oplus V^m_{\vp\vp}$.
+Recall that we have the decomposition
+\[
+  V^m \simeq V^m_{\vs\vs} \oplus V^m_{\vs\vp} \oplus V^m_{\vp\vs} \oplus V^m_{\vp\vp}.
+\]
 Using this, we may now decompose $V$ into a direct sum of irreducible representations.
-\begin{corollary}
+\begin{corollary}\label{V decomposition into V}
   The representation $V^m$ decomposes into a direct sum of irreducible representations as follows:
   \[
-    V^m \simeq 3V^m_{\vs\vp} \oplus 2V^m_{\vs\vs}.
+    \emph{$V^m \simeq 3V^m_{\vs\vp} \oplus 2V^m_{\vs\vs}$.}
   \]\qed
 \end{corollary}
 
@@ -1808,8 +1740,8 @@ Now we may use these in order to characterize $V$ via irreducible quotients of S
   we have already proven the base case $V^{2}$, so suppose that we have proven these isomorphisms for $V^{2n-2}$.
   We will prove the isomorphisms for $V^{2n-1}$ and $V^{2n}$.
 
-  By Proposition \ref{Fib irreducibility}, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\mu}$ for some diagrams $\lambda$ and $\mu$.
-  We will show that $\lambda = (n+1,n-2)$ and $\mu = (n+1,n-1)$.
+  By Proposition \ref{Fib irreducibility}, $V^{2n-1}_{\vs\vs} \simeq D^{\lambda}$ and $V^{2n-1}_{\vs\vp} \simeq D^{\mu}$ for some partitions $\lambda,\mu \vdash 2n - 1$.
+  We will show that $\lambda = (n+1,n-2)$ and $\mu = (n,n-1)$.
   
   First, by Lemma \ref{Fib branching} and the inductive hypothesis, we have \[\Res \; D^{\lambda} \simeq D^{(n,n-2)} \simeq \Res \; D^{(n+1,n-2)}\] and \[\Res \; D^{\mu} \simeq D^{(n,n-2)} \oplus D^{(n-1,n-1)} \simeq \Res \; D^{(n,n-1)}.\]
   
@@ -1873,24 +1805,47 @@ Now we may use these in order to characterize $V$ via irreducible quotients of S
     V^{2n - 1} &\simeq 3D^{(n,n-1)} \oplus 2D^{(n+1,n-2).}
   \end{align*}
 \end{corollary}
+\begin{proof}
+  This follows from Corollary \ref{V decomposition into V} and Theorem \ref{Fibonacci Theorem}.
+\end{proof}
 
 Hence we have entirely characterized Shor--Jordan's Fibonacci representation \cite{Shor} as a direct sum of irreducible quotients of Specht modules, and we have given graphical realizations of $D^{(n+r,n)}$ for $e = 5$ and $r \leq 3$.
 
 \section{Conjecture}\label{Conjecture Section}
-Recall that $K_{2n + r}^r := K$ is the direct sum of all copies of the sign representation in $M$.
+Recall that $K := K_{2n + r}^r$ is the direct sum of all copies of the sign representation in $M$.
 Hence the following characterises sign subrepresentations of $M$ completely:
-\begin{proposition}
-  $K \subset M_{2n + r}^r$ is trivial when $e \neq n + r + 1$, and $\dim \, K = 1$ when $e = n + r + 1$.\qed{\color{red} We know this is not accurate anymore, right?}
-\end{proposition} 
-\begin{proposition}
-  Suppose $e < n + r + 1$, and suppose $n'$ is such that $e = n' + r + 1$.
-  Note that $h := (1 + T_1)(1 + T_3)\dots(1 + T_{n - n'})$ maps $M_{2n + r}^r$ onto $M_{2n' + r}^r$.
-  Then, the preimage $h^{-1}(K_{2n + r}^r)$ is a subrepresentation of $M_{2n + r}^r$, and the series
+\begin{proposition}\label{Preimage of K}
+  Fix some $M := M_{2n + r}^r$.
+  Suppose there is some $n'$ such that $K_{2n' + r}^r \neq 0$.
+  Let $\pi:M_{2n + r}^r \twoheadrightarrow M_{2n' + r}^r$ be the linear map
   \[
-    0 \subset h^{-1}(K_{2n + r}^r) \subset M_{2n + r}^r
+    \pi := (1 + T_1)(1 + T_3)\cdots(1 + T_{n-n'}).
   \]
-  is a composition series of $M_{2n + r}^r$.\qed
+  Then, $\pi^{-1}(K)$ contains any proper subrepresentations of $M$.
 \end{proposition}
+\begin{proof}
+  {\color{orange} Sketch: subrepresentation $W \supsetneq \pi^{-1}(K)$ maps down to proper subrepresentation containing $K$, a contradiction.}
+\end{proof}
+\begin{conjecture}\label{Preimage subrepresentation}
+  In Proposition \ref{Preimage of K}, $\pi^{-1}(K)$ is an irreducible subrepresentation of $M$.
+\end{conjecture}
+\begin{conjecture}\label{Sharp kernel}
+  $K \subset M_{2n + r}^r$ is nontrivial if and only if $e \mid n + r + 1$, in which case it is one-dimensional.
+\end{conjecture} 
+\begin{corollary}
+  $M := M_{2n + r}^r$ has a composition series given by $0 \subset \pi^{-1}(K) \subset M$.
+\end{corollary}
+\begin{proof}
+  {\color{orange} Sketch: by \ref{Sharp kernel}, we have the filtration;
+  by \ref{Preimage subrepresentation}, the first factor is irreducible, and by \ref{Preimage of K} the second factor is irreducible.}
+\end{proof}
+
+\begin{conjecture}
+  For any $n,r$, we have $M_{2n + r}^r \simeq S^{(n+r,n)}$.
+\end{conjecture}
+
+
+\iffalse
 \begin{proposition}
   Denote the composition factor $M_{2n + r}^r / h^{-1}(K_{2n + r}^r)$ by $U_{2n + r}^r$.
   Then, there exist some naturals $m,s$ satisfying $2m + s = 2n + r$ and $m + s > n + r$ such that the following is an isomorphism of $\SH$-modules \[h^{-1}\prn{K_{2n + r}^r} \simeq U_{2m + s}^s\].
@@ -1905,7 +1860,7 @@ Hence the following characterises sign subrepresentations of $M$ completely:
 \begin{proposition}
   $M_{2n + r}^r \simeq S^{(n+r,n)}$ and $U_{2m +s}^s \simeq D^{(m+s,m)}$.
 \end{proposition}
-
+\fi
 
 \newpage
 \appendix
