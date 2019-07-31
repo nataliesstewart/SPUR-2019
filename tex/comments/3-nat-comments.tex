@@ -117,10 +117,21 @@
     For instance, we refer to the \emph{sign representation} as $S^{(1^{2n + r})}$.
   \end{remark}
 
-  Our first approach uses crossingless matchings, originally defined by Khovanov \cite{Khovanov}, to realize irreducible Specht modules of two-row partitions.
+  We will use the \emph{crossingless matchings representation}, originally defined by Khovanov \cite{Khovanov, Khovanov-tangle, Khovanov-abelian}, to realize the Specht modules of two-row partitions.
+  These crossingless matchings representations have found applications to knot theory and geometric representation theory.  
 
-  \fakesubsection{Crossingless matchings}
-  {\color{orange} Literature goes here.}
+  In his seminal paper \cite{Khovanov-tangle}, Khovanov constructs a categorification of the crossingless matchings representation as modules over the ``arc algebra'' given by applying a certain 2-dimensional topological quantum field theory (given by the cohomology of the 2-sphere) to all possible concatenations of crossingless matchings.
+  Khovanov then uses this to categorify the Jones polynomial of a tangle by associating to any tangle the chain homotopy class of a certain complex of bimodules over these arc algebras.
+  For a survey of categorification, including the Khovanov's categorification of the crossingless matchings representation, see \cite{Khovanov-abelian}.
+  
+  Further, in \cite{Khovanov}, Khovanov proves that the center of the arc algebra is isomorphic as a grading ring to the cohomology of the Springer fiber of complete flags in $\CC^{2n}$ stabilized by a fixed nilpotent operator with two Jordan blocks of size $n$ (corresponding to the two parts of the partition).
+  Moreover, this isomorphism is equivariant with respect to the natural actions of the symmetric group $S_{2n}$ on each ring.
+
+  \begin{remark}
+    Khovanov considers only the partition $(n,n) \vdash 2n$ in his categorification above.
+    We will consider the general two-row partition $(n+r,n)$ in this paper.
+    A possible extension of our and Khovanov's work is to categorify the $r > 0$ case of our crossingless matchings representations as in \cite{Khovanov-tangle} and study whether Khovanov's work generalizes to the cohomology of the Springer fiber of complete flags in $\CC^{2n + r}$ stabilized by an analogous operator with Jordan blocks of size $n+r$ and $n$.
+  \end{remark}
 
   \begin{definition}
   Define a \emph{crossingless matching on $2n + r$ nodes and $r$ anchors} to be an isotopy class of $n + r$ non-intersecting paths in the slice $\RR \times \brk{0,1}$ connecting $2n + r$ distinct points of $\RR \times \cbr{0}$ and $r$ points of $\RR \times \cbr{1}$ such that none of the latter points are connected. 
@@ -215,8 +226,7 @@
   \def\vare{\varepsilon_2}
   \def\vs{\texttt{*}}
   \def\vp{\texttt{0}}
-  \fakesubsection{Fibonacci representation}
-  Now suppose that $e = 5$ and $k$ contains the algebraic number $\sqrt{q + q^4}$ (for reasons which will be apparent soon).
+  Henceforth assume that $e = 5$ and $k$ contains the algebraic number $\sqrt{q + q^4}$ (for reasons which will be apparent soon).
   For convenience set $m := 2n + r$.
   The following is essentially a rescaling of Shor--Jordan's Fibonacci representation of the braid group \cite{Shor}.
  
@@ -2050,7 +2060,7 @@ We will verify that this is justified, using a more general fact about resctrict
   which is in $\SH''$.
 \end{proof}
 
-\begin{figure}[h]
+\begin{figure}
   \[
     \ENRGrid{13/7}{2/1,5/1,8/1,11/1,1/2,4/2,7/2,10/2}
   \]\[
@@ -2063,31 +2073,25 @@ We will verify that this is justified, using a more general fact about resctrict
   }\label{Empirical Kernel}
 \end{figure}
 
-\def\qqo{\alpha}
-\def\tto{\beta}
-\def\vtv{\gamma}
-\def\fft{\delta}
-\def\fto{\varepsilon}
-\setcounter{MaxMatrixCols}{20}
 
 \section{Heuristics}\label{Empirics Section}
-In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representations.\cite{Github}
-The computations were made via a combination of the Python \cite{Python} and Magma \cite{Magma} languages.
+In this section we aim both to support Conjectures \ref{Preimage of K} and \ref{Sharp kernel} and to provide transition matrices wherever possible between our two graphical representations \cite{Github}.
+The computations were made via a combination of the \texttt{Python} \cite{Python} and \texttt{Magma} \cite{Magma} languages.
 
 \begin{remark}
-  The data on composition series and transition matrices $M/K \rightarrow V$ were computed using our implimentation of the Hecke algebra in the Magma language.
-  This stores the algebra via basis elements and structure constants, and hence the memory required for the structure grows with $(n!)^3$.
+  The data on composition series and transition matrices $M/K \rightarrow V$ were computed using our implementation \cite{Github} of the Hecke algebra in the \texttt{Magma} language.
+  This stores the algebra via basis elements and structure constants, and hence the memory required for the structure grows with $(m!)^3$.
   This is prohibitively large when $m > 7$.
-  An implementation of $\SH$ as a quotient of a free algebra is possible, but potentially difficult to work with via the Magma language.
+  An implementation of the Hecke algebra as a quotient of a free algebra is possible, but potentially difficult to work with via the Magma language.
 \end{remark}
 
-For $M$, the data throughout this section are specified with repsect to the basis on $M_{2n + r}^r$ inuced by the increasing lexicographic basis on $M_{2n + 2r}^0$ and the quotient $M_{2n + 2r}^r \twoheadrightarrow M_{2n + r}^r$ as defined in Appendix \ref{Explicit Definition}.
-For $V$, hey are specified with respect to the basis on $V$ given by increasing lexicographic order $\vs < \vp$.
+For $M$, the data throughout this section are specified with respect to the basis on $M_{2n + r}^r$ induced by the increasing lexicographic basis on $M_{2n + 2r}^0$ and the quotient $M_{2n + 2r}^r \twoheadrightarrow M_{2n + r}^r$ as defined in Appendix \ref{Explicit Definition}.
+For $V$, the data are specified with respect to the basis on $V^m$ given by increasing lexicographic order $\vs < \vp$.
 
-
-The following data define representation $\varphi_{2n + r}^r: M_{2n + r}^r / K_{2n + r}^r \rightarrow V_{s}^{2n + r}$ where $s = \vs\vs$ if $r \in \cbr{0,3}$ and $s = \vs\vp$ otherwise.
-All of such computations use $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by a root of the polynomial $x^2 - \tau$.
-They cover all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and $n = 1, r = 3$ where $K_{2n + r}^r \neq 0$.
+For the following data, set $e := 5$.
+The following data define the isomorphisms $\varphi_{2n + r}^r: M_{2n + r}^r / K_{2n + r}^r \rightarrow V_{s}^{2n + r}$ where $s = \vs\vs$ if $r \in \cbr{0,3}$ and $s = \vs\vp$ otherwise.
+All of such computations use $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by $\sqrt\tau$ \cite{Github}.
+This data covers all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and $n = 1, r = 3$ where $K_{2n + r}^r \neq 0$.
 \def\tho{q^{3/2} + 1}
 \def\tht{\brk{4}_{q^{1/2}}}
 \def\to{q^{1/2}\prn{q^{1/2} + 1}}
@@ -2098,7 +2102,9 @@ They cover all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and
     0 & 0 & \tht & 0 & -\tho\\
     -\tht & \tht & \to & 0 & \tht\\
     \tht & 0 & \tht & -\tht & 0
-  \end{bmatrix}\\
+  \end{bmatrix}
+\end{align*}
+\begin{align*}
   \varphi_6^2 &= \begin{bmatrix}
     0 & 0 & - q - 1 & 0 & 0 & 0 & 0 & 0\\
     0 & -q - 1 & -q^{1/2} & 0 & 0 & 0 & 0 & 0\\
@@ -2108,7 +2114,7 @@ They cover all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and
    -q^{1/2} & q^{1/2} & 0 & \brk{3}_{q^{1/2}} &0 & 0 & 0 & q^{1/2}\\
    -q^{1/2} & 0 & -q^{1/2} & 0 & q^{1/2} & 0 & 0 & 0\\
     q^{1/2} & 0 & 0 & 0 & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & -q^{1/2}
-  \end{bmatrix}\\
+  \end{bmatrix}
 \end{align*}
 \begin{align*}
   \varphi_5^3 &= \begin{bmatrix}
@@ -2132,15 +2138,32 @@ They cover all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and
 \end{align*}
 
 We give in Figure \ref{Empirical Kernel} some data supporting a conjecture concerning sign subrepresentations of $M_{2n + r}^r$.
-The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity.
+The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity \cite{Github}.
 
-It is known that, for small $2n + r$, each Specht module $S^{(n+r,n)}$ has a composition series of length 2.\cite{Mathas-book}
+It is known that, for small $e$ and $2n + r$, each Specht module $S^{(n+r,n)}$ has a composition series of length at most 2 \cite[Appendix B]{Mathas-book}
 Heuristically, $M_{2n + r}^r$ does as well;
 let this series be
 \[
   0 \subset U_{2n + r}^r \subset M_{2n + r}.
 \]
 In the following data, we specify the inclusion maps map $\iota_{e,2n+r}^r:U_{2n + r}^r \hookrightarrow M_{2n + r}^r $, which conjecturally illustrates the inclusion of the first composition factor of $S^{(n+r,n)}$ into $S^{(n+r,n)}$ for all $2n + r \leq 7$.
+We begin by defining the following constants.
+\def\qqo{\color{magenta} \varkappa}
+\def\tto{\color{brown!80!black} \varpi}
+\def\vtv{\color{blue!70!green} \varrho}
+\def\fft{\color{black!50!green}\varsigma}
+\def\fto{\color{red!50!orange} \vartheta}
+\setcounter{MaxMatrixCols}{20}
+\begin{align*}
+  \qqo &:= q^{1/2}\prn{q - 1},\\
+  \tto &:= q^{3/2} + q + 1,\\
+  \vtv &:= q^{1/2}\prn{q - 2},\\
+  \fft &:= q^{5/2} + q^2 + q^{3/2} + q + 1,\\ 
+  \fto &:= q^{5/2} + q + 1.
+\end{align*}
+Using these constants, we give the following data.
+We omit the cases where $M_{2n + r}$ is irreducible;
+this includes all cases where $e > 7$, as we then have $e > 2n + r \geq n + r + 1$.
 \begin{align*} 
   \iota_{3,3}^1 = \iota_{3,4}^0 &=  
 \begin{bmatrix}
@@ -2196,7 +2219,7 @@ In the following data, we specify the inclusion maps map $\iota_{e,2n+r}^r:U_{2n
   0& 0& 1& 0& 0& \qqo& 0 &1 &0\\
   0& 0& 0& 1& 0& 0& -1& -\qqo &-1\\
   0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo &1 &\frac{1}{2}\qqo
-\end{bmatrix}^\intercal\\
+\end{bmatrix}^\intercal
 \end{align*}
 \begin{align*}
 \iota_{4,6}^0 &=
@@ -2211,7 +2234,7 @@ In the following data, we specify the inclusion maps map $\iota_{e,2n+r}^r:U_{2n
 0& 0& 0& 1& \qqo& 0& 0& -1& -\qqo& 0& 1& -1& 0& 0\\
 0& 0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo& 0& 0& 0& \frac{1}{2}\qqo& -1& \frac{1}{2}\qqo\\
 0& 0& 0& 0& 0& 0& 0& 0& 0& 1& -\frac{1}{2}\qqo& \frac{1}{2}\qqo& 1& \frac{1}{2}\qqo
-\end{bmatrix}^\intercal\\
+\end{bmatrix}^\intercal
 \end{align*}
 \begin{align*}
   \iota_{5,5}^3 &=
@@ -2251,6 +2274,7 @@ In the following data, we specify the inclusion maps map $\iota_{e,2n+r}^r:U_{2n
 \end{bmatrix}^\intercal
 \end{align*}
 
+A potential extension of this work is to implement a standard basis for the Specht module (e.g. the Murphy basis \cite{Murphy1,Murphy2}) in order to draw explicit isomorphisms between the Specht module and crossingless matchings representation, rather than the implicit isomorphisms proven in \ref{Correspondence Theorem}.
 
 \bibliographystyle{plain} 
  \bibliography{../RepBib}
