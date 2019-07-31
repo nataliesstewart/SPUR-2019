@@ -1484,13 +1484,12 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
  
  Due to the argument present in Theorem \ref{Irreducibility Theorem}, sign subrepresentations provide a surprisingly strong characterization of some $M_{2n + r}^r$ as follows.
  \begin{proposition}\label{Preimage of K}
- 	{\color{red!80!green}This proposition can be strengthened, right? Like we just need a sequence of $n-n'$ actions such that no two of them are closer than two positions apart, right?}
  	Fix some $M := M_{2n + r}^r$.
  	Suppose there is some natural number $n'$ with $n' \leq n$ such that $K_{2n' + r}^r \neq 0$.
  	Let $\pi:M_{2n + r}^r \twoheadrightarrow M_{2n' + r}^r$ be the linear map
  	\[
  	\pi := \begin{cases}
- 	(1 + T_1)(1 + T_3)\cdots(1 + T_{n-n'}) & \text{if } n < n,'\\
+ 	(1 + T_1)(1 + T_3)\cdots(1 + T_{n-n'}) & \text{if } n < n',\\
  	\id{M} & \text{if } n = n',
  	\end{cases}
  	\]
@@ -1498,7 +1497,8 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
   Then, $\pi^{-1}(K_{2n' + r}^r)$ contains any proper subrepresentations of $M_{2n + r}^r$.
  \end{proposition}
  \begin{proof}
- 	It suffices to show that any vector $w \in M - \pi^{-1}(K)$ is cyclic;
+   Set $M := M_{2n + r}$ and $K := K_{2n' + r}^r$.
+  It suffices to show that any vector $w \in M - \pi^{-1}(K)$ is cyclic;
  	then, any subrepresentation containing $w$ also contains all of $M$, implying the proposition.
  	
  	In fact, since $\pi(w) \notin K$, there is some $(1 + T_i) \in \SH$ such that $(1 + T_i)\pi(w) \neq 0$.
@@ -1509,14 +1509,19 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
  	Suppose $e = n + r + 1$.
  	Then $M_{2n + r}^r$ has a composition series given by
  	\[
- 	0 \subset K \subset M.
+    0 \subset K_{2n + r}^r \subset M_{2n + r}^r.
  	\]
  \end{corollary}
+
+ \begin{remark}
+   In the case $n < n'$, we may replace $\pi$ with a product of $n-n'$ elements $(1 + T_{z_1})\cdots(1 + T_{z_{n-n'}}) \in \SH$ such that $\abs{z_i - z_j} \geq 2$ for each $1 \leq i < j \leq n-n'$.
+   Then, an analogous statement to Proposition \ref{Preimage of K} follows from an analogous proof.
+ \end{remark}
  
- This is suggestive;
+ Proposition \ref{Preimage of K} and Corollary \ref{n+r+1 composition series} are suggestive;
  the preimage $\pi^{-1}(K)$ may play a key role in characterizing the representation $M_{2n + r}^r$ in other reducible cases.
  The following section poses several conjectures involving this structure.
- 
+  
  \subsection{Conjectures on sign subrepresentations}\label{Conjecture Section}
  If $\pi^{-1}(K)$ is itself a subrepresentation of $M$, then we will have identified the radical of $M_{2n + r}^r$ via Proposition \ref{Preimage of K}.
  Observing decomposition matrices for $S_{(n+r,n)}$ for small $e$ and $n$, we note that $S^{(n+r,n)}$ appears to have composition series of length at-most two \cite[Appendix~B]{Mathas-book};
@@ -1525,12 +1530,15 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
  \begin{conjecture}\label{Preimage subrepresentation}
    In Proposition \ref{Preimage of K}, $\pi^{-1}(K_{2n' + r}^r)$ is an irreducible subrepresentation of $M$.
  \end{conjecture}
- {\color{red!80!green}Could we also say the quotient $M/\pi^{-1}(K)$ is irreducible? We believe that right?}
  This has been verified for {\color{magenta} LIST THE EXAMPLE WHICH HAS BEEN VERIFIED}.
  In general, this is surprising;
  $\pi$ is a-priori only a linear map, so one may not expect the preimage of a subrepresentation via $\pi$ to be a subrepresentation of $M_{2n + r}^r$.
+  
+  \begin{remark}
+    As a corollary to \ref{Preimage subrepresentation}, the quotient $M_{2n + r}^r / \pi^{-1}(K_{2n' + r}^r)$ is irreducible \cite[Thm.~10.4]{Dummit}.
+  \end{remark}
 
- We can posit more structure than this;
+  We can posit more structure than this;
  by observing Figure \ref{Empirical Kernel}, we note that the kernel is nontrivial in more cases than $e = n + r + 1$, and appears to follow a pattern: 
  \begin{conjecture}\label{Sharp kernel}
  	Suppose $p = \infty$.
@@ -1550,11 +1558,15 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
  
  These conjectures would characterize much of the structure of $M_{2n + r}^r$.
  We will pose a final conjecture as follows.
- \begin{conjecture}
+ \begin{conjecture}\label{Final conjecture}
  	For any $e,n,r$, we have $M_{2n + r}^r \simeq S^{(n+r,n)}$.
  \end{conjecture}
- The support for this includes {\color{magenta} FILL THIS IN.} 
-
+ The support for this includes the special case $e > n+r+1$ case proven in Theorem \ref{Correspondence Theorem}, as well as the previous contents of this section.
+ Further, note that the basis of $M_{2n + r}^r$ is defined analogously for all $e$;
+ it is well-known that a basis for $S^\lambda$ is indexed by the standard young tableaux of $\lambda$, which is also independent of $e$ \cite[Prop.~3.22]{Mathas-book}.
+ Hence Theorem \ref{Correspondence Theorem} implies that $M_{2n + r}^r$ and $S^{(n+r,n)}$ have the same dimension. 
+  These facts give heuristic support for Conjecture \ref{Final conjecture}
+ 
 \section{Fibonacci representations and quotients of Specht modules}\label{Fibonacci Section}
 The irreducibility of $S^{(n+r,n)}$ plays a central role in the arguments of Section \ref{Crossingless Matchings Section};
 without irreducibility of $M_{2n + r}^r$ (which is conjecturally equivalent to irreducibility of $S^{(n+r,n)}$), $M$ is not necessarily isomorphic to any Specht module $S^\lambda$ or quotient $D^\lambda$, preventing the arguments of Section \ref{Specht Modules Section} from being used.
