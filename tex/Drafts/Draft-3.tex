@@ -1523,7 +1523,7 @@ The following section poses several conjectures involving this structure.
 \subsection{Conjectures on sign subrepresentations}\label{Conjecture Section}
 If $\pi^{-1}(K)$ is itself a subrepresentation of $M$, then we will have identified the radical of $M_{2n + r}^r$ via Propostion \ref{Preimage of K}.
 Observing decomposition matrices for $S_{(n+r,n)}$ for small $n$, we note that $S^{(n+r,n)}$ appears to have composition series of length at-most two by \cite{Mathas-book};
-the same appears to be true of $M_{2n + r}^r$ by Figures \ref{Composition series e=3} through \ref{Composition series e=6}.
+the same appears to be true of $M_{2n + r}^r$, as shown in Appendix \ref{Empirics Section}.
 This motivates our first conjecture:
 \begin{conjecture}\label{Preimage subrepresentation}
   In Proposition \ref{Preimage of K}, $\pi^{-1}(K)$ is an irreducible subrepresentation of $M$.
@@ -1850,7 +1850,7 @@ This process is illustrated in Figure \ref{Action}.
   
 Let the length of an arc $(i,j)$ be $l(i,j) := j - i + 1$.
 Note that the crossingless matchings on $2n$ indices with no anchors can all be identified with a list of $n$ integers describing the lengths of the arcs from left to right;
-  This basis is illustrated for $M_{5}^1$ in Figure \ref{S5 Basis}. 
+The basis on $M_5^1$ induced by the quotient $M_6^0 \twoheadrightarrow M_{5}^1$ is illustrated in Figure \ref{S5 Basis}, and we call this the \emph{increasing lexicographic basis}. 
 
 \begin{remark}
   This definition gives a graphical calculus for working with our module.
@@ -2034,65 +2034,6 @@ We will verify that this is justified, using a more general fact about resctrict
   \end{align*}
   which is in $\SH''$.
 \end{proof}
-\begin{figure}[h]
-\iffalse
-\def\tho{\Phi_3(q^{1/2})}
-\def\tht{\brk{3}_{q^{1/2}}}
-\def\to{q^{1/2}\brk{2}_{q^{1/2}}}
-Define the following coefficients:
-\begin{align*}
-  \tho &:= q^{3/2} + 1\\
-  \tht &:= q^{3/2} + q + q^{1/2} + 1\\
-  \to &:= q + q^{1/2}
-\end{align*}
-\fi
-
-\def\tho{q^{3/2} + 1}
-\def\tht{\brk{4}_{q^{1/2}}}
-\def\to{q^{1/2}\prn{q^{1/2} + 1}}
-\begin{align*}
-  \varphi_6^0, \varphi_5^1 &= \begin{bmatrix}
-    0 & 0 & -\tho & 0 & 0\\
-    0 & -\tho & \tht & 0 & 0\\
-    0 & 0 & \tht & 0 & -\tho\\
-    -\tht & \tht & \to & 0 & \tht\\
-    \tht & 0 & \tht & -\tht & 0
-  \end{bmatrix}\\
-  \varphi_6^2 &= \begin{bmatrix}
-    0 & 0 & - q - 1 & 0 & 0 & 0 & 0 & 0\\
-    0 & -q - 1 & -q^{1/2} & 0 & 0 & 0 & 0 & 0\\
-    0 & q + 1 & 0 & q^{1/2} & 0 & 0 & 0 & 0\\
-    0 & 0 & -q^{1/2} & 0 & 0 & 0 & -q^2 - 1 & 0\\
-    q^{1/2} & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & 0 & 0 & -q^{1/2} & 0\\
-   -q^{1/2} & q^{1/2} & 0 & \brk{3}_{q^{1/2}} &0 & 0 & 0 & q^{1/2}\\
-   -q^{1/2} & 0 & -q^{1/2} & 0 & q^{1/2} & 0 & 0 & 0\\
-    q^{1/2} & 0 & 0 & 0 & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & -q^{1/2}
-  \end{bmatrix}\\
-  \varphi_5^3 &= \begin{bmatrix}
-    -\to & \tht & q^{1/2}\\
-    q^{1/2} & q^{3/2} & 0\\
-    0 & -q - 1
-  \end{bmatrix}  \hspace{30pt} 
-  \varphi_4^0 = \begin{bmatrix}
-    0 & -\tht\\
-    -1 & 1
-  \end{bmatrix}\\
-  \varphi_3^1 &= \begin{bmatrix}
-    0 & -\tht\\
-    \to & -\to
-  \end{bmatrix} \hspace{27pt}
-  \varphi_4^2 = \begin{bmatrix}
-    0 & \tht & 0\\
-    1 & -1 & 0\\
-    -1 & 0 & 1
-  \end{bmatrix}
-\end{align*}
-
-\caption{We define representations $\varphi_{2n + r}^r:M_{2n + r}^r/K_{2n + r}^r \rightarrow V^{2n + r}_{s}$, where $s = \vs\vs$ if $r = 0,3$ and $s = \vs\vp$ otherwise.
-These are given with respect to the basis on $M_{2n + r}^r$ induced by the increasing lexicographic order basis on $M_{2n + 2r}^0$ and the quotient $M_{2n + 2r}^0 \twoheadrightarrow M_{2n + r}^r$.
-These are also given with respect to the basis on $V$ given by increasing lexicographic order $\vs < \vp$.
-  }\label{Fib Data}
-\end{figure}
 
 \begin{figure}[h]
   \[
@@ -2114,7 +2055,77 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 \def\fto{\varepsilon}
 \setcounter{MaxMatrixCols}{20}
 
-\begin{figure}[h]
+\section{Heuristics}\label{Empirics Section}
+In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representations.\cite{Github}
+The computations were made via a combination of the Python \cite{Python} and Magma \cite{Magma} languages.
+
+\begin{remark}
+  The data on composition series and transition matrices $M/K \rightarrow V$ were computed using our implimentation of the Hecke algebra in the Magma language.
+  This stores the algebra via basis elements and structure constants, and hence the memory required for the structure grows with $(n!)^3$.
+  This is prohibitively large when $m > 7$.
+  An implementation of $\SH$ as a quotient of a free algebra is possible, but potentially difficult to work with via the Magma language.
+\end{remark}
+
+For $M$, the data throughout this section are specified with repsect to the basis on $M_{2n + r}^r$ inuced by the increasing lexicographic basis on $M_{2n + 2r}^0$ and the quotient $M_{2n + 2r}^r \twoheadrightarrow M_{2n + r}^r$ as defined in Appendix \ref{Explicit Definition}.
+For $V$, hey are specified with respect to the basis on $V$ given by increasing lexicographic order $\vs < \vp$.
+
+
+The following data define representation $\varphi_{2n + r}^r: M_{2n + r}^r / K_{2n + r}^r \rightarrow V_{s}^{2n + r}$ where $s = \vs\vs$ if $r \in \cbr{0,3}$ and $s = \vs\vp$ otherwise.
+All of such computations use $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by a root of the polynomial $x^2 - \tau$.
+They cover all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and $n = 1, r = 3$ where $K_{2n + r}^r \neq 0$.
+\def\tho{q^{3/2} + 1}
+\def\tht{\brk{4}_{q^{1/2}}}
+\def\to{q^{1/2}\prn{q^{1/2} + 1}}
+\begin{align*}
+  \varphi_6^0, \varphi_5^1 &= \begin{bmatrix}
+    0 & 0 & -\tho & 0 & 0\\
+    0 & -\tho & \tht & 0 & 0\\
+    0 & 0 & \tht & 0 & -\tho\\
+    -\tht & \tht & \to & 0 & \tht\\
+    \tht & 0 & \tht & -\tht & 0
+  \end{bmatrix}\\
+  \varphi_6^2 &= \begin{bmatrix}
+    0 & 0 & - q - 1 & 0 & 0 & 0 & 0 & 0\\
+    0 & -q - 1 & -q^{1/2} & 0 & 0 & 0 & 0 & 0\\
+    0 & q + 1 & 0 & q^{1/2} & 0 & 0 & 0 & 0\\
+    0 & 0 & -q^{1/2} & 0 & 0 & 0 & -q^2 - 1 & 0\\
+    q^{1/2} & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & 0 & 0 & -q^{1/2} & 0\\
+   -q^{1/2} & q^{1/2} & 0 & \brk{3}_{q^{1/2}} &0 & 0 & 0 & q^{1/2}\\
+   -q^{1/2} & 0 & -q^{1/2} & 0 & q^{1/2} & 0 & 0 & 0\\
+    q^{1/2} & 0 & 0 & 0 & -q^{1/2} & -\brk{3}_{q^{1/2}} & 0 & -q^{1/2}
+  \end{bmatrix}\\
+\end{align*}
+\begin{align*}
+  \varphi_5^3 &= \begin{bmatrix}
+    -\to & \tht & q^{1/2}\\
+    q^{1/2} & q^{3/2} & 0\\
+    0 & -q - 1
+  \end{bmatrix}  \hspace{30pt} 
+  \varphi_4^0 = \begin{bmatrix}
+      0 & -\tht\\
+    -1 & 1
+  \end{bmatrix}\\
+  \varphi_3^1 &= \begin{bmatrix}
+    0 & -\tht\\
+    \to & -\to
+  \end{bmatrix} \hspace{27pt}
+  \varphi_4^2 = \begin{bmatrix}
+    0 & \tht & 0\\
+    1 & -1 & 0\\
+    -1 & 0 & 1
+  \end{bmatrix}
+\end{align*}
+
+We give in Figure \ref{Empirical Kernel} some data supporting a conjecture concerning sign subrepresentations of $M_{2n + r}^r$.
+The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity.
+
+It is known that, for small $2n + r$, each Specht module $S^{(n+r,n)}$ has a composition series of length 2.\cite{Mathas-book}
+Heuristically, $M_{2n + r}^r$ does as well;
+let this series be
+\[
+  0 \subset U_{2n + r}^r \subset M_{2n + r}.
+\]
+In the following data, we specify the inclusion maps map $\iota_{e,2n+r}^r:U_{2n + r}^r \hookrightarrow M_{2n + r}^r $, which conjecturally illustrates the inclusion of the first composition factor of $S^{(n+r,n)}$ into $S^{(n+r,n)}$ for all $2n + r \leq 7$.
 \begin{align*} 
   \iota_{3,3}^1 = \iota_{3,4}^0 &=  
 \begin{bmatrix}
@@ -2134,7 +2145,9 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 \iota_{3,7}^3&=  
 \begin{bmatrix}
  1 & 0 &-1 &-1 & 1 & 0 & -1 & -1 & 0 & 0 & 0 & 0 & 1 & 1
-\end{bmatrix}^\intercal\\
+\end{bmatrix}^\intercal
+\end{align*}
+\begin{align*}
 \iota_{3,7}^1&=  
 \begin{bmatrix}
  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &-1\\
@@ -2152,11 +2165,6 @@ These are also given with respect to the basis on $V$ given by increasing lexico
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1
 \end{bmatrix}^\intercal
 \end{align*}
-\caption{The maps of representations $\iota_{e,2n+r}^r:U_{2n +r}^r \hookrightarrow M_{2n + r}^r$ for $e = 3$.}
-\label{Composition series e=3}
-\end{figure}
-  
-\begin{figure}[h]
 \begin{align*}
   \iota_{4,4}^2&=  
 \begin{bmatrix}
@@ -2174,6 +2182,8 @@ These are also given with respect to the basis on $V$ given by increasing lexico
   0& 0& 0& 1& 0& 0& -1& -\qqo &-1\\
   0& 0& 0& 0& 1& \frac{1}{2}\qqo& \frac{1}{2}\qqo &1 &\frac{1}{2}\qqo
 \end{bmatrix}^\intercal\\
+\end{align*}
+\begin{align*}
 \iota_{4,6}^0 &=
 \begin{bmatrix}
   \qqo & 1 & 1 & \qqo & 1
@@ -2188,11 +2198,6 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 0& 0& 0& 0& 0& 0& 0& 0& 0& 1& -\frac{1}{2}\qqo& \frac{1}{2}\qqo& 1& \frac{1}{2}\qqo
 \end{bmatrix}^\intercal\\
 \end{align*}
-\caption{The maps of representations $\iota_{e,2n+r}^r:U_{2n +r}^r \hookrightarrow M_{2n + r}^r$ for $e = 4$.}
-\label{Composition series e=4}
-\end{figure}
-
-\begin{figure}[h]
 \begin{align*}
   \iota_{5,5}^3 &=
 \begin{bmatrix}
@@ -2211,6 +2216,8 @@ These are also given with respect to the basis on $V$ given by increasing lexico
 -\tto-1& -\tto& -\tto& 0& -\tto& -\tto-1& -\tto-1& 0& -\tto-1& -\tto-1& 0& 0& 1& 0\\
 0& 0& 1& 0& 0& 0& \tto& 0& 0& \tto& 0& 0& 0& 1
 \end{bmatrix}^\intercal\\
+\end{align*}
+\begin{align*}
 \iota_{5,7}^1 &=
 \begin{bmatrix}
 1& \qqo& \qqo& \qqo& -\tto& \qqo& -\tto& \qqo& -\tto& 1& \qqo& \qqo& \qqo& -\tto
@@ -2228,30 +2235,6 @@ These are also given with respect to the basis on $V$ given by increasing lexico
   1 & \fft & \fto & \fto & \fft & 1
 \end{bmatrix}^\intercal
 \end{align*}
-\caption{The maps of representations $\iota_{e,2n+r}^r:U_{2n +r}^r \hookrightarrow M_{2n + r}^r$ for $e = 5,6$.}
-\label{Composition series e=6}
-\end{figure}
-
-\section{Heuristics}\label{Empirics Section}
-In this section we aim both to support conjecture with data and to provide transition matrices wherever possible between our two graphical representations.\cite{Github}
-
-\begin{remark}
-  These results are restricted by two things; first and with less recourse, this was computed in Magma, a closed source language with bugs that could not be resolved in certain cases.
-  Second, the memory necessary to store the Hecke algebra via basis elements and structure constants grows with $(n!)^3$;
-  this is prohibitively large when $m > 7$.
-  An implementation as a quotient by a free algebra or only specifying multiplication by generators may fix this, however, this is not possible with the Magma language, and the closed source renders modification of the language impossible.
-\end{remark}
-
-We give in Figure \ref{Fib Data} some isomorphisms between $M/K$ and $V$ for $e \geq n + r + 1$ with $p = \infty$;
-all but one of these are cases with $e > n + r + 1$, so $K=0$ and this is an isomorphism with our crossingless matchings representation.
-The case $n = 1$, $r = 3$ gives an example of an isomorphism not proven in general, but proven via our computation.
-All of these computations are done for $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by a root of the polynomial $x^2 - \tau$.
-
-We give in Figure \ref{Empirical Kernel} some data supporting a conjecture concerning sign subrepresentations of $M_{2n + r}^r$.
-The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity.
-
-It is known that, for small $2n + r$, each Specht module $S^{(n+r,n)}$ has a composition series of length 2.\cite{Mathas-book}
-We give in Figures \ref{Composition series e=3} through \ref{Composition series e=6} the map $\iota_{e,2n+r}^r:U_{2n + r}^r \hookrightarrow M_{2n + r}^r \twoheadrightarrow U_{2n + r}^r$, which conjecturally illustrates the inclusion of the first composition factor of $S^{(n+r,n)}$ into $S^{(n+r,n)}$ for all $2n + r \leq 7$.
 
 
 \bibliographystyle{plain} 
