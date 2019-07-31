@@ -99,7 +99,7 @@
   
   For all $e$, $\SH$ admits a cellular basis with cell modules given by $S^\lambda$.
   In particular, these admit quotients $D^\lambda$ such that the modules $\cbr{D^\lambda \mid D^\lambda \neq 0, \lambda \vdash n}$ are a pairwise-nonisomorphic list of all irreducible $\SH$-modules.
-  This set is indexed by the partitions $\lambda \vdash n$ which are $e$-restricted \cite{Murphy1,Murphy2}.
+  This set is indexed by the partitions $\lambda \vdash n$ which are $e$-regular \cite{Murphy1,Murphy2}.
   These representations $D^\lambda$ have explicit constructions, but many of their properties are unknown.
   For instance, the dimension of $D^\lambda$ is unknown outside of some special cases \cite{Mathas-book}.
   However, there does exist an algorithm due to Lascoux--Leclerc--Thibon--Ariki which computes the decomposition matrices of the Specht modules of the Hecke algebra $\SH_{\CC,q}(S_{2n + r})$ for $q$ an $e$th root of unity \cite{LLT,Ariki}.
@@ -124,7 +124,11 @@
   
   Further, in \cite{Khovanov} Khovanov proves that the center of the arc algebra is isomorphic as a graded ring to the cohomology of the Springer fiber of complete flags in $\CC^{2n}$ stabilized by a fixed nilpotent operator with two Jordan blocks of size $n$ (corresponding to the two rows of the partition $(n,n)$).
   Moreover, this isomorphism is equivariant with respect to the natural actions of the symmetric group $S_{2n}$ on each ring.
-  In \cite{Stroppel}, Stroppel extended this to an isomorphism between the entire arc algebra and the endomorphism ring of a full projective-injective module in the principal block of the parabolic category $\mathcal{O}$ corresponding to the same two-part partition $(n,n)$.
+  In \cite{Stroppel}, Stroppel extended this to an isomorphism between the entire arc algebra and the endomorphism ring of a full projective-injective module in the principal block of the parabolic category $\mathcal{O}$ corresponding to the same two-part partition $(n,n) \vdash 2n$.
+  Stroppel also showed in \cite{Stroppel} that the crossingles matchings on $2n$ points and no anchors naturally label label indecomposable self-dual projective modules in the principal block of the parabolic category $\mathcal{0}$ corresponding to $(n,n)$.
+
+  Additionally, in \cite{Anno-t,Anno-tangles}, Anno--Nandakumar proved that the irreducible objects of the heart of the exotic $t$-structure on the derived category of coherent sheaves on a two-block springer fiber are naturally inexed by crossingless matchings on an Annulus.
+  The authors conjecture an ``annular'' analog of Khovanov's arc algebra as a description of the $\mathrm{Ext}$-algebra between these irreducible objects.  
 
   \begin{remark}
     Khovanov considers only the partition $(n,n) \vdash 2n$ in his categorification above.
@@ -198,6 +202,7 @@
   \begingroup
   \hypersetup{linkcolor=\thmcolor}
   \begin{customthm}{\ref{Correspondence Theorem}}
+    If $r = 0$, suppose $e > 2$.
     Suppose $e > n + r + 1$.
     Then, $M_{2n + r}^r \cong S^{(n+r,n)}$.
   \end{customthm}
@@ -489,6 +494,7 @@
 
   Now that we've characterized how $D^\lambda$ restrict, we can describe how strongly these restrictions characterize irreducibles.
   Namely, we will prove that some $D^\lambda$ having the same composition series as  $D^{(n+r,n)}$ is sufficient to determine that $\lambda = (n+r,n)$ in a slightly more restricted case than (i) of Corollary \ref{S irreducibility}.
+  \newpage
   \begin{proposition}\label{Combinatorics}
     Let $\lambda$ be an $e$-regular partition of $2n + r$.
     \begin{enumerate}[label={(\roman*)}]
@@ -795,7 +801,7 @@ Now we will prove irreducibility.
 \end{theorem}
 \begin{proof}
   We proceed by induction on $n$.
-  The base case the base case $n = 0, r \neq 0$ and $n = 1, r = 0$ follow from Lemma \ref{Base cases}.
+  The base cases $n = 0, r \neq 0$ and $n = 1, r = 0$ follow from Lemma \ref{Base cases}.
 
   Take an arbitrary vector $w \in M$.
   By Proposition \ref{trivial kernel} there exists some $(1 + T_i) \in \SH$ such that $(1 + T_i)w \neq 0$.
@@ -812,14 +818,14 @@ Now we will prove irreducibility.
   Indeed, when $i+1 \neq j$ this is given by $h_j = 1 + T_j$, and we have $h_{i+1} = q^{-1}(1 + T_i)(1 + T_{i+1})(1 + T_{i-1})$.
   This is illustrated by Figure \ref{bigloop}, and can alternately be seen as a consequence of the following isotopy.
   \[
-  \begin{gathered}\CapNAction{4}{1/1,3/2,2/3}{2}\end{gathered}
-  \longsquigrightarrow
-  \begin{gathered}\BigNAction\end{gathered}
+    \begin{gathered}\CapNAction{4}{1/1,3/2,2/3}{2}\end{gathered}
+    \longsquigrightarrow
+    \begin{gathered}\BigNAction\end{gathered}
   \]
   This may be intuitively viewed as a ``large'' version of the action connecting nodes $i-1$ and $i+2$;
-  it preserves the arc $(i,i+1)$ and the factor $q^{1/2}$ in $h_{i+1}$ gives the correct scaling.
+  it preserves the arc $(i,i+1)$ and the factor $q$ in $h_{i+1}$ gives the correct scaling.
 
-  Note that, by definition, $e \nmid r+2,\dots,n+r$ as well, and hence $(n+r-1,n-1)$ satisfies the hypotheses of the proposition as well.
+  Note that, by the hypothesis of the proposition, $e \nmid r+2,\dots,n+r$ and hence $(n+r-1,n-1)$ satisfies the hypotheses of the proposition as well.
   Then, by the inductive hypothesis, there is some element $h' \in \SH(S_{2(n-1) + r})$ sending $\varphi((1 + T_i)w)$ to the image of a basis vector of $M_{2n + r}^r$ via $\varphi$;
   then, by \eqref{Irreducibility commutative diagram} the action $\SH$ generates the endomorphism $\varphi^{-1}h'\varphi$ of $M$, which sends $(1 + T_i)w$ to a basis vector in $M_{2n + r}^r$.
   This implies that $w$ is cyclic, and hence $M_{2n + r}^r$ is irreducible.
@@ -841,7 +847,7 @@ Now we will prove irreducibility.
 
 \subsection{Correspondence with Specht modules}
 The following theorem due to Mathas \cite[Thm.~5.5]{Mathas-article} generalizes the classical branching theorem of the symmetric group.
-This result is not be necessary for our present proof of the correspondence in the case $e > n + r + 1$, but the analogy with $M$ is suggestive.
+This result is not be necessary for our proof of the correspondence in the case $e > n + r + 1$, but the analogy with $M$ is suggestive.
 \begin{theorem}[Characteristic-free classical branching theorem]
   Let $\lambda$ be a partition of $m$ with $\ell$ removable nodes.
   Then, $\Res S^\lambda$ has an $\SH_{k,q}(S_{m-1})$-module filtration
@@ -912,17 +918,19 @@ If we replace $S^\lambda$ with the appropriate $M_{2n + r}^r$ above, we find the
 We've now assembled the basic pieces necessary to prove our correspondence in the case $e > n + r + 1$.
 
 \begin{theorem}\label{Correspondence Theorem}
+  If $r = 0$ then suppose $e > 2$.
   Suppose $e > n + r + 1$.
   Then, $M_{2n + r}^r \cong S^{(n+r,n)}$.
 \end{theorem}
 \begin{proof}
-  The case $n = 0$ is already proven, by lemma \ref{Base cases}, so suppose $n > 0$.
+  The case $n = 0$ is already proven via lemma \ref{Base cases}, so suppose $n > 0$.
   In order to use Proposition \ref{Combinatorics}, suppose for now that either $e \nmid 4$ or $r > 0$.
 
-  We will prove this inductively; the base case $2n + r = 2$ is implied by \ref{Base cases}, so suppose that $M_{2n + s}^s \cong S^{(m+s,s)}$ whenever $2m + s < 2n + r$ and $m + s \leq n + r$, so that $e > m + s + 1$.
+  We will prove this inductively; the base case $2n + r = 2$ is implied by Lemma \ref{Base cases}, so suppose that $M_{2n + s}^s \cong S^{(m+s,s)}$ whenever $2m + s < 2n + r$ and $m + s \leq n + r$.
+  Note that $e > m + s + 1$.
 
   Suppose $r > 0$.
-  By Theorem \ref{Irreducibility Theorem}, we know that $M_{2n + r}^r \cong D^\lambda$ for some $e$-restricted partition $\lambda$.
+  By Theorem \ref{Irreducibility Theorem}, we know that $M_{2n + r}^r \cong D^\lambda$ for some $e$-regular partition $\lambda$.
   By the inductive hypothesis and Corollary \ref{S irreducibility}, we have a composition series given by the short exact sequence
   \begin{equation}
     \label{Composition Series} 0 \longrightarrow D^{(n + r - 1,n)} \longrightarrow \Res \, D^\lambda \longrightarrow D^{(n+r,n-1)} \longrightarrow 0
@@ -930,7 +938,7 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
   Hence the theorem is given by Proposition \ref{Combinatorics} (i).
 
   Now suppose $r = 0$ and $e \neq 4$.
-  Similarly, by Theorem \ref{Irreducibility Theorem}, we know that $M_{2n + r}^r \cong D^\lambda$ for some $e$-restricted partition $\lambda$, and by the inductive hypothesis and Corollary \ref{S irreducibility}, we have the irreducible restriction $\Res D^\lambda \cong D^{(n,n-1)}$.
+  Similarly, by Theorem \ref{Irreducibility Theorem}, we know that $M_{2n + r}^r \cong D^\lambda$ for some $e$-regular partition $\lambda$, and by the inductive hypothesis and Corollary \ref{S irreducibility}, we have the irreducible restriction $\Res D^\lambda \cong D^{(n,n-1)}$.
   Then, the theorem is given by Proposition \ref{Combinatorics} (ii).
 
   Now, suppose $e = 4$ and $r = 0$;
@@ -1023,7 +1031,7 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
  		\end{gathered}}$ 
  	\caption{Suppose the second and third elements have coordinates $x_2(q_1)$ and $x_3(q_2)$ in their respective kernel elements, where for $q_1$, $e=3$ and for $q_2$ $e=4$. The coordinate of the first element is $x(q)=x_2(q)x_3(q)\frac{Q_5Q_4Q_3}{Q_1Q_2}$, where for $q$, $e=7$}
  	\label{coeff example}
- \end{figure}
+ \end{figure} 
  
  
  \begin{proof}
