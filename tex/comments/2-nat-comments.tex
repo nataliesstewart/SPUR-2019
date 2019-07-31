@@ -1,13 +1,14 @@
   \documentclass{amsart}   
   \usepackage{../RepStyle} 
+  \usepackage{../NatMacros}
   % Colors links
   \hypersetup{
   colorlinks,
   citecolor=blue,
   linkcolor=orange!50!red,
   urlcolor=blue}
+  \def\thmcolor{black!60!orange}
   
-  \usepackage{../NatMacros}
 
   % Emulates \subsection* but doesn't add to ToC (I don't know why amsart is weird 
   \newcommand{\fakesubsection}[1]{
@@ -81,7 +82,9 @@
   \end{titlepage}
 
 \section{Introduction} 
-  Let $S_{2n+r}$ be the symmetric group on $2n+r$ letters with $2n + r \geq 2$, let $\SH := \SH_{k,q}(S_{2n+r})$ be the corresponding Hecke algebra over a field $k$ with parameter $q \in k^\times$ having a fixed square root $q^{1/2}$, and let $\cbr{T_i}$ be the simple reflections generating $\SH$.
+  Let $S_{2n+r}$ be the symmetric group on $2n+r$ letters with $2n + r \geq 2$.
+  Let $\SH := \SH_{k,q}(S_{2n+r})$ be the corresponding Iwahori-Hecke algebra (henceforth simply Hecke algebra) over a field $k$ with parameter $q \in k^\times$ having a fixed square root $q^{1/2}$.
+  Let $\cbr{T_1,\dots,T_{2n + r - 1}}$ be the simple reflections generating $\SH$.
    
   Let $\brk{m}_q = 1 + q + \dots + q^{m-1}$ be the $q$-number of $m$. 
   Let $e$ be the smallest positive integer such that $\brk{e}_q = 0$, and set $e = \infty$ if no such integer exists.
@@ -90,44 +93,52 @@
   \vspace{5pt}
   When $q = 1$, the Hecke algebra $\SH$ is isomorphic to the group algebra $k\brk{S_{2n+r}}$;
   hence the representation theory of $\SH$ generalizes the representation theory of the symmetric group.
-  The Hecke algebra is also well known to be connected to the representation theory of the general linear group over a finite field.\cite{Mathas-book}
-
+  The Hecke algebra is also well-known to be connected to the representation theory of the general linear group over a finite field \cite{Mathas-book}.
   It is a classical result that $\SH$ is semisimple precisely when $e > 2n + r$, in which case the irreducible representations of $\SH$ are given by \emph{Specht modules} $S^\lambda$, which are indexed by the partitions $\lambda$ of $2n + r$.
-  Further, $\SH$ admits a cellular basis with cell modules given by $S^\lambda$.
-  In particular, these admit quotients $D^\lambda$ such that the set $\cbr{D^\lambda \mid D^\lambda \neq 0, \lambda \vdash n}$ is a complete set of pairwise-nonisomorphic irreducible $\SH$-modules.
-  This set is indexed by the partitions $\lambda \vdash n$ which are $e$-restricted.\cite{Murphy1,Murphy2}
+  
+  For all $e$, $\SH$ admits a cellular basis with cell modules given by $S^\lambda$.
+  In particular, these admit quotients $D^\lambda$ such that the modules $\cbr{D^\lambda \mid D^\lambda \neq 0, \lambda \vdash n}$ are a pairwise-nonisomorphic list of all irreducible $\SH$-modules.
+  This set is indexed by the partitions $\lambda \vdash n$ which are $e$-restricted \cite{Murphy1,Murphy2}.
   
   These representations $D^\lambda$ have explicit constructions, but many of their properties are unknown.
-  For instance, the dimension of these modules is unknown outside of some special cases.\cite{Mathas-book}
-  However, there does exist an algorithm due to Lascoux--Leclerc--Thibon--Ariki which computes the decomposition matrices of the Iwahori--Hecke Algebra $\SH_{\CC,q}(S_{2n + r})$ for $q$ an $e$th root of unity.\cite{LLT,Ariki}
+  For instance, the dimension of $D^\lambda$ is unknown outside of some special cases \cite{Mathas-book}.
+  However, there does exist an algorithm due to Lascoux--Leclerc--Thibon--Ariki which computes the decomposition matrices of the Specht modules of the Hecke algebra $\SH_{\CC,q}(S_{2n + r})$ for $q$ an $e$th root of unity \cite{LLT,Ariki}.
   
-  The cellular basis for $S^\lambda$ and associated construction for $D^\lambda$ tend to be complicated and often computationally intractable.
-  We aim to give simple graphical realizations of $S^\lambda$ and $D^\lambda$ in some cases that $\lambda = (n+r,n)$.
-  These realizations expose the structure of irreducibility and branching in an intuitive and computationally simple way.
+  The cellular basis for $S^\lambda$ and associated basis for $D^\lambda$ are complicated and often computationally intractable.
+  We aim to give simple graphical realizations of $S^\lambda$ and $D^\lambda$ in some cases that $\lambda = (n+r,n)$ is a partition of two parts.
+  These realizations behave in an intuitive and computationally simple way.
 
   \vspace{5pt}
-  Note that we follow the convention of Murphy and Kleshchev, which is dual to the conventions of Dipper, James, and Mathas;
-  one may translate our results to the latter convention by transposing all partitions.\cite{Kleshchev,Mathas-book,Murphy1} 
-  
   Throughout this paper, we analyze the \emph{two-row partitions} $(n+r,n) \vdash 2n + r$ and their corresponding modules $S^{(n+r,n)}$ and $D^{(n+r,n)}$.
+  \begin{remark}
+    Note that we follow the convention of Murphy--Kleshchev concerning the correspondence $\lambda \leftrightarrow S^\lambda$, which is dual to the conventions of Dipper--James--Mathas;
+    one may translate our results to the latter convention by transposing all partitions.\cite{Kleshchev,Mathas-book,Murphy1} 
+    For instance, we refer to the \emph{sign representation} as $S^{(1^{2n + r})}$.
+  \end{remark}
+
+  Our first approach uses crossingless matchings, originally defined by Khovanov \cite{Khovanov}, to realize irreducible Specht modules of two-row partitions.
 
   \fakesubsection{Crossingless matchings}
-  The following definition modifies the crossingless matchings defined by Khovanov.\cite{Khovanov}
+  {\color{orange} Literature goes here.}
 
   \begin{definition}
   Define a \emph{crossingless matching on $2n + r$ nodes and $r$ anchors} to be an isotopy class of $n + r$ non-intersecting paths in the slice $\RR \times \brk{0,1}$ connecting $2n + r$ distinct points of $\RR \times \cbr{0}$ and $r$ points of $\RR \times \cbr{1}$ such that none of the latter points are connected. 
   Let $M_{2n + r}^r$ have basis given by these matchings.
   This is illustrated in Figure \ref{S5 Basis}.
-  
+ 
+  Order the points on $\RR \times \cbr{0}$ via the order $<$ on $\RR$, and refer to these as \emph{nodes}.
+  Refer to a path connecting the $a$th and $b$th node as an \emph{arc} $(a,b)$, and refer to a path connecting node $a$ to a point in $\RR \times \cbr{1}$ as an \emph{anchor}.
   Let the length of an arc $(i,j)$ be $j - i + 1$.
 
-  We endow $M_{2n + r}^r$ with an action by specifying $(1 + T_i)w_j$ for some basis element $w_j$ of $M_{2n + r}$.
-  We do so by concatenating in ``vertical lines'' below each point other than the $i$th and $i+1$st, concatenating paths between the $i$th and $i+1$st points as well as points below them, removing any ``loops'' this forms, and taking isotopy to some matching $w_l$ if possible;
-  if this is not possible, then there are anchors at $i,i+1$ and we set $(1 + T_i)w_j := 0$;
-  if this is possible and there is a ``loop,'' set $(1 + T_i)w_j := (1 + q)w_j$ and otherwise set $(1 + T_i)w_j := q^{1/2}w_l$.
-  This action is illustrated in Figure \ref{Action}, and we verify that this is well-defined in Appendix \ref{Cross Relations}.
+
+  We endow $M_{2n + r}^r$ with an action by specifying $(1 + T_i)w_j$ for any basis element $w_j$ of $M_{2n + r}$, as illustrated in Figure \ref{Action}.
+  We do so by concatenating in ``vertical lines'' below each point other than the $i$th and $(i+1)$st, concatenating paths between the $i$th and $(i+1)$st points as well as points below them, removing any ``loops'' this forms, and taking the isotopy class of the resultant diagram;
+  if this is not the isotopy class of a crossingless matching, then there are anchors at $i,i+1$ and we set $(1 + T_i)w_j := 0$;
+  if this is the isotopy class of a crossingless matching $w_l$ and there is a ``loop,'' set $(1 + T_i)w_j := (1 + q)w_j$ and otherwise set $(1 + T_i)w_j := q^{1/2}w_l$.
+  
+  A more explicit definition is given in Appendix \ref{Explicit Definition} and we verify that this is well-defined in Appendix \ref{Cross Relations}.
   \end{definition}
-  \begin{figure} 
+  \begin{figure}[b] 
     \def\cbasisspacing{5mm}
     \begin{adjustbox}{width=\textwidth}
     $\cbr{
@@ -157,20 +168,35 @@
   \end{adjustbox}
 
     \caption{Illustration of the actions $(1 + T_i)w_{\abs{M^2_6}}$.
-      In general, we act by deleting loops, isotoping onto a new crossingless matching, and scaling by either $q^{1/2}$, $(q + 1)$, or 0.
+      In general, we act by deleting loops, taking an isotopy onto a new crossingless matching, and scaling by either $q^{1/2}$, $(q + 1)$, or 0.
     }
     \label{Action}
    \end{figure}
   
-  Note that the representations $M_{0 + r}^r$ and $S^{(r)}$ are isomorphic to the sign representation.
-  In fact, we will prove that $M_{2n + r}^r \simeq S^{(n+r,n)}$ whenever $e > n + r + 1$.
-  Additionally, we will prove that $M_{2n + r}^r$ is irreducible everywhere that $e > n$ and $S^{(n+r,n)}$ is irreducible.
-  We will conjecture that $M_{2n + r}^r \simeq S^{(n+r,n)}$ with $e$ unrestricted as well.
+  We will prove the following theorem on irreducibility of $M_{2n + r}^r$.
+  \begingroup
+  \hypersetup{linkcolor=\thmcolor} % no orange theorem label
+  \begin{customthm}{\ref{Irreducibility Theorem}}
+    Suppose $e > n$ and $S^{(n+r,n)}$ is irreducible.
+    Then $M_{2n + r}^r$ is irreducible.
+  \end{customthm}
+  \endgroup
+  Note that the representations $M_{0 + r}^r$ and $S^{(r)}$ are both isomorphic to the sign representation.
+  This and Theorem \ref{Irreducibility Theorem} are suggestive;
+  in fact, we will prove the following.
+  \begingroup
+  \hypersetup{linkcolor=\thmcolor}
+  \begin{customthm}{\ref{Correspondence Theorem}}
+    Suppose $e > n + r + 1$.
+    Then, $M_{2n + r}^r \simeq S^{(n+r,n)}$.
+  \end{customthm}
+  \endgroup
+  Lastly, we will conjecture that $M_{2n + r}^r \simeq S^{(n+r,n)}$ for all $e$, and support this with heuristic data.
    
-  This proves a graphical characterization of $S^\lambda$ in many cases, and hence $D^\lambda$ in the cases where $S^\lambda \simeq D^\lambda$.
-  However, the representation theory of $\SH$ is tied to the modules $D^\lambda$ even in cases where $S^\lambda$ is not irreducible;
-  we will present a characterization of the module $D^{(n+r,n)}$ when $e = 5$ and $r \leq 3$.
-
+  This proves a graphical characterization of $S^\lambda \simeq D^\lambda$ in many cases.
+  However, when $S^\lambda$ is reducible, the crossingless matchings representations cannot provide a graphical realization of the irreducible quotients $D^\lambda$;
+  our next goal is to provide a similar graphical realization of the modules $D^{(n+r,n)}$ with $r \leq 3$ when $e=5$, using a modification of Shor--Jordan's Fibonacci representation of the braid group \cite{Shor}.
+  It is possible that similar graphical representations can be constructed for other $r$ and $e$, but we do not attempt to do so here.
   \def\vara{\alpha_1}
   \def\varb{\alpha_2}
   \def\varc{\varepsilon_1}
@@ -179,101 +205,95 @@
   \def\vs{\texttt{*}}
   \def\vp{\texttt{0}}
   \fakesubsection{Fibonacci representation}
-  Now suppose that $e = 5$ and $k$ contains the algebraic number $\sqrt{q + q^4}$ for reasons which will be apparent soon.
-  For convenience set $m := 2n + 4$.
-  The following is a modification of Shor--Jordan's Fibonacci representation of the braid group.\cite{Shor}
+  Now suppose that $e = 5$ and $k$ contains the algebraic number $\sqrt{q + q^4}$ (for reasons which will be apparent soon).
+  For convenience set $m := 2n + r$.
+  The following, in the case that $k = \CC$ and  of Shor--Jordan's Fibonacci representation of the braid group.\cite{Shor}
  
-  \begin{definition}\label{Fib definition}
-  Let $V^m$ be the $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{m+1}$ such that the bit $\vs$ never appears twice consecutively. 
-  We will refer to $V^m$ as the \emph{Fibonacci representation} and suppress the superscript whenever it is clear from context.
+  {\color{orange} Literature goes here.}
 
-  We wish to endow this with a $\SH$-action which acts on a basis vector only dependent on bits $i,i+1,i+2$, sending each basis vector to a combination of the other basis vectors having the same bits $1,\dots,i,i+2,\dots,n+1$ as follows:
+  \begin{definition}\label{Fib definition}
+  Let $V^m$ be the $k$-vector space with basis given by the strings $\cbr{\vs,\vp}^{m+1}$ such that the character $\vs$ never appears twice consecutively. 
+  We will refer to $V^m$ as the \emph{Fibonacci representation}.
+
+  We endow $V^m$ with an $\SH$-action which acts on a basis vector in a manner which depends only on bits $i,i+1,i+2$, sending each basis vector to a combination of other basis vectors agreeing on characters $1,\dots,i,i+2,\dots,n+1$ as follows:
 
   \begin{equation} 
     \begin{split}
-      T_1 \, \prn{\vs\vp\vp} &:= \vara\prn{\vs\vp\vp}\\
-      T_1 \, \prn{\vp\vp\vs} &:= \vara\prn{\vp\vp\vs}\\
-      T_1 \, \prn{\vs\vp\vs} &:= \varb\prn{\vs\vp\vs}\\
-      T_1 \, \prn{\vp\vs\vp} &:= \varc\prn{\vp\vs\vp} + \vard\prn{\vp\vp\vp}\\
-      T_1 \, \prn{\vp\vp\vp} &:= \vard\prn{\vp\vs\vp} + \vare\prn{\vp\vp\vp}
+      T_1 \, \prn{\vs\vp\vp} &:= \vara\prn{\vs\vp\vp},\\
+      T_1 \, \prn{\vp\vp\vs} &:= \vara\prn{\vp\vp\vs},\\
+      T_1 \, \prn{\vs\vp\vs} &:= \varb\prn{\vs\vp\vs},\\
+      T_1 \, \prn{\vp\vs\vp} &:= \varc\prn{\vp\vs\vp} + \vard\prn{\vp\vp\vp},\\
+      T_1 \, \prn{\vp\vp\vp} &:= \vard\prn{\vp\vs\vp} + \vare\prn{\vp\vp\vp}.
   \end{split} \label{Fib Action} 
   \end{equation}
   for constants
   \begin{equation}
     \begin{split}
-    \tau  &:= q + q^4\\
-    \vara &:= -1\\
-    \varb &:= q\\
-    \varc &:= \tau(q\tau - 1)\\
-    \vard &:= \tau^{3/2}(q + 1)\\
-    \vare &:= \tau(q-\tau)
+    \tau  &:= q + q^4,\\
+    \vara &:= -1,\\
+    \varb &:= q,\\
+    \varc &:= \tau(q\tau - 1),\\
+    \vard &:= \tau^{3/2}(q + 1),\\
+    \vare &:= \tau(q-\tau).
   \end{split} \label{Fib Constants} 
   \end{equation}
-  with $T_i$ acting similarly on the substring $i,i+1,i+2$.
-  We will verify that this is a representation of $\SH$ in Appendix \ref{Fib Relations}
+  with $T_i$ acting analogously on a basis element dependent on the substring $i,i+1,i+2$.
+  We verify that $V^m$ is a representation of $\SH$ in Appendix \ref{Fib Relations}
   \end{definition}
 
-  This contains four subrepresentations spanned by strings with beginning and ending with specified bits.
-  Label the subrepresentation spanned by strings $(\vs\dots\vs)$ by $V_{\vs\vs}$, $V_{\vs\vp}$, $V_{\vp\vs}$, and $V_{\vp\vp}$;
-  these bits are preserved by the action \eqref{Fib Action}.
-  We will show that these are isomorphic to particular $D^\lambda$.
+  Note that the action $T_i$ does not modify characters $i,i+2$, so characters $1$ and $n+1$ are preserved by $\SH$.
+  Hence the representation $V^m$ contains four subrepresentations spanned by strings with beginning and ending with specified characters.
+  Label the subrepresentation spanned by strings $(\vs\dots\vs)$ by $V_{\vs\vs}$, $V_{\vs\vp}$, $V_{\vp\vs}$, and $V_{\vp\vp}$.
+  We prove the following theorem.
+  \begingroup
+  \hypersetup{linkcolor=\thmcolor}
+  \begin{customthm}{\ref{Fibonacci Theorem}}
+    We have the following isomorphisms:
+    \begin{align*}  
+      \emph{$V^{2n}_{\vs\vs}$} &\simeq D^{(n,n)},\\ 
+      \emph{$V^{2n-1}_{\vs\vs}$} &\simeq D^{(n+1,n-2)},\\
+      \emph{$V^{2n}_{\vs\vp}$} &\simeq D^{(n+1,n-1)},\\
+      \emph{$V^{2n-1}_{\vs\vp}$} &\simeq D^{(n,n-1)}.
+    \end{align*}
+  \end{customthm}
+  \endgroup
+  This provides a graphical characterization of $D^{(n+r,n)}$ for $e = 5$, $r \leq 3$, as well as a combinatorial characterization of the Fibonacci representation in \cite{Shor}.
 
   \fakesubsection{Overview of paper}
   
   In Section \ref{Specht Modules Section} we give corollaries to standard theorems concerning Specht modules.
-  First, James-Mathas provides a sharp characterization of the irreducibility $S^\lambda$ for $\lambda \vdash 2n + r$ which is $e$-regular, called the \emph{Carter criterion}.\cite{Mathas-book}
+  First, James-Mathas provide a sharp characterization of the irreducibility $S^\lambda$ for $\lambda \vdash 2n + r$ which is $e$-regular, called the \emph{Carter criterion} \cite[Thm.~5.42]{Mathas-book}.
   We specialize this to the case that $\lambda = (n+r,n)$ to give a combinatorial condition for irreducibility of $S^{(n+r,n)}$.
   We note that this irreducibility depends only on $e$ when $e > n$;
-  otherwise it depends on both $e$ and the characteristic of the field.
+  otherwise it depends on both $e$ and the characteristic of $k$.
   Further, we use Kleshchev--Brundan's modular branching rules to prove our first significant statement: if $S^\lambda \simeq D^\lambda$ and $e > n$, then a particular length-2 composition series uniquely determines $\lambda$;
-  further, an irreducible restriction to $D^{(n,n-1)}$ determines $\lambda$ as well.\cite{Kleshchev, Brundan}
+  further, an irreducible restriction to $D^{(n,n-1)}$ determines $\lambda$ as well \cite{Kleshchev, Brundan}.
 
-  \def\thmcolor{black!60!orange}
   \vspace{5pt}
-  In Section \ref{Crossingless Matchings Section}, we first prove that every basis vector in $M$ is cyclic, then that $M$ contains no sign subrepresentation.
-  Then, we prove the following theorem.
-  \begingroup
-  \hypersetup{linkcolor=\thmcolor} % no orange theorem label
-  \begin{customthm}{\ref{Irreducibility Theorem}}
-    Suppose $e > n$ and $S^{(n+r,n)}$ is irreducible.
-    Then $M_{2n + r}^r$ is irreducible.
-  \end{customthm}
-  \endgroup
+  In Section \ref{Crossingless Matchings Section}, we begin by proving Theorem \ref{Irreducibility Theorem}.
   Following this, we prove the existence of a particular filtration with factors given by other crossingless matchings representations;
-  using irreducibility, this becomes a composition series, and an inductive argument combined with the branching of Section \ref{Specht Modules Section} allow us to prove the following:
-  \begingroup
-  \hypersetup{linkcolor=\thmcolor}
-  \begin{customthm}{\ref{Correspondence Theorem}}
-    Suppose $e > n + r + 1$.
-    Then, $M_{2n + r}^r \simeq S^{(n+r,n)}$.
-  \end{customthm}
-  \endgroup
+  using irreducibility, this becomes a composition series.
+  This combined with an inductive argument and the branching of Section \ref{Specht Modules Section} allow us to prove Theorem \ref{Correspondence Theorem}.
   Last, we finish the section by proving more general statements concerning sign subrepresentations of $M$, which contribute to conjectures later in the paper.{\color{orange} Fill in with specific information later.}
 
   \vspace{5pt}
-  In Section \ref{Fibonacci Section}, we begin by establishing isomorphisms as in \ref{Fibonacci Theorem} for the subrepresentations of $V^2$, as well as irreducibility of $V^3_{\vs\vp}$.
-  We then use these cases to prove that $V^m_{\vs\vp}$ is irreducibile for all $m$, which implies that that $V^m_{\vs\vs}$ is irreducible.
-  From this, we inductively prove the following theorem:
-  \begingroup
-  \hypersetup{linkcolor=\thmcolor}
-  \begin{customthm}{\ref{Fibonacci Theorem}}
-    The following isomorphisms characterize the subrepresentations of the Fibonacci representation:
-    \begin{align*}  
-       V^{2n}_{\vs\vs} &\simeq D^{(n,n)}\\ 
-       V^{2n-1}_{\vs\vs} &\simeq D^{(n+1,n-2)}\\
-       V^{2n}_{\vs\vp} &\simeq D^{(n+1,n-1)}\\
-       V^{2n-1}_{\vs\vp} &\simeq D^{(n,n-1)}.
-    \end{align*}
-  \end{customthm}
-  \endgroup
+  In Section \ref{Fibonacci Section}, we begin by establishing the $2n = 2$ case of Theorem \ref{Fibonacci Theorem} for the subrepresentations of $V^2$, as well as irreducibility of $V^3_{\vs\vp}$.
+  We then use these cases to prove that $V^m_{\vs\vp}$ and $V^m_{\vs\vs}$ are irreducible for all $m$.
+  From this, we inductively prove Theorem \ref{Fibonacci Theorem}.
   {\color{orange} Overview of Conjecture and Empirics goes here.}
+
+  \vspace{5pt}
+  In Appendix \ref{Compatibility Section}, we begin by giving a precise definition of $M_{2n + r}^r$.
+  Then, we verify that the crossingless matchings and Fibonacci representations are compatible with the Hecke algebra relations.
+  In Appendix \ref{Algebra}, we prove a lemma concerning restrictions to various subalgebras of the Hecke algebra.
+  In Appendix \ref{Empirics Section}, we give explicit data both supporting the conjectures laid out in Section {\color{orange} reference to conjecture section} and giving explicit transitions between $M_{2n + r}^r$ and $V^{2n + r}$ and composition series of $M_{2n + r}^r$ in the case that $2n + r \leq 7$.
 
   % Acknowledgements should be given section-level heading in toc, subsection-level in text.
   \addcontentsline{toc}{section}{\textbf{Acknowledgements}}
   \fakesubsection{Acknowledgements}
   The authors thank Prof. Roman Bezrukavnikov for suggesting this project, as well as Dr. Slava Gerovitch for organizing the SPUR+ program.
-  We would also like to thank Profs. David Jerison and Ankur Moitra for their role in SPUR+ as well as general advice.
-  We would also thank Professor Alexander Kleshchev for our helpful conversations concerning branching theorems.
+  We would also like to thank Profs. David Jerison and Ankur Moitra for their role in SPUR+ as well as their general advice.
+  We would also like to thank Professor Alexander Kleshchev for helpful conversations concerning branching theorems.
   Lastly, we would like to express our gratitude to our mentor Oron Propp for his help and advice in both acquiring background knowledge and in executing the mathematics in this paper, as well as his comments on early drafts of this paper;
   this project would not be possible without him.
    
@@ -313,17 +333,17 @@
     \end{cases}.
   \]
   Lastly, let $h_{ab}^\lambda$ be the hook length of node $(a,b)$ in $\brk \lambda$ as defined in \cite{Kleshchev}.
-  With this language, we may express the following theorem, parts (ii)-(iii) of which are known as the \emph{Carter criterion} in the symmetric group case, due to James--Mathas.\cite{Mathas-book}
+  With this language, we may express the following theorem, parts (ii)-(iii) of which are known as the \emph{Carter criterion} in the symmetric group case, due to James--Mathas \cite{Mathas-book}.
   \begin{theorem}[James--Mathas]\label{Mathas Irreducibility}
     The following are equivalent:
     \begin{enumerate}[label={(\roman*)}]
       \item $S^{\lambda} \simeq D^{\lambda}$.
       \item $\lambda$ is $e$-regular and $S^\lambda$ is irreducible.
       \item $\nu_{e,p}\prn{h_{ab}^\lambda} = \nu_{e,p}\prn{h_{ac}^\lambda}$ for all nodes $(a,b)$ and $(a,c)$ in $\brk \lambda$.
-    \qed\end{enumerate}
+    \end{enumerate}
   \end{theorem}
   \begin{proof}
-    See \cite{Mathas-book} theorem 5.42.
+    See \cite[Thm~5.42]{Mathas-book}.
   \end{proof}
   This result gives information solely on $e$-regular partitions, and the general irreducibility of $S^\lambda$ away from $p=2$ is not well understood.
   We will henceforth specialize slightly to the case that $(n+r,n)$ is $e$-regular. 
@@ -371,7 +391,7 @@
     Then, $S^{(n+r,n)}$ is irreducible if and only if $e \mid r+1$.
   \end{corollary}
   \begin{proof}
-    This follows from the proof of Corollary \ref{S irreducibility} part (ii) and the fact that $\nu_p(h) = \nu_p(h')$ for all naturalls $h,h'$. 
+    This follows from the proof of Corollary \ref{S irreducibility} part (ii) and the fact that $\nu_p(h) = \nu_p(h')$ for all naturals $h,h'$. 
   \end{proof}
   \subsection{Branching theorems of Specht modules}
   In this section as well as later sections, we will consider the restriction of representations of $\SH$ to particular subalgebras isomorphic to $\SH_{k,q}\prn{S_{2n + r - 1}}$.
@@ -1661,9 +1681,9 @@ Recall that we have decomposed $V$ into a direct sum of the subrepresentations $
 \begin{proposition}
   We have the following isomorphisms of representations:
   \begin{align*}
-    V_{\vs\vs}^2 &\simeq D^{(1^2)}\\
-    V_{\vs\vp}^2 &\simeq D^{(2)}\\
-    V_{\vp\vp}^2 &\simeq V_{\vs\vs}^2 \oplus V_{\vs\vp}.
+    \emph{$V_{\vs\vs}^2$} &\simeq D^{(1^2)}\\
+    \emph{$V_{\vs\vp}^2$} &\simeq D^{(2)}\\
+    \emph{$V_{\vp\vp}^2$} &\simeq V_{\vs\vs}^2 \oplus V_{\vs\vp}.
   \end{align*}
 \end{proposition}
 \begin{proof}
@@ -1840,9 +1860,9 @@ Now we may use these in order to characterize $V$ via irreducible quotients of S
   Through a similar process, we see that $\mu' = (n+1,n-1)$.
   We narrow down $\lambda'$ to one of $(n,n)$ or $\varpi := (n,n-1,1)$, and note that
   \begin{align*} 
-    \beta_\varpi(1,2) &= 3 - 2 + (n-1) = n\\
-    \beta_\varpi(1,3) &= 3 - 1 + n = n+2\\
-    \beta_\varpi(2,3) &= 2 - 1 + 2 = 3
+    \beta_\varpi(1,2) &= 3 - 2 + (n-1) = n,\\
+    \beta_\varpi(1,3) &= 3 - 1 + n = n+2,\\
+    \beta_\varpi(2,3) &= 2 - 1 + 2 = 3.
   \end{align*}
   and hence at least one of 2 or 3 is normal, $\Res D^{\varpi}$ is not irreducible, and $\lambda' = (n,n)$, finishing our proof.
 \end{proof}
@@ -1889,7 +1909,7 @@ Hence the following characterises sign subrepresentations of $M$ completely:
 
 \newpage
 \appendix
-\section{Compatibility of Representations with the Relations}
+\section{Compatibility of Representations with the Relations}\label{Compatibility Section}
 In general, we defined the representations $V := V^{2n + r}$ and $M := M_{2n + r}$ for the free algebra on generators $\cbr{T_1,\dots,T_{2n + r - 1}}$.
 Recall that we may give a presentation of $\SH$ having generators $T_i$ and relations
 \begin{align}
@@ -1901,21 +1921,22 @@ We call \eqref{quadratic} the \emph{quadratic relation} and \eqref{braid1}, \eqr
 It is easily seen that a representation of $\SH$ is equivalent to a representation of the free algebra $k\langle T_i \rangle$ which are compatible with the relations.
 We will prove in the following sections that $V$ and $M$ are compatible with the Hecke algebra relations.
 
-\subsection{Explicit Definition of $M$}
+\subsection{Explicit Definition of $M$}\label{Explicit Definition}
 We will give a more careful definition of the crossingless matchings representation here.
 \begin{definition}
   A \emph{crossingless matching on $2n+r$ indices with $r$ anchors} is a partition of $\cbr{1,\dots,2n+r}$ into $n$ parts of size $2$ and $r$ of size 1 such that no two parts $(a,a')$ and $(b,b')$ satisfy $a < b < a' < b'$, and no parts $(c), (a,a')$ satisfy $a < c < a'$.
   We will call these arcs and anchors, respectively.
   Then, define $M^r_{2n+r}$ to be the $k$-vector space with basis the set of crossingless matchings on $2n+r$ indices with $r$ anchors.
+  If basis element $w_j$ contains arc $(a,b)$, say $w_j(a) := b$ and $w_k(b) := a$.
 
   In order to endow $M^r_{2n + r}$ with an $\SH$-action, consider some basis element $w_j$ and some element $(1 + T_i)$ of $\SH$.
   The elements $\cbr{1} \cup \cbr{1 + T_i | 1 \leq i < 2n + r}$ generate $\SH$, so it is sufficient to define the action of $1 + T_i$ on $w_j$.
 
   If $w_j$ has arc $(i,i+1)$, define $(1 + T_i)w_j := (1 + q)w_j$.
-  If $w_j$ has anchors $W(i) = i$ and $W(i+1) = i+1$, define $(1 + T_i)w_j := 0$.
-  If $w_j$ has anchor $W(i) = i$ and arc $W(i+1) = b$, define $(1 + T_i)w_j := q^{1/2}w_l$, where $w_l(i) = i+1$, $w_l(b) = b$, and all other arcs agree with $w_j$.
-  If $w_j$ has arcs $W(i) = a$ and $W(i+1) = b$, then define $(1 + T_i)w_j := q^{1/2}w_l$, where $w_l(i) = i+1$,$w(a) = b$, and all other acts agree with $w_j$. 
-  We verify that this is well-defined in Section \ref{Cross Relations}.
+  If $w_j$ has anchors $w_j(i) = i$ and $w_j(i+1) = i+1$, define $(1 + T_i)w_j := 0$.
+  If $w_j$ has anchor $w_j(i) = i$ and arc $w_j(i+1) = b$, define $(1 + T_i)w_j := q^{1/2}w_l$, where $w_l(i) = i+1$, $w_l(b) = b$, and all other arcs agree with $w_j$.
+  If $w_j$ has arcs $w_j(i) = a$ and $w_j(i+1) = b$, then define $(1 + T_i)w_j := q^{1/2}w_l$, where $w_l(i) = i+1$,$w(a) = b$, and all other acts agree with $w_j$. 
+  We verify that this is well-defined in Appendix \ref{Cross Relations}.
 \end{definition}
 
 We may alternately sharpen our topological definition;
