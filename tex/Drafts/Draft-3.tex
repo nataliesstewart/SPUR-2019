@@ -192,8 +192,17 @@
     Then, $M_{2n + r}^r \simeq S^{(n+r,n)}$.
   \end{customthm}
   \endgroup
-  Lastly, we will conjecture that $M_{2n + r}^r \simeq S^{(n+r,n)}$ for all $e$, and support this with heuristic data.
-   
+  Each of these are powerful characterizations of the module $M_{2n + r}^r$ in the case that it and $S^{(n+r,n)}$ are irrducible.
+  We will prove the following theorem which characterizes $M_{2n + r}^r$ in the reducible case:
+  \begingroup
+  \hypersetup{linkcolor=\thmcolor}
+  \begin{customthm}{\ref{kernel existence}}
+    Suppose $e = n + r + 1$.
+    Then, $M_{2n + r}^r$ contains a subrepresentation isomorphic to the sign representation. 
+  \end{customthm}
+  \endgroup
+  We will go on to prove Corrollary \ref{n+r+1 composition series}, which specifies a composition series for $M_{2n + r}^r$ for the case $e = n + r + 1$.
+
   This proves a graphical characterization of $S^\lambda \simeq D^\lambda$ in many cases.
   However, when $S^\lambda$ is reducible, the crossingless matchings representations cannot provide a graphical realization of the irreducible quotients $D^\lambda$;
   our next goal is to provide a similar graphical realization of the modules $D^{(n+r,n)}$ with $r \leq 3$ when $e=5$, using a modification of Shor--Jordan's Fibonacci representation of the braid group \cite{Shor}.
@@ -276,7 +285,10 @@
   Following this, we prove the existence of a particular filtration with factors given by other crossingless matchings representations;
   using irreducibility, this becomes a composition series.
   This combined with an inductive argument and the branching of Section \ref{Specht Modules Section} allow us to prove Theorem \ref{Correspondence Theorem}.
-  Last, we finish the section by proving more general statements concerning sign subrepresentations of $M$, which contribute to conjectures later in the paper.{\color{orange} Fill in with specific information later.}
+  Last, we finish the section by proving more general statements concerning sign subrepresentations of $M$, which contribute to conjectures later in the paper.
+
+  \vspace{5pt}
+
 
   \vspace{5pt}
   In Section \ref{Fibonacci Section}, we begin by establishing the $2n = 2$ case of Theorem \ref{Fibonacci Theorem} for the subrepresentations of $V^2$, as well as irreducibility of $V^3_{\vs\vp}$.
@@ -907,7 +919,7 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
   This entirely characterizes $M_{2n + r}^r$ in the case that $e > n + r + 1$.
   In the next section, we will give weaker characterizations of $M_{2n + r}^r$ in the case $e = n + r + 1$, where the representation s $M_{2n + r}^r$ and $S^{(n+r,n)}$ are reducible.
 
-\section{Sign subrepresentations}
+  \section{Sign subrepresentations}\label{Sign section}
 {\color{magenta} Smooth out the beginning of this section to work with the end of last section.}
 In the previous section, we proved $M_{2n+r}^r\simeq S^{(n+r,n)}$ under certain conditions of $e$. In this proof, we used the fact that, given our conditions on $e$, we only projected down to cases with no sign subrepresentation.
 
@@ -1472,16 +1484,18 @@ Me are now ready to prove existence of a kernel element. To prove this, we will 
 	If $e=n+r+1$, $M_{2n+r}^r$ is reducible, and has a unique sign subrepresentation.
 \end{corollary}
 
-\subsection{Conjectures on sign subrepresentations}\label{Conjecture Section}
-Recall that $K := K_{2n + r}^r$ is the direct sum of all copies of the sign representation in $M$.
-We will begin with a promising characterization of the socle of some $M_{2n + r}^r$.
+Due to the argument present in Theorem \ref{Irreducibility Theorem}, sign subrepresentations provide a surprisingly strong characterization of some $M_{2n + r}^r$ as follows.
 \begin{proposition}\label{Preimage of K}
   Fix some $M := M_{2n + r}^r$.
-  Suppose there is some natural number $n'$ with $n' < n$ such that $K_{2n' + r}^r \neq 0$.
+  Suppose there is some natural number $n'$ with $n' \leq n$ such that $K_{2n' + r}^r \neq 0$.
   Let $\pi:M_{2n + r}^r \twoheadrightarrow M_{2n' + r}^r$ be the linear map
   \[
-    \pi := (1 + T_1)(1 + T_3)\cdots(1 + T_{n-n'}).
+    \pi := \begin{cases}
+      (1 + T_1)(1 + T_3)\cdots(1 + T_{n-n'}) & \text{if } n < n,'\\
+      \id{M} & \text{if } n = n',
+    \end{cases}
   \]
+  where $\id M$ is the identity map on $M$.
   Then, $\pi^{-1}(K)$ contains any proper subrepresentations of $M$.
 \end{proposition}
 \begin{proof}
@@ -1489,11 +1503,23 @@ We will begin with a promising characterization of the socle of some $M_{2n + r}
   then, any subrepresentation containing $w$ also contains all of $M$, implying the proposition.
   
   In fact, since $\pi(w) \notin K$, there is some $(1 + T_i) \in \SH$ such that $(1 + T_i)\pi(w) \neq 0$.
-  Since $\ima (1 + T_i)$ is irreducible, we are then able to generate the image of a basis element, and hence generate a basis element in $M_{2n + r}^r$ by analogous argument to \ref{Irreducibility Theorem}. {\color{orange} justify soon tomorrow.}
-  {\color{orange} Sketch: subrepresentation $W \supsetneq \pi^{-1}(K)$ maps down to proper subrepresentation containing $K$, a contradiction.}
+  Note that $e > (n'-1) + r + 1$, so $M_{2(n-1) + r}^r$ is irreducible;
+  then, we may use diagram \eqref{Irreducibility commutative diagram} and an analogous argument to Theorem \ref{Irreducibility Theorem} to argue that $(1 + T_i)\pi(w)$ is cyclic, and hence $w$ is cyclic.
 \end{proof}
+\begin{corollary}\label{n+r+1 composition series}
+  Suppose $e = n + r + 1$.
+  Then $M_{2n + r}^r$ has a composition series given by
+  \[
+    0 \subset K \subset M.
+  \]
+\end{corollary}
 
-If $\pi^{-1}(K)$ is itself a subrepresentation of $M$, then we will have identified the radical of $M_{2n + r}^r$.
+This is suggestive;
+the preimage $\pi^{-1}(K)$ may be integral in characterizing the representation $M_{2n + r}^r$ in other reducible cases.
+The following section poses several conjectures involving this structure.
+
+\subsection{Conjectures on sign subrepresentations}\label{Conjecture Section}
+If $\pi^{-1}(K)$ is itself a subrepresentation of $M$, then we will have identified the radical of $M_{2n + r}^r$ via Propostion \ref{Preimage of K}.
 Observing decomposition matrices for $S_{(n+r,n)}$ for small $n$, we note that $S^{(n+r,n)}$ appears to have composition series of length at-most two by \cite{Mathas-book};
 the same appears to be true of $M_{2n + r}^r$ by Figures \ref{Composition series e=3} through \ref{Composition series e=6}.
 This motivates our first conjecture:
@@ -1505,11 +1531,12 @@ We can posit more sturcutre than this;
 by observing Figure \ref{Empirical Kernel}, we note that the kernel is nontrivial in more cases than $e = n + r + 1$, and appears to follow a pattern: 
 \begin{conjecture}\label{Sharp kernel}
   Suppose $p = \infty$.
-  Then, $K \subset M_{2n + r}^r$ is nontrivial if and only if $e \mid n + r + 1$, in which case it is one-dimensional.
+  Then, $K \subset M_{2n + r}^r$ is nontrivial if and only if $e \mid n + r + 1$ and $e < n$. in which case it is one-dimensional.
 \end{conjecture} 
 Then, assuming that Conjectures \ref{Preimage subrepresentation} and \ref{Sharp kernel} are true, we reach the following corollary.
 \begin{corollary}
-  $M := M_{2n + r}^r$ has a composition series given by \begin{equation}\label{Conjecture filtration}
+  Suppose $e,n,r$ are such that $M_{2n + r}^r$ is irreducible and $e \mid n' + r + 1$ for some $e < n' < n$.
+  Then, $M := M_{2n + r}^r$ has a composition series given by \begin{equation}\label{Conjecture filtration}
     0 \subset \pi^{-1}(K) \subset M.\end{equation}
 \end{corollary}
 \begin{proof}
@@ -1517,8 +1544,8 @@ Then, assuming that Conjectures \ref{Preimage subrepresentation} and \ref{Sharp 
   By \ref{Preimage subrepresentation}, the first factor is irreducible, and by \ref{Preimage of K}, the second factor is irreducible.
 \end{proof}
 
-This characterizes much of the structure of $M_{2n + r}^r$.
-Due to this structure, the heuristics listed above, their isomorphism in the generic case, and the equality of their dimension, we pose the following conjecture.
+These conjectures hope to characterize much of the structure of $M_{2n + r}^r$.
+Due to this structure, the heuristics listed above, their isomorphism in the $e > n + r + 1$ case, and the equality of their dimension, we pose the following conjecture.
 \begin{conjecture}
   For any $e,n,r$, we have $M_{2n + r}^r \simeq S^{(n+r,n)}$.
 \end{conjecture}
@@ -1770,25 +1797,6 @@ Now we may use these in order to characterize $V$ via irreducible quotients of S
 \end{proof}
 
 Hence we have entirely characterized Shor--Jordan's Fibonacci representation \cite{Shor} as a direct sum of irreducible quotients of Specht modules, and we have given graphical realizations of $D^{(n+r,n)}$ for $e = 5$ and $r \leq 3$.
-
-
-
-\iffalse
-\begin{proposition}
-  Denote the composition factor $M_{2n + r}^r / h^{-1}(K_{2n + r}^r)$ by $U_{2n + r}^r$.
-  Then, there exist some naturals $m,s$ satisfying $2m + s = 2n + r$ and $m + s > n + r$ such that the following is an isomorphism of $\SH$-modules \[h^{-1}\prn{K_{2n + r}^r} \simeq U_{2m + s}^s\].
-  \qed
-\end{proposition}
-\begin{proposition}
-  For the same $m,s$ as above, we have the following composition series of Specht modules:
-  \[
-    0 \longrightarrow D^{(m+s,m)} \longrightarrow S^{(n+r,n)} \longrightarrow D^{(n+r,n)} \longrightarrow 0.
-  \]
-\end{proposition}
-\begin{proposition}
-  $M_{2n + r}^r \simeq S^{(n+r,n)}$ and $U_{2m +s}^s \simeq D^{(m+s,m)}$.
-\end{proposition}
-\fi
 
 \newpage
 \appendix
