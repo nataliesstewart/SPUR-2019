@@ -1543,7 +1543,7 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
  	Then $M_{2n + r}^r$ has a composition series given by
  	\[
     0 \subset K_{2n + r}^r \subset M_{2n + r}^r.
- 	\]
+ 	\]\qed
  \end{corollary}
 
  \begin{remark}
@@ -1557,15 +1557,15 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
   
  \subsection{Conjectures on sign subrepresentations}\label{Conjecture Section}
  If $\pi^{-1}(K)$ is itself a subrepresentation of $M$, then we will have identified the radical of $M_{2n + r}^r$ via Proposition \ref{Preimage of K}.
- Observing decomposition matrices for $S_{(n+r,n)}$ for small $e$ and $n$, we note that $S^{(n+r,n)}$ appears to have composition series of length at-most two \cite[Appendix~B]{Mathas-book};
- this is give heuristic support in Appendix \ref{Empirics Section}.
+ Observing decomposition matrices for $S_{(n+r,n)}$ for small $e$ and $n$, we note that $S^{(n+r,n)}$ appears to have composition series of length at-most two \cite[~Appendix~B]{Mathas-book};
+ we give heuristic support for an analogous statement on $M_{2n + r}^r$ in Appendix \ref{Empirics Section}.
  This motivates our first conjecture:
  \begin{conjecture}\label{Preimage subrepresentation}
-   In Proposition \ref{Preimage of K}, $\pi^{-1}(K_{2n' + r}^r)$ is an irreducible subrepresentation of $M$.
+   In Proposition \ref{Preimage of K}, $\pi^{-1}(K_{2n' + r}^r)$ is an irreducible subrepresentation of $M_{2n + r}^r$.
  \end{conjecture}
- This has been verified for {\color{magenta} LIST THE EXAMPLE WHICH HAS BEEN VERIFIED}.
+ This has been verified for $\pi:M_6^0 \twoheadrightarrow M_4^0$.
  In general, this is surprising;
- $\pi$ is a-priori only a linear map, so one may not expect the preimage of a subrepresentation via $\pi$ to be a subrepresentation of $M_{2n + r}^r$.
+ $\pi$ is a-priori only a linear map, so we do not expect a-priori that the preimage of a subrepresentation via $\pi$ is a subrepresentation of $M_{2n + r}^r$.
   
   \begin{remark}
     As a corollary to \ref{Preimage subrepresentation}, the quotient $M_{2n + r}^r / \pi^{-1}(K_{2n' + r}^r)$ is irreducible \cite[Thm.~10.4]{Dummit}.
@@ -1601,7 +1601,7 @@ We've now assembled the basic pieces necessary to prove our correspondence in th
   These facts give heuristic support for Conjecture \ref{Final conjecture}
  
 \section{Fibonacci representations and quotients of Specht modules}\label{Fibonacci Section}
-The irreducibility of $S^{(n+r,n)}$ plays a central role in the arguments of Section \ref{Crossingless Matchings Section};
+Irreducibility of $S^{(n+r,n)}$ plays a central role in the arguments of Section \ref{Crossingless Matchings Section};
 without irreducibility of $M_{2n + r}^r$ (which is conjecturally equivalent to irreducibility of $S^{(n+r,n)}$), $M$ is not necessarily isomorphic to any Specht module $S^\lambda$ or quotient $D^\lambda$, preventing the arguments of Section \ref{Specht Modules Section} from being used.
 Further, when $S^{(n+r,n)}$ is reducible, we have $e \mid l$ for some $r+2 \leq l \leq n+r+1$, and hence the filtration provided in Proposition \ref{Filtration} fails to be a composition series.
 In summary, for $S^{(n+r,n)}$, nearly every argument in Sections \ref{Specht Modules Section} and \ref{Crossingless Matchings Section} break down, and hence it is difficult to characterize the Specht module $S^{(n+r,n)}$ via crossingless matchings.
@@ -1635,11 +1635,11 @@ We note that Shor--Jordan \cite{Shor} have conveniently used complex representat
 In fact, the \emph{Fibonacci representation} of Definition \ref{Fib definition} with $k = \CC$ and $q = e^{-3\pi i /5}$ is a rescaling of Shor--Jordan's Fibonacci representation.
 
 Note that Shor--Jordan does not characterize this representation any more than the definition and decomposition into four subrepresentations;
-we will give a characterization of this representation which is stronger than presented in \cite{Shor}.
+we will give a characterization of this representation which is stronger than presented in \cite{Shor} or its generalization in \cite{Aharonov}.
 
 We will start our study of the Fibonacci representation $V := V^m$ by studying low-dimensional cases.
 Recall that we have decomposed $V$ into a direct sum of the subrepresentations $V_{\vs\vs}$, $V_{\vs\vp}$, $V_{\vp\vs}$, and $V_{\vp\vp}$, indexed by the first and last character of the strings in $V$.
-\begin{proposition}
+\begin{proposition}\label{2 correspondence}
   We have the following isomorphisms of representations:
   \begin {align*}
     \emph{$V_{\vs\vs}^2$} &\cong D^{(1^2)}\\
@@ -1703,7 +1703,7 @@ then, we will use combinatorial arguments to prove that these are isomorphic to 
 \end{proposition}
 \begin{proof}
   We will prove this inductively in $m$.
-  We've already proven irreducibility of $V^2_{\vs\vp}$ and $V^3_{\vs\vp}$, so suppose that $V^{m-2}_{\vs\vp}$ is irreducible.
+  We've already proven irreducibility of $V^2_{\vs\vp}$ and $V^3_{\vs\vp}$ via Propositions \ref{2 correspondence} and \ref{3 irreducibility}, so suppose that $V^{m-2}_{\vs\vp}$ is irreducible.
   
   Let $\cbr{v_i}$ be the basis for $V_{\vs\vp}$.
   Then each $v_i$ is cyclic; indeed, we can transform every basis vector into $(\vs\vp \dots \vp)$ via action by the appropriate $\frac{1}{\vard}(T_i - \varc)$, and we can transform $(\vs\vp \dots \vp)$ into any basis vector via action by the appropriate $\frac{1}{\vard}(T_i - \vare)$.
@@ -1726,7 +1726,7 @@ then, we will use combinatorial arguments to prove that these are isomorphic to 
 Note that the structure of this proof is parallel to the structure of Theorem \ref{Irreducibility Theorem}:
 we project down to the analogous representation on fewer letters, and we inductively lift irreducibility from this smaller representation to our original one.
 
-Now we may begin considering restrictions of Fibonacci representations:
+Now we may begin considering restrictions of Fibonacci representations as follows.
 \begin{lemma}\label{Fib branching}
   The following branching rules hold:
   \begin{align*}
@@ -1758,8 +1758,8 @@ Using this, we may now decompose $V$ into a direct sum of irreducible representa
 \end{corollary}
 
 \begin{remark}
-  As in \cite{Shor}, we may be consider a representation $\tilde V^m$ of the braid group on $m$ strands via Definition \ref{Fib definition}. 
-  In fact, Proposition \ref{Fib irreducibility}, Lemma \ref{Fib branching}, and Corollaries \ref{ss irreducibility} and \ref{V decomposition into V} hold in reference to $\tilde V^m$ by analogous arguments.
+  As in \cite{Shor}, we may be consider a representation $\widetilde V^m$ of the braid group on $m$ strands via Definition \ref{Fib definition}. 
+  In fact, Proposition \ref{Fib irreducibility}, Lemma \ref{Fib branching}, and Corollaries \ref{ss irreducibility} and \ref{V decomposition into V} hold in reference to $\widetilde V^m$ by analogous arguments.
 \end{remark}
 
 Now we may use these in order to characterize $V$ via irreducible quotients of Specht modules.
@@ -1774,7 +1774,7 @@ Now we may use these in order to characterize $V$ via irreducible quotients of S
 \end{theorem}
 \begin{proof}
   We will prove this by induction on $m = 2n$;
-  we have already proven the base case $V^{2}$, so suppose that we have proven these isomorphisms for $V^{2n-2}$.
+  we have already proven the base case $V^{2}$ via Propoition \ref{2 correspondence}, so suppose that we have proven these isomorphisms for $V^{2n-2}$.
   We will prove the isomorphisms for $V^{2n-1}$ and $V^{2n}$.
 
   By Proposition \ref{Fib irreducibility}, $V^{2n-1}_{\vs\vs} \cong D^{\lambda}$ and $V^{2n-1}_{\vs\vp} \cong D^{\mu}$ for some partitions $\lambda,\mu \vdash 2n - 1$.
@@ -1782,7 +1782,7 @@ Now we may use these in order to characterize $V$ via irreducible quotients of S
   
   First, by Lemma \ref{Fib branching} and the inductive hypothesis, we have \[\Res \; D^{\lambda} \cong D^{(n,n-2)} \cong \Res \; D^{(n+1,n-2)}\] and \[\Res \; D^{\mu} \cong D^{(n,n-2)} \oplus D^{(n-1,n-1)} \cong \Res \; D^{(n,n-1)}.\]
   
-  By irreducibility of $\Res D^{\lambda}$, the only normal number in $\lambda$ is 1.\cite{Kleshchev,Brundan}
+  By irreducibility of $\Res D^{\lambda}$, the only normal number in $\lambda$ is 1 \cite{Kleshchev,Brundan}.
   Further, the only diagrams which can be transformed into $(n,n-2)$ by removing a cell are $(n+1,n-2)$, $(n,n-1)$, and $(n,n-2,1)$ as illustrated in Figure \ref{OddRes};
   we have already seen that $D^{(n,n-1)}$ does not have irreducible restriction via Corollary \ref{D Restrictions}, so we are left with $(n+1,n-2)$ and $\varsigma := (n,n-2,1)$.
   We may directly check that $\varsigma$ doesn't satisfy this, as we have
@@ -1859,8 +1859,10 @@ Recall that we may give a presentation of $\SH$ having generators $T_i$ and rela
   T_iT_j &= T_jT_i \hspace{40pt} \abs{i - j} > 1. \label{braid2}
 \end{align}
 We call \eqref{quadratic} the \emph{quadratic relation} and \eqref{braid1}, \eqref{braid2} the \emph{braid relations}.
-It is easily seen that a representation of $\SH$ is equivalent to a representation of the free algebra $k\langle T_i \rangle$ which are compatible with the relations.
+It is easily seen that a representation of $\SH$ is equivalent to a representation of the free algebra $k\langle T_i \rangle$ which is compatible with the relations.
+We will begin this appendix by proving a more careful definition of the representation $M_{2n + r}^r$.
 We will prove in the following sections that $V$ and $M$ are compatible with the Hecke algebra relations.
+
 
 \subsection{Explicit definition of crossingless matchings}\label{Explicit Definition}
 We will give a more careful definition of the crossingless matchings representation here.
@@ -1896,25 +1898,21 @@ If $\tilde w_j^i$ is isotopic to some $w_l$, define $(1 + T_i)w_j := (1 + q)w_l$
 This process is illustrated in Figure \ref{Action}.
 \end{definition}
   
-Let the length of an arc $(i,j)$ be $l(i,j) := j - i + 1$.
+Let the length of an arc $(i,j)$ be $j - i + 1$.
 Note that the crossingless matchings on $2n$ indices with no anchors can all be identified with a list of $n$ integers describing the lengths of the arcs from left to right;
 The basis on $M_5^1$ induced by the quotient $M_6^0 \twoheadrightarrow M_{5}^1$ is illustrated in Figure \ref{S5 Basis}, and we call this the \emph{increasing lexicographic basis}. 
 
 \begin{remark}
   This definition gives a graphical calculus for working with our module.
-  It should be clear that, if $w_j^i$ has a loop then $w_l(i) = i+1$ and $w_l = w_j$.
+  It should be clear that, if $w_j^i$ has a loop, then $w_l(i) = i+1$ and $w_l = w_j$.
   Further, this easily defines an arbitrary composition:
   \[
     (1 + T_{i_1})\cdots(1 + T_{i_\ell})w_j = q^{(\ell - t)\frac{1}{2}}(1 + q)^tw_l
   \]
   if the figure we make via $(1+T_{i_1})\cdots(1+T_{i_\ell})$ is isotopic to $w_l$ after removing $t$ loops.
 \end{remark}
-  
-  Note that the crossingless matchings on $2n$ indices with no anchors can all be identified with a list of $n$ integers describing the lengths of the arcs from left to right;
-  call this the \emph{increasing lexicographical order basis}.
-  Further, we have a surjection $M_{2n + 2r}^0 \twoheadrightarrow M_{2n + r}^r$ which takes basis elements to basis elements;
-  this induces an order on the basis for $M_{2n +r}^r$, which we will henceforth refer to as the \emph{induced lexicographical order basis.}
-  This basis is illustrated for $M_{5}^1$ in Figure \ref{S5 Basis}. 
+
+We now verify that this is well-defined as a representation of $\SH$.
 
 \subsection{Compatibility for the crossingless matchings representations}
 \label{Cross Relations}
@@ -2072,7 +2070,7 @@ We will verify that this is justified, using a more general fact about resctrict
  
   We will show that $\SH'' = T_{i_j}\SH'T_{i_j}^{-1}$.
   It suffices to show that $T_{i_j}T_wT_{i_j}^{-1} \in \SH''$ for $w$ a word generated by simple transpositions $s_{i_1},\dots,s_{i_{l}} \in S_m$.
-  First, note that $l(w) < l(s_{i_j}w)$, implying $T_{i_j}T_w = T_{s_{i_j}w}$ by lemma 1.12 in \cite{Mathas-book}.
+  First, note that $l(w) < l(s_{i_j}w)$, implying $T_{i_j}T_w = T_{s_{i_j}w}$ by \cite[Leb.~1.12]{Mathas-book}.
   Further, by the same lemma, we have
   \begin{align*}
     T_{s_{i_j}w}T_{i_j}^{-1} 
@@ -2112,7 +2110,7 @@ For $M$, the data throughout this section are specified with respect to the basi
 For $V$, the data are specified with respect to the basis on $V^m$ given by increasing lexicographic order $\vs < \vp$.
 
 For the following data, set $e := 5$.
-The following data define the isomorphisms $\varphi_{2n + r}^r: M_{2n + r}^r / K_{2n + r}^r \rightarrow V_{s}^{2n + r}$ where $s = \vs\vs$ if $r \in \cbr{0,3}$ and $s = \vs\vp$ otherwise.
+The following data define the isomorphisms \[\varphi_{2n + r}^r: M_{2n + r}^r / K_{2n + r}^r \xrightarrow{\sim} V_{s}^{2n + r},\] where $s = \vs\vs$ if $r \in \cbr{0,3}$ and $s = \vs\vp$ otherwise.
 All of such computations use $q$ a primitive 5th root of unity in the algebraic extension of the Cyclotomic field $\QQ(\zeta_{10})$ by $\sqrt\tau$ \cite{Github}.
 This data covers all cases $2n + r \leq 6$, and they include the cases $n = r = 2$ and $n = 1, r = 3$ where $K_{2n + r}^r \neq 0$.
 \def\tho{q^{3/2} + 1}
@@ -2164,11 +2162,11 @@ We give in Figure \ref{Empirical Kernel} some data supporting a conjecture conce
 The computations to support this were done over $\CC$ with $q$ a primitive 5th root of unity \cite{Github}.
 
 It is known that, for small $e$ and $2n + r$, each Specht module $S^{(n+r,n)}$ has a composition series of length at most 2 \cite[Appendix B]{Mathas-book}.
-Heuristically, $M_{2n + r}^r$ does as well;
-let this series be
-\[
+Heuristically, $M_{2n + r}^r$ satisfies this as well;
+when $M_{2n + r}^r$ has such a composition series, denote the series by
+\begin{equation}\label{U composition series}
   0 \subset U_{2n + r}^r \subset M_{2n + r}.
-\]
+\end{equation}
 In the following data, we specify the inclusion maps map $\iota_{e,2n+r}^r:U_{2n + r}^r \hookrightarrow M_{2n + r}^r $, which conjecturally illustrates the inclusion of the first composition factor of $S^{(n+r,n)}$ into $S^{(n+r,n)}$ for all $2n + r \leq 7$.
 We begin by defining the following constants.
 \def\qqo{\varkappa}
@@ -2301,8 +2299,9 @@ this includes all cases where $e > 7$, as we then have $e > 2n + r \geq n + r + 
   From this data, we may explicitly characterize the subrepresentation $\ima \iota_{e,n+r}^r \subset M_{2n + r}^r$;
   this in turn explicitly characterizes the quotient map $M_{2n + r}^r \twoheadrightarrow M_{2n + r}^r/\ima \iota_{e,n+r}^r$, fully determining the data of the composition series specified by the short exact sequence 
   \[
-    0 \longrightarrow \ima \iota_{e,n+r}^r \longrightarrow M_{2n + r}^r \longrightarrow M_{2n + r}/\ima\iota_{e,n+r}^r \longrightarrow 0.
+    0 \longrightarrow \ima \iota_{e,n+r}^r \longrightarrow M_{2n + r}^r \longrightarrow M_{2n + r}/\ima\iota_{e,n+r}^r \longrightarrow 0,
   \]
+  i.e. \ref{U composition series}.
 \end{remark}
 
 A potential extension of this work is to implement a standard basis for the Specht module (e.g. the Murphy basis \cite{Murphy1,Murphy2}) in order to draw explicit isomorphisms between the Specht module and crossingless matchings representation, rather than the implicit isomorphisms proven in \ref{Correspondence Theorem}.
